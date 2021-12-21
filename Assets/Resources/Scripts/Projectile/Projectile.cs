@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour
 
     [HideInInspector] public int ricochetCount = 0;
 
-    [HideInInspector] public float movementSpeed;
+    public float movementSpeed;
     Vector2 movementDirection;
 
    // private bool hasDealtDamage = false;

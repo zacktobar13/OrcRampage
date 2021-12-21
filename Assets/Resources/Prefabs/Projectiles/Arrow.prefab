@@ -51,6 +51,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -62,6 +64,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -113,7 +116,8 @@ MonoBehaviour:
   flySound: {fileID: 8300000, guid: 9df0641026db58b409143b82d88271dc, type: 3}
   impactSound: {fileID: 8300000, guid: f656805cd58dcbc47b46e9eb71ab9b2d, type: 3}
   criticalHitSound: {fileID: 8300000, guid: 1834b05d33651614883c245e0f76f2ad, type: 3}
-  movementSpeed: 0
+  ricochetCount: 0
+  movementSpeed: 0.75
 --- !u!61 &886911396343857088
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -333,6 +337,8 @@ TrailRenderer:
   m_MotionVectors: 2
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -344,6 +350,7 @@ TrailRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

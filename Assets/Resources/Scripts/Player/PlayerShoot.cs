@@ -61,39 +61,14 @@ public class PlayerShoot : MonoBehaviour
                 onBowReady();
         }
 
-        if (PlayerInput.arrowHeld)
-        {
-           if (!currentlyDrawing)
-            {
-                arrowReleaseBarGameObject.SetActive(true);
-
-                if (onBowDraw != null)
-                    onBowDraw(maxDrawTime);
-
-                currentlyDrawing = true;
-                audioSource.Stop();
-                audioSource.pitch = Random.Range(.9f, 1.2f);
-                audioSource.PlayOneShot(drawBowSound, 10f);
-            }
-        }
-
-        if (PlayerInput.arrowReleased && currentlyDrawing)
+        if (PlayerInput.shoot)
         {
             ShootBow(0f, arrowReleaseBar.canCriticalFire);
-
-            audioSource.Stop();
-            currentlyDrawing = false;
-
-            if (onDrawEnd != null)
-                onDrawEnd(this);
+            lastShotTime = Time.time;
 
             if (onFire != null)
                 onFire(this);
-
-            bowReady = false;
-            lastShotTime = Time.time;
         }
-
     }
 
     public void ShootBow(float offsetScalar, bool isCritical)
@@ -102,8 +77,7 @@ public class PlayerShoot : MonoBehaviour
         Vector3 arrowPosition = transform.position + offsetDirection * offsetScalar;
         GameObject arrow = Instantiate(StaticResources.arrow, arrowPosition, transform.rotation);
         Projectile projectile = arrow.GetComponent<Projectile>();
-        projectile.projectileDamage = Mathf.CeilToInt(projectile.projectileDamage * DamageScalarFromDrawDuration());
-        projectile.movementSpeed = 1f * Mathf.Clamp(MovementScalarFromDrawDuration(), 0.3f, 1f);
+        projectile.projectileDamage = Mathf.CeilToInt(projectile.projectileDamage);
 
         if (isCritical)
         {

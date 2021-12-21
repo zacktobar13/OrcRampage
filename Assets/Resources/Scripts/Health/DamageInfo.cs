@@ -4,7 +4,8 @@ using UnityEngine;
 
 public struct DamageInfo
 {
-    static private float defaultKnockbackSpeed = 0.15f;
+    static private float defaultKnockbackSpeed = 0.0375f;
+    static private float defaultKnockbackDistance = .5f;
     static private float defaultKnockbackDuration = 0.1f;
     public int damageAmount;
     public Vector2 knockbackDirection;
@@ -54,14 +55,14 @@ public struct DamageInfo
         damageAmount = damage;
         criticalHit = false;
 
-        knockbackDirection = dir.normalized * knockbackDistanceScalar;
+        knockbackDirection = dir.normalized * defaultKnockbackDistance * knockbackDistanceScalar;
         knockbackSpeed = defaultKnockbackSpeed * knockbackSpeedScalar;
         knockbackDuration = defaultKnockbackDuration;
 
         spawnBlood = false;
     }
 
-    public DamageInfo(int damage, Vector2 dir, float knockbackSpeedScalar, float knockbackDistanceScalar, bool crit )
+    public DamageInfo(int damage, Vector2 dir, float knockbackSpeedScalar, float knockbackDistanceScalar, bool crit)
     {
         damageAmount = damage;
         criticalHit = crit;
