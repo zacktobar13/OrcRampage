@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Interactable
+  - GatherableResource
+  - Projectile
+  - Player Interaction Collider
+  - DamageCollider
+  - Next Level Trigger
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Virtual Screen
+  - Projectiles
+  - World Colliders
+  - Pit Hazards
+  - Player
+  - Clutter Remains
+  - Map Clutter
+  - Walls
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1783715265
+    locked: 0
+  - name: Shadows
+    uniqueID: 3753382023
+    locked: 0
+  - name: Objects
+    uniqueID: 453797103
+    locked: 0
+  - name: Visual Effects
+    uniqueID: 1723702125
+    locked: 0
+  - name: Projectiles
+    uniqueID: 3540618389
+    locked: 0
+  - name: UI
+    uniqueID: 4187398549
+    locked: 0
