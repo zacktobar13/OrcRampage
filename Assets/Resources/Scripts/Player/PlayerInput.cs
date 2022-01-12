@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour {
     public static Vector2 mousePosition;
     public static bool pressedSpacebar;
     public static bool attack;
+    public static bool interact;
 
     Camera mainCamera;
 
@@ -21,5 +22,6 @@ public class PlayerInput : MonoBehaviour {
         mousePosition = mainCamera.ScreenToWorldPoint ( Input.mousePosition );
         pressedSpacebar = Input.GetButtonDown("Dodge Roll");
         attack = Input.GetButtonDown("Fire1");
+        interact = Input.GetKeyDown(KeyCode.E);
     }
 }
