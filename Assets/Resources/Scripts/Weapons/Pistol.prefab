@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374247316955007570}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.45, y: 0.98, z: 0}
+  m_LocalPosition: {x: 1.78, y: -0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 374247318270732437}
@@ -95,7 +95,6 @@ MonoBehaviour:
   sprite: {fileID: 374247318270732434}
   visualsCooldown: 0
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
-  projectileSpawn: {fileID: 374247316955007570}
   audioSource: {fileID: 374247318270732435}
   shootSound: {fileID: 8300000, guid: 266f16d659b01674e8eb5ce6d33404b3, type: 3}
   emptySound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}

@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDuration;
     public float knockbackDistanceMultiplier;
     public GameObject[] weapons;
-    PlayerAttack playerShoot;
+    PlayerAttack playerAttack;
     public Rigidbody2D rigidBody;
 
     Vector2 fallRecoveryPoint;
@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        playerShoot = GetComponent<PlayerAttack>();
+        playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
         PitEdge.onPlayerEnterPitEdge += EnterPitEdge;
         PitHazard.onPlayerEnterPitHazard += FallIntoPit;
@@ -138,21 +138,19 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartDodgeRoll(Vector2 direction)
     {
-        playerShoot.enabled = false;
+        playerAttack.enabled = false;
         dodgeRollDir = direction;
         isDodgeRolling = true;
 
-        foreach (GameObject weapon in weapons)
-            weapon.SetActive(false);
+        playerAttack.DisableWeapon();
     }
 
     public void StopDodgeRoll()
     {
-        foreach (GameObject weapon in weapons)
-            weapon.SetActive(true);
+        playerAttack.EnableWeapon();
 
         dodgeRollDir = Vector2.zero;
-        playerShoot.enabled = true;
+        playerAttack.enabled = true;
         isDodgeRolling = false;
         isRunning = false;
         dodgeRollSpeedScalar = 2;

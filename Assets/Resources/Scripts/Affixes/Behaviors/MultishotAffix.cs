@@ -21,7 +21,7 @@ public class MultishotAffix : BaseAffix
             {
                 distance += 2;
             }
-            playerShoot.ShootBow(distance * directionFlip, true);
+            //playerShoot.ShootBow(distance * directionFlip, true);
             directionFlip *= -1;
         }
     }

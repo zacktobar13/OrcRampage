@@ -15,6 +15,12 @@ public class PlayerAttack : MonoBehaviour
 
     public bool currentlyDrawing = false;
 
+    void Start()
+    {
+        currentWeapon = GetComponentInChildren<Weapon>();
+        weapons[0] = currentWeapon;
+    }
+
     private void OnDisable()
     {
         currentlyDrawing = false;
@@ -22,30 +28,20 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-
         if (PlayerInput.attack)
         {
-            transform.Find("Pistol").GetComponent<Weapon>().Shoot();
+            currentWeapon.Shoot();
         }
     }
 
-    public void ShootBow(float offsetScalar, bool isCritical)
+    public void DisableWeapon()
     {
-        Vector2 playerToMouse = PlayerInput.mousePosition - (Vector2)transform.position;
-        GameObject arrow = Instantiate(StaticResources.arrow, transform.position, transform.rotation);
-        Projectile projectile = arrow.GetComponent<Projectile>();
+        currentWeapon.gameObject.SetActive(false);
+    }
 
-        float projectileRotation = Mathf.Atan2(playerToMouse.y, playerToMouse.x) * Mathf.Rad2Deg;
-        projectile.SetProjectileRotation(projectileRotation);
-
-        projectile.projectileDamage = Mathf.CeilToInt(projectile.projectileDamage);
-
-        if (isCritical)
-        {
-            projectile.projectileDamage *= 2;
-            projectile.isCriticalHit = true;
-        }
-        
+    public void EnableWeapon()
+    {
+        currentWeapon.gameObject.SetActive(true);
     }
 
     public void OnAttack(Weapon weapon, Projectile projectile)

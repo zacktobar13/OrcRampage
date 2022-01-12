@@ -231,7 +231,7 @@ public class BaseEnemy : MonoBehaviour {
 
     IEnumerator Knockback(DamageInfo damageInfo)
     {
-        Debug.Assert(damageInfo.knockbackDirection.magnitude == 1, "Direction vectors need to be normalized!");
+        damageInfo.knockbackDirection.Normalize();
         Vector2 knockbackDirection = (Vector2)gameObject.transform.position + damageInfo.knockbackDirection * 100;
         float knockbackStartTime = Time.time;
         while ( true )
