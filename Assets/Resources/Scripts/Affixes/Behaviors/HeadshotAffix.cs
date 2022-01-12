@@ -6,10 +6,10 @@ public class HeadshotAffix : BaseAffix
 
     void Start()
     {
-        PlayerShoot.onShoot += OnShoot;
+        PlayerAttack.onShoot += OnShoot;
     }
 
-    public void OnShoot(PlayerShoot playerShoot, Projectile projectile)
+    public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
         if (projectile.isCriticalHit)
         {
@@ -25,7 +25,7 @@ public class HeadshotAffix : BaseAffix
 
     void OnDestroy()
     {
-        PlayerShoot.onShoot -= OnShoot;
+        PlayerAttack.onShoot -= OnShoot;
     }
 }
 

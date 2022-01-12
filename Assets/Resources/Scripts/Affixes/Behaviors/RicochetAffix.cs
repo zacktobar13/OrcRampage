@@ -2,16 +2,16 @@
 {
     void Start()
     {
-        PlayerShoot.onShoot += OnShoot;
+        PlayerAttack.onShoot += OnShoot;
     }
 
-    public void OnShoot(PlayerShoot playerShoot, Projectile projectile)
+    public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
         projectile.isRicochet = true;
         projectile.ricochetCount = 5;
     }
     void OnDestroy()
     {
-        PlayerShoot.onShoot -= OnShoot;
+        PlayerAttack.onShoot -= OnShoot;
     }
 }

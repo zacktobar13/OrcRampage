@@ -5,6 +5,7 @@ using UnityEngine;
 public enum WeaponIdentifier
 {
     NoWeapon,
+    Pistol,
     AK,
     RPG,
 }

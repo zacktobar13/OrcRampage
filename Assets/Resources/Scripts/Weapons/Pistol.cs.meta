@@ -5,7 +5,20 @@ labels:
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - bulletCasing: {fileID: 5331020343491793710, guid: 2c3e03a0cf6183f449378318cc549e96,
+      type: 3}
+  - muzzleFlash: {instanceID: 0}
+  - notFiringSprite: {fileID: 21300000, guid: 3db3e582087db5e45825b0db0c47181b, type: 3}
+  - firingSprite: {fileID: 21300002, guid: 3db3e582087db5e45825b0db0c47181b, type: 3}
+  - sprite: {instanceID: 0}
+  - projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9,
+      type: 3}
+  - projectileSpawn: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - shootSound: {fileID: 8300000, guid: 266f16d659b01674e8eb5ce6d33404b3, type: 3}
+  - emptySound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}
+  - projectileSpawned: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

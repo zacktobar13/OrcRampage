@@ -23,8 +23,8 @@ public class BowStringLineRenderer : MonoBehaviour
 
     private void Awake()
     {
-        PlayerShoot.onBowDraw += EnableLineRenderer;
-        PlayerShoot.onShoot += DisableLineRenderer;
+        //PlayerAttack.onBowDraw += EnableLineRenderer;
+        //PlayerAttack.onAttack += DisableLineRenderer;
     }
 
     void FixedUpdate()
@@ -39,14 +39,14 @@ public class BowStringLineRenderer : MonoBehaviour
         lineRenderer.enabled = true;
     }
 
-    private void DisableLineRenderer(PlayerShoot playerShoot, Projectile projectileSpawned)
+    private void DisableLineRenderer(PlayerAttack playerShoot, Projectile projectileSpawned)
     {
         lineRenderer.enabled = false;
     }
 
     private void OnDestroy()
     {
-        PlayerShoot.onBowDraw -= EnableLineRenderer;
-        PlayerShoot.onShoot -= DisableLineRenderer;
+        //PlayerAttack.onBowDraw -= EnableLineRenderer;
+        //PlayerAttack.onAttack -= DisableLineRenderer;
     }
 }

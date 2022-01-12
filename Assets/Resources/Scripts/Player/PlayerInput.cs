@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour {
     public static float movementVertical = 0f;
     public static Vector2 mousePosition;
     public static bool pressedSpacebar;
-    public static bool shoot;
+    public static bool attack;
 
     Camera mainCamera;
 
@@ -20,6 +20,6 @@ public class PlayerInput : MonoBehaviour {
         movementVertical = Input.GetAxis("Vertical");
         mousePosition = mainCamera.ScreenToWorldPoint ( Input.mousePosition );
         pressedSpacebar = Input.GetButtonDown("Dodge Roll");
-        shoot = Input.GetButtonDown("Fire1");
+        attack = Input.GetButtonDown("Fire1");
     }
 }

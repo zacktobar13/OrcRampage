@@ -13,9 +13,6 @@ public class BowAnimation : MonoBehaviour
     SpriteRenderer bowSpriteRenderer;
     void Awake()
     {
-        PlayerShoot.onBowDraw += PlayDrawAnimation;
-        PlayerShoot.onBowDraw += EnableBowSpriteRenderer;
-        PlayerShoot.onShoot += DisableBowSpriteRenderer;
     }
 
     private void OnEnable()
@@ -44,16 +41,13 @@ public class BowAnimation : MonoBehaviour
         spriteAnim.Play(drawAnimation);
     }
 
-    public void PlayFireAnimation(PlayerShoot playerShoot, Projectile projectileSpawned)
+    public void PlayFireAnimation(PlayerAttack playerShoot, Projectile projectileSpawned)
     {
         spriteAnim.Play(fireAnimation);
     }
 
     private void OnDestroy()
     {
-        PlayerShoot.onBowDraw -= PlayDrawAnimation;
-        PlayerShoot.onBowDraw -= EnableBowSpriteRenderer;
-        PlayerShoot.onShoot -= DisableBowSpriteRenderer;
     }
 
     private void EnableBowSpriteRenderer(float time)
@@ -61,7 +55,7 @@ public class BowAnimation : MonoBehaviour
         bowSpriteRenderer.enabled = true;
     }
 
-    private void DisableBowSpriteRenderer(PlayerShoot playerShoot, Projectile projectileSpawned)
+    private void DisableBowSpriteRenderer(PlayerAttack playerShoot, Projectile projectileSpawned)
     {
         bowSpriteRenderer.enabled = false;
     }

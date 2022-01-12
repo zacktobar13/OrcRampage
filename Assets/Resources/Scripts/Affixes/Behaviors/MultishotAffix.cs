@@ -7,11 +7,11 @@ public class MultishotAffix : BaseAffix
 
     public void Start()
     {
-        PlayerShoot.onFire += OnShoot;
+        PlayerAttack.onShoot += OnShoot;
         extraShots = 5;
     }
 
-    public void OnShoot(PlayerShoot playerShoot)
+    public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
         int directionFlip = 1;
         int distance = 0;
@@ -21,13 +21,13 @@ public class MultishotAffix : BaseAffix
             {
                 distance += 2;
             }
-            playerShoot.ShootBow(distance * directionFlip, playerShoot.arrowReleaseBar.canCriticalFire);
+            playerShoot.ShootBow(distance * directionFlip, true);
             directionFlip *= -1;
         }
     }
 
     private void OnDestroy()
     {
-        PlayerShoot.onFire -= OnShoot;
+        PlayerAttack.onShoot -= OnShoot;
     }
 }

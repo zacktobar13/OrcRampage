@@ -13,8 +13,8 @@ public class ArrowDrawAnimation : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         animator.StopPlayback();
 
-        PlayerShoot.onBowDraw += PlayDrawAnimation;
-        PlayerShoot.onShoot += StopDrawAnimation;
+        //PlayerAttack.onBowDraw += PlayDrawAnimation;
+        //PlayerAttack.onAttack += StopDrawAnimation;
     }
 
     private void OnDisable()
@@ -29,7 +29,7 @@ public class ArrowDrawAnimation : MonoBehaviour
         animator.SetBool("drawArrow", true);
     }
 
-    private void StopDrawAnimation(PlayerShoot playerShoot, Projectile projectileSpawned)
+    private void StopDrawAnimation(PlayerAttack playerShoot, Projectile projectileSpawned)
     {
         animator.SetBool("drawArrow", false);
         spriteRenderer.enabled = false;
@@ -37,7 +37,7 @@ public class ArrowDrawAnimation : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerShoot.onBowDraw -= PlayDrawAnimation;
-        PlayerShoot.onShoot -= StopDrawAnimation;
+        //PlayerAttack.onBowDraw -= PlayDrawAnimation;
+        //PlayerAttack.onAttack -= StopDrawAnimation;
     }
 }

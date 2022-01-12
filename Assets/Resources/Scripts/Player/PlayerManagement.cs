@@ -14,7 +14,7 @@ public class PlayerManagement : MonoBehaviour
     public static void TogglePlayerControl(bool toggle)
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
-        PlayerShoot playerShoot = player.GetComponentInChildren<PlayerShoot>();
+        PlayerAttack playerShoot = player.GetComponentInChildren<PlayerAttack>();
         RotateArm[] rotateArm = player.GetComponentsInChildren<RotateArm>();
 
         if (playerMovement != null)

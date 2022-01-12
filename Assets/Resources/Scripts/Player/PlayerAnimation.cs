@@ -22,7 +22,7 @@ public class PlayerAnimation : MonoBehaviour
 
     PlayerMovement playerMovement;
     PlayerHealth playerHealth;
-    PlayerShoot playerShoot;
+    PlayerAttack playerShoot;
     public GameObject sprite;
     bool spriteFlipEnabled = false;
 
@@ -59,7 +59,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
-        playerShoot = GetComponentInChildren<PlayerShoot>();
+        playerShoot = GetComponentInChildren<PlayerAttack>();
 
         TriggerToNextLevel.onCollideWithPlayer += PlayWalkIntoLevelAnimation;
         WoodSignBehavior.onPlayerInteracted += PlayInteractWithSignAnimation;
@@ -109,40 +109,18 @@ public class PlayerAnimation : MonoBehaviour
         }
         else if (playerMovement.isRunning)
         {
-            if (!playerShoot.currentlyDrawing)
+            if (!playedRunningAnimation)
             {
-                if (!playedRunningAnimation)
-                {
-                    spriteAnim.Play(runAnimation);
-                    MostRecentAnim(anim.running);
-                }
-            }
-            else
-            {
-                if (!playedAimWalkAnimation)
-                {
-                    spriteAnim.Play(aimRunAnimation);
-                    MostRecentAnim(anim.aimWalk);
-                }
+                spriteAnim.Play(runAnimation);
+                MostRecentAnim(anim.running);
             }
         }
         else
         {
-            if (!playerShoot.currentlyDrawing)
+            if (!playedIdleAnimation)
             {
-                if (!playedIdleAnimation)
-                {
-                    spriteAnim.Play(idleAnimation);
-                    MostRecentAnim(anim.idle);
-                }
-            }
-            else
-            {
-                if (!playedAimIdleAnimation)
-                {
-                    spriteAnim.Play(aimIdleAnimation);
-                    MostRecentAnim(anim.aimIdle);
-                }
+                spriteAnim.Play(idleAnimation);
+                MostRecentAnim(anim.idle);
             }
         }
 

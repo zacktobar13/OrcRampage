@@ -12,19 +12,14 @@ public class Projectile : MonoBehaviour
     public GameObject hitEffect;
     public Transform frontOfProjectile;
     public Rigidbody2D rigidBody;
-    public GameObject shadow;
-    public TrailRenderer trailRenderer;
     public bool isPiercing;
     public bool isRicochet;
 
-    public AudioClip flySound;
     public AudioClip impactSound;
-    public AudioClip criticalHitSound;
 
     SpriteRenderer spriteRenderer;
     BoxCollider2D boxCollider;
     AudioSource audioSource;
-    GameObject myShadow;
 
     [HideInInspector] public int ricochetCount = 0;
 
@@ -36,7 +31,13 @@ public class Projectile : MonoBehaviour
     public void SetProjectileRotation(float rotation)
     {
         // Rotate sprite
-        transform.Rotate( 0, 0, rotation );
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
+
+    public void RandomProjectileSpread(float maxSpread)
+    {
+        float spreadAmount = Random.Range(-maxSpread, maxSpread);
+        transform.Rotate(0, 0, spreadAmount);
     }
 
     void Start()
@@ -49,9 +50,6 @@ public class Projectile : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
 
-        myShadow = Instantiate(shadow, new Vector2(transform.position.x, transform.position.y - 7), transform.rotation, transform);
-        myShadow.transform.parent = transform;
-
         // Move "Forward"
         ChangeMovementDirection(transform.right);
     }
@@ -61,18 +59,13 @@ public class Projectile : MonoBehaviour
         rigidBody.MovePosition( rigidBody.position + movementDirection * movementSpeed );
     }
 
-    // Whenever we change directions, move our shadow and play a new sound
     void ChangeMovementDirection(Vector2 newDirection)
     {
-        audioSource.pitch = Random.Range(1f, 1.2f);
-        audioSource.PlayOneShot(flySound, .2f);
-        myShadow.transform.position = new Vector2(transform.position.x, transform.position.y - 7f);
         movementDirection = newDirection;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         string colliderTag = collision.gameObject.tag;
 
         if (colliderTag != "Player" && colliderTag != "GatherableResource" && colliderTag != "DamageCollider" && colliderTag != "Projectile") // if this list keeps growing make a hashtable and .contains(colliderTag)
@@ -138,7 +131,7 @@ public class Projectile : MonoBehaviour
             if (isCriticalHit && colliderTag == "Enemy")
             {
                 audioSource.pitch = Random.Range(.95f, 1.05f);
-                audioSource.PlayOneShot(criticalHitSound, 1f);
+                audioSource.PlayOneShot(impactSound, 1f);
             }
         }
     }
@@ -151,7 +144,6 @@ public class Projectile : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(impactSound);
 
-        Destroy(myShadow);
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }

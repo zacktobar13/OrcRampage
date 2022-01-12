@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,7 @@ public class ArrowReleaseBar : MonoBehaviour
     public RectTransform start;
     public RectTransform finish;
     public RectTransform criticalReloadField;
-    public PlayerShoot playerShoot;
+    public PlayerAttack playerShoot;
 
     float sliderDistanceTotal;
     float sliderCurrentPosition;
@@ -27,14 +27,14 @@ public class ArrowReleaseBar : MonoBehaviour
 
     private void Awake()
     {
-        PlayerShoot.onBowDraw += StartBowDraw;
-        PlayerShoot.onShoot += OnShoot;
+        PlayerAttack.onBowDraw += StartBowDraw;
+        PlayerAttack.onAttack += OnShoot;
     }
 
     private void OnDestroy()
     {
-        PlayerShoot.onBowDraw -= StartBowDraw;
-        PlayerShoot.onShoot -= OnShoot;
+        PlayerAttack.onBowDraw -= StartBowDraw;
+        PlayerAttack.onAttack -= OnShoot;
     }
 
     private void OnEnable()
@@ -78,7 +78,7 @@ public class ArrowReleaseBar : MonoBehaviour
         startMovement = true;
     }
 
-    public void OnShoot(PlayerShoot playerShoot, Projectile projectile)
+    public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
         slider.transform.localPosition = start.localPosition;
         time = 0f;
@@ -91,4 +91,4 @@ public class ArrowReleaseBar : MonoBehaviour
         time = 0f;
         gameObject.SetActive(false);
     }
-}
+}*/

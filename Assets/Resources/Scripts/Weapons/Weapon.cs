@@ -4,173 +4,135 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    //[Header("Weapon Attributes")]
-    //public WeaponIdentifier weaponID;
-    //public bool isAutomatic;
-    //public int attackPower;
-    //public int critChance;
-    //public int critPower;
-    //public int clipSize;
-    //public int currentClip;
-    //public float reloadTime;
-    //public float shotsPerSecond;
-    //public float projectileSpeed;
-    //public float projectileSpreadAmount;
-    //public float knockbackSpeed;
-    //public float knockbackTime;
+    [Header("Weapon Attributes")]
+    public WeaponIdentifier weaponID;
+    public bool isAutomatic;
+    public int attackPower;
+    public int critChance;
+    public int critPower;
+    public int ammoCount;
+    public float shotsPerSecond;
+    public float projectileSpeed;
+    public float projectileSpreadAmount;
+    public float knockbackSpeed;
+    public float knockbackTime;
 
-    //public float criticalReloadBegin;
-    //public float criticalReloadEnd;
+    [Header("Visual Effects")]
+    public GameObject bulletCasing;
+    public Sprite notFiringSprite;
+    public Sprite firingSprite;
+    public SpriteRenderer sprite;
 
-    //[Header("Visual Effects")]
-    //public GameObject bulletCasing;
-    //public GameObject muzzleFlash;
-    //public Sprite notFiringSprite;
-    //public Sprite firingSprite;
-    //public SpriteRenderer sprite;
+    public float visualsCooldown;
 
-    //public float visualsCooldown;
+    public GameObject projectile;
+    Transform projectileSpawn;
 
-    //public GameObject projectile;
-    //public GameObject projectileSpawn;
+    [Header("Audio Effects")]
+    public AudioSource audioSource;
+    public AudioClip shootSound;
+    public AudioClip emptySound;
 
-    //[Header("Audio Effects")]
-    //public AudioSource audioSource;
-    //public AudioClip shootSound;
-    //public AudioClip emptySound;
-    //public AudioClip reloadSound;
+    [HideInInspector] public GameObject projectileSpawned;
+    Projectile projectileInfo;
 
-    //[HideInInspector] public GameObject projectileSpawned;
-    //Projectile projectileInfo;
+    private bool criticalHit;
 
-    //private bool criticalHit;
-    //public GameObject reloadBarGameObject;
-    //ReloadBar reloadBar;
+    [HideInInspector] public float lastShotTime;
 
-    //[HideInInspector] public float lastShotTime;
-
-    //[HideInInspector] public bool isReloading;
+    [HideInInspector] public bool isReloading;
 
 
-    //private void OnEnable()
-    //{
-    //    muzzleFlash.SetActive(false);
-    //    sprite.sprite = notFiringSprite;
+    private void OnEnable()
+    {
+        sprite.sprite = notFiringSprite;
+        projectileSpawn = transform.Find("BulletSpawn");
+    }
 
-    //  //  ReloadBar.onReload += OnReload;
-    //    //PlayerShootOld.onFailedReload += OnFailedReload;
-    //    //PlayerShootOld.onCriticalReload += OnCriticalReload;
-    //}
+    public virtual void Shoot()
+    {
+        if (!CanShoot())
+            return;
 
-    //private void Awake()
-    //{  
-    //    currentClip = clipSize;
-    //}
+        if (!HasAmmo())
+        {
+            FireEmpty();
+            return;
+        }
 
-    //private void Start()
-    //{
-    //    reloadBar = reloadBarGameObject.GetComponent<ReloadBar>();
-    //}
+        StartCoroutine( VisualEffects() );
+        SpawnProjectile(true);
+        ammoCount -= 1;
+        return;
+    }
 
-    //public virtual IEnumerator Shoot()
-    //{
-    //    StartCoroutine( VisualEffects() );
-    //    SpawnProjectile(true);
-    //    currentClip -= 1;
-    //    yield return new WaitForSeconds( 1f / shotsPerSecond );
-    //}
+    public virtual void FireEmpty()
+    {
+        audioSource.PlayOneShot(emptySound);
+    }
 
-    //public virtual IEnumerator FireEmpty()
-    //{
-    //    audioSource.PlayOneShot(emptySound);
-    //    yield return new WaitForSeconds(1f / shotsPerSecond);
-    //}
+    public virtual void SpawnProjectile(bool makeNoise)
+    {
+        Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
+        projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
+        projectileInfo = projectileSpawned.GetComponent<Projectile>();
+        projectileInfo.projectileDamage = CalculateBulletDamage();
+        projectileInfo.isCriticalHit = criticalHit;
+        projectileInfo.movementSpeed = projectileSpeed;
+        projectileInfo.spread = projectileSpreadAmount;
 
-    //public virtual void SpawnProjectile(bool makeNoise)
-    //{
-    //    Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
-    //    projectileSpawned = Instantiate(projectile, projectileSpawn.transform.position, Quaternion.identity);
-    //    projectileInfo = projectileSpawned.GetComponent<Projectile>();
-    //    projectileInfo.projectileDamage = CalculateBulletDamage();
-    //    projectileInfo.criticalHit = criticalHit;
-    //    projectileInfo.movementSpeed = projectileSpeed;
-    //    projectileInfo.spread = projectileSpreadAmount;
-    //    if (makeNoise)
-    //    {
-    //        audioSource.pitch = Random.Range(.9f, 1.2f);
-    //        audioSource.PlayOneShot(shootSound);
-    //    }
-    //}
+        //Vector2 weaponToMouse = PlayerInput.mousePosition - (Vector2)projectileSpawn.position;
+        //float projectileRotation = Mathf.Atan2(weaponToMouse.y, weaponToMouse.x) * Mathf.Rad2Deg;
+        projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
 
-    //public virtual IEnumerator VisualEffects()
-    //{
-    //    sprite.sprite = firingSprite;
-    //    muzzleFlash.SetActive( true );
-    //    yield return new WaitForSeconds( visualsCooldown );
-    //    muzzleFlash.SetActive( false );
-    //    sprite.sprite = notFiringSprite;
-    //}
+        if (makeNoise)
+        {
+            audioSource.pitch = Random.Range(.9f, 1.2f);
+            audioSource.PlayOneShot(shootSound);
+        }
+    }
 
-    //public void DropWeapon()
-    //{
-    //    StopAllCoroutines();
-    //}
+    public virtual IEnumerator VisualEffects()
+    {
+        sprite.sprite = firingSprite;
+        yield return new WaitForSeconds( visualsCooldown );
+        sprite.sprite = notFiringSprite;
+    }
 
-    //// Checks to see if a shot will be a crit
-    //public virtual bool RollCrit()
-    //{
-    //    return ( critChance >= Random.Range( 0, 100 ) );
-    //}
+    public void DropWeapon()
+    {
+        StopAllCoroutines();
+    }
 
-    //// All attacks roll a random range to create a spread of damage.
-    //public virtual int CalculateBulletDamage()
-    //{
-    //    if ( RollCrit() )
-    //    {
-    //        criticalHit = true;
-    //        return (int)Random.Range((attackPower * critPower) * 1f, (attackPower * critPower) * 1.25f);
-    //    }
-    //    else
-    //    {
-    //        criticalHit = false;
-    //        return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
-    //    }
-    //}
+    //Checks to see if a shot will be a crit
+    public virtual bool RollCrit()
+    {
+        return ( critChance >= Random.Range( 0, 100 ) );
+    }
 
-    //public bool CanShoot()
-    //{
-    //    return currentClip > 0 && !isReloading;
-    //}
+    //All attacks roll a random range to create a spread of damage.
+    public virtual int CalculateBulletDamage()
+    {
+        if ( RollCrit() )
+        {
+            criticalHit = true;
+            return (int)Random.Range((attackPower * critPower) * 1f, (attackPower * critPower) * 1.25f);
+        }
+        else
+        {
+            criticalHit = false;
+            return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
+        }
+    }
 
-    //public void StartReload() // Initiates our reload bar.
-    //{
-    //    reloadBarGameObject.SetActive(true);
-    //  //  reloadBar.StartReload(reloadTime);
-    //    isReloading = true;
-    //}
-    //public bool CanReload()
-    //{
-    //    return currentClip < clipSize;
-    //}
+    public bool HasAmmo()
+    {
+        return ammoCount > 0;
+    }
 
-    //public void OnReload(Weapon weapon) // Delegate starts in ReloadBar because that's where logic for slider reaching the end is.
-    //{
-    //    audioSource.pitch = Random.Range(.9f, 1.2f);
-    //    audioSource.PlayOneShot(reloadSound);
-    //    currentClip = clipSize;
-    //    isReloading = false;
-    //}
+    public bool CanShoot()
+    {
+        return Time.time > lastShotTime + (1 / shotsPerSecond);
+    }
 
-    //public void OnFailedReload(Weapon weapon)
-    //{
-    //    // Play fail sfx.
-    //}
-
-    //public void OnCriticalReload(Weapon weapon)
-    //{
-    //    audioSource.pitch = Random.Range(1f, 1.2f);
-    //    audioSource.PlayOneShot(reloadSound, 1f);
-    //    currentClip = clipSize;
-    //    isReloading = false;
-    //}
 }

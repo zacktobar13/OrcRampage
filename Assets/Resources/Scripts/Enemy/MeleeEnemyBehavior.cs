@@ -18,7 +18,6 @@ public class MeleeEnemyBehavior : BaseEnemy
     protected IEnumerator attack;
     protected IEnumerator attackMove;
 
-    bool makingIdleNoise = false;
     bool isCurrentlyWandering = false;
 
     float lastWanderTime;

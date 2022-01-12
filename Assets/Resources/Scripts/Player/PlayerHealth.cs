@@ -33,7 +33,6 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         health = maxHealth;
-        bow = transform.Find("Bow").gameObject;
 
         PlayerMovement.onPitFallRecovery += DamageOnPitFall;
         //PitHazard.onPlayerEnterPitEdge += OnEnterPit;

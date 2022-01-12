@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDuration;
     public float knockbackDistanceMultiplier;
     public GameObject[] weapons;
-    PlayerShoot playerShoot;
+    PlayerAttack playerShoot;
     public Rigidbody2D rigidBody;
 
     Vector2 fallRecoveryPoint;
@@ -35,9 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        playerShoot = transform.Find("Bow").GetComponent<PlayerShoot>();
-        PlayerShoot.onBowDraw += OnBowDraw;
-        PlayerShoot.onDrawEnd += OnDrawEnd;
+        playerShoot = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
         PitEdge.onPlayerEnterPitEdge += EnterPitEdge;
         PitHazard.onPlayerEnterPitHazard += FallIntoPit;
@@ -50,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         movementSpeed *= (1f / 3f);
     }
 
-    void OnDrawEnd(PlayerShoot playerShoot)
+    void OnDrawEnd(PlayerAttack playerShoot)
     {
         movementSpeed *= 3f;
     }
@@ -172,8 +170,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        PlayerShoot.onBowDraw -= OnBowDraw;
-        PlayerShoot.onDrawEnd -= OnDrawEnd;
         SceneManager.sceneLoaded -= ResetPositionOnNewLevel;
         PitEdge.onPlayerEnterPitEdge -= EnterPitEdge;
         PitHazard.onPlayerEnterPitHazard -= FallIntoPit;

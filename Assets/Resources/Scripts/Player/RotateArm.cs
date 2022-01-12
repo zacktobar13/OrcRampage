@@ -9,6 +9,7 @@ public class RotateArm : MonoBehaviour
     public static Vector2 currentArmLocation;
     public Transform leftSideWeaponTransform;
     public Transform rightSideWeaponTransform;
+    bool hasBeenFlipped = false;
     
     Transform playerPosition;
     Vector3 mousePosition;
@@ -25,37 +26,37 @@ public class RotateArm : MonoBehaviour
     {
         mousePosition = PlayerInput.mousePosition;
 
-        //if (mousePosition.x - playerPosition.position.x < 0)
-        //{
-        //    transform.position = leftSideWeaponTransform.position;
-        //}
-        //else
-        //{
-        //    transform.position = rightSideWeaponTransform.position;
-        //}
+        if (mousePosition.x - playerPosition.position.x < 0)
+        {
+            transform.position = leftSideWeaponTransform.position;
+        }
+        else
+        {
+            transform.position = rightSideWeaponTransform.position;
+        }
 
-       // currentArmLocation = transform.position;
+        currentArmLocation = transform.position;
         float rotationAmount = Utility.RotationAmount(transform.position, mousePosition);
         transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount);
-       // currentArmRotation = GetArmRotationBounded (rotationAmount);
-       // transform.rotation = Quaternion.Euler(0f, 0f, currentArmRotation);
+        currentArmRotation = GetArmRotationBounded (rotationAmount);
+        transform.rotation = Quaternion.Euler(0f, 0f, currentArmRotation);
 
-        //float playerRotation = Utility.RotationAmount ( playerPosition.position, mousePosition );
+        float playerRotation = Utility.RotationAmount ( playerPosition.position, mousePosition );
 
-        //if ( ( Utility.InSecondQuadrant( playerRotation ) || Utility.InThirdQuadrant ( playerRotation ) ) && !hasBeenFlipped )
-        //{
-        //    Vector3 scale = transform.localScale;
-        //    scale.y *= -1;
-        //    transform.localScale = scale;
-        //    hasBeenFlipped = true;
-        //}
-        //else if ( ( ( Utility.InFirstQuadrant ( playerRotation ) ) || ( Utility.InFourthQuadrant ( playerRotation ) ) ) && hasBeenFlipped )
-        //{
-        //    hasBeenFlipped = false;
-        //    Vector3 scale = transform.localScale;
-        //    scale.y *= -1;
-        //    transform.localScale = scale;
-        //}
+        if ( ( Utility.InSecondQuadrant( playerRotation ) || Utility.InThirdQuadrant ( playerRotation ) ) && !hasBeenFlipped )
+        {
+            Vector3 scale = transform.localScale;
+            scale.y *= -1;
+            transform.localScale = scale;
+            hasBeenFlipped = true;
+        }
+        else if ( ( ( Utility.InFirstQuadrant ( playerRotation ) ) || ( Utility.InFourthQuadrant ( playerRotation ) ) ) && hasBeenFlipped )
+        {
+            hasBeenFlipped = false;
+            Vector3 scale = transform.localScale;
+            scale.y *= -1;
+            transform.localScale = scale;
+        }
     }
 
     // 105, -112
