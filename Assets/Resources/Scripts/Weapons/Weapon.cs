@@ -60,7 +60,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        StartCoroutine( VisualEffects() );
+        StartCoroutine(VisualEffects());
         SpawnProjectile(true);
         ammoCount -= 1;
         return;
@@ -95,13 +95,23 @@ public class Weapon : MonoBehaviour
     public virtual IEnumerator VisualEffects()
     {
         sprite.sprite = firingSprite;
-        yield return new WaitForSeconds( visualsCooldown );
+        yield return new WaitForSeconds(visualsCooldown);
         sprite.sprite = notFiringSprite;
     }
 
     public void DropWeapon()
     {
         StopAllCoroutines();
+        transform.parent = null;
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<RotateArm>().enabled = false;
+    }
+
+    public void PickupWeapon(GameObject newOwner)
+    {
+        transform.parent = newOwner.transform;
+        GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<RotateArm>().enabled = true;
     }
 
     //Checks to see if a shot will be a crit
@@ -135,4 +145,23 @@ public class Weapon : MonoBehaviour
         return Time.time > lastShotTime + (1 / shotsPerSecond);
     }
 
+    public static bool operator ==(Weapon a, Weapon b)
+    {
+        return a.weaponID == b.weaponID;
+    }
+
+    public static bool operator !=(Weapon a, Weapon b)
+    {
+        return a.weaponID != b.weaponID;
+    }
+
+    public override bool Equals(object other)
+    {
+        return base.Equals(other);
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
 }

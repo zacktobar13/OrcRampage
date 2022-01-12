@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 374247318270732434}
   - component: {fileID: 374247318270732435}
   - component: {fileID: 374247318270732432}
+  - component: {fileID: -1713990426816498868}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -79,9 +80,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 1
   isAutomatic: 0
-  attackPower: 1
-  critChance: 1
-  critPower: 1
+  attackPower: 5
+  critChance: 50
+  critPower: 2
   ammoCount: 10
   shotsPerSecond: 1
   projectileSpeed: 1
@@ -255,10 +256,36 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374247318270732439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04a65baec550f1e4fa58fa6a220df80c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftSideWeaponTransform: {fileID: 0}
   rightSideWeaponTransform: {fileID: 0}
+--- !u!61 &-1713990426816498868
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374247318270732439}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.9198895, y: 0.5283153}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.2955801, y: 0.33744144}
+    oldSize: {x: 4.5, y: 3.25}
+    newSize: {x: 4.5, y: 3.25}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.5, y: 3.25}
+  m_EdgeRadius: 0

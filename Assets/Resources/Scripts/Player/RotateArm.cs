@@ -18,6 +18,8 @@ public class RotateArm : MonoBehaviour
     {
         //playerPosition = PlayerManagement.GetNearestPlayer ( transform.position ).transform;
         playerPosition = transform.parent;
+        leftSideWeaponTransform = transform.parent.Find("Left Hand");
+        rightSideWeaponTransform = transform.parent.Find("Right Hand");
         // Force pump the update to make sure that the weapon is rotated correctly on the frame it becomes visible
         Update();
     }
