@@ -6,7 +6,10 @@ using TMPro;
 public class Chest : MonoBehaviour
 {
     public int openCost;
-    
+    public GameObject copperCoin;
+    public GameObject silverCoin;
+    public GameObject goldCoin;
+
     Animator animator;
     bool isOpen;
 
@@ -47,6 +50,18 @@ public class Chest : MonoBehaviour
         {
             animator.SetBool("isOpen", true);
             isOpen = true;
+            for (int i = 0; i < 10; i++)
+            {
+                Instantiate(copperCoin, transform.position, Quaternion.identity);
+            }
+            for (int i = 0; i < 7; i++)
+            {
+                Instantiate(silverCoin, transform.position, Quaternion.identity);
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(goldCoin, transform.position, Quaternion.identity);
+            }
             costText.enabled = false;
         }
     }

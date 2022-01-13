@@ -169,6 +169,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openCost: 0
+  copperCoin: {fileID: 6338699041248146883, guid: 3f2c933d0a8612f449351f4b1f6d547f,
+    type: 3}
+  silverCoin: {fileID: 6338699041248146883, guid: 2e170a507a0277b40b0f08cb08fc1d88,
+    type: 3}
+  goldCoin: {fileID: 6338699041248146883, guid: 0bb8026930b46fc46a38823d3a6a275f,
+    type: 3}
   costText: {fileID: 7713430699588577537}
 --- !u!61 &5163067539969973856
 BoxCollider2D:

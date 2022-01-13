@@ -2,7 +2,6 @@
 
 public class SpriteCursor : MonoBehaviour
 {
-    public GameObject test;
 
     void Start()
     {
