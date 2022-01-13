@@ -36,6 +36,11 @@ public class PlayerAttack : MonoBehaviour
         {
             ChangeToWeapon(1);
         }
+
+        if (PlayerInput.interact)
+        {
+            pressedInteractThisFrame = true;
+        }
     }
 
     public void DisableWeapon()
@@ -110,13 +115,26 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    // OnTriggerStay is run on the physics update, this variable helps it feel more responsive
+    bool pressedInteractThisFrame = false;
     bool interactedThisFrame = false;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        pressedInteractThisFrame = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        pressedInteractThisFrame = false;
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (interactedThisFrame)
             return;
 
-        if (PlayerInput.interact)
+        if (pressedInteractThisFrame)
         {
             if (collision.gameObject)
             {
@@ -129,6 +147,8 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+
+        pressedInteractThisFrame = false;
     }
 
     private void LateUpdate()

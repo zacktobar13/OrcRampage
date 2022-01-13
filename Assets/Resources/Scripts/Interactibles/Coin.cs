@@ -23,6 +23,9 @@ public class Coin : MonoBehaviour
 
     void Update()
     {
+        if (spawnMovementSpeed == 0)
+            return;
+
         transform.Translate(randomDirection * spawnMovementSpeed * Time.deltaTime);
     }
 

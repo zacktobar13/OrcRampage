@@ -105,6 +105,7 @@ public class Weapon : MonoBehaviour
         transform.parent = null;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<RotateArm>().enabled = false;
+        transform.rotation = Quaternion.identity;
     }
 
     public void PickupWeapon(GameObject newOwner)
