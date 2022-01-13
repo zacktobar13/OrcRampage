@@ -42,14 +42,23 @@ public class Weapon : MonoBehaviour
 
     [HideInInspector] public bool isReloading;
 
+    Vector2 randomDropDir;
+    float droppedWeaponMovementSpeed = 5f;
+	Coroutine moveCoroutine;
+    Animator anim;
 
-    private void OnEnable()
+	private void Awake()
+	{
+        anim = GetComponent<Animator>();
+    }
+
+	private void OnEnable()
     {
         sprite.sprite = notFiringSprite;
         projectileSpawn = transform.Find("BulletSpawn");
     }
 
-    public virtual void Shoot()
+	public virtual void Shoot()
     {
         if (!CanShoot())
             return;
@@ -69,6 +78,17 @@ public class Weapon : MonoBehaviour
     public virtual void FireEmpty()
     {
         audioSource.PlayOneShot(emptySound);
+    }
+
+    IEnumerator MoveOnDrop()
+    {
+        randomDropDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        float targetTime = Time.time + 1f;
+        while (Time.time <= targetTime)
+        {
+            yield return new WaitForEndOfFrame();
+            transform.Translate(randomDropDir * Time.deltaTime * droppedWeaponMovementSpeed);
+        }
     }
 
     public virtual void SpawnProjectile(bool makeNoise)
@@ -102,6 +122,10 @@ public class Weapon : MonoBehaviour
     public void DropWeapon()
     {
         StopAllCoroutines();
+        anim.enabled = true;
+        anim.SetBool("onGround", false);
+        transform.localScale = Vector3.one;
+        moveCoroutine = StartCoroutine(MoveOnDrop());
         transform.parent = null;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<RotateArm>().enabled = false;
@@ -110,6 +134,12 @@ public class Weapon : MonoBehaviour
 
     public void PickupWeapon(GameObject newOwner)
     {
+        if (moveCoroutine != null)
+        {
+            StopCoroutine(moveCoroutine);
+        }
+
+        anim.enabled = false;
         transform.parent = newOwner.transform;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateArm>().enabled = true;
@@ -134,6 +164,11 @@ public class Weapon : MonoBehaviour
             criticalHit = false;
             return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
         }
+    }
+
+    public void Anim_OnGround()
+    {
+        anim.SetBool("onGround", true);
     }
 
     public bool HasAmmo()
