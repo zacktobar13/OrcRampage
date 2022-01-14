@@ -73,6 +73,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(VisualEffects());
         SpawnProjectile(true);
         ammoCount -= 1;
+        lastShotTime = Time.time;
         return;
     }
 

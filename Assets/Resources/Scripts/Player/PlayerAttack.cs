@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        if (PlayerInput.attack)
+        if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
             currentWeapon.Shoot();
         }
