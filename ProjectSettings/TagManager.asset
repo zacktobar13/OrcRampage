@@ -11,6 +11,7 @@ TagManager:
   - Player Interaction Collider
   - DamageCollider
   - Next Level Trigger
+  - Shadow
   layers:
   - Default
   - TransparentFX

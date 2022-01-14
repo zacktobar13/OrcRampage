@@ -46,6 +46,7 @@ public class Weapon : MonoBehaviour
     float droppedWeaponMovementSpeed = 5f;
 	Coroutine moveCoroutine;
     Animator anim;
+    public GameObject shadow;
 
 	private void Awake()
 	{
@@ -122,6 +123,7 @@ public class Weapon : MonoBehaviour
     public void DropWeapon()
     {
         StopAllCoroutines();
+        shadow.SetActive(true);
         anim.enabled = true;
         anim.SetBool("onGround", false);
         transform.localScale = Vector3.one;
@@ -139,7 +141,9 @@ public class Weapon : MonoBehaviour
             StopCoroutine(moveCoroutine);
         }
 
+        shadow.SetActive(false);
         anim.enabled = false;
+        sprite.gameObject.transform.localPosition = Vector3.zero;
         transform.parent = newOwner.transform;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateArm>().enabled = true;

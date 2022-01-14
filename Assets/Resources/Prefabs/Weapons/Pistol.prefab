@@ -62,6 +62,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1694483226134440611, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694483226134440611, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083473940125081813, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2083473940125081813, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.58
+      objectReference: {fileID: 0}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.x
@@ -117,6 +137,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 3048881960350951110}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &179795804917354850 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3048881960350951110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7493808447156398378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5598140266092728300, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3048881960350951110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6189304204645733219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,8 +176,8 @@ MonoBehaviour:
     type: 3}
   notFiringSprite: {fileID: 21300000, guid: 3db3e582087db5e45825b0db0c47181b, type: 3}
   firingSprite: {fileID: 21300002, guid: 3db3e582087db5e45825b0db0c47181b, type: 3}
-  sprite: {fileID: 374247318270732434, guid: bdf651c946cf8214fac210a8a1e3d1ba, type: 3}
-  visualsCooldown: 0
+  sprite: {fileID: 179795804917354850}
+  visualsCooldown: 0.08
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
   audioSource: {fileID: 1950841564701835538}
   shootSound: {fileID: 8300000, guid: 266f16d659b01674e8eb5ce6d33404b3, type: 3}
@@ -153,3 +185,4 @@ MonoBehaviour:
   projectileSpawned: {fileID: 0}
   lastShotTime: 0
   isReloading: 0
+  shadow: {fileID: 7493808447156398378}
