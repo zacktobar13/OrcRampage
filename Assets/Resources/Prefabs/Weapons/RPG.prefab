@@ -157,7 +157,7 @@ MonoBehaviour:
   critChance: 50
   critPower: 2
   ammoCount: 5
-  shotsPerSecond: 1
+  attacksPerSecond: 1
   projectileSpeed: 1
   projectileSpreadAmount: 1
   knockbackSpeed: 1

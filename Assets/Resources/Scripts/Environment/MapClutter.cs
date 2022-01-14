@@ -33,10 +33,10 @@ public class MapClutter : MonoBehaviour
         if (!enabled)
             return;
 
-        if (health <= 0)
-        {
-            StartCoroutine(Death());
-        }
+        if (damageInfo.damageAmount == 0)
+            return;
+
+        StartCoroutine(Death());
     }
 
     public void DropRemains()

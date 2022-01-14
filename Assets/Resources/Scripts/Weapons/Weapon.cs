@@ -10,23 +10,25 @@ public class Weapon : MonoBehaviour
     public int attackPower;
     public int critChance;
     public int critPower;
-    public int ammoCount;
-    public float shotsPerSecond;
-    public float projectileSpeed;
-    public float projectileSpreadAmount;
+    public float attacksPerSecond;
     public float knockbackSpeed;
     public float knockbackTime;
 
-    [Header("Visual Effects")]
+    [Header("Ranged Weapon")]
+    public float projectileSpeed;
+    public float projectileSpreadAmount;
+    public int ammoCount;
+    public GameObject projectile;
     public GameObject bulletCasing;
+
+    [Header("Visual Effects")]
     public Sprite notFiringSprite;
     public Sprite firingSprite;
     public SpriteRenderer sprite;
 
     public float visualsCooldown;
 
-    public GameObject projectile;
-    Transform projectileSpawn;
+    protected Transform projectileSpawn;
 
     [Header("Audio Effects")]
     public AudioSource audioSource;
@@ -59,9 +61,9 @@ public class Weapon : MonoBehaviour
         projectileSpawn = transform.Find("BulletSpawn");
     }
 
-	public virtual void Shoot()
+	public virtual void Attack()
     {
-        if (!CanShoot())
+        if (!CanAttack())
             return;
 
         if (!HasAmmo())
@@ -98,7 +100,7 @@ public class Weapon : MonoBehaviour
         Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
         projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
         projectileInfo = projectileSpawned.GetComponent<Projectile>();
-        projectileInfo.projectileDamage = CalculateBulletDamage();
+        projectileInfo.projectileDamage = CalculateDamage();
         projectileInfo.isCriticalHit = criticalHit;
         projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.spread = projectileSpreadAmount;
@@ -159,7 +161,7 @@ public class Weapon : MonoBehaviour
     }
 
     //All attacks roll a random range to create a spread of damage.
-    public virtual int CalculateBulletDamage()
+    public virtual int CalculateDamage()
     {
         if ( RollCrit() )
         {
@@ -173,14 +175,14 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public bool HasAmmo()
+    public virtual bool HasAmmo()
     {
         return ammoCount > 0;
     }
 
-    public bool CanShoot()
+    public virtual bool CanAttack()
     {
-        return Time.time > lastShotTime + (1 / shotsPerSecond);
+        return Time.time > lastShotTime + (1 / attacksPerSecond);
     }
 
     public static bool operator ==(Weapon a, Weapon b)

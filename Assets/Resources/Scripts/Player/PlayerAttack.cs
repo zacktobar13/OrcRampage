@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
-            currentWeapon.Shoot();
+            currentWeapon.Attack();
         }
 
         if (PlayerInput.changeToFirstWeapon)

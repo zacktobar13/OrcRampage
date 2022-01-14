@@ -7,10 +7,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8697379114369314354, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+    - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
-      propertyPath: m_Name
-      value: Skull 1 Map Clutter
+      propertyPath: destroySound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa13bac6b7f59714d9d899aa0d9d4967, type: 3}
+    - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+        type: 3}
+      propertyPath: volumeScalar
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
@@ -47,15 +52,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6933771816456215661, guid: f7ea7bbef9edad94f98535e380ec45f0,
         type: 3}
-    - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+    - target: {fileID: 4533785453401466786, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
-      propertyPath: destroySound
-      value: 
-      objectReference: {fileID: 8300000, guid: aa13bac6b7f59714d9d899aa0d9d4967, type: 3}
-    - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
-      propertyPath: volumeScalar
-      value: 0.7
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
@@ -74,6 +79,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -85,16 +95,6 @@ PrefabInstance:
     - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6090312203306320352, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
@@ -111,6 +111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8697379114369314354, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+        type: 3}
+      propertyPath: m_Name
+      value: Skull 1 Map Clutter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0, type: 3}
