@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -107568747
-  m_SortingLayer: 6
+  m_SortingLayerID: 453797103
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,9 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 930088366993790003}
   - component: {fileID: 3557005793705224148}
-  - component: {fileID: 2583922428218959174}
   - component: {fileID: 4939588336846298857}
   - component: {fileID: 2754971072319472588}
+  - component: {fileID: 893806184240942100}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -245,20 +245,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2583922428218959174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5015345521042287544}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a65baec550f1e4fa58fa6a220df80c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftSideWeaponTransform: {fileID: 0}
-  rightSideWeaponTransform: {fileID: 0}
 --- !u!61 &4939588336846298857
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -304,6 +290,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &893806184240942100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5015345521042287544}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b852848c5790e4f95e9a8ed055363d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSideWeaponTransform: {fileID: 0}
+  rightSideWeaponTransform: {fileID: 0}
 --- !u!1001 &3428373591409243210
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -125,7 +125,7 @@ public class Weapon : MonoBehaviour
         StopAllCoroutines();
         shadow.SetActive(true);
         anim.enabled = true;
-        anim.SetBool("onGround", false);
+        anim.Play("DropWeapon", -1, 0);
         transform.localScale = Vector3.one;
         moveCoroutine = StartCoroutine(MoveOnDrop());
         transform.parent = null;
@@ -143,10 +143,12 @@ public class Weapon : MonoBehaviour
 
         shadow.SetActive(false);
         anim.enabled = false;
-        sprite.gameObject.transform.localPosition = Vector3.zero;
         transform.parent = newOwner.transform;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateWeapon>().enabled = true;
+
+        // Reset weapon's sprite position that gets changed from the idle floating animation.
+        sprite.gameObject.transform.localPosition = Vector3.zero;
     }
 
     //Checks to see if a shot will be a crit
@@ -168,11 +170,6 @@ public class Weapon : MonoBehaviour
             criticalHit = false;
             return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
         }
-    }
-
-    public void Anim_OnGround()
-    {
-        anim.SetBool("onGround", true);
     }
 
     public bool HasAmmo()
