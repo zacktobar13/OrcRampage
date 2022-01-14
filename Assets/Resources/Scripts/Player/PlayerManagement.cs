@@ -15,7 +15,7 @@ public class PlayerManagement : MonoBehaviour
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         PlayerAttack playerShoot = player.GetComponentInChildren<PlayerAttack>();
-        RotateArm[] rotateArm = player.GetComponentsInChildren<RotateArm>();
+        RotateWeapon[] rotateArm = player.GetComponentsInChildren<RotateWeapon>();
 
         if (playerMovement != null)
             playerMovement.enabled = toggle;
@@ -23,7 +23,7 @@ public class PlayerManagement : MonoBehaviour
             playerShoot.enabled = toggle;
         if (rotateArm != null)
         {
-            foreach (RotateArm arm in rotateArm)
+            foreach (RotateWeapon arm in rotateArm)
                 arm.enabled = toggle;
         }
     }

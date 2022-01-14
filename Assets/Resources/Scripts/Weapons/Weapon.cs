@@ -130,7 +130,7 @@ public class Weapon : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveOnDrop());
         transform.parent = null;
         GetComponent<BoxCollider2D>().enabled = true;
-        GetComponent<RotateArm>().enabled = false;
+        GetComponent<RotateWeapon>().enabled = false;
         transform.rotation = Quaternion.identity;
     }
 
@@ -146,7 +146,7 @@ public class Weapon : MonoBehaviour
         sprite.gameObject.transform.localPosition = Vector3.zero;
         transform.parent = newOwner.transform;
         GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<RotateArm>().enabled = true;
+        GetComponent<RotateWeapon>().enabled = true;
     }
 
     //Checks to see if a shot will be a crit
