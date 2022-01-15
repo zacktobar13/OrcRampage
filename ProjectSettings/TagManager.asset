@@ -19,8 +19,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Weapon
+  - Wall Collider
   - Virtual Screen
   - Projectiles
   - World Colliders
@@ -54,6 +54,9 @@ TagManager:
     locked: 0
   - name: Shadows
     uniqueID: 3753382023
+    locked: 0
+  - name: Walls
+    uniqueID: 3661440601
     locked: 0
   - name: Objects
     uniqueID: 453797103

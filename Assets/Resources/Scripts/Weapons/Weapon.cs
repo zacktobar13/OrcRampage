@@ -41,13 +41,14 @@ public class Weapon : MonoBehaviour
     Projectile projectileInfo;
 
     private bool criticalHit;
+    private Rigidbody2D rigidBody;
 
     [HideInInspector] public float lastShotTime;
 
     [HideInInspector] public bool isReloading;
 
     Vector2 randomDropDir;
-    float droppedWeaponMovementSpeed = 5f;
+    float droppedWeaponMovementSpeed = .01f;
 	Coroutine moveCoroutine;
     Animator anim;
     public GameObject shadow;
@@ -55,6 +56,7 @@ public class Weapon : MonoBehaviour
 	private void Awake()
 	{
         anim = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
 	private void OnEnable()
@@ -85,17 +87,6 @@ public class Weapon : MonoBehaviour
     public virtual void FireEmpty()
     {
         audioSource.PlayOneShot(emptySound);
-    }
-
-    IEnumerator MoveOnDrop()
-    {
-        randomDropDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        float targetTime = Time.time + 1f;
-        while (Time.time <= targetTime)
-        {
-            yield return new WaitForEndOfFrame();
-            transform.Translate(randomDropDir * Time.deltaTime * droppedWeaponMovementSpeed);
-        }
     }
 
     public virtual void SpawnProjectile()
@@ -131,6 +122,18 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(visualsCooldown);
         sprite.sprite = notFiringSprite;
     }
+
+    IEnumerator MoveOnDrop()
+    {
+        randomDropDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        float targetTime = Time.time + 1f;
+        while (Time.time <= targetTime)
+        {
+            yield return new WaitForFixedUpdate();
+            rigidBody.MovePosition(rigidBody.position + randomDropDir * droppedWeaponMovementSpeed);
+        }
+    }
+
 
     public void DropWeapon()
     {

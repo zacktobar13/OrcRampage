@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6338699040454664126}
   - component: {fileID: 6338699040454664127}
-  m_Layer: 16
+  m_Layer: 14
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 453797103
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 5
   m_Sprite: {fileID: 5522397121026081838, guid: 7787a7c963acadf4f850f1f7e56dc35b,
     type: 3}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 518205802083846971}
   - component: {fileID: -2760309782479182580}
   - component: {fileID: 2014660532343218608}
-  m_Layer: 16
+  m_Layer: 14
   m_Name: Silver Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
