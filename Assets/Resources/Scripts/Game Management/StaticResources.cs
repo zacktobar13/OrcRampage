@@ -14,8 +14,7 @@ public class StaticResources : MonoBehaviour
     public static GameObject blood;
     public static GameObject explosiveArrowExplosion;
     public static GameObject hitEffect1;
-    public static GameObject localCurrency;
-    public static GameObject globalCurrency;
+    public static GameObject copperCoin;
     public static Material pixelSnap;
     public static Material shadowMaterial;
     public static Material decorationShadowMaterial;
@@ -36,8 +35,7 @@ public class StaticResources : MonoBehaviour
         pixelSnap = Resources.Load("Materials/Pixel Snap") as Material;
         shadowMaterial = Resources.Load("Materials/ShadowMaterial") as Material;
         decorationShadowMaterial = Resources.Load("Materials/DecorationShadowMaterial") as Material;
-        localCurrency = Resources.Load("Prefabs/Currency/Local Currency Drop") as GameObject;
-        globalCurrency = Resources.Load("Prefabs/Currency/Local Currency Drop") as GameObject;
+        copperCoin = Resources.Load("Prefabs/Interactibles/Copper Coin") as GameObject;
         runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("SpriteAnimController");
     }
 }

@@ -32,8 +32,7 @@ public class BaseEnemy : MonoBehaviour {
     public AnimationClip telegraphAnimation;
     public AnimationClip attackAnimation;
 
-    private GameObject localCurrency;
-    private GameObject globalCurrency;
+    private GameObject copperCoin;
     private GameObject floatingDamageNumber;
     private GameObject critDamageNumber;
     protected GameObject damageCollider;
@@ -75,8 +74,7 @@ public class BaseEnemy : MonoBehaviour {
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
-        localCurrency = StaticResources.localCurrency;
-        globalCurrency = StaticResources.globalCurrency;
+        copperCoin = StaticResources.copperCoin;
         floatingDamageNumber = StaticResources.floatingDamageNumber;
         critDamageNumber = StaticResources.critDamageNumber;
         damageCollider = StaticResources.damageCollider;
@@ -165,9 +163,8 @@ public class BaseEnemy : MonoBehaviour {
         PlayerExperience.GiveExperience(20);
 
         // Drop currency
-        GameObject currencyDropped = Instantiate(localCurrency, transform.position, Quaternion.identity);
-        currencyDropped.GetComponent<LocalCurrencyDrop>().amount = Random.Range(1, 20);
-
+        GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
+        
         if (healthGlobeDropChance >= Random.Range(0, 100))
             DropItem();
 

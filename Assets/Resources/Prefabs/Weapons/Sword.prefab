@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6694057511024031758}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5768626958900145213
 PrefabInstance:
@@ -113,10 +113,25 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.678
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.633
+      objectReference: {fileID: 0}
     - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -189,6 +204,12 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 5768626958900145213}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &7204619432980867626 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5768626958900145213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2283587401225033404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,8 +228,6 @@ MonoBehaviour:
   critChance: 50
   critPower: 3
   attacksPerSecond: 1
-  knockbackSpeed: 1
-  knockbackTime: 1
   projectileSpeed: 0
   projectileSpreadAmount: 0
   ammoCount: 0
@@ -221,35 +240,32 @@ MonoBehaviour:
     type: 3}
   visualEffectsSpawnPoint: {fileID: 5042557379365664924}
   visualsCooldown: 0.25
+  shadow: {fileID: 1382512236060408915}
   audioSource: {fileID: 7013021937776610281}
   shootSound: {fileID: 8300000, guid: 3807006d81684bd448b8c330e3fa005b, type: 3}
   emptySound: {fileID: 0}
-  projectileSpawned: {fileID: 0}
-  lastShotTime: 0
-  isReloading: 0
-  shadow: {fileID: 1382512236060408915}
   attackRadius: 2
 --- !u!1001 &8145669193660975093
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6694057511024031758}
+    m_TransformParent: {fileID: 7204619432980867626}
     m_Modifications:
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.69
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.43
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}

@@ -88,6 +88,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4939588336846298857, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.x
@@ -121,12 +126,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 561986334387730613}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &802984228729826438 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 930088366993790003, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 561986334387730613}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &3932089407246671713 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3557005793705224148, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
@@ -136,6 +135,12 @@ AudioSource:
 --- !u!212 &3458092979731369745 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 561986334387730613}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3763081861769903778 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
     type: 3}
   m_PrefabInstance: {fileID: 561986334387730613}
   m_PrefabAsset: {fileID: 0}
@@ -156,37 +161,34 @@ MonoBehaviour:
   attackPower: 500
   critChance: 50
   critPower: 2
-  ammoCount: 5
   attacksPerSecond: 1
   projectileSpeed: 1
   projectileSpreadAmount: 1
-  knockbackSpeed: 1
-  knockbackTime: 1
+  ammoCount: 5
+  projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
   bulletCasing: {fileID: 5331020343491793710, guid: 2c3e03a0cf6183f449378318cc549e96,
     type: 3}
   notFiringSprite: {fileID: 21300000, guid: 4b7dd9df02e975249bc0dce412c69209, type: 3}
   firingSprite: {fileID: 21300000, guid: 4b7dd9df02e975249bc0dce412c69209, type: 3}
   sprite: {fileID: 3458092979731369745}
+  visualEffect: {fileID: 0}
+  visualEffectsSpawnPoint: {fileID: 0}
   visualsCooldown: 0
-  projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
+  shadow: {fileID: 7678693021217384431}
   audioSource: {fileID: 3932089407246671713}
   shootSound: {fileID: 8300000, guid: 6be803b6cbeefee4b805cea2a5ea6027, type: 3}
   emptySound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}
-  projectileSpawned: {fileID: 0}
-  lastShotTime: 0
-  isReloading: 0
-  shadow: {fileID: 7678693021217384431}
 --- !u!1001 &627306474047888457
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 802984228729826438}
+    m_TransformParent: {fileID: 3763081861769903778}
     m_Modifications:
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
@@ -211,17 +213,17 @@ PrefabInstance:
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3710397780644549791, guid: 4f2269de2345c8246a1bc228c22bce5a,
         type: 3}

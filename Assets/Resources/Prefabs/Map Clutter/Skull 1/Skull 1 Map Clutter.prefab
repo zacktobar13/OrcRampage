@@ -7,6 +7,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2811096549068807304, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4772836483143970651, guid: 0c2f3d0c8dddb1d44b9aae095ba14797,
+        type: 3}
+    - target: {fileID: 2811096549068807304, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4322501766079903431, guid: 33af2c45b3d8cdd4c9d4693e3ff7c1e0,
         type: 3}
       propertyPath: destroySound
