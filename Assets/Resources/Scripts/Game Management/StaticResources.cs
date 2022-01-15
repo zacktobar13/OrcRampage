@@ -23,11 +23,11 @@ public class StaticResources : MonoBehaviour
 
     void Awake()
     {
-        hitEffect1 = Resources.Load("Prefabs/Particle Effects/Hit Effect Small 1") as GameObject;
+        hitEffect1 = Resources.Load("Prefabs/Visual Effects/Hit Effect Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
         explosiveArrowExplosion = Resources.Load("Prefabs/Explosions/Explosive Arrow Explosion") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
-        blood = Resources.Load("Prefabs/Particle Effects/Blood Particle 1") as GameObject;
+        blood = Resources.Load("Prefabs/Visual Effects/Blood Particle 1") as GameObject;
         whiteMaterial = Resources.Load("Materials/WhiteFlash", typeof(Material)) as Material;
         floatingDamageNumber = Resources.Load("Prefabs/UI/Damage Number", typeof(GameObject)) as GameObject;
         critDamageNumber = Resources.Load("Prefabs/UI/Crit Damage Number", typeof(GameObject)) as GameObject;
