@@ -122,7 +122,8 @@ public class Weapon : MonoBehaviour
     {
         if (visualEffect)
         {
-            Instantiate(visualEffect, visualEffectsSpawnPoint.position, visualEffectsSpawnPoint.rotation);
+            GameObject visuals = Instantiate(visualEffect, visualEffectsSpawnPoint.position, visualEffectsSpawnPoint.rotation);
+            visuals.GetComponent<PowerTools.SpriteAnim>().SetSpeed(1/visualsCooldown);
         }
 
         sprite.sprite = firingSprite;

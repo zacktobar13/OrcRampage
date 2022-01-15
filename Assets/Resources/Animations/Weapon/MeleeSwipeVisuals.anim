@@ -22,20 +22,20 @@ AnimationClip:
     - time: 0
       value: {fileID: 2466565157546512704, guid: 423d62b1d517de341a022154b839d960,
         type: 3}
-    - time: 0.05
+    - time: 0.25
       value: {fileID: -7452959992743536773, guid: 423d62b1d517de341a022154b839d960,
         type: 3}
-    - time: 0.15
+    - time: 0.75
       value: {fileID: -905150460120519303, guid: 423d62b1d517de341a022154b839d960,
         type: 3}
-    - time: 0.18333334
+    - time: 0.9166667
       value: {fileID: -905150460120519303, guid: 423d62b1d517de341a022154b839d960,
         type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 60
+  m_SampleRate: 12
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -59,7 +59,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.2
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,7 +79,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.2
+  - time: 1
     functionName: Anim_DestroySelf
     data: 
     objectReferenceParameter: {fileID: 0}
