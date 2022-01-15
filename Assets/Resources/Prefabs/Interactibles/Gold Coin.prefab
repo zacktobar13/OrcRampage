@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6338699040454664126}
   - component: {fileID: 6338699040454664127}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 518205802083846971}
   - component: {fileID: 1417361893117375796}
   - component: {fileID: -5711939512217634012}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: Gold Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}

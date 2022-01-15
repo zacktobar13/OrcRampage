@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
     {
         currentWeapon = GetComponentInChildren<Weapon>();
         weapons[0] = currentWeapon;
+        currentWeapon.PickupWeapon(gameObject);
     }
 
     void Update()
@@ -135,17 +136,14 @@ public class PlayerAttack : MonoBehaviour
         if (interactedThisFrame)
             return;
 
-        Debug.Log(collision.gameObject);
         if (pressedInteractThisFrame)
         {
             if (collision.gameObject)
             {
                 GameObject potentialWeapon = collision.gameObject;
                 Weapon weapon = potentialWeapon.GetComponent<Weapon>();
-                Debug.Log("Potential Weapon: " + weapon);
                 if (weapon)
                 {
-                    Debug.Log("Picking up: " + weapon);
                     interactedThisFrame = true;
                     PickupWeapon(collision.gameObject);
                 }

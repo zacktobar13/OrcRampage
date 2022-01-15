@@ -7,8 +7,8 @@
 
     public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
-        projectile.isRicochet = true;
-        projectile.ricochetCount = 5;
+        //projectile.isRicochet = true;
+        //projectile.ricochetCount = 5;
     }
     void OnDestroy()
     {

@@ -7,7 +7,7 @@
 
     public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     {
-        projectile.isPiercing = true;
+        //projectile.isPiercing = true;
     }
 
     void OnDestroy()

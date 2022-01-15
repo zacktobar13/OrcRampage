@@ -25,24 +25,35 @@ public class MeleeWeapon : Weapon
         foreach (Collider2D collider in objectsHit)
         {
             BaseEnemy enemyHit;
-            if (collider.TryGetComponent(out enemyHit))
+            if (isOnPlayer && collider.TryGetComponent(out enemyHit))
             {
-                Vector2 damageDirection = (collider.transform.position - transform.parent.position).normalized;
-                DamageInfo damageInfo = new DamageInfo(attackPower, RollCrit(), damageDirection);
+                DamageInfo damageInfo = generateDamageInfo(transform.parent.position, collider.transform.position);
                 enemyHit.ApplyDamage(damageInfo);
+                continue;
+            }
+            PlayerHealth playerHealth;
+            if (!isOnPlayer && collider.TryGetComponent(out playerHealth))
+            {
+                DamageInfo damageInfo = generateDamageInfo(transform.parent.position, collider.transform.position);
+                playerHealth.ApplyDamage(damageInfo);
                 continue;
             }
             MapClutter mapClutter;
             if (collider.TryGetComponent(out mapClutter))
             {
-                Vector2 damageDirection = (collider.transform.position - transform.parent.position).normalized;
-                DamageInfo damageInfo = new DamageInfo(attackPower, RollCrit(), damageDirection);
+                DamageInfo damageInfo = generateDamageInfo(transform.parent.position, collider.transform.position);
                 mapClutter.ApplyDamage(damageInfo);
                 continue;
             }
         }
 
         lastShotTime = Time.time;
+    }
+
+    DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)
+    {
+        Vector2 damageDirection = (targetPosition - weaponPosition).normalized;
+        return new DamageInfo(attackPower, RollCrit(), damageDirection);
     }
 
     private void OnDrawGizmos()

@@ -44525,12 +44525,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1005527483 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7175836991511995828, guid: e51b7c3e840bfb14183853b0eed9aac8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1310776535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1009811930
 GameObject:
   m_ObjectHideFlags: 0
@@ -51875,95 +51869,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f61cf4eaf9cce846a5f554ae9fc9051, type: 3}
---- !u!1001 &1891387131
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1005527483}
-    m_Modifications:
-    - target: {fileID: 897432820652500234, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2749625695229061842, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2785365921839182581, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7493808447156398378, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7981289582168799279, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8058588797052571006, guid: 59bd96d992d860540a0e65de8e1aac98,
-        type: 3}
-      propertyPath: m_Name
-      value: Pistol
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 59bd96d992d860540a0e65de8e1aac98, type: 3}
 --- !u!4 &1900712640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1877621098828122597, guid: 5f61cf4eaf9cce846a5f554ae9fc9051,

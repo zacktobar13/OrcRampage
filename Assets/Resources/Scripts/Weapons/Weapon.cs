@@ -11,8 +11,6 @@ public class Weapon : MonoBehaviour
     public int critChance;
     public int critPower;
     public float attacksPerSecond;
-    public float knockbackSpeed;
-    public float knockbackTime;
 
     [Header("Ranged Weapon")]
     public float projectileSpeed;
@@ -27,31 +25,24 @@ public class Weapon : MonoBehaviour
     public SpriteRenderer sprite;
     public GameObject visualEffect;
     public Transform visualEffectsSpawnPoint;
-
     public float visualsCooldown;
-
-    protected Transform projectileSpawn;
+    public GameObject shadow;
 
     [Header("Audio Effects")]
     public AudioSource audioSource;
     public AudioClip shootSound;
     public AudioClip emptySound;
 
-    [HideInInspector] public GameObject projectileSpawned;
-    Projectile projectileInfo;
-
-    private bool criticalHit;
     private Rigidbody2D rigidBody;
 
-    [HideInInspector] public float lastShotTime;
+    protected Transform projectileSpawn;
+    protected float lastShotTime;
+    protected bool isOnPlayer;
 
-    [HideInInspector] public bool isReloading;
-
-    Vector2 randomDropDir;
-    float droppedWeaponMovementSpeed = .01f;
-	Coroutine moveCoroutine;
-    Animator anim;
-    public GameObject shadow;
+    private Vector2 randomDropDir;
+    private float droppedWeaponMovementSpeed = .01f;
+	private Coroutine moveCoroutine;
+    private Animator anim;
 
 	private void Awake()
 	{
@@ -63,6 +54,7 @@ public class Weapon : MonoBehaviour
     {
         sprite.sprite = notFiringSprite;
         projectileSpawn = transform.Find("BulletSpawn");
+        isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
     }
 
 	public virtual void Attack()
@@ -92,15 +84,15 @@ public class Weapon : MonoBehaviour
     public virtual void SpawnProjectile()
     {
         Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
-        projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
-        projectileInfo = projectileSpawned.GetComponent<Projectile>();
-        projectileInfo.projectileDamage = CalculateDamage();
-        projectileInfo.isCriticalHit = criticalHit;
+        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
+        Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
+        bool isCritical = RollCrit();
+        projectileInfo.projectileDamage = CalculateDamage(isCritical);
+        projectileInfo.isCriticalHit = isCritical;
         projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.spread = projectileSpreadAmount;
+        projectileInfo.shotByPlayer = isOnPlayer;
 
-        //Vector2 weaponToMouse = PlayerInput.mousePosition - (Vector2)projectileSpawn.position;
-        //float projectileRotation = Mathf.Atan2(weaponToMouse.y, weaponToMouse.x) * Mathf.Rad2Deg;
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
     }
 
@@ -147,6 +139,7 @@ public class Weapon : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<RotateWeapon>().enabled = false;
         transform.rotation = Quaternion.identity;
+        isOnPlayer = false;
     }
 
     public void PickupWeapon(GameObject newOwner)
@@ -161,6 +154,7 @@ public class Weapon : MonoBehaviour
         transform.parent = newOwner.transform;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateWeapon>().enabled = true;
+        isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
 
         // Reset weapon's sprite position that gets changed from the idle floating animation.
         sprite.gameObject.transform.localPosition = Vector3.zero;
@@ -173,16 +167,14 @@ public class Weapon : MonoBehaviour
     }
 
     //All attacks roll a random range to create a spread of damage.
-    public virtual int CalculateDamage()
+    public virtual int CalculateDamage(bool isCrit)
     {
-        if ( RollCrit() )
+        if (isCrit)
         {
-            criticalHit = true;
             return (int)Random.Range((attackPower * critPower) * 1f, (attackPower * critPower) * 1.25f);
         }
         else
         {
-            criticalHit = false;
             return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
         }
     }

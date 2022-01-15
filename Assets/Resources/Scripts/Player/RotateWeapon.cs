@@ -9,9 +9,11 @@ public class RotateWeapon : MonoBehaviour
     public static Vector2 currentArmLocation;
     public Transform leftSideWeaponTransform;
     public Transform rightSideWeaponTransform;
+    bool isOnPlayer;
     
     Transform parentPosition;
-    Vector3 mousePosition;
+    Transform playerTransform;
+    Vector3 targetPosition;
 
     private void OnEnable ()
     {
@@ -19,15 +21,18 @@ public class RotateWeapon : MonoBehaviour
         parentPosition = transform.parent;
         leftSideWeaponTransform = transform.parent.Find("Left Hand");
         rightSideWeaponTransform = transform.parent.Find("Right Hand");
+        isOnPlayer = transform.parent.CompareTag("Player");
+        if (!isOnPlayer)
+            playerTransform = GameObject.FindWithTag("Player").transform;
         // Force pump the update to make sure that the weapon is rotated correctly on the frame it becomes visible
         Update();
     }
 
     public void Update()
     {
-        mousePosition = PlayerInput.mousePosition;
+        targetPosition = isOnPlayer ? PlayerInput.mousePosition : (Vector2)playerTransform.position;
 
-        if (mousePosition.x - parentPosition.position.x < 0)
+        if (targetPosition.x - parentPosition.position.x < 0)
         {
             transform.position = leftSideWeaponTransform.position;
         }
@@ -37,10 +42,10 @@ public class RotateWeapon : MonoBehaviour
         }
 
         currentArmLocation = transform.position;
-        float rotationAmount = Utility.RotationAmount(transform.position, mousePosition);
+        float rotationAmount = Utility.RotationAmount(transform.position, targetPosition);
         transform.rotation = Quaternion.Euler(0f, 0f, rotationAmount);
 
-        float playerRotation = Utility.RotationAmount(parentPosition.position, mousePosition);
+        float playerRotation = Utility.RotationAmount(parentPosition.position, targetPosition);
 
         Vector3 scale = transform.localScale;
         bool shouldBeFlipped = Utility.InSecondQuadrant(playerRotation) || Utility.InThirdQuadrant(playerRotation);
