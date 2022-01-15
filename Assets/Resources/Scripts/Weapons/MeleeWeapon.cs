@@ -41,6 +41,8 @@ public class MeleeWeapon : Weapon
                 continue;
             }
         }
+
+        lastShotTime = Time.time;
     }
 
     private void OnDrawGizmos()

@@ -46057,6 +46057,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AK47
       objectReference: {fileID: 0}
+    - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
+        type: 3}
+      propertyPath: attacksPerSecond
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8731313941730147161, guid: 8ca2be2116eaae247963dfd7f5e3e532,
         type: 3}
       propertyPath: m_RootOrder
@@ -46285,6 +46290,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2283587401225033404, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
+      propertyPath: isAutomatic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283587401225033404, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
+        type: 3}
       propertyPath: attackRadius
       value: 6
       objectReference: {fileID: 0}
@@ -46304,6 +46314,11 @@ PrefabInstance:
         type: 3}
       propertyPath: visualsCooldown
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2283587401225033404, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
+        type: 3}
+      propertyPath: attacksPerSecond
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
