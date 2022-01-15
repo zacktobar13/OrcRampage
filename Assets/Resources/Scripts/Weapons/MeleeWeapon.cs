@@ -18,8 +18,10 @@ public class MeleeWeapon : Weapon
             return;
 
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(projectileSpawn.position, attackRadius);
-        
-        foreach(Collider2D collider in objectsHit)
+
+        StartCoroutine(VisualEffects());
+
+        foreach (Collider2D collider in objectsHit)
         {
             BaseEnemy enemyHit;
             if (collider.TryGetComponent(out enemyHit))

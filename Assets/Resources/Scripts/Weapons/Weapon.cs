@@ -25,6 +25,8 @@ public class Weapon : MonoBehaviour
     public Sprite notFiringSprite;
     public Sprite firingSprite;
     public SpriteRenderer sprite;
+    public GameObject visualEffect;
+    public Transform visualEffectsSpawnPoint;
 
     public float visualsCooldown;
 
@@ -118,6 +120,11 @@ public class Weapon : MonoBehaviour
 
     public virtual IEnumerator VisualEffects()
     {
+        if (visualEffect)
+        {
+            Instantiate(visualEffect, visualEffectsSpawnPoint.position, visualEffectsSpawnPoint.rotation);
+        }
+
         sprite.sprite = firingSprite;
         yield return new WaitForSeconds(visualsCooldown);
         sprite.sprite = notFiringSprite;
