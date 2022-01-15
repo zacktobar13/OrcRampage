@@ -195,18 +195,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 1
+  shotByPlayer: 0
+  spread: 3
   isCriticalHit: 0
-  isHeadshot: 0
-  spread: 0
   knockbackAmount: 0
   hitEffect: {fileID: 867793574762246758, guid: 82e3d933e68b3734088786741f527326,
     type: 3}
   frontOfProjectile: {fileID: 2851099489665282374}
   rigidBody: {fileID: 50285891162219776}
-  isPiercing: 0
-  isRicochet: 0
-  impactSound: {fileID: 8300000, guid: d268345fd5fce794e915c935b462bc74, type: 3}
-  ricochetCount: 0
   movementSpeed: 1
 --- !u!50 &50285891162219776
 Rigidbody2D:

@@ -5,8 +5,8 @@ public class Projectile : MonoBehaviour
 {
     public int projectileDamage;
     public bool shotByPlayer;
+    public float spread;
     [HideInInspector] public bool isCriticalHit;
-    [HideInInspector] public float spread;
     [HideInInspector] public float knockbackAmount;
     public GameObject hitEffect;
     public Transform frontOfProjectile;
@@ -18,11 +18,11 @@ public class Projectile : MonoBehaviour
     public void SetProjectileRotation(float rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
+        transform.Rotate(0, 0, Random.Range(-spread, spread));
     }
 
     void Start()
     {
-        transform.Rotate( 0, 0, Random.Range(-spread, spread) );
         movementDirection = transform.right;
     }
 

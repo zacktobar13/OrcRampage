@@ -11,20 +11,14 @@ public class MeleeEnemyBehavior : BaseEnemy
     public float wanderMovementSpeed;
     public float damageColliderDistance;
 
-    protected float lastAttack;
-    protected bool isAttacking = false;
-    protected Vector2 attackMoveEndPos;
+    float lastAttackTime;
 
-    protected IEnumerator attack;
-    protected IEnumerator attackMove;
-
+    // Wander logic
     bool isCurrentlyWandering = false;
-
     float lastWanderTime;
     float wanderCooldown = 3f;
     float wanderStartTime;
     float maxWanderTime = 5f;
-
 
     Vector2 wanderPosition = Vector2.zero;
 
@@ -43,55 +37,16 @@ public class MeleeEnemyBehavior : BaseEnemy
 
     public override void Attack()
     {
-        if (attack == null)
+        if (ShouldAttack())
         {
-            attack = StartAttack();
-            StartCoroutine(attack);
+            currentWeapon.Attack();
+            lastAttackTime = Time.time;
         }
     }
 
     public override bool ShouldAttack()
     {
-        return isAttacking || (inRangeToAttack && Time.time > lastAttack + attackCooldown);
-    }
-
-    public virtual IEnumerator StartAttack ()
-    {
-        isAttacking = true;
-
-        // Telegraph the attack
-        spriteAnim.Play(telegraphAnimation);
-        Vector2 directionToPlayer = (target.transform.position - transform.position).normalized;
-        attackMoveEndPos = (Vector2)transform.position + directionToPlayer.normalized * 1.75f;
-        yield return new WaitForSeconds(telegraphDuration);
-
-        // Do the actual attack
-        spriteAnim.Play(attackAnimation);
-        attackMove = moveWhileAttacking();
-        StartCoroutine(attackMove);
-        GameObject damageCircle = Instantiate(damageCollider, damageSpawnPoint.transform.position, transform.rotation);
-        DamageColliderBehavior circle = damageCircle.GetComponent<DamageColliderBehavior>();
-        circle.creator = gameObject;
-        circle.damageAmount = attackDamage;
-        circle.damageDirection = directionToPlayer;
-        circle.transform.position = (Vector2)damageSpawnPoint.position + directionToPlayer * damageColliderDistance;
-        yield return new WaitForSeconds(0.5f);
-
-        AttackEnd();
-    }
-
-    public void AttackEnd(bool goToIdle = true)
-    {
-        if (attackMove != null)
-        {
-            StopCoroutine(attackMove);
-            attackMove = null;
-        }
-        isAttacking = false;
-        lastAttack = Time.time;
-        if (goToIdle)
-            spriteAnim.Play(idleAnimation);
-        attack = null;
+        return (inRangeToAttack && Time.time > lastAttackTime + attackCooldown);
     }
 
     public override void Idle()
@@ -158,26 +113,5 @@ public class MeleeEnemyBehavior : BaseEnemy
     {
         isCurrentlyWandering = true;
         wanderStartTime = Time.time;
-    }
-
-    public IEnumerator moveWhileAttacking()
-    {
-        while (true)
-        {
-            if ((Vector2)transform.position == attackMoveEndPos)
-                break;
-            MoveTowards(attackMoveEndPos, movementSpeed * Time.deltaTime * 3.5f);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    public override void ApplyDamage(DamageInfo damageInfo)
-    {
-        base.ApplyDamage(damageInfo);
-        if (attack != null)
-        {
-            StopCoroutine(attack);
-            AttackEnd(false);
-        }
     }
 }

@@ -38,7 +38,7 @@ public class ChargerEnemyBehavior : MeleeEnemyBehavior
         }
     }
 
-    public override IEnumerator StartAttack()
+   /* public override IEnumerator StartAttack()
     {
         isAttacking = true;
 
@@ -54,6 +54,6 @@ public class ChargerEnemyBehavior : MeleeEnemyBehavior
         yield return new WaitUntil(DoCharge);
 
         AttackEnd();
-    }
+    }*/
 
 }

@@ -90,7 +90,6 @@ public class Weapon : MonoBehaviour
         projectileInfo.projectileDamage = CalculateDamage(isCritical);
         projectileInfo.isCriticalHit = isCritical;
         projectileInfo.movementSpeed = projectileSpeed;
-        projectileInfo.spread = projectileSpreadAmount;
         projectileInfo.shotByPlayer = isOnPlayer;
 
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);

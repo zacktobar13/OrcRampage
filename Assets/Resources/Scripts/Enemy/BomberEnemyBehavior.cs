@@ -6,12 +6,12 @@ public class BomberEnemyBehavior : MeleeEnemyBehavior
 {
     public GameObject explosion;
 
-    public override IEnumerator StartAttack()
+    /*public override IEnumerator StartAttack()
     {
         isAttacking = true;
         ApplyDamage(new DamageInfo(maxHealth, false));
         return null;
-    }
+    }*/
 
     public override void Death()
     {

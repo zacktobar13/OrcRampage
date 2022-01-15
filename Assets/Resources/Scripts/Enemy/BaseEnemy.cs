@@ -46,6 +46,7 @@ public class BaseEnemy : MonoBehaviour {
     GameObject healthUI;
     Image healthbar;
     protected float health;
+    protected Weapon currentWeapon;
 
     protected GameObject target = null;
     protected float distanceToTarget;
@@ -80,6 +81,9 @@ public class BaseEnemy : MonoBehaviour {
         critDamageNumber = StaticResources.critDamageNumber;
         damageCollider = StaticResources.damageCollider;
         damageSpawnPoint = transform.Find("Damage Spawn Point");
+        currentWeapon = GetComponentInChildren<Weapon>();
+        if (currentWeapon)
+            currentWeapon.PickupWeapon(gameObject);
     }
     
     protected void FixedUpdate () {
