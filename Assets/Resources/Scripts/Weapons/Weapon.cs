@@ -75,7 +75,8 @@ public class Weapon : MonoBehaviour
         }
 
         StartCoroutine(VisualEffects());
-        SpawnProjectile(true);
+        SpawnProjectile();
+        PlayAttackSound();
         ammoCount -= 1;
         lastShotTime = Time.time;
         return;
@@ -97,7 +98,7 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void SpawnProjectile(bool makeNoise)
+    public virtual void SpawnProjectile()
     {
         Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
         projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
@@ -110,12 +111,12 @@ public class Weapon : MonoBehaviour
         //Vector2 weaponToMouse = PlayerInput.mousePosition - (Vector2)projectileSpawn.position;
         //float projectileRotation = Mathf.Atan2(weaponToMouse.y, weaponToMouse.x) * Mathf.Rad2Deg;
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
+    }
 
-        if (makeNoise)
-        {
-            audioSource.pitch = Random.Range(.9f, 1.2f);
-            audioSource.PlayOneShot(shootSound);
-        }
+    public virtual void PlayAttackSound()
+    {
+        audioSource.pitch = Random.Range(.9f, 1.2f);
+        audioSource.PlayOneShot(shootSound);
     }
 
     public virtual IEnumerator VisualEffects()

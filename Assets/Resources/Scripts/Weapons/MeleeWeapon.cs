@@ -20,6 +20,7 @@ public class MeleeWeapon : Weapon
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(projectileSpawn.position, attackRadius);
 
         StartCoroutine(VisualEffects());
+        PlayAttackSound();
 
         foreach (Collider2D collider in objectsHit)
         {

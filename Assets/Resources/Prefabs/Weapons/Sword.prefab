@@ -202,8 +202,8 @@ MonoBehaviour:
   visualEffectsSpawnPoint: {fileID: 5042557379365664924}
   visualsCooldown: 0.25
   audioSource: {fileID: 7013021937776610281}
-  shootSound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}
-  emptySound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}
+  shootSound: {fileID: 8300000, guid: 3807006d81684bd448b8c330e3fa005b, type: 3}
+  emptySound: {fileID: 0}
   projectileSpawned: {fileID: 0}
   lastShotTime: 0
   isReloading: 0
