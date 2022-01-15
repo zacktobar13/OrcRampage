@@ -49,6 +49,7 @@ public class Projectile : MonoBehaviour
         DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit);
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
 
-        Destroy(gameObject);
+        if (collision.gameObject.layer != LayerMask.NameToLayer("Map Clutter")) 
+            Destroy(gameObject);
     }
 }
