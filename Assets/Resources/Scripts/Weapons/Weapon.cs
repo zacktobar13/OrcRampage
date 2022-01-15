@@ -89,7 +89,7 @@ public class Weapon : MonoBehaviour
         bool isCritical = RollCrit();
         projectileInfo.projectileDamage = CalculateDamage(isCritical);
         projectileInfo.isCriticalHit = isCritical;
-        projectileInfo.movementSpeed = projectileSpeed;
+        //projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.shotByPlayer = isOnPlayer;
 
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);

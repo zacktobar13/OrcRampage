@@ -78,8 +78,6 @@ public class PlayerHealth : MonoBehaviour
         {
             GameObject bloodParticle = Instantiate(StaticResources.blood, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
-
-        CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, 1f);
     }
     public void ApplyHeal(HealInfo healInfo)
     {

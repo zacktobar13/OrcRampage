@@ -422,7 +422,7 @@ MonoBehaviour:
   attackPower: 7
   critChance: 10
   critPower: 2
-  attacksPerSecond: 3
+  attacksPerSecond: 6
   projectileSpeed: 1
   projectileSpreadAmount: 1
   ammoCount: 100
