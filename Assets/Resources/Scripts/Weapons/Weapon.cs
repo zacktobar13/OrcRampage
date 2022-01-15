@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
     private Rigidbody2D rigidBody;
 
     protected Transform projectileSpawn;
-    protected float lastShotTime;
+    protected float lastAttackTime;
     protected bool isOnPlayer;
 
     private Vector2 randomDropDir;
@@ -72,7 +72,7 @@ public class Weapon : MonoBehaviour
         SpawnProjectile();
         PlayAttackSound();
         ammoCount -= 1;
-        lastShotTime = Time.time;
+        lastAttackTime = Time.time;
         return;
     }
 
@@ -185,7 +185,7 @@ public class Weapon : MonoBehaviour
 
     public virtual bool CanAttack()
     {
-        return Time.time > lastShotTime + (1 / attacksPerSecond);
+        return Time.time > lastAttackTime + (1 / attacksPerSecond);
     }
 
     public static bool operator ==(Weapon a, Weapon b)

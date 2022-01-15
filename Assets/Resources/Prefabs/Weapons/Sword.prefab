@@ -238,10 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponID: 4
-  isAutomatic: 0
-  attackPower: 50
-  critChance: 50
-  critPower: 3
+  isAutomatic: 1
+  attackPower: 15
+  critChance: 10
+  critPower: 2
   attacksPerSecond: 1
   projectileSpeed: 0
   projectileSpreadAmount: 0
@@ -259,7 +259,7 @@ MonoBehaviour:
   audioSource: {fileID: 7013021937776610281}
   shootSound: {fileID: 8300000, guid: 3807006d81684bd448b8c330e3fa005b, type: 3}
   emptySound: {fileID: 0}
-  attackRadius: 2
+  attackRadius: 7
 --- !u!1001 &8145669193660975093
 PrefabInstance:
   m_ObjectHideFlags: 0

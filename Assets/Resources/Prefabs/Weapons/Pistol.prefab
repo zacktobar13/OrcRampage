@@ -224,8 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 1
   isAutomatic: 0
-  attackPower: 5
-  critChance: 50
+  attackPower: 10
+  critChance: 10
   critPower: 2
   attacksPerSecond: 2
   projectileSpeed: 1
