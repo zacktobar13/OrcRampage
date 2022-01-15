@@ -203,7 +203,7 @@ MonoBehaviour:
     type: 3}
   frontOfProjectile: {fileID: 2851099489665282374}
   rigidBody: {fileID: 50285891162219776}
-  movementSpeed: 1
+  movementSpeed: 0.1
 --- !u!50 &50285891162219776
 Rigidbody2D:
   serializedVersion: 4
