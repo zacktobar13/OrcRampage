@@ -247,7 +247,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public IEnumerator PlayHurtAnimation(Vector2 damageDir)
     {
-        const float knockbackDuration = .5f;
+        const float knockbackDuration = .3f;
         hurt = true;
         playerMovement.gettingKnockedBack = true;
         playerMovement.knockbackDir = damageDir;

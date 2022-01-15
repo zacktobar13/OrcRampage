@@ -47,7 +47,7 @@ public class MeleeWeapon : Weapon
             }
         }
 
-        lastShotTime = Time.time;
+        lastAttackTime = Time.time;
     }
 
     DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)

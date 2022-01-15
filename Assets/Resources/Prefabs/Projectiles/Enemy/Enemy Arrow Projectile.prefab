@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 886911396343857088}
   - component: {fileID: 5131085146311733975}
   m_Layer: 9
-  m_Name: Pistol Projectile
+  m_Name: Enemy Arrow Projectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ SpriteRenderer:
   m_SortingLayerID: -754348907
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c4746dd235674a049976fa897026e7e1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53eb19dba53bc7042a04e364f3374c75, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
     type: 3}
   frontOfProjectile: {fileID: 2851099489665282374}
   rigidBody: {fileID: 50285891162219776}
-  movementSpeed: 0.5
+  movementSpeed: 1
 --- !u!50 &50285891162219776
 Rigidbody2D:
   serializedVersion: 4
@@ -241,8 +241,8 @@ BoxCollider2D:
   m_Offset: {x: 3.64, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0.5}
-    oldSize: {x: 7.25, y: 0.75}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.75, y: 3.25}
     newSize: {x: 12.5, y: 3.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -371,7 +371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2315298839684404010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.133, y: -0.012, z: -0.2651711}
+  m_LocalPosition: {x: 1.86, y: -0.012, z: -0.2651711}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4774557725009364}
@@ -402,7 +402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7995339149852488556}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.23, y: -0.01, z: 0}
+  m_LocalPosition: {x: -1.77, y: -0.08, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4774557725009364}
@@ -449,7 +449,7 @@ TrailRenderer:
   m_SortingLayerID: -754348907
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Time: 0.1
+  m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -458,7 +458,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.61538506
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -479,8 +479,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 0.9529412}
+      key0: {r: 1, g: 1, b: 1, a: 0.43137255}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -496,16 +496,16 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 47224
+      atime1: 65535
       atime2: 65535
-      atime3: 0
+      atime3: 65535
       atime4: 0
       atime5: 0
       atime6: 0
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 3
+      m_NumAlphaKeys: 2
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0

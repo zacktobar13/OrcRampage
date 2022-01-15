@@ -9,4 +9,5 @@ public enum WeaponIdentifier
     AK,
     RPG,
     Sword,
+    EnemyBow
 }

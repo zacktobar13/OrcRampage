@@ -419,10 +419,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 2
   isAutomatic: 1
-  attackPower: 10
-  critChance: 50
-  critPower: 15
-  attacksPerSecond: 3
+  attackPower: 7
+  critChance: 10
+  critPower: 2
+  attacksPerSecond: 6
   projectileSpeed: 1
   projectileSpreadAmount: 1
   ammoCount: 100
