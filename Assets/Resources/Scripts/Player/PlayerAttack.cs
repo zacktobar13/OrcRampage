@@ -129,31 +129,39 @@ public class PlayerAttack : MonoBehaviour
         pressedInteractThisFrame = false;
     }
 
+    bool attemptedInteracts = false;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (interactedThisFrame)
             return;
 
+        Debug.Log(collision.gameObject);
         if (pressedInteractThisFrame)
         {
             if (collision.gameObject)
             {
                 GameObject potentialWeapon = collision.gameObject;
-                interactedThisFrame = true;
                 Weapon weapon = potentialWeapon.GetComponent<Weapon>();
+                Debug.Log("Potential Weapon: " + weapon);
                 if (weapon)
                 {
+                    Debug.Log("Picking up: " + weapon);
+                    interactedThisFrame = true;
                     PickupWeapon(collision.gameObject);
                 }
             }
+            attemptedInteracts = true;
         }
-
-        pressedInteractThisFrame = false;
     }
 
     private void LateUpdate()
     {
         interactedThisFrame = false;
+        if (attemptedInteracts)
+        {
+            attemptedInteracts = false;
+            pressedInteractThisFrame = false;
+        }
     }
 
     public void OnAttack(Weapon weapon, Projectile projectile)

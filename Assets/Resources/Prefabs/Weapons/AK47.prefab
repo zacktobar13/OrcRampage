@@ -282,6 +282,31 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6.075
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.63
+      objectReference: {fileID: 0}
     - target: {fileID: 4939588336846298857, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.x
@@ -290,12 +315,12 @@ PrefabInstance:
     - target: {fileID: 4939588336846298857, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.y
-      value: 1.9453236
+      value: 4.26
       objectReference: {fileID: 0}
     - target: {fileID: 4939588336846298857, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Offset.x
-      value: 1.5329571
+      value: 2.72
       objectReference: {fileID: 0}
     - target: {fileID: 4939588336846298857, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -368,6 +393,8 @@ MonoBehaviour:
   notFiringSprite: {fileID: 21300000, guid: 851ca8c964330fd40aea870159189cc8, type: 3}
   firingSprite: {fileID: 21300002, guid: 851ca8c964330fd40aea870159189cc8, type: 3}
   sprite: {fileID: 6769617347913849038}
+  visualEffect: {fileID: 0}
+  visualEffectsSpawnPoint: {fileID: 0}
   visualsCooldown: 0.08
   audioSource: {fileID: 4944539359795775678}
   shootSound: {fileID: 8300000, guid: 266f16d659b01674e8eb5ce6d33404b3, type: 3}
