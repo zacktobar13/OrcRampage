@@ -78,6 +78,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9177565795109621906, guid: 19b7d47678e3e6e4993bc228055e3aac,
         type: 3}
+    - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -183,7 +193,6 @@ MonoBehaviour:
   critChance: 1
   critPower: 1
   attacksPerSecond: 1
-  projectileSpeed: 0.2
   projectileSpreadAmount: 1
   ammoCount: 20
   projectile: {fileID: 1796847203892902, guid: 4fd9564306af072409926c8c95b2a216, type: 3}

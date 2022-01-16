@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public float attacksPerSecond;
 
     [Header("Ranged Weapon")]
-    public float projectileSpeed;
+  //  public float projectileSpeed;
     public float projectileSpreadAmount;
     public int ammoCount;
     public GameObject projectile;

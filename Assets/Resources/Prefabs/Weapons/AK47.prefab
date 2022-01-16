@@ -279,6 +279,11 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
@@ -423,7 +428,6 @@ MonoBehaviour:
   critChance: 10
   critPower: 2
   attacksPerSecond: 6
-  projectileSpeed: 1
   projectileSpreadAmount: 1
   ammoCount: 100
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}

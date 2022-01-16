@@ -482,7 +482,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &2648403744977479830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -649,7 +649,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e341f3d2354db4499d8c90b9acd356d, type: 3}
---- !u!1001 &4614047141799861325
+--- !u!1001 &7886388622485160351
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -664,12 +664,12 @@ PrefabInstance:
     - target: {fileID: 3793181917363490677, guid: fa9e372ebea2b084e907bd3966c34f17,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.68
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3793181917363490677, guid: fa9e372ebea2b084e907bd3966c34f17,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3793181917363490677, guid: fa9e372ebea2b084e907bd3966c34f17,
         type: 3}
