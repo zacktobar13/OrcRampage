@@ -187,7 +187,7 @@ public class Weapon : MonoBehaviour
 
     public virtual bool CanAttack()
     {
-        return Time.time > lastAttackTime + (1 / attacksPerSecond);
+        return isActiveAndEnabled && Time.time > lastAttackTime + (1 / attacksPerSecond);
     }
 
     public static bool operator ==(Weapon a, Weapon b)

@@ -22,7 +22,7 @@ public class PlayerAnimation : MonoBehaviour
 
     PlayerMovement playerMovement;
     PlayerHealth playerHealth;
-    PlayerAttack playerShoot;
+    PlayerAttack playerAttack;
     public GameObject sprite;
     bool spriteFlipEnabled = false;
 
@@ -59,7 +59,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
-        playerShoot = GetComponentInChildren<PlayerAttack>();
+        playerAttack = GetComponentInChildren<PlayerAttack>();
 
         TriggerToNextLevel.onCollideWithPlayer += PlayWalkIntoLevelAnimation;
         WoodSignBehavior.onPlayerInteracted += PlayInteractWithSignAnimation;
@@ -252,7 +252,9 @@ public class PlayerAnimation : MonoBehaviour
         playerMovement.gettingKnockedBack = true;
         playerMovement.knockbackDir = damageDir;
         playerMovement.knockbackDuration = knockbackDuration;
+        playerAttack.DisableWeapon();
         yield return new WaitForSeconds(knockbackDuration);
+        playerAttack.EnableWeapon();
         playerMovement.gettingKnockedBack = false;
         hurt = false;
     }

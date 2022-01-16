@@ -43,6 +43,12 @@ public class Projectile : MonoBehaviour
             return;
         }
 
+        // Don't hit an objects world colliders (this gameobject doesnt have ApplyDamage)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("World Colliders"))
+        {
+            return;
+        }
+
         // Spawn hit effect
         Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
 
