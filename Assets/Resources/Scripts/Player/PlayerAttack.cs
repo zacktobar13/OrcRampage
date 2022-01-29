@@ -79,14 +79,16 @@ public class PlayerAttack : MonoBehaviour
         // If we already have the weapon we're picking up, just add ammo
         if (weapons[0] && weapons[0] == weapon)
         {
-            weapons[0].ammoCount += weapon.ammoCount;
-            Destroy(weapon.gameObject);
+            bool receivedAmmo = weapons[0].GiveAmmo(weapon.currentAmmo);
+            if (receivedAmmo)
+                Destroy(weapon.gameObject);
             return;
         }
         else if (weapons[1] && weapons[1] == weapon)
         {
-            weapons[1].ammoCount += weapon.ammoCount;
-            Destroy(weapon.gameObject);
+            bool receivedAmmo = weapons[1].GiveAmmo(weapon.currentAmmo);
+            if (receivedAmmo)
+                Destroy(weapon.gameObject);
             return;
         }
 
@@ -174,5 +176,10 @@ public class PlayerAttack : MonoBehaviour
             if (onAttack != null)
                 onAttack(this);
         }
+    }
+
+    public Weapon GetCurrentWeapon()
+    {
+        return currentWeapon;
     }
 }

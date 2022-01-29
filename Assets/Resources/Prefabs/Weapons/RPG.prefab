@@ -172,9 +172,9 @@ MonoBehaviour:
   critChance: 50
   critPower: 2
   attacksPerSecond: 1
-  projectileSpeed: 1
   projectileSpreadAmount: 1
-  ammoCount: 5
+  maxAmmo: 2
+  currentAmmo: 2
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
   bulletCasing: {fileID: 5331020343491793710, guid: 2c3e03a0cf6183f449378318cc549e96,
     type: 3}

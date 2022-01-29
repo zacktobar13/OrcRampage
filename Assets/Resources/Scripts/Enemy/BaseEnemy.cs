@@ -160,7 +160,7 @@ public class BaseEnemy : MonoBehaviour {
             body.transform.Find("Sprite").GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
         }
 
-        PlayerExperience.GiveExperience(20);
+        //PlayerExperience.GiveExperience(20);
 
         // Drop currency
         GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);

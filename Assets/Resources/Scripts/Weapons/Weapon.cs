@@ -15,7 +15,8 @@ public class Weapon : MonoBehaviour
     [Header("Ranged Weapon")]
   //  public float projectileSpeed;
     public float projectileSpreadAmount;
-    public int ammoCount;
+    public int maxAmmo;
+    public int currentAmmo;
     public GameObject projectile;
     public GameObject bulletCasing;
 
@@ -71,7 +72,7 @@ public class Weapon : MonoBehaviour
         StartCoroutine(VisualEffects());
         SpawnProjectile();
         PlayAttackSound();
-        ammoCount -= 1;
+        currentAmmo -= 1;
         lastAttackTime = Time.time;
         return;
     }
@@ -182,7 +183,16 @@ public class Weapon : MonoBehaviour
 
     public virtual bool HasAmmo()
     {
-        return ammoCount > 0;
+        return currentAmmo > 0;
+    }
+
+    public bool GiveAmmo(int amount)
+    {
+        if (currentAmmo == maxAmmo)
+            return false;
+
+        currentAmmo = Mathf.Min(maxAmmo, currentAmmo + amount);
+        return true;
     }
 
     public virtual bool CanAttack()
