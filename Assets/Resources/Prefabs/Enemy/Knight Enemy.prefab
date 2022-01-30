@@ -477,7 +477,7 @@ PrefabInstance:
     - target: {fileID: 1720596935224143501, guid: 245e542063fae8c4bb278578191cfab7,
         type: 3}
       propertyPath: m_Name
-      value: Zombie Enemy
+      value: Knight Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1720596935224143501, guid: 245e542063fae8c4bb278578191cfab7,
         type: 3}
@@ -539,7 +539,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5097338688205473012, guid: 245e542063fae8c4bb278578191cfab7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 245e542063fae8c4bb278578191cfab7, type: 3}
 --- !u!1 &7727590988708856071 stripped
 GameObject:
@@ -714,7 +715,7 @@ MonoBehaviour:
   maxHealth: 50
   droppables:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
-  deadBody: {fileID: 6901248064322707894, guid: f56cce94168e00444aca65d920439567,
+  deadBody: {fileID: 1421758693350179690, guid: a9f1adda83ef5734e957d51e00b2fbe4,
     type: 3}
   healthGlobeDropChance: 15
   enemyDetectionDistanceCurrent: 40
