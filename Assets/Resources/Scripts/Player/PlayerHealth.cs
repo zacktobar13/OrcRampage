@@ -5,7 +5,7 @@ using EZCameraShake;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float health;
+    public int health;
     public int maxHealth;
     public GameObject floatingDamageNumber;
     public GameObject floatingHealNumber;
@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
+    GameplayUI gameplayUI;
 
     public bool isCurrentlyDead = false;
     public bool hurtThisFrame = false;
@@ -44,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
         playerAnimation = GetComponent<PlayerAnimation>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
+        gameplayUI.UpdatePlayerHealth(health, maxHealth);
 
         if (onRespawn != null)
             onRespawn(this);
@@ -78,6 +81,8 @@ public class PlayerHealth : MonoBehaviour
         {
             GameObject bloodParticle = Instantiate(StaticResources.blood, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
+
+        gameplayUI.UpdatePlayerHealth(health, maxHealth);
     }
     public void ApplyHeal(HealInfo healInfo)
     {
@@ -93,11 +98,6 @@ public class PlayerHealth : MonoBehaviour
         healNumber.SendMessage("SetNumber", healInfo.healAmount.ToString());
     }
 
-    public void ApplyDamageAsPercentage(float percentage)
-    {
-        health *= percentage;
-    }
-
     public void Death()
     {
         isCurrentlyDead = true;
@@ -107,7 +107,6 @@ public class PlayerHealth : MonoBehaviour
         if (onDeath != null)
             onDeath(this);
 
-        bow.SetActive(false);
         playerMovement.movementEnabled = false;
     }
 

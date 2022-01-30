@@ -10,15 +10,20 @@ public class PlayerAttack : MonoBehaviour
     public delegate void OnPlayerAttack(PlayerAttack playerAttack);
     public static event OnPlayerAttack onAttack;
 
+    GameplayUI gameplayUI;
+
     Weapon[] weapons = new Weapon[2];
     [SerializeField] Weapon currentWeapon;
     int currentWeaponIndex = 0;
 
     void Start()
     {
+        gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
+
         currentWeapon = GetComponentInChildren<Weapon>();
         weapons[0] = currentWeapon;
         currentWeapon.PickupWeapon(gameObject);
+        gameplayUI.UpdateWeapon(currentWeapon);
     }
 
     void Update()
@@ -26,6 +31,7 @@ public class PlayerAttack : MonoBehaviour
         if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
             currentWeapon.Attack();
+            gameplayUI.UpdateWeaponAmmo(currentWeapon.currentAmmo, currentWeapon.maxAmmo);
         }
 
         if (PlayerInput.changeToFirstWeapon)
@@ -69,6 +75,7 @@ public class PlayerAttack : MonoBehaviour
         weapons[index].gameObject.SetActive(true);
         currentWeaponIndex = index;
         currentWeapon = weapons[currentWeaponIndex];
+        gameplayUI.UpdateWeapon(currentWeapon);
     }
 
     public void PickupWeapon(GameObject weaponObject)
@@ -81,14 +88,20 @@ public class PlayerAttack : MonoBehaviour
         {
             bool receivedAmmo = weapons[0].GiveAmmo(weapon.currentAmmo);
             if (receivedAmmo)
+            {
+                gameplayUI.UpdateWeaponAmmo(weapons[0].currentAmmo, weapons[0].maxAmmo);
                 Destroy(weapon.gameObject);
+            }
             return;
         }
         else if (weapons[1] && weapons[1] == weapon)
         {
             bool receivedAmmo = weapons[1].GiveAmmo(weapon.currentAmmo);
             if (receivedAmmo)
+            {
+                gameplayUI.UpdateWeaponAmmo(weapons[1].currentAmmo, weapons[1].maxAmmo);
                 Destroy(weapon.gameObject);
+            }
             return;
         }
 
@@ -114,6 +127,7 @@ public class PlayerAttack : MonoBehaviour
             weapon.PickupWeapon(gameObject);
             weapons[currentWeaponIndex] = weapon;
             currentWeapon = weapon;
+            gameplayUI.UpdateWeapon(currentWeapon);
             return;
         }
     }

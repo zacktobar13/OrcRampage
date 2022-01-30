@@ -9,8 +9,8 @@ public class GameplayUI : MonoBehaviour
 {
     public TextMeshProUGUI ammoText;
     public Image weaponImage;
+    public TextMeshProUGUI healthText;
 
-    public GameObject[] experienceInfoGroup;
     public GameObject[] weaponInfoGroup;
 
     public Image blackFade;
@@ -30,15 +30,25 @@ public class GameplayUI : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    public void UpdateWeapon(Weapon newWeapon)
     {
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player)
-        {
-            Weapon playerWeapon = player.GetComponentInChildren<PlayerAttack>().GetCurrentWeapon();
-            ammoText.text = playerWeapon.currentAmmo + " / " + playerWeapon.maxAmmo;
-            weaponImage.sprite = playerWeapon.notFiringSprite;
-        }
+        UpdateWeaponSprite(newWeapon.notFiringSprite);
+        UpdateWeaponAmmo(newWeapon.currentAmmo, newWeapon.maxAmmo);
+    }
+
+    public void UpdateWeaponSprite(Sprite newSprite)
+    {
+        weaponImage.sprite = newSprite;
+    }
+
+    public void UpdateWeaponAmmo(int currentAmmo, int maxAmmo)
+    {
+        ammoText.text = currentAmmo + " / " + maxAmmo;
+    }
+
+    public void UpdatePlayerHealth(int currentHealth, int maxHealth)
+    {
+        healthText.text = "Health:\n" + currentHealth + " / " + maxHealth;
     }
 
     private void FixedUpdate()
@@ -77,15 +87,6 @@ public class GameplayUI : MonoBehaviour
                     onScreenBlack();
                 }
             }
-        }
-    }
-
-    // Toggles wave info group UI
-    public void ToggleExperienceInfoGroup(bool toggle)
-    {
-        foreach (GameObject member in experienceInfoGroup)
-        {
-            member.SetActive(toggle);
         }
     }
 
