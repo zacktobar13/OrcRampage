@@ -273,7 +273,8 @@ MonoBehaviour:
   currentAmmo: 1
   projectile: {fileID: 0}
   bulletCasing: {fileID: 0}
-  notFiringSprite: {fileID: 21300000, guid: b43917c2c9c1025459a278b2f99029e4, type: 3}
+  notFiringSprite: {fileID: 712035800519618848, guid: b43917c2c9c1025459a278b2f99029e4,
+    type: 3}
   firingSprite: {fileID: 21300000, guid: 423d62b1d517de341a022154b839d960, type: 3}
   sprite: {fileID: 8664724534342507417}
   visualEffect: {fileID: 8594606359425320563, guid: 8cf81081c07fd244d8a344da6644948b,

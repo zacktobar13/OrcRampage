@@ -135,6 +135,7 @@ public class Weapon : MonoBehaviour
         StopAllCoroutines();
         shadow.SetActive(true);
         anim.enabled = true;
+        sprite.sprite = notFiringSprite;
         anim.Play("DropWeapon", -1, 0);
         transform.localScale = Vector3.one;
         moveCoroutine = StartCoroutine(MoveOnDrop());
