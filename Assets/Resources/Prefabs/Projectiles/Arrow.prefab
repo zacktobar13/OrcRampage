@@ -75,14 +75,14 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 453797103
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4b7dd9df02e975249bc0dce412c69209, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 12.5, y: 3.25}
+  m_Size: {x: 2.56, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,22 +101,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 10
-  isCriticalHit: 0
-  isHeadshot: 0
+  shotByPlayer: 0
   spread: 0
+  isCriticalHit: 0
   knockbackAmount: 0
   hitEffect: {fileID: 867793574762246758, guid: 82e3d933e68b3734088786741f527326,
     type: 3}
   frontOfProjectile: {fileID: 2851099489665282374}
   rigidBody: {fileID: 7360984634057186874}
-  shadow: {fileID: 5947708591961106607, guid: ce1f6f1db3a110c409dba3ddceabf250, type: 3}
-  trailRenderer: {fileID: 5238925626594939531}
-  isPiercing: 0
-  isRicochet: 0
-  flySound: {fileID: 8300000, guid: 9df0641026db58b409143b82d88271dc, type: 3}
-  impactSound: {fileID: 8300000, guid: f656805cd58dcbc47b46e9eb71ab9b2d, type: 3}
-  criticalHitSound: {fileID: 8300000, guid: 1834b05d33651614883c245e0f76f2ad, type: 3}
-  ricochetCount: 0
   movementSpeed: 0.75
 --- !u!61 &886911396343857088
 BoxCollider2D:
@@ -135,8 +127,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
-    newSize: {x: 12.5, y: 3.25}
+    oldSize: {x: 2.56, y: 0.64}
+    newSize: {x: 2.56, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -361,7 +353,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 453797103
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Time: 0.4
   m_Parameters:

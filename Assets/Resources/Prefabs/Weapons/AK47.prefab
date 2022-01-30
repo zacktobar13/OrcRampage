@@ -264,18 +264,18 @@ PrefabInstance:
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.x
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Size.y
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 851ca8c964330fd40aea870159189cc8,
+      objectReference: {fileID: 8271715202566429118, guid: 851ca8c964330fd40aea870159189cc8,
         type: 3}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -310,7 +310,7 @@ PrefabInstance:
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.67
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -434,8 +434,10 @@ MonoBehaviour:
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
   bulletCasing: {fileID: 5331020343491793710, guid: 2c3e03a0cf6183f449378318cc549e96,
     type: 3}
-  notFiringSprite: {fileID: 21300000, guid: 851ca8c964330fd40aea870159189cc8, type: 3}
-  firingSprite: {fileID: 21300002, guid: 851ca8c964330fd40aea870159189cc8, type: 3}
+  notFiringSprite: {fileID: 8271715202566429118, guid: 851ca8c964330fd40aea870159189cc8,
+    type: 3}
+  firingSprite: {fileID: 6662145457819137948, guid: 851ca8c964330fd40aea870159189cc8,
+    type: 3}
   sprite: {fileID: 6769617347913849038}
   visualEffect: {fileID: 867793574762246758, guid: adc99836e6e143948aceafd0985a1a25,
     type: 3}

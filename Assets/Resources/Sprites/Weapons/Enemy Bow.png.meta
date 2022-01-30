@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 19b7d47678e3e6e4993bc228055e3aac
+guid: 00dbdd938d7c1644099ae09db2d9566e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7856493677412862020
-    second: Bow_0
+      213: -8442272569371154962
+    second: Enemy Bow_0
   - first:
-      213: 9177565795109621906
-    second: Bow_1
-  - first:
-      213: 8308161197919842540
-    second: Bow_2
-  - first:
-      213: 8397226182628513416
-    second: Bow_3
-  - first:
-      213: -7222818359471190614
-    second: Bow_4
+      213: -7204216285013282061
+    second: Enemy Bow_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -59,8 +50,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.25437728, y: 0.4999999}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 4
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -76,7 +67,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   ignorePngGamma: 0
-  applyGammaDecoding: 1
+  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -89,7 +80,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
@@ -101,7 +92,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: iPhone
     maxTextureSize: 2048
@@ -113,7 +104,19 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -125,48 +128,48 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bow_0
+      name: Enemy Bow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
-        height: 16
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.3400188, y: 0.471059}
+      pivot: {x: 0.4765625, y: 0.4921875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb734b930a028f290800000000000000
-      internalID: -7856493677412862020
+      spriteID: ee5ab95c3d507da80800000000000000
+      internalID: -8442272569371154962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bow_1
+      name: Enemy Bow_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 64
         y: 0
-        width: 18
-        height: 16
+        width: 64
+        height: 64
       alignment: 9
-      pivot: {x: 0.3400188, y: 0.471059}
+      pivot: {x: 0.4765625, y: 0.4921875}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 290d84047734d5f70800000000000000
-      internalID: 9177565795109621906
+      spriteID: 3f2f2b6557b750c90800000000000000
+      internalID: -7204216285013282061
       vertices: []
       indices: 
       edges: []
@@ -174,7 +177,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 589fae20fa31a5947933352ea825698c
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

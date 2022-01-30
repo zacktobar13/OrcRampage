@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 423d62b1d517de341a022154b839d960
+guid: d1f8d5f1eee465b46a495f899320a0f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2466565157546512704
-    second: MeleeSwipeEffect_0
-  - first:
-      213: -7452959992743536773
-    second: MeleeSwipeEffect_1
-  - first:
-      213: -905150460120519303
-    second: MeleeSwipeEffect_2
+      213: -8138264534235535264
+    second: RPG_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -53,8 +47,8 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.0625, y: 0.5}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 4
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -136,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MeleeSwipeEffect_0
+      name: RPG_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,50 +144,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0415aee31fffa3220800000000000000
-      internalID: 2466565157546512704
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MeleeSwipeEffect_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b77d253cf54c19890800000000000000
-      internalID: -7452959992743536773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MeleeSwipeEffect_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97d2c34c3724073f0800000000000000
-      internalID: -905150460120519303
+      spriteID: 0682bb446831f0f80800000000000000
+      internalID: -8138264534235535264
       vertices: []
       indices: 
       edges: []
