@@ -25,7 +25,7 @@ public class ExplosiveBarrelBehavior : DestructibleObject
 
     private new void Start()
     {
-        //base.Start();
+        base.Start();
         onFireDamage = (int)(maxHealth * .1f);
     }
 
