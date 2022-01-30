@@ -26,14 +26,14 @@ public class EnemyBody : MonoBehaviour
         moveCoroutine = StartCoroutine(MoveOnDrop());
     }
 
-	IEnumerator MoveOnDrop()
+    IEnumerator MoveOnDrop()
     {
         randomDropDir = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         float targetTime = Time.time + 1f;
-        while (Time.time <= targetTime)
+        while (Time.time <= targetTime && gameObject && rigidBody)
         {
-            yield return new WaitForFixedUpdate();
             rigidBody.MovePosition(rigidBody.position + randomDropDir * movementSpeed);
+            yield return new WaitForFixedUpdate();
         }
     }
 
