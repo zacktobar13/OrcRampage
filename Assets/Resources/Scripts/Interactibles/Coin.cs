@@ -9,6 +9,7 @@ public class Coin : MonoBehaviour
 	Vector2 randomDirection = Vector2.zero;
     public Animator anim;
     float spinAnimSpeed = 0f;
+    public int value;
 
     public Sprite[] sprites;
     int anim_index;
@@ -34,12 +35,17 @@ public class Coin : MonoBehaviour
         spawnMovementSpeed = 0f;
     }
 
+    bool hasBeenConsumed = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasBeenConsumed)
+            return;
+
         if (collision.gameObject.tag.Equals("Player"))
         {
-            PlayerCurrencyManager.localCurrency += 1;
-            Debug.Log("New Local Currency Amount: " + PlayerCurrencyManager.localCurrency);
+            PlayerCurrencyManager playerCurrency = collision.gameObject.GetComponent<PlayerCurrencyManager>();
+            playerCurrency.AddCurrency(value);
+            hasBeenConsumed = true;
             Destroy(gameObject);
         }
     }

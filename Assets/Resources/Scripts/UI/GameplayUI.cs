@@ -10,6 +10,7 @@ public class GameplayUI : MonoBehaviour
     public TextMeshProUGUI ammoText;
     public Image weaponImage;
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI currencyInfo;
 
     public GameObject[] weaponInfoGroup;
 
@@ -49,6 +50,11 @@ public class GameplayUI : MonoBehaviour
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)
     {
         healthText.text = "Health:\n" + currentHealth + " / " + maxHealth;
+    }
+
+    public void UpdateCurrencyInfo(int newCurrencyAmount)
+    {
+        currencyInfo.text = "Coins: " + newCurrencyAmount;
     }
 
     private void FixedUpdate()

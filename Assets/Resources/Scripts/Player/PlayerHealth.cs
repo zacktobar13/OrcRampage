@@ -102,8 +102,6 @@ public class PlayerHealth : MonoBehaviour
     {
         isCurrentlyDead = true;
 
-        PlayerCurrencyManager.localCurrency = 0;
-
         if (onDeath != null)
             onDeath(this);
 
