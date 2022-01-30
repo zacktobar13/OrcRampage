@@ -44,6 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
+    - {fileID: 2800000, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -116,6 +117,23 @@ SpriteAtlas:
   - {fileID: 5496288420046131002, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
   - {fileID: -1985448746926909415, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
   - {fileID: -3061343977952340720, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
+  - {fileID: 33359133018757819, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -2530260147184830847, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 2213169663792129884, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 238173305464990030, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 5229094286871012545, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -7122617554624818007, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -4682817808726398627, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -4239417252508926535, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 7184877698330739247, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -4218387337014439176, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 5694587925734072174, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 2751573735228778102, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -7006148755122362686, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 7755637337977629991, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 8553374986461877534, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: 9058756154318404963, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
+  - {fileID: -787328973338199722, guid: 5a7f6ab5a2142e9498a70a0634e224a1, type: 3}
   m_PackedSpriteNamesToIndex:
   - VillageTiles_18
   - VillageTiles_19
@@ -184,6 +202,23 @@ SpriteAtlas:
   - VillageTiles_59
   - VillageTiles_49
   - VillageTiles_48
+  - GrassToDirtTiles_3
+  - GrassToDirtTiles_2
+  - GrassToDirtTiles_1
+  - GrassToDirtTiles_0
+  - GrassToDirtTiles_7
+  - GrassToDirtTiles_6
+  - GrassToDirtTiles_5
+  - GrassToDirtTiles_4
+  - GrassToDirtTiles_9
+  - GrassToDirtTiles_8
+  - GrassToDirtTiles_16
+  - GrassToDirtTiles_14
+  - GrassToDirtTiles_15
+  - GrassToDirtTiles_12
+  - GrassToDirtTiles_13
+  - GrassToDirtTiles_10
+  - GrassToDirtTiles_11
   m_RenderDataMap: {}
   m_Tag: VillageAtlas
   m_IsVariant: 0
