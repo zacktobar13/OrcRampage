@@ -65,6 +65,7 @@ public class Weapon : MonoBehaviour
 
         if (!HasAmmo())
         {
+            lastAttackTime = Time.time;
             FireEmpty();
             return;
         }

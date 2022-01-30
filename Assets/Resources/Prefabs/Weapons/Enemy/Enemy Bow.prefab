@@ -209,8 +209,8 @@ MonoBehaviour:
   critPower: 1
   attacksPerSecond: 1
   projectileSpreadAmount: 1
-  maxAmmo: 0
-  currentAmmo: 0
+  maxAmmo: 100
+  currentAmmo: 100
   projectile: {fileID: 1796847203892902, guid: 4fd9564306af072409926c8c95b2a216, type: 3}
   bulletCasing: {fileID: 0}
   notFiringSprite: {fileID: -8442272569371154962, guid: 00dbdd938d7c1644099ae09db2d9566e,
