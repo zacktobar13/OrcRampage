@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 719028043}
   - component: {fileID: 518205802083846971}
   - component: {fileID: -2760309782479182580}
-  - component: {fileID: 2014660532343218608}
+  - component: {fileID: 5152221889997333633}
   m_Layer: 16
   m_Name: Silver Coin
   m_TagString: Untagged
@@ -216,7 +216,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -225,7 +225,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &2014660532343218608
+--- !u!61 &5152221889997333633
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

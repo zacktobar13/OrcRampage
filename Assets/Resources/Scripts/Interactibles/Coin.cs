@@ -13,10 +13,13 @@ public class Coin : MonoBehaviour
 
     public Sprite[] sprites;
     int anim_index;
+    float collectionTimer = .5f;
+    float timeSpawned;
 
     void Start()
     {
         randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        timeSpawned = Time.time;
         anim.speed = Random.Range(.9f, 1.1f);
         spinAnimSpeed = Random.Range(.1f, .15f);
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
@@ -36,12 +39,12 @@ public class Coin : MonoBehaviour
     }
 
     bool hasBeenConsumed = false;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (hasBeenConsumed)
             return;
 
-        if (collision.gameObject.tag.Equals("Player"))
+        if (collision.gameObject.tag.Equals("Player") && Time.time > timeSpawned + collectionTimer)
         {
             PlayerCurrencyManager playerCurrency = collision.gameObject.GetComponent<PlayerCurrencyManager>();
             playerCurrency.AddCurrency(value);
