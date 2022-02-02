@@ -25,6 +25,7 @@ public class SmoothTrackTarget : MonoBehaviour
     {
         cursor = GameObject.Find("Cursor").GetComponent<Transform>();
         target = PlayerManagement.player.transform;
+        transform.position = new Vector3(target.position.x, target.position.y, -20f);
     }
 
     // Logic is placed in LateUpdate to ensure it occurs after player movement
