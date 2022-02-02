@@ -41,10 +41,10 @@ public class Coin : MonoBehaviour
     bool hasBeenConsumed = false;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (hasBeenConsumed)
+        if (hasBeenConsumed || Time.time < timeSpawned + collectionTimer)
             return;
 
-        if (collision.gameObject.tag.Equals("Player") && Time.time > timeSpawned + collectionTimer)
+        if (collision.gameObject.tag.Equals("Player"))
         {
             PlayerCurrencyManager playerCurrency = collision.gameObject.GetComponent<PlayerCurrencyManager>();
             playerCurrency.AddCurrency(value);

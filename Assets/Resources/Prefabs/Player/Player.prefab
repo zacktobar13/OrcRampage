@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 8173912757119250361}
   m_Layer: 10
   m_Name: World Collider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -691,6 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d3825e8fa9e62499dc4405a117baf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localCurrency: 0
 --- !u!114 &7175836991511995852
 MonoBehaviour:
   m_ObjectHideFlags: 0
