@@ -1,5 +1,62 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3639915674969316885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5102060538437939239}
+  - component: {fileID: 3276850194700607389}
+  m_Layer: 10
+  m_Name: World Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5102060538437939239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639915674969316885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5163067539969973862}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &3276850194700607389
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3639915674969316885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.12, y: 0.72}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.2112446, y: 1.842808}
+  m_EdgeRadius: 0
 --- !u!1 &3788223117940286703
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,8 +168,6 @@ GameObject:
   - component: {fileID: 5163067539969973862}
   - component: {fileID: 5163067539969973861}
   - component: {fileID: 5163067539969973860}
-  - component: {fileID: 5163067539969973856}
-  - component: {fileID: 5163067539969973863}
   - component: {fileID: 5163067539969973857}
   m_Layer: 0
   m_Name: Chest
@@ -134,6 +189,7 @@ Transform:
   m_Children:
   - {fileID: 5163067541031687934}
   - {fileID: 6171273994838570822}
+  - {fileID: 5102060538437939239}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -168,56 +224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 068919b879886954ab80ba0785a1b67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openCost: 0
   copperCoin: {fileID: 6338699041248146883, guid: 3f2c933d0a8612f449351f4b1f6d547f,
     type: 3}
   silverCoin: {fileID: 6338699041248146883, guid: 2e170a507a0277b40b0f08cb08fc1d88,
     type: 3}
   goldCoin: {fileID: 6338699041248146883, guid: 0bb8026930b46fc46a38823d3a6a275f,
     type: 3}
-  costText: {fileID: 7713430699588577537}
---- !u!61 &5163067539969973856
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5163067539969973883}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.12, y: 0.72}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.2112446, y: 1.842808}
-  m_EdgeRadius: 0
---- !u!58 &5163067539969973863
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5163067539969973883}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0.76}
-  serializedVersion: 2
-  m_Radius: 5
+  openDistance: 5
+  keysRequired: 0
+  debug: 1
 --- !u!114 &5163067539969973857
 MonoBehaviour:
   m_ObjectHideFlags: 0
