@@ -40,65 +40,15 @@ SpriteAtlas:
       allowAlphaSplitting: 0
       enableRotation: 1
       enableTightPacking: 1
+    secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-    totalSpriteSurfaceArea: 6656
+    packables: []
     bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: -4623600156249019726, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 8514423714734119545, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 3498175687582465834, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -3296322068980896719, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 2097554302820078085, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 1119304708681647119, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 6091694223603253495, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -4214092040845630431, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 4583790847027759793, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 7135085107659254216, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -7406310484020447009, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 414318706690961532, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 4648793499778026168, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -6117961894984478552, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 3478214088149266347, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 2940223766242308259, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 8470946881357611305, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 5592760956933414606, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -1238001273641029922, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -6840809990505757900, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -7372949567707975275, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: 9221756638051677592, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -2168601450210619356, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -6573077793723077104, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -3549005256775572007, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  - {fileID: -6630444250811523308, guid: 410f0170e2723b245af691c9908e1747, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - DesertTiles_16
-  - DesertTiles_19
-  - DesertTiles_18
-  - DesertTiles_8
-  - DesertTiles_9
-  - DesertTiles_2
-  - DesertTiles_3
-  - DesertTiles_0
-  - DesertTiles_1
-  - DesertTiles_6
-  - DesertTiles_7
-  - DesertTiles_4
-  - DesertTiles_5
-  - DesertTiles_20
-  - DesertTiles_21
-  - DesertTiles_22
-  - DesertTiles_23
-  - DesertTiles_24
-  - DesertTiles_25
-  - DesertTiles_11
-  - DesertTiles_10
-  - DesertTiles_13
-  - DesertTiles_12
-  - DesertTiles_15
-  - DesertTiles_14
-  - DesertTiles_17
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
+  m_RenderDataMap: {}
   m_Tag: DesertAtlas
   m_IsVariant: 0
