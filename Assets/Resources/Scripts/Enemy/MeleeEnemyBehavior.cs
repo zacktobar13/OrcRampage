@@ -11,7 +11,11 @@ public class MeleeEnemyBehavior : BaseEnemy
     public float wanderMovementSpeed;
     public float damageColliderDistance;
 
-    float lastAttackTime;
+    float lastAttackTime = Mathf.NegativeInfinity;
+    
+    // Run away after attack logic
+    bool isRunningAway;
+    Vector2 runAwayDirection;
 
     // Wander logic
     bool isCurrentlyWandering = false;
@@ -24,13 +28,34 @@ public class MeleeEnemyBehavior : BaseEnemy
 
     public override void ChaseTarget()
     {
-        if (distanceToTarget >= 3)
+        
+        if (IsAttackOnCooldown())
         {
+            // Run away from target
+            if (!isRunningAway)
+            {
+                // Initialize runAway direction and stick to it until you can attack again
+                Vector2 directionToEnemy = (transform.position - target.transform.position).normalized;
+                runAwayDirection = (Vector2)transform.position + (directionToEnemy);
+                runAwayDirection = Utility.Rotate(runAwayDirection, Random.Range(-180, 180));
+                runAwayDirection *= 100;
+                isRunningAway = true;
+            }
+
+            spriteAnim.Play(chaseAnimation);
+            MoveTowards(runAwayDirection, movementSpeed * Time.deltaTime);
+        }
+        else if (distanceToTarget >= attackRange)
+        {
+            // Chase Target
+            isRunningAway = false;
             spriteAnim.Play(chaseAnimation);
             MoveTowards(target.transform.position, movementSpeed * Time.deltaTime);
         }
         else
         {
+            // Idle
+            isRunningAway = false;
             spriteAnim.Play(idleAnimation);
         }
     }
@@ -49,11 +74,16 @@ public class MeleeEnemyBehavior : BaseEnemy
         return (inRangeToAttack && Time.time > lastAttackTime + attackCooldown);
     }
 
+    public virtual bool IsAttackOnCooldown()
+    {
+        return Time.time < lastAttackTime + attackCooldown;
+    }
+
     public override void Idle()
     {
         if (ShouldWander())
         {
-            Wander();
+            //Wander();
         }
         else
         {

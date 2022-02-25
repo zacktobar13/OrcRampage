@@ -32,6 +32,20 @@ public class Utility : MonoBehaviour {
         return angle >= -90 && angle < 0;
     }
 
+    public static Vector2 Rotate(Vector2 v, float delta)
+    {
+        delta *= Mathf.Deg2Rad;
+        return new Vector2(
+            v.x * Mathf.Cos(delta) - v.y * Mathf.Sin(delta),
+            v.x * Mathf.Sin(delta) + v.y * Mathf.Cos(delta)
+        );
+    }
+
+    public static Vector3 Rotate(Vector3 v, float delta)
+    {
+        return Quaternion.Euler(0, delta, 0) * v;
+    }
+
     public static int GetPlayerFacingDirection(float angle)
     {
         if ( angle < 105 && angle >= 75 ) // Facing up

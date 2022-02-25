@@ -61,6 +61,8 @@ public class BaseEnemy : MonoBehaviour {
     protected IEnumerator telegraphAttack;
     protected IEnumerator hurt;
 
+    bool hasEverSeenPlayer = false;
+
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
@@ -100,6 +102,7 @@ public class BaseEnemy : MonoBehaviour {
         }
         else
         {
+            hasEverSeenPlayer = true;
             if (ShouldAttack())
             {
                 Attack();
@@ -128,7 +131,7 @@ public class BaseEnemy : MonoBehaviour {
 
     public virtual bool canSeePlayer()
     {
-        return distanceToTarget < enemyDetectionDistanceCurrent;
+        return hasEverSeenPlayer || distanceToTarget < enemyDetectionDistanceCurrent;
     }
 
     public virtual void ChaseTarget()
