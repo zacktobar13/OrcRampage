@@ -51,6 +51,7 @@ public class BaseEnemy : MonoBehaviour {
     protected GameObject worldCollider;
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
+    protected GameObject spriteGameObject;
 
     protected GameObject target = null;
     protected float distanceToTarget;
@@ -76,6 +77,8 @@ public class BaseEnemy : MonoBehaviour {
         attackRange = Random.Range ( attackRange * 0.95f, attackRange * 1.05f );
         movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
         damageTrigger = GetComponent<BoxCollider2D>();
+        spriteGameObject = transform.Find("Sprite").gameObject;
+        spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
 
         worldCollider = transform.Find("World Collider").gameObject;
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
