@@ -10,8 +10,6 @@ public class MeleeEnemyBehavior : BaseEnemy
     public float telegraphDuration;
     public float wanderMovementSpeed;
     public float damageColliderDistance;
-
-    float lastAttackTime = Mathf.NegativeInfinity;
     
     // Run away after attack logic
     bool isRunningAway;

@@ -11,6 +11,7 @@ public class BaseEnemy : MonoBehaviour {
     public float attackRange;
     public float movementSpeed;
     public int attackDamage;
+    public float stopToAttackTime;
     public int maxHealth;
     public GameObject[] droppables;
     public GameObject deadBody;
@@ -54,6 +55,7 @@ public class BaseEnemy : MonoBehaviour {
     protected bool inRangeToAttack = false;
     protected bool isTargetDetected = false;
     protected bool isStunned = false;
+    protected float lastAttackTime = Mathf.NegativeInfinity;
     private IEnumerator disableMovement;
     private IEnumerator knockBack;
     private IEnumerator flashWhiteForSeconds;
@@ -85,7 +87,9 @@ public class BaseEnemy : MonoBehaviour {
         if (currentWeapon)
             currentWeapon.PickupWeapon(gameObject);
     }
-    
+
+    float timeUntilAttackAfterStop;
+    bool hasStoppedToAttack = false;
     protected void FixedUpdate () {
 
         if (isStunned)
@@ -94,7 +98,7 @@ public class BaseEnemy : MonoBehaviour {
         target = GetTarget();
         distanceToTarget = Vector2.Distance ( target.transform.position, transform.position );
         inRangeToAttack = distanceToTarget < attackRange;
-        isTargetDetected = canSeePlayer();
+        isTargetDetected = true;
 
         if (!isTargetDetected)
         {
@@ -105,10 +109,25 @@ public class BaseEnemy : MonoBehaviour {
             hasEverSeenPlayer = true;
             if (ShouldAttack())
             {
-                Attack();
+                if (!hasStoppedToAttack)
+                {
+                    hasStoppedToAttack = true;
+                    timeUntilAttackAfterStop = Time.time;
+                }
+
+                if (Time.time < timeUntilAttackAfterStop + stopToAttackTime)
+                {
+                    Idle();
+                }
+                else
+                {
+                    Attack();
+                    hasStoppedToAttack = false;
+                }
             }
             else
             {
+                hasStoppedToAttack = false;
                 ChaseTarget();
             }
         }
