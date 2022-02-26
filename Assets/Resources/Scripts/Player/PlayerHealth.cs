@@ -34,9 +34,6 @@ public class PlayerHealth : MonoBehaviour
     void Awake()
     {
         health = maxHealth;
-
-        PlayerMovement.onPitFallRecovery += DamageOnPitFall;
-        //PitHazard.onPlayerEnterPitEdge += OnEnterPit;
     }
 
     private void Start()
@@ -124,21 +121,5 @@ public class PlayerHealth : MonoBehaviour
         {
             Destroy(affix);
         }
-    }
-
-    public void OnEnterPit()
-    {
-        Debug.Log("Entered Pit");
-    }
-
-    private void DamageOnPitFall()
-    {
-        ApplyDamage(new DamageInfo((int)(maxHealth * .2f), Vector2.zero, 0f, 0f, false, false));
-    }
-
-
-    private void OnDestroy()
-    {
-        PlayerMovement.onPitFallRecovery -= DamageOnPitFall;
     }
 }
