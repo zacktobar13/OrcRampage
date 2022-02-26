@@ -11,7 +11,7 @@ public class FloatingDamageNumber : MonoBehaviour
     void Start()
     {
         StartCoroutine("DestroySelf");
-        transform.position = new Vector3(transform.position.x + Random.Range(-1f, 1f), transform.position.y + Random.Range(-1f, 1f), transform.position.z);
+        transform.position = new Vector3(transform.position.x + Random.Range(-2f, 2f), transform.position.y + Random.Range(-2f, 2f), transform.position.z);
     }
 
     // Update is called once per frame

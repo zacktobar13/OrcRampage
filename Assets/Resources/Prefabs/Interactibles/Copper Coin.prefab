@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magnestismDistance: 10
-  magnetismSpeed: 0.1
+  magnetismSpeed: 0.25
 --- !u!114 &719028043
 MonoBehaviour:
   m_ObjectHideFlags: 0
