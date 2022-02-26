@@ -14,7 +14,21 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy()
     {
+        float offScreenXOffset = Screen.width * .1f;
+        float offScreenYOffset = Screen.height * .1f;
+        Vector3 leftScreenPos = new Vector3(-offScreenXOffset, Random.Range(0, Screen.height), 0);
+        Vector3 topScreenPos = new Vector3(Random.Range(0, Screen.width), Screen.height + offScreenYOffset, 0);
+        Vector3 rightScreenPos = new Vector3(Screen.width + offScreenXOffset, Random.Range(0, Screen.height), 0);
+        Vector3 bottomScreenPos = new Vector3(Random.Range(0, Screen.width), -offScreenYOffset, 0);
+
+        Vector3 leftMiddleWorldPos = Camera.main.ScreenToWorldPoint(leftScreenPos);
+        Vector3 topMiddleWorldPos = Camera.main.ScreenToWorldPoint(topScreenPos);
+        Vector3 rightMiddleWorldPos = Camera.main.ScreenToWorldPoint(rightScreenPos);
+        Vector3 bottomMiddleWorldPos = Camera.main.ScreenToWorldPoint(bottomScreenPos);
+
+        Vector3[] spawnLocations = { leftMiddleWorldPos, topMiddleWorldPos, rightMiddleWorldPos, bottomMiddleWorldPos };
+
         int randomRoll = (int)Random.Range(0, enemiesToSpawn.Length);
-        Instantiate(enemiesToSpawn[randomRoll], new Vector3(player.position.x, player.position.y - 20f, 0f), transform.rotation);
+        Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation);
     }
 }

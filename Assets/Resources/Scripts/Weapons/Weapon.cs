@@ -185,7 +185,8 @@ public class Weapon : MonoBehaviour
 
     public virtual bool HasAmmo()
     {
-        return currentAmmo > 0;
+        return true;
+        //return currentAmmo > 0;
     }
 
     public bool GiveAmmo(int amount)

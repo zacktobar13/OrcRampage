@@ -5,6 +5,7 @@ using UnityEngine;
 public class FadeOutAndDestroyOverTime : MonoBehaviour
 {
     public float timeUntilFadeOut;
+    public float fadeOutDuration;
 
     SpriteRenderer shadowSprite;
     SpriteRenderer mainSprite;
@@ -12,6 +13,7 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     bool startFade = false;
     float spriteAlpha = 1f;
     float shadowAlpha = 1f;
+    float fadeTimer = 0;
 
     void Start()
     {
@@ -27,14 +29,16 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
             {
                 Color shadowColor = new Color(shadowSprite.material.color.r, shadowSprite.material.color.g, shadowSprite.material.color.b, shadowAlpha);
                 shadowSprite.material.color = shadowColor;
-                shadowAlpha *= .9f;
+                shadowAlpha = Mathf.Lerp(1, 0, fadeTimer / fadeOutDuration);
+                fadeTimer += Time.fixedDeltaTime;
             }
 
             if (mainSprite)
             {
                 Color spriteColor = new Color(mainSprite.material.color.r, mainSprite.material.color.g, mainSprite.material.color.b, spriteAlpha);
                 mainSprite.material.color = spriteColor;
-                spriteAlpha *= .9f;
+                spriteAlpha = Mathf.Lerp(1, 0, fadeTimer / fadeOutDuration);
+                fadeTimer += Time.fixedDeltaTime;
             }
 
             if (spriteAlpha <= .001f || shadowAlpha <= .001f)
@@ -69,5 +73,6 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
             shadowAlpha = shadowSprite.material.color.a;
 
         startFade = true;
+        fadeTimer = 0;
     }
 }

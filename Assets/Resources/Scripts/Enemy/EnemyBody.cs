@@ -35,6 +35,10 @@ public class EnemyBody : MonoBehaviour
             rigidBody.MovePosition(rigidBody.position + randomDropDir * movementSpeed);
             yield return new WaitForFixedUpdate();
         }
+
+        FadeOutAndDestroyOverTime fadeOutAndDestroy = gameObject.AddComponent<FadeOutAndDestroyOverTime>();
+        fadeOutAndDestroy.timeUntilFadeOut = 1;
+        fadeOutAndDestroy.fadeOutDuration = 1.5f;
     }
 
 }
