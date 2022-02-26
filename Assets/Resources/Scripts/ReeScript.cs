@@ -5,9 +5,12 @@ using UnityEngine;
 public class ReeScript : MonoBehaviour
 {
     Animator animator;
+    TimeManager timeManager;
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
     }
 
     public void Ree()
@@ -15,18 +18,11 @@ public class ReeScript : MonoBehaviour
         animator.SetBool("Animating", true);
     }
 
-	private void FixedUpdate()
-	{
-        Debug.Log("Fixed Update");
-	}
-
 	private void Update()
 	{
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Time.timeScale = (Time.timeScale + 1) % 2;            
+            timeManager.TogglePause();            
         }
-
-        Debug.Log("Update");
     }
 }

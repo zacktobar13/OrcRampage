@@ -16,9 +16,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Weapon currentWeapon;
     int currentWeaponIndex = 0;
 
+    TimeManager timeManager;
+
     void Start()
     {
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
 
         currentWeapon = GetComponentInChildren<Weapon>();
         weapons[0] = currentWeapon;
@@ -28,6 +31,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        if (timeManager.IsGamePaused())
+            return;
+
         if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
             currentWeapon.Attack();

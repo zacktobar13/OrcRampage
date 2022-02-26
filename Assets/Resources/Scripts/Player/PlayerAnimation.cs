@@ -29,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
     bool scalingDown = false;
     bool fadingTransparency = false;
     float spriteAlpha = 1f;
+    TimeManager timeManager;
 
     enum anim
     {
@@ -60,6 +61,7 @@ public class PlayerAnimation : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
         playerAttack = GetComponentInChildren<PlayerAttack>();
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
 
         TriggerToNextLevel.onCollideWithPlayer += PlayWalkIntoLevelAnimation;
         WoodSignBehavior.onPlayerInteracted += PlayInteractWithSignAnimation;
@@ -75,20 +77,15 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
+        if (timeManager.IsGamePaused())
+            return;
+
         if (playerHealth.health <= 0)
         {
             if (!playedDeathAnimation)
             {
                 spriteAnim.Play(deathAnimation);
                 MostRecentAnim(anim.death);
-            }
-        }
-        else if (playerMovement.isFallingDownPit)
-        {
-            if (!playedFallingDownPitAnimation)
-            {
-                spriteAnim.Play(fallAnimation);
-                MostRecentAnim(anim.falling);
             }
         }
         else if (hurt)

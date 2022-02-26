@@ -15,21 +15,28 @@ public class RotateWeapon : MonoBehaviour
     Transform playerTransform;
     Vector3 targetPosition;
 
+    TimeManager timeManager;
+
     private void OnEnable ()
     {
-        //playerPosition = PlayerManagement.GetNearestPlayer ( transform.position ).transform;
         parentPosition = transform.parent;
         leftSideWeaponTransform = transform.parent.Find("Left Hand");
         rightSideWeaponTransform = transform.parent.Find("Right Hand");
         isOnPlayer = transform.parent.CompareTag("Player");
         if (!isOnPlayer)
             playerTransform = GameObject.FindWithTag("Player").transform;
+
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+
         // Force pump the update to make sure that the weapon is rotated correctly on the frame it becomes visible
         Update();
     }
 
     public void Update()
     {
+        if (timeManager.IsGamePaused())
+            return;
+
         targetPosition = isOnPlayer ? PlayerInput.mousePosition : (Vector2)playerTransform.position;
 
         if (targetPosition.x - parentPosition.position.x < 0)

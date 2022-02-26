@@ -27,30 +27,13 @@ public class PlayerMovement : MonoBehaviour
     bool firstKnockback = true;
     float knockbackTime;
 
-    public delegate void OnPitFallRecovery();
-    public static event OnPitFallRecovery onPitFallRecovery;
-
-    public delegate void OnPitFalling();
-    public static event OnPitFalling onPitFalling;
+    TimeManager timeManager;
 
     private void Start()
     {
         playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
-        PitEdge.onPlayerEnterPitEdge += EnterPitEdge;
-        PitHazard.onPlayerEnterPitHazard += FallIntoPit;
-        PitHazard.onPlayerExitPitHazard += ExitPit;
-    }
-
-    // Slow down when drawing bow, and speed back up after it's fired
-    void OnBowDraw(float time)
-    {
-        movementSpeed *= (1f / 3f);
-    }
-
-    void OnDrawEnd(PlayerAttack playerShoot)
-    {
-        movementSpeed *= 3f;
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
     }
 
     private void FixedUpdate()
@@ -77,6 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (timeManager.IsGamePaused())
+            return;
+
         if (!movementEnabled)
         {
             isRunning = false;
@@ -169,80 +155,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= ResetPositionOnNewLevel;
-        PitEdge.onPlayerEnterPitEdge -= EnterPitEdge;
-        PitHazard.onPlayerEnterPitHazard -= FallIntoPit;
-        PitHazard.onPlayerExitPitHazard -= ExitPit;
     }
 
     private void OnDisable()
     {
         if (isDodgeRolling)
             StopDodgeRoll();
-    }
-
-    private void EnterPitEdge()
-    {
-
-    }
-
-    private void ExitPit()
-    {
-        pitFallDodgeRollStart = Vector2.zero;
-    }
-
-    IEnumerator pitFall;
-    public bool isFallingDownPit;
-    Vector2 pitFallDodgeRollStart = Vector2.zero;
-    private void FallIntoPit(Collider2D hazard, Collider2D outerEdge)
-    {
-        if (isDodgeRolling)
-        {
-            if (pitFallDodgeRollStart == Vector2.zero)
-                pitFallDodgeRollStart = transform.position;
-            return;
-        }
-
-        // we're already falling
-        if (pitFall != null)
-            return;
-
-        isFallingDownPit = true;
-
-        // Move player to start of dodge roll position so we can calculate where to put him after pit fall
-        Vector3 oldPosition = transform.position;
-        if (pitFallDodgeRollStart != Vector2.zero)
-        {
-            transform.position = pitFallDodgeRollStart;
-        }
-        pitFallDodgeRollStart = Vector2.zero;
-
-        ColliderDistance2D distance = outerEdge.Distance(transform.Find("World Collider").GetComponent<Collider2D>());
-        fallRecoveryPoint = distance.pointA;
-
-        transform.position = oldPosition;
-
-        if (onPitFalling != null)
-            onPitFalling();
-
-        pitFall = PitFallCoroutine();
-        StartCoroutine(pitFall);
-    }
-
-    IEnumerator PitFallCoroutine()
-    {
-        PlayerManagement.TogglePlayerControl(false);
-        yield return new WaitForSeconds(1f);
-        PitRecovery();
-        pitFall = null;
-    }
-
-    private void PitRecovery()
-    {
-        if ( onPitFallRecovery != null )
-            onPitFallRecovery();
-
-        transform.position = fallRecoveryPoint;
-        isFallingDownPit = false;
-        PlayerManagement.TogglePlayerControl(true);
     }
 }

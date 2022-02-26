@@ -27,7 +27,7 @@ public class BulletCasing : MonoBehaviour
         rotationSpeed = Random.Range(.05f, .1f);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (casing)
         {
