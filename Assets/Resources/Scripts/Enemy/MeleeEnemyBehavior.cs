@@ -115,7 +115,12 @@ public class MeleeEnemyBehavior : BaseEnemy
         return true;
     }
 
-    public virtual void Wander()
+	public override void Anim_EnableDeadShadow()
+	{
+		base.Anim_EnableDeadShadow();
+	}
+
+	public virtual void Wander()
     {
         // We haven't chosen a wander position yet
         if (wanderPosition == Vector2.zero)

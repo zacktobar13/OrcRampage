@@ -13,24 +13,29 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     bool startFade = false;
     float spriteAlpha = 1f;
     float shadowAlpha = 1f;
+    float shadowAlphaStart = 1f;
     float fadeTimer = 0;
 
-    void Start()
+    void OnEnable()
     {
+
         StartCoroutine(StartFade());
+        if (shadowSprite)
+        {
+            shadowAlpha = shadowSprite.material.GetColor("_Color").a;
+            shadowAlphaStart = shadowAlpha;
+        }
     }
 
     void FixedUpdate()
     {
         if (startFade)
         {
-
+           
             if (shadowSprite)
             {
-                Color shadowColor = new Color(shadowSprite.material.color.r, shadowSprite.material.color.g, shadowSprite.material.color.b, shadowAlpha);
-                shadowSprite.material.color = shadowColor;
-                shadowAlpha = Mathf.Lerp(1, 0, fadeTimer / fadeOutDuration);
-                fadeTimer += Time.fixedDeltaTime;
+                shadowSprite.material.SetColor("_Color", new Vector4(0f, 0f, 0f, shadowAlpha));
+                shadowAlpha = Mathf.Lerp(shadowAlphaStart, 0, fadeTimer / fadeOutDuration);
             }
 
             if (mainSprite)
@@ -38,8 +43,9 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
                 Color spriteColor = new Color(mainSprite.material.color.r, mainSprite.material.color.g, mainSprite.material.color.b, spriteAlpha);
                 mainSprite.material.color = spriteColor;
                 spriteAlpha = Mathf.Lerp(1, 0, fadeTimer / fadeOutDuration);
-                fadeTimer += Time.fixedDeltaTime;
             }
+
+            fadeTimer += Time.fixedDeltaTime;
 
             if (spriteAlpha <= .001f || shadowAlpha <= .001f)
             {
@@ -66,11 +72,6 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
             mainSprite = sprite.GetComponent<SpriteRenderer>();
             spriteAlpha = mainSprite.material.color.a;
         }
-
-        shadowSprite = GetComponent<SpriteRenderer>();
-
-        if (shadowSprite)
-            shadowAlpha = shadowSprite.material.color.a;
 
         startFade = true;
         fadeTimer = 0;

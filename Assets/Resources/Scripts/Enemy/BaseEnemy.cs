@@ -53,6 +53,11 @@ public class BaseEnemy : MonoBehaviour {
     protected FadeOutAndDestroyOverTime fadeComponent;
     protected GameObject spriteGameObject;
 
+    // Sometimes when enemies die, they need a different shadow for it to look natural (bigger, smaller etc)
+    public GameObject aliveShadow;
+    public GameObject deadShadow;
+
+
     protected GameObject target = null;
     protected float distanceToTarget;
     protected bool canMove = true;
@@ -161,6 +166,12 @@ public class BaseEnemy : MonoBehaviour {
     public virtual GameObject GetTarget()
     {
         return PlayerManagement.player;
+    }
+
+    public virtual void Anim_EnableDeadShadow()
+    {
+        aliveShadow.SetActive(false);
+        deadShadow.SetActive(true);
     }
 
     public virtual bool canSeePlayer()
