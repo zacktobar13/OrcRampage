@@ -31,7 +31,6 @@ public class PlayerAttack : MonoBehaviour
         if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
             currentWeapon.Attack();
-            gameplayUI.UpdateWeaponAmmo(currentWeapon.currentAmmo, currentWeapon.maxAmmo);
         }
 
         if (PlayerInput.changeToFirstWeapon)
@@ -89,7 +88,6 @@ public class PlayerAttack : MonoBehaviour
             bool receivedAmmo = weapons[0].GiveAmmo(weapon.currentAmmo);
             if (receivedAmmo)
             {
-                gameplayUI.UpdateWeaponAmmo(weapons[0].currentAmmo, weapons[0].maxAmmo);
                 Destroy(weapon.gameObject);
             }
             return;
@@ -99,7 +97,6 @@ public class PlayerAttack : MonoBehaviour
             bool receivedAmmo = weapons[1].GiveAmmo(weapon.currentAmmo);
             if (receivedAmmo)
             {
-                gameplayUI.UpdateWeaponAmmo(weapons[1].currentAmmo, weapons[1].maxAmmo);
                 Destroy(weapon.gameObject);
             }
             return;

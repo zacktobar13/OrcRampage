@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GameplayUI : MonoBehaviour
 {
-    public TextMeshProUGUI ammoText;
+    public Image playerHealthBar;
     public Image weaponImage;
+    public Image weaponShadowImage;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI currencyInfo;
+    public Animator currencyAnim;
 
     public GameObject[] weaponInfoGroup;
 
@@ -34,27 +36,24 @@ public class GameplayUI : MonoBehaviour
     public void UpdateWeapon(Weapon newWeapon)
     {
         UpdateWeaponSprite(newWeapon.notFiringSprite);
-        UpdateWeaponAmmo(newWeapon.currentAmmo, newWeapon.maxAmmo);
     }
 
     public void UpdateWeaponSprite(Sprite newSprite)
     {
         weaponImage.sprite = newSprite;
-    }
-
-    public void UpdateWeaponAmmo(int currentAmmo, int maxAmmo)
-    {
-        ammoText.text = currentAmmo + " / " + maxAmmo;
+        weaponShadowImage.sprite = newSprite;
     }
 
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)
     {
-        healthText.text = "Health:\n" + currentHealth + " / " + maxHealth;
+        healthText.text = currentHealth + " / " + maxHealth;
+        playerHealthBar.fillAmount = (float) currentHealth / maxHealth;
     }
 
     public void UpdateCurrencyInfo(int newCurrencyAmount)
     {
-        currencyInfo.text = "Coins: " + newCurrencyAmount;
+        currencyAnim.SetTrigger("AddCurrency");
+        currencyInfo.text = "$ " + newCurrencyAmount.ToString();
     }
 
     private void FixedUpdate()
