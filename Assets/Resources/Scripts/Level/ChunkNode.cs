@@ -5,14 +5,17 @@ using UnityEngine;
 public class ChunkNode : MonoBehaviour
 {
     public GameObject[] availableChunksOverride;
-    ChunkManager chunkManager;
     public GameObject[] availableChunks;
+    ChunkManager chunkManager;
  
     void Start()
     {
         chunkManager = GameObject.Find("Chunk Layout").GetComponent<ChunkManager>();
-        availableChunks = availableChunksOverride.Length > 0 ? availableChunksOverride : chunkManager.defaultAvailableChunks;
-        ChooseNodeToSpawn();
+        if (availableChunks.Length > 0)
+        {
+            availableChunks = availableChunksOverride.Length > 0 ? availableChunksOverride : chunkManager.defaultAvailableChunks;
+            ChooseNodeToSpawn();
+        }
     }
 
     void ChooseNodeToSpawn()

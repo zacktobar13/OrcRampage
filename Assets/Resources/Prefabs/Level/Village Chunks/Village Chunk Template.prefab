@@ -300,6 +300,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2259956941741520803}
   - component: {fileID: 4043633710688626406}
+  - component: {fileID: 1394821944540930386}
   m_Layer: 0
   m_Name: Village Chunk Template
   m_TagString: Untagged
@@ -337,6 +338,19 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
+--- !u!114 &1394821944540930386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157746400161832829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfd827a3071afbc4cb0c87522c1ed4b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceFromPlayer: {x: 0, y: 0}
 --- !u!1 &8579761658704010731
 GameObject:
   m_ObjectHideFlags: 0
