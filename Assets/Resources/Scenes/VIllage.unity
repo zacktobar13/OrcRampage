@@ -1660,27 +1660,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa5e187bdea4f4195fbe1ecfb60ddc, type: 3}
---- !u!1 &1458680459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4720611606181078257, guid: 589079d0dd211df4682cbcebfce4ada0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1857245279}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1458680464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1458680459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abfbe651ae940004389e71de6bf71a46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnRate: 0.5
-  enemiesToSpawn:
-  - {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
 --- !u!1 &1565006597
 GameObject:
   m_ObjectHideFlags: 0
@@ -6713,91 +6692,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Game Management
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078261, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078261, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: possibleLevels.Array.data[0]
-      value: Desert Start 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: waveCooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemies.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: numberOfWavesToSpawn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[7]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[8]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4720611606181078263, guid: 589079d0dd211df4682cbcebfce4ada0,
-        type: 3}
-      propertyPath: enemySpawnLocations.Array.data[9]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}

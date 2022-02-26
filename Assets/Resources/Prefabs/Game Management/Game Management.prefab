@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4720611606181078256}
-  - component: {fileID: 4720611606181078263}
   - component: {fileID: 4720611606181078262}
   - component: {fileID: 4059600029025948262}
+  - component: {fileID: 1458680460}
+  - component: {fileID: 1458680464}
   m_Layer: 0
   m_Name: Game Management
   m_TagString: Untagged
@@ -33,38 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4720611606181078263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4720611606181078257}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4846199414724814d8fba9392452fd50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpawnLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  enemies:
-  - {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
-  - {fileID: 593114758934139562, guid: 12c6de75b80ebe24a8db3169689e08b0, type: 3}
-  - {fileID: 7727590988708856071, guid: 45b4dc82432024043b258d28456dd096, type: 3}
-  waveNumber: 0
-  numberOfWavesToSpawn: 2
-  waveCooldown: 1
-  waveTimer: 0
-  nextWaveTime: 0
 --- !u!114 &4720611606181078262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,4 +58,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d3825e8fa9e62499dc4405a117baf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gatherableResources: []
+  localCurrency: 0
+--- !u!114 &1458680460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720611606181078257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91cf7195fc20320469d235452e1f8d29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1458680464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4720611606181078257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abfbe651ae940004389e71de6bf71a46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRate: 0.5
+  enemiesToSpawn:
+  - {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
