@@ -248,11 +248,6 @@ public class BaseEnemy : MonoBehaviour {
         if ( damageInfo.spawnBlood )
             Instantiate(StaticResources.blood, transform.position, Quaternion.identity);
 
-        if ( health <= 0 )
-        {
-            DeathInternal();
-            return;
-        }
 
         // Play hit sound
         if (hitSound != null)
@@ -260,10 +255,6 @@ public class BaseEnemy : MonoBehaviour {
 
         healthbar.fillAmount = health / maxHealth;
 
-        if (hurt != null)
-            StopCoroutine(hurt);
-        hurt = Hurt(damageInfo);
-        StartCoroutine(hurt);
 
         if (canBeKnockedBack && canMove)
         {
@@ -274,6 +265,17 @@ public class BaseEnemy : MonoBehaviour {
                 StartCoroutine(knockBack);
             }
         }
+
+        if ( health <= 0 )
+        {
+            DeathInternal();
+            return;
+        }
+
+        if (hurt != null)
+            StopCoroutine(hurt);
+        hurt = Hurt(damageInfo);
+        StartCoroutine(hurt);
     }
 
     IEnumerator Knockback(DamageInfo damageInfo)
