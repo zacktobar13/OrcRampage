@@ -7,7 +7,7 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     public float timeUntilFadeOut;
     public float fadeOutDuration;
 
-    SpriteRenderer shadowSprite;
+    public SpriteRenderer shadowSprite;
     SpriteRenderer mainSprite;
 
     bool startFade = false;

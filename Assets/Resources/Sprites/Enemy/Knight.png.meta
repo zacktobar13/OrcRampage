@@ -23,6 +23,9 @@ TextureImporter:
   - first:
       213: 5891436520834976337
     second: Knight_6
+  - first:
+      213: -7232600524240232993
+    second: Knight_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -290,6 +293,27 @@ TextureImporter:
       bones: []
       spriteID: 15ac1213d4692c150800000000000000
       internalID: 5891436520834976337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Knight_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd5b56a424a0ab90800000000000000
+      internalID: -7232600524240232993
       vertices: []
       indices: 
       edges: []

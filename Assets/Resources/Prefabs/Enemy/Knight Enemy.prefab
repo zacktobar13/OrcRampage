@@ -145,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0888557, y: 0.85480666}
+  m_Size: {x: 5.1070595, y: 2.2140002}
   m_EdgeRadius: 0
 --- !u!1 &9191396346362358930
 GameObject:
@@ -333,6 +333,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2269de2345c8246a1bc228c22bce5a, type: 3}
+--- !u!212 &3937190945057947180 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4386160293056579386, guid: 4f2269de2345c8246a1bc228c22bce5a,
+    type: 3}
+  m_PrefabInstance: {fileID: 755887588969003286}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5704134785480546519
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +434,7 @@ PrefabInstance:
     - target: {fileID: 784548211923659205, guid: 8e341f3d2354db4499d8c90b9acd356d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5.76
+      value: 6.26
       objectReference: {fileID: 0}
     - target: {fileID: 784548211923659205, guid: 8e341f3d2354db4499d8c90b9acd356d,
         type: 3}
@@ -668,7 +674,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0791106, y: 4.1458454}
+  m_Size: {x: 4.4512625, y: 4.8507576}
   m_EdgeRadius: 0
 --- !u!82 &2914718818781906011
 AudioSource:
@@ -787,7 +793,7 @@ MonoBehaviour:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
   deadBody: {fileID: 1421758693350179690, guid: a9f1adda83ef5734e957d51e00b2fbe4,
     type: 3}
-  healthGlobeDropChance: 15
+  healthGlobeDropChance: 0.05
   enemyDetectionDistanceCurrent: 40
   hitSound: {fileID: 8300000, guid: e8f48fb98e5cf3a48a25c92dd194486e, type: 3}
   hurtSound: {fileID: 8300000, guid: 06f18c84e4255ce46a20d7edbf373389, type: 3}
@@ -800,7 +806,23 @@ MonoBehaviour:
   hurtAnimation: {fileID: 7400000, guid: c5464ec1cb1081743bccac03996fdb77, type: 2}
   telegraphAnimation: {fileID: 7400000, guid: 2a3fd95618a78504ba1089c09036c155, type: 2}
   attackAnimation: {fileID: 7400000, guid: ce0ab7d109408894f9670eefcdbcd3e3, type: 2}
+  deathAnimation: {fileID: 7400000, guid: 3c87f8fd7e9910749992c468614e743c, type: 2}
   attackCooldown: 2.5
   telegraphDuration: 0.5
   wanderMovementSpeed: 1.5
   damageColliderDistance: 3.5
+--- !u!114 &4307013303276731770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7727590988708856071}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9653cb882ae114385a11e4e26523ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilFadeOut: 2
+  fadeOutDuration: 1
+  shadowSprite: {fileID: 3937190945057947180}

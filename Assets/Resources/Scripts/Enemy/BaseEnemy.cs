@@ -32,6 +32,7 @@ public class BaseEnemy : MonoBehaviour {
     public AnimationClip hurtAnimation;
     public AnimationClip telegraphAnimation;
     public AnimationClip attackAnimation;
+    public AnimationClip deathAnimation;
 
     private GameObject copperCoin;
     private GameObject floatingDamageNumber;
@@ -47,6 +48,9 @@ public class BaseEnemy : MonoBehaviour {
     Image healthbar;
     protected float health;
     protected Weapon currentWeapon;
+    protected GameObject worldCollider;
+    protected BoxCollider2D damageTrigger;
+    protected FadeOutAndDestroyOverTime fadeComponent;
 
     protected GameObject target = null;
     protected float distanceToTarget;
@@ -64,12 +68,17 @@ public class BaseEnemy : MonoBehaviour {
     protected IEnumerator hurt;
 
     bool hasEverSeenPlayer = false;
+    bool isDisabled = false;
 
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
         attackRange = Random.Range ( attackRange * 0.95f, attackRange * 1.05f );
-        movementSpeed = Random.Range(movementSpeed * 0.9f, movementSpeed * 1.1f);
+        movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
+        damageTrigger = GetComponent<BoxCollider2D>();
+
+        worldCollider = transform.Find("World Collider").gameObject;
+        fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
         health = maxHealth;
         //Debug.Assert(attackRange <= enemyDetectionDistanceCurrent, "Attack range must be less than or equal to enemyDetectionDistance!");
@@ -91,6 +100,9 @@ public class BaseEnemy : MonoBehaviour {
     float timeUntilAttackAfterStop;
     bool hasStoppedToAttack = false;
     protected void FixedUpdate () {
+
+        if (isDisabled)
+            return;
 
         if (isStunned)
             return;
@@ -176,13 +188,9 @@ public class BaseEnemy : MonoBehaviour {
     public void DeathInternal()
     {
         WaveManager.EnemyDied(gameObject);
-        if(deadBody)
-        {
-            GameObject body = Instantiate(deadBody, transform.position, transform.rotation);
-            body.transform.Find("Sprite").GetComponent<SpriteRenderer>().flipX = spriteRenderer.flipX;
-        }
 
-        //PlayerExperience.GiveExperience(20);
+        spriteAnim.Play(deathAnimation);
+        DisableComponentsOnDeath();
 
         // Drop currency
         GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
@@ -191,12 +199,28 @@ public class BaseEnemy : MonoBehaviour {
             DropItem();
 
         Death();
-        Destroy(gameObject);
     }
 
     public virtual void Death()
     {
 
+    }
+
+    void DisableComponentsOnDeath()
+    {
+        isDisabled = true;
+        currentWeapon.gameObject.SetActive(false);
+        worldCollider.SetActive(false);
+        damageTrigger.enabled = false;
+
+        if (fadeComponent)
+        {
+            fadeComponent.enabled = true;
+        }
+
+        // Reset health bar UI
+        healthbar.fillAmount = 1f;
+        healthUI.SetActive(false);
     }
 
     public virtual void ApplyDamage(DamageInfo damageInfo)
