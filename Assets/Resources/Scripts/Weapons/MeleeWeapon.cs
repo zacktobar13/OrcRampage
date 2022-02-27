@@ -12,10 +12,10 @@ public class MeleeWeapon : Weapon
         return true;
     }
 
-    public override void Attack()
+    public override Projectile Attack()
     {
         if (!CanAttack())
-            return;
+            return null;
 
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(projectileSpawn.position, attackRadius);
 
@@ -48,6 +48,7 @@ public class MeleeWeapon : Weapon
         }
 
         lastAttackTime = Time.time;
+        return null;
     }
 
     DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)

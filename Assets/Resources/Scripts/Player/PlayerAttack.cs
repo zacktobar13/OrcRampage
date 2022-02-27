@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public delegate void OnShoot(PlayerAttack playerAttack, Projectile projectileSpawned);
-    public static event OnShoot onShoot;
+    public delegate void OnShoot(PlayerAttack playerAttack);
+    public event OnShoot onPlayerShoot;
 
-    public delegate void OnPlayerAttack(PlayerAttack playerAttack);
-    public static event OnPlayerAttack onAttack;
+    public delegate void OnProjectileSpawned(PlayerAttack playerAttack, Projectile projectileSpawned);
+    public event OnProjectileSpawned onProjectileSpawned;
 
     GameplayUI gameplayUI;
 
@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
         {
-            currentWeapon.Attack();
+            Attack();
         }
 
         if (PlayerInput.changeToFirstWeapon)
@@ -52,6 +52,38 @@ public class PlayerAttack : MonoBehaviour
         {
             pressedInteractThisFrame = true;
         }
+    }
+
+    // Forces an attack that ignores cooldown, doesn't play a sound, and doesn't trigger OnShoot event
+    public void ForceAttack(Vector2 offset)
+    {
+        Attack(offset, false, true);
+    }
+
+    private void Attack()
+    {
+        if (onPlayerShoot != null && CanWeaponAttack())
+            onPlayerShoot(this);
+
+        Attack(Vector2.zero, true);
+    }
+
+    private void Attack(Vector2 offset, bool playSound, bool ignoreCooldown=false)
+    {
+        Projectile projectileSpawned = currentWeapon.Attack(offset, playSound, ignoreCooldown);
+
+        if (projectileSpawned && onProjectileSpawned != null)
+            onProjectileSpawned(this, projectileSpawned);
+    }
+
+    public float GetWeaponRotation()
+    {
+        return currentWeapon.transform.rotation.eulerAngles.z;
+    }
+
+    public bool CanWeaponAttack()
+    {
+        return currentWeapon.CanAttack();
     }
 
     public void DisableWeapon()
@@ -175,20 +207,6 @@ public class PlayerAttack : MonoBehaviour
         {
             attemptedInteracts = false;
             pressedInteractThisFrame = false;
-        }
-    }
-
-    public void OnAttack(Weapon weapon, Projectile projectile)
-    {
-        if (projectile)
-        {
-            if (onShoot != null)
-                onShoot(this, projectile);
-        }
-        else
-        {
-            if (onAttack != null)
-                onAttack(this);
         }
     }
 

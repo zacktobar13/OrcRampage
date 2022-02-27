@@ -1,17 +1,20 @@
 ﻿public class PiercingAffix : BaseAffix
 {
+    PlayerAttack playerAttack;
+
     void Start()
     {
-        PlayerAttack.onShoot += OnShoot;
+        playerAttack = GetComponent<PlayerAttack>();
+        playerAttack.onProjectileSpawned += OnProjectileSpawned;
     }
 
-    public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
+    public void OnProjectileSpawned(PlayerAttack playerShoot, Projectile projectile)
     {
-        //projectile.isPiercing = true;
+        projectile.isPiercing = true;
     }
 
     void OnDestroy()
     {
-        PlayerAttack.onShoot -= OnShoot;
+        playerAttack.onProjectileSpawned -= OnProjectileSpawned;
     }
 }

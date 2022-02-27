@@ -2,7 +2,7 @@
 {
     void Start()
     {
-        PlayerAttack.onShoot += OnShoot;
+        //PlayerAttack.onShoot += OnShoot;
     }
 
     public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
@@ -12,6 +12,6 @@
     }
     void OnDestroy()
     {
-        PlayerAttack.onShoot -= OnShoot;
+       // PlayerAttack.onShoot -= OnShoot;
     }
 }

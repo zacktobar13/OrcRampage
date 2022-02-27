@@ -13,17 +13,20 @@ public class Projectile : MonoBehaviour
     public Rigidbody2D rigidBody;
 
     public float movementSpeed;
+    public bool isPiercing;
     Vector2 movementDirection;
 
     public void SetProjectileRotation(float rotation)
     {
         transform.rotation = Quaternion.Euler(0, 0, rotation);
-        transform.Rotate(0, 0, Random.Range(-spread, spread));
+
+        //transform.Rotate(0, 0, Random.Range(-spread, spread));
     }
 
     void Start()
     {
         movementDirection = transform.right;
+        Destroy(gameObject, 5);
     }
 
     void FixedUpdate ()
@@ -54,8 +57,9 @@ public class Projectile : MonoBehaviour
 
         DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit);
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
-
-        if (collision.gameObject.layer != LayerMask.NameToLayer("Map Clutter")) 
+        
+        bool hitMapClutter = collision.gameObject.layer == LayerMask.NameToLayer("Map Clutter");
+        if (!isPiercing && !hitMapClutter) 
             Destroy(gameObject);
     }
 }

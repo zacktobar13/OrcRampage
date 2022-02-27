@@ -58,24 +58,26 @@ public class Weapon : MonoBehaviour
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
     }
 
-	public virtual void Attack()
+	public virtual Projectile Attack(Vector2 offset, bool playSound, bool ignoreCooldown=false)
     {
-        if (!CanAttack())
-            return;
-
-        if (!HasAmmo())
-        {
-            lastAttackTime = Time.time;
-            FireEmpty();
-            return;
-        }
+        if (!ignoreCooldown && !CanAttack())
+            return null;
 
         StartCoroutine(VisualEffects());
-        SpawnProjectile();
-        PlayAttackSound();
-        currentAmmo -= 1;
-        lastAttackTime = Time.time;
-        return;
+        Projectile projectileSpawned = SpawnProjectile(offset);
+
+        if (playSound)
+            PlayAttackSound();
+
+        if (!ignoreCooldown)
+            lastAttackTime = Time.time;
+
+        return projectileSpawned;
+    }
+
+    public virtual Projectile Attack()
+    {
+        return Attack(Vector2.zero, true);
     }
 
     public virtual void FireEmpty()
@@ -83,12 +85,15 @@ public class Weapon : MonoBehaviour
         audioSource.PlayOneShot(emptySound);
     }
 
-    public virtual void SpawnProjectile()
+    public virtual Projectile SpawnProjectile(Vector2 spawnOffset)
     {
+        if (!projectile)
+            return null;
+
         if (bulletCasing)
             Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
 
-        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
+        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position + (Vector3)spawnOffset, Quaternion.identity);
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
         bool isCritical = RollCrit();
         projectileInfo.projectileDamage = CalculateDamage(isCritical);
@@ -97,6 +102,7 @@ public class Weapon : MonoBehaviour
         projectileInfo.shotByPlayer = isOnPlayer;
 
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
+        return projectileInfo;
     }
 
     public virtual void PlayAttackSound()
