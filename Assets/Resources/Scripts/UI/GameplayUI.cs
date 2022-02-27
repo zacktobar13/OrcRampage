@@ -63,7 +63,7 @@ public class GameplayUI : MonoBehaviour
     public void ShowAffixPanel(int numberToChoose)
     {
         Time.timeScale = 0;
-        affixPanel.GetComponent<PickAffixMenu>().SetNumAffixesToChoose(numberToChoose);
+        affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);
         affixPanel.SetActive(true);
     }
 

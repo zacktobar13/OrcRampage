@@ -1,44 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PickAffixMenu : MonoBehaviour
 {
-    int numAffixesToChoose;
+    int affixChoiceQuantity;
+    int choicesAvailable = 3;
     GameObject player;
     GameplayUI gameplayUI;
+    public TextMeshProUGUI playerLevelText;
+    public TextMeshProUGUI rewardText;
+    PlayerExperience playerExperience;
+    public GameObject buttonGameObject;
+    AffixButton[] affixButtons;
 
-    void OnEnable()
-    {
-        Time.timeScale = 0;
-        Debug.Log("Number to choose: " + numAffixesToChoose);
-        SpawnAffixButtons();
-    }
-
-	private void Start()
+	private void OnEnable()
 	{
+        Time.timeScale = 0;
+        SpawnAffixButtons();
         gameplayUI = transform.parent.GetComponent<GameplayUI>();
         player = PlayerManagement.player;
+        playerExperience = player.GetComponent<PlayerExperience>();
+        UpdateRewardText();
+        UpdatePlayerLevelText();
     }
 
-	public void SetNumAffixesToChoose(int val)
+	public void SetQuantityToChoose(int val)
     {
-        numAffixesToChoose = val;
+        affixChoiceQuantity = val;
     }
 
     public void SpawnAffixButtons()
     {
-        // Pick from pool of affixes and spawns the buttons
+        affixButtons = new AffixButton[choicesAvailable];
+
+        // TODO Randomly select what affix each button will have.
+        for (int i = 0; i < choicesAvailable; i++)
+        {
+            GameObject button = Instantiate(buttonGameObject);
+            affixButtons[i] = button.GetComponent<AffixButton>();
+            affixButtons[i].affixMenu = this;
+            button.transform.SetParent(transform.Find("Affix Button Panel").transform, false);
+        }
     }
 
     public void AddAffixToPlayer(BaseAffix affix)
     {
-        // Logic to add affix component to player here
+        // TODO Logic to add affix component to player here
 
-        numAffixesToChoose -= 1;
-        Debug.Log("Added affix. Number left: " + numAffixesToChoose);
+        foreach (AffixButton a in affixButtons)
+        {
+            Destroy(a.gameObject);
+        }
 
-        if (numAffixesToChoose <= 0)
+        affixChoiceQuantity -= 1;
+        UpdateRewardText();
+
+        if (affixChoiceQuantity <= 0)
         {
             gameplayUI.HideAffixPanel();
             gameplayUI.ShowPlayerInfoPanel();
@@ -46,6 +65,23 @@ public class PickAffixMenu : MonoBehaviour
         else
         {
             SpawnAffixButtons();
+        }
+    }
+
+    void UpdatePlayerLevelText()
+    {
+        playerLevelText.text = "You've reached\nlevel " + playerExperience.playerLevel.ToString() + "!";
+    }
+
+    void UpdateRewardText()
+    {
+        if (affixChoiceQuantity > 1)
+        {
+            rewardText.text = "Choose " + affixChoiceQuantity.ToString() + " rewards";
+        }
+        else
+        {
+            rewardText.text = "Choose " + affixChoiceQuantity.ToString() + " reward";
         }
     }
 }
