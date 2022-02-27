@@ -6,8 +6,15 @@ using TMPro;
 
 public class AffixButton : MonoBehaviour
 {
+	public TextMeshProUGUI affixTitle;
+	public TextMeshProUGUI affixDescription;
+	public Image affixIcon;
+
+	[HideInInspector]
 	public GameplayUI gameplayUI;
+	[HideInInspector]
 	public PickAffixMenu affixMenu;
+
 	BaseAffix affixReference;
 
 	public void Select()
@@ -15,8 +22,11 @@ public class AffixButton : MonoBehaviour
 		affixMenu.AddAffixToPlayer(affixReference);
 	}
 
-	public void SetMyAffix(BaseAffix affix)
+	public void SetMyAffix(AffixObject affix)
 	{
-		affixReference = affix;
+		affixReference = affix.affixPrefab.GetComponent<BaseAffix>();
+		affixTitle.text = affix.affixName;
+		affixDescription.text = affix.affixDescription;
+		affixIcon.sprite = affix.icon;
 	}
 }

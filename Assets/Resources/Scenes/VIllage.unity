@@ -873,6 +873,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c,
+        type: 2}
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 21aacf0445ed34f498cd54c07b184499,
+        type: 2}
     - target: {fileID: 8291927606920865230, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
       propertyPath: m_Name
@@ -1474,44 +1491,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa5e187bdea4f4195fbe1ecfb60ddc, type: 3}
---- !u!1 &1420233007 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7175836991511995844, guid: e51b7c3e840bfb14183853b0eed9aac8,
-    type: 3}
-  m_PrefabInstance: {fileID: 584295269}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1420233008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420233007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0dc4156bb8b1134fab4d4ee0a24775b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  affixIcon: {fileID: 0}
-  affixName: 
-  affixDescription: 
-  extraShots: 2
-  bulletPadding: 3
---- !u!114 &1420233009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420233007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16c27b191e10e7543af222b68a48b5f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  affixIcon: {fileID: 0}
-  affixName: 
-  affixDescription: 
 --- !u!1001 &1423953773
 PrefabInstance:
   m_ObjectHideFlags: 0

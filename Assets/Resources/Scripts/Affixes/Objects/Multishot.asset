@@ -16,3 +16,5 @@ MonoBehaviour:
   affixName: Multishot
   affixDescription: Shoot lots
   affixBehaviorName: MultishotAffix
+  affixPrefab: {fileID: 5339313895243650046, guid: bdf79fac782d0a54b9eb55d29d6ffcfa,
+    type: 3}

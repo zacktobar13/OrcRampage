@@ -11,4 +11,10 @@ public class BaseAffix : MonoBehaviour
     public Sprite affixIcon;
     public string affixName;
     public string affixDescription;
+    public int affixCount = 1;
+
+    public virtual void AddAffixCount(int increment)
+    {
+        affixCount += increment;
+    }
 }

@@ -636,7 +636,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Multishot
+  m_text: ERROR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94c30a0e399f4ae47875250863126b70, type: 2}
   m_sharedMaterial: {fileID: -4599668600444854419, guid: 94c30a0e399f4ae47875250863126b70,
@@ -856,7 +856,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfc01df5a0d5fdf4e93cc9c0ee938e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affixTitle: {fileID: 1706379399161446854}
+  affixDescription: {fileID: 4952488405963047511}
+  affixIcon: {fileID: 4553558992207797158}
   gameplayUI: {fileID: 0}
+  affixMenu: {fileID: 0}
 --- !u!1 &8759821445373300911
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,8 +926,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is a description of what this affix does. We definitely need to be
-    concise here. Not much room for memes.
+  m_text: ERROR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 94c30a0e399f4ae47875250863126b70, type: 2}
   m_sharedMaterial: {fileID: -4599668600444854419, guid: 94c30a0e399f4ae47875250863126b70,

@@ -11,6 +11,14 @@ public class MultishotAffix : BaseAffix
     {
         playerAttack = GetComponent<PlayerAttack>();
         playerAttack.onPlayerShoot += OnShoot;
+        extraShots = affixCount;
+        bulletPadding = 3f;
+    }
+
+    public override void AddAffixCount(int increment)
+    {
+        base.AddAffixCount(increment);
+        extraShots = affixCount;
     }
 
     public void OnShoot(PlayerAttack playerShoot)

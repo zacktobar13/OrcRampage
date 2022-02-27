@@ -5,15 +5,17 @@ using TMPro;
 
 public class PickAffixMenu : MonoBehaviour
 {
+    public AffixObject[] affixChoices;
+    public TextMeshProUGUI playerLevelText;
+    public TextMeshProUGUI rewardText;
+    public GameObject buttonGameObject;
+
     int affixChoiceQuantity;
     int choicesAvailable = 3;
     GameObject player;
     GameplayUI gameplayUI;
-    public TextMeshProUGUI playerLevelText;
-    public TextMeshProUGUI rewardText;
     PlayerExperience playerExperience;
-    public GameObject buttonGameObject;
-    AffixButton[] affixButtons;
+    GameObject[] spawnedButtons;
 
 	private void OnEnable()
 	{
@@ -33,25 +35,36 @@ public class PickAffixMenu : MonoBehaviour
 
     public void SpawnAffixButtons()
     {
-        affixButtons = new AffixButton[choicesAvailable];
+        AffixButton affixButton;
+        spawnedButtons = new GameObject[choicesAvailable];
 
-        // TODO Randomly select what affix each button will have.
         for (int i = 0; i < choicesAvailable; i++)
         {
             GameObject button = Instantiate(buttonGameObject);
-            affixButtons[i] = button.GetComponent<AffixButton>();
-            affixButtons[i].affixMenu = this;
+            spawnedButtons[i] = button;
+            AffixObject affixChosen = affixChoices[Random.Range(0, affixChoices.Length)];
+            affixButton = button.GetComponent<AffixButton>();
+            affixButton.affixMenu = this;
+            affixButton.SetMyAffix(affixChosen);
             button.transform.SetParent(transform.Find("Affix Button Panel").transform, false);
         }
     }
 
     public void AddAffixToPlayer(BaseAffix affix)
     {
-        // TODO Logic to add affix component to player here
-
-        foreach (AffixButton a in affixButtons)
+        BaseAffix alreadyOnPlayer = (BaseAffix)player.GetComponent(affix.GetType());
+        if (alreadyOnPlayer != null)
         {
-            Destroy(a.gameObject);
+            alreadyOnPlayer.AddAffixCount(1);
+        }
+        else
+        {
+            player.AddComponent(affix.GetType());
+        }
+
+        foreach (GameObject a in spawnedButtons)
+        {
+            Destroy(a);
         }
 
         affixChoiceQuantity -= 1;
