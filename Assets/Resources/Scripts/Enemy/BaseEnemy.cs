@@ -307,7 +307,7 @@ public class BaseEnemy : MonoBehaviour {
             if (Time.time > knockbackStartTime + damageInfo.knockbackDuration)
                 break;
             gameObject.transform.position = Vector2.MoveTowards( gameObject.transform.position, knockbackDirection, damageInfo.knockbackSpeed );
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(Time.fixedDeltaTime);
         }
 
         knockBack = null;

@@ -15,9 +15,9 @@ public class FloatingDamageNumber : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.Translate(Vector3.up * Time.deltaTime * movementSpeed);
+        transform.Translate(Vector3.up * movementSpeed * Time.fixedDeltaTime);
     }
 
     public IEnumerator DestroySelf()

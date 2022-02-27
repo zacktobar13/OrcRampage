@@ -10,7 +10,7 @@ public class ItemMagnetism : MonoBehaviour
     GameObject nearestPlayer = null;
     float distanceToPlayer;
 
-    void Update()
+    void FixedUpdate()
     {
         if (nearestPlayer == null)
         {
