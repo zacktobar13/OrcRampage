@@ -3,6 +3,7 @@ using System.Collections;
 using EZCameraShake;
 public class Projectile : MonoBehaviour
 {
+    Animator anim;
     public int projectileDamage;
     public bool shotByPlayer;
     public float spread;
@@ -11,22 +12,38 @@ public class Projectile : MonoBehaviour
     public GameObject hitEffect;
     public Transform frontOfProjectile;
     public Rigidbody2D rigidBody;
+    private GameObject spriteGameObject;
+    public GameObject shadow;
 
     public float movementSpeed;
     public bool isPiercing;
     Vector2 movementDirection;
 
-    public void SetProjectileRotation(float rotation)
-    {
-        transform.rotation = Quaternion.Euler(0, 0, rotation);
-
-        //transform.Rotate(0, 0, Random.Range(-spread, spread));
-    }
-
     void Start()
     {
+        spriteGameObject = transform.Find("Sprite").gameObject;
+
+        if (anim)
+        {
+            anim = GetComponent<Animator>();
+            anim.speed = Random.Range(.8f, 1.2f);
+        }
+
+        if (spriteGameObject)
+        {
+            spriteGameObject.transform.localScale *= Random.Range(.8f, 1.1f);
+        }
         movementDirection = transform.right;
+        movementSpeed *= Random.Range(.98f, 1.01f);
         Destroy(gameObject, 5);
+    }
+
+    public void SetProjectileRotation(float rotation)
+    {
+        GameObject newShadow = Instantiate(shadow, new Vector3(transform.position.x, transform.position.y - 2.5f, 0f), Quaternion.identity);
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+        newShadow.transform.parent = gameObject.transform;
+        newShadow.transform.rotation = transform.rotation;
     }
 
     void FixedUpdate ()
