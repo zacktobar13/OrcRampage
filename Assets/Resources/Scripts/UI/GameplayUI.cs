@@ -23,6 +23,8 @@ public class GameplayUI : MonoBehaviour
     public GameObject[] weaponInfoGroup;
 
     public Image blackFade;
+
+    TimeManager timeManager;
     bool fadingFromBlack = true;
     bool fadingToBlack = false;
     float blackFadeAlpha = 1f;
@@ -37,6 +39,7 @@ public class GameplayUI : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         canvas.worldCamera = Camera.main;
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += FadeFromBlack;
         DontDestroyOnLoad(gameObject);
@@ -62,14 +65,14 @@ public class GameplayUI : MonoBehaviour
 
     public void ShowAffixPanel(int numberToChoose)
     {
-        Time.timeScale = 0;
         affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);
+        timeManager.PauseGame(true);
         affixPanel.SetActive(true);
     }
 
     public void HideAffixPanel()
     {
-        Time.timeScale = 1f;
+        timeManager.PauseGame(false);
         affixPanel.SetActive(false);
     }
 

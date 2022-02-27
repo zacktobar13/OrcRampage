@@ -2501,7 +2501,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -2.1828e-10, y: -89.107}
-  m_SizeDelta: {x: 944.309, y: 538.131}
+  m_SizeDelta: {x: 400, y: 538.131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8073477628714884892
 CanvasRenderer:
@@ -2559,9 +2559,9 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 69
   m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 20
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -2739,7 +2739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5053007623471768475
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2812,6 +2812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3687d56c2cbc3f14a951d403fbb1bd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affixChoices:
+  - {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c, type: 2}
+  - {fileID: 11400000, guid: 21aacf0445ed34f498cd54c07b184499, type: 2}
   playerLevelText: {fileID: 3675730494575886252}
   rewardText: {fileID: 3824391923571294957}
   buttonGameObject: {fileID: 8729128414493436510, guid: c88228e49fb063d4cbea68feaf40915a,

@@ -273,6 +273,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &325900737 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6817537472310059099, guid: 2bd6441f7bc17554ba871237554a6b1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 900967496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &341315811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -875,21 +881,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
-      propertyPath: affixChoices.Array.size
-      value: 2
+      propertyPath: menuBackground
+      value: 
+      objectReference: {fileID: 325900737}
+    - target: {fileID: 7035663868609800736, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
-        type: 3}
-      propertyPath: affixChoices.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c,
-        type: 2}
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
-        type: 3}
-      propertyPath: affixChoices.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: 21aacf0445ed34f498cd54c07b184499,
-        type: 2}
     - target: {fileID: 8291927606920865230, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
       propertyPath: m_Name

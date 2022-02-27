@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PickAffixMenu : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PickAffixMenu : MonoBehaviour
     public TextMeshProUGUI playerLevelText;
     public TextMeshProUGUI rewardText;
     public GameObject buttonGameObject;
+    public RectTransform menuBackground;
 
     int affixChoiceQuantity;
     int choicesAvailable = 3;
@@ -17,12 +19,8 @@ public class PickAffixMenu : MonoBehaviour
     PlayerExperience playerExperience;
     GameObject[] spawnedButtons;
 
-    TimeManager timeManager;
-
 	private void OnEnable()
 	{
-        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
-        timeManager.PauseGame(true);
         choicesAvailable = Mathf.Min(3, affixChoices.Length);
         SpawnAffixButtons();
         gameplayUI = transform.parent.GetComponent<GameplayUI>();
@@ -30,6 +28,7 @@ public class PickAffixMenu : MonoBehaviour
         playerExperience = player.GetComponent<PlayerExperience>();
         UpdateRewardText();
         UpdatePlayerLevelText();
+        menuBackground.sizeDelta = new Vector2(300f * choicesAvailable, menuBackground.rect.height);
     }
 
 	public void SetQuantityToChoose(int val)
@@ -41,6 +40,7 @@ public class PickAffixMenu : MonoBehaviour
     {
         AffixButton affixButton;
         spawnedButtons = new GameObject[choicesAvailable];
+
 
         for (int i = 0; i < choicesAvailable; i++)
         {
