@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AK : Weapon
+public class Staff : Weapon
 {
 
 }

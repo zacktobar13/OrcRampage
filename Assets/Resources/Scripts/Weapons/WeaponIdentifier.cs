@@ -6,7 +6,7 @@ public enum WeaponIdentifier
 {
     NoWeapon,
     Pistol,
-    AK,
+    Staff,
     RPG,
     Sword,
     EnemyBow

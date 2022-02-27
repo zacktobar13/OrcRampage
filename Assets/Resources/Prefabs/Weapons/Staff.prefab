@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Medium Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 7071937244730473382, guid: 4f2269de2345c8246a1bc228c22bce5a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f2269de2345c8246a1bc228c22bce5a, type: 3}
 --- !u!1 &3971477439194821354 stripped
@@ -251,15 +256,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1284774660767503466, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+        type: 3}
+      propertyPath: m_Name
+      value: Projectile Spawn
+      objectReference: {fileID: 0}
     - target: {fileID: 1694483226134440611, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.802
+      value: 0.30200005
       objectReference: {fileID: 0}
     - target: {fileID: 1694483226134440611, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: 3.87
       objectReference: {fileID: 0}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -275,7 +285,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 8271715202566429118, guid: 851ca8c964330fd40aea870159189cc8,
+      objectReference: {fileID: 21300000, guid: b6c027f7dc666424dbc6a89b148921ef,
         type: 3}
     - target: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -310,12 +320,12 @@ PrefabInstance:
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.34
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4836841008185326875, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -370,12 +380,12 @@ PrefabInstance:
     - target: {fileID: 5015345521042287544, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_Name
-      value: AK47
+      value: Staff
       objectReference: {fileID: 0}
     - target: {fileID: 5598140266092728300, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7671087872726977303, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
@@ -410,6 +420,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8485781935105175402}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4067624973351149702 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5598140266092728300, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8485781935105175402}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7127334348890778689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,23 +443,20 @@ MonoBehaviour:
   attackPower: 7
   critChance: 10
   critPower: 2
-  attacksPerSecond: 6
+  attacksPerSecond: 4
   projectileSpreadAmount: 1
   maxAmmo: 50
   currentAmmo: 50
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
-  bulletCasing: {fileID: 5331020343491793710, guid: 2c3e03a0cf6183f449378318cc549e96,
-    type: 3}
-  notFiringSprite: {fileID: 8271715202566429118, guid: 851ca8c964330fd40aea870159189cc8,
-    type: 3}
-  firingSprite: {fileID: 6662145457819137948, guid: 851ca8c964330fd40aea870159189cc8,
-    type: 3}
+  bulletCasing: {fileID: 0}
+  notFiringSprite: {fileID: 21300000, guid: b6c027f7dc666424dbc6a89b148921ef, type: 3}
+  firingSprite: {fileID: 21300000, guid: b6c027f7dc666424dbc6a89b148921ef, type: 3}
   sprite: {fileID: 6769617347913849038}
   visualEffect: {fileID: 867793574762246758, guid: adc99836e6e143948aceafd0985a1a25,
     type: 3}
   visualEffectsSpawnPoint: {fileID: 7081785284073293257}
   visualsCooldown: 0.08
-  shadow: {fileID: 3971477439194821354}
+  shadow: {fileID: 4067624973351149702}
   audioSource: {fileID: 4944539359795775678}
-  shootSound: {fileID: 8300000, guid: 266f16d659b01674e8eb5ce6d33404b3, type: 3}
-  emptySound: {fileID: 8300000, guid: 9dac79b14e002fc4fbe9cec9512e23d0, type: 3}
+  shootSound: {fileID: 8300000, guid: 0e0b567a43448c24688944f760b55af2, type: 3}
+  emptySound: {fileID: 0}

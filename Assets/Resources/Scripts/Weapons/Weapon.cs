@@ -54,7 +54,7 @@ public class Weapon : MonoBehaviour
 	private void OnEnable()
     {
         sprite.sprite = notFiringSprite;
-        projectileSpawn = transform.Find("BulletSpawn");
+        projectileSpawn = transform.Find("Projectile Spawn");
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
     }
 
