@@ -30,12 +30,15 @@ public class PlayerExperience : MonoBehaviour
 
 		while (ReachedNextLevel())
 		{
-			Time.timeScale = 0;
-			ToggleAffixPanel();
 			numberOfLevelsGained++;
 			currentXp -= xpToNextLevel;
 			playerLevel += 1;
 			xpToNextLevel = CalculateXpToNextLevel(playerLevel);
+		}
+
+		if (numberOfLevelsGained > 0)
+		{
+			ToggleAffixPanel(numberOfLevelsGained);
 		}
 
 		gameplayUI.UpdatePlayerLevel(playerLevel);
@@ -47,10 +50,10 @@ public class PlayerExperience : MonoBehaviour
 		return currentXp >= xpToNextLevel;
 	}
 
-	void ToggleAffixPanel()
+	void ToggleAffixPanel(int numberToChoose)
 	{
-		gameplayUI.playerInfoPanel.SetActive(false);
-		gameplayUI.affixPanel.SetActive(true);
+		gameplayUI.HidePlayerInfoPanel();
+		gameplayUI.ShowAffixPanel(numberToChoose);
 	}
 	
 }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameplayUI : MonoBehaviour
 {
+    Canvas canvas;
     public AudioSource audioSource;
     public AudioClip collectExperienceAudio;
     public Image playerHealthBar;
@@ -34,6 +35,8 @@ public class GameplayUI : MonoBehaviour
 
     private void Start()
     {
+        canvas = GetComponent<Canvas>();
+        canvas.worldCamera = Camera.main;
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += FadeFromBlack;
         DontDestroyOnLoad(gameObject);
@@ -55,6 +58,29 @@ public class GameplayUI : MonoBehaviour
         PlayCollectExperienceSound();
         xpInfo.text = currentXP + " / " + xpToNextLevel;
         playerExperienceBar.fillAmount = (float) currentXP / xpToNextLevel;
+    }
+
+    public void ShowAffixPanel(int numberToChoose)
+    {
+        Time.timeScale = 0;
+        affixPanel.GetComponent<PickAffixMenu>().SetNumAffixesToChoose(numberToChoose);
+        affixPanel.SetActive(true);
+    }
+
+    public void HideAffixPanel()
+    {
+        Time.timeScale = 1f;
+        affixPanel.SetActive(false);
+    }
+
+    public void ShowPlayerInfoPanel()
+    {
+        playerInfoPanel.SetActive(true);
+    }
+
+    public void HidePlayerInfoPanel()
+    {
+        playerInfoPanel.SetActive(false);
     }
 
     public void UpdateCurrencyInfo(int newCurrencyAmount)

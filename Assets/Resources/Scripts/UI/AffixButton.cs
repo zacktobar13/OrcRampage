@@ -7,11 +7,16 @@ using TMPro;
 public class AffixButton : MonoBehaviour
 {
 	public GameplayUI gameplayUI;
+	public PickAffixMenu affixMenu;
+	BaseAffix affixReference;
 
 	public void Select()
 	{
-		Time.timeScale = 1f;
-		gameplayUI.affixPanel.SetActive(false);
-		gameplayUI.playerInfoPanel.SetActive(true);
+		affixMenu.AddAffixToPlayer(affixReference);
+	}
+
+	public void SetMyAffix(BaseAffix affix)
+	{
+		affixReference = affix;
 	}
 }
