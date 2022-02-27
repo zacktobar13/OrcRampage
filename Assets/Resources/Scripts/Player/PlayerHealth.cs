@@ -84,15 +84,19 @@ public class PlayerHealth : MonoBehaviour
     public void ApplyHeal(HealInfo healInfo)
     {
         health += healInfo.healAmount;
+        int overHealAmount = 0;
 
         if (onHeal != null)
             onHeal(this);
 
         if (health > maxHealth)
+        {
+            overHealAmount = health - maxHealth;
             health = maxHealth;
+        }
 
         GameObject healNumber = Instantiate(floatingHealNumber, new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z), Quaternion.identity);
-        healNumber.SendMessage("SetNumber", healInfo.healAmount.ToString());
+        healNumber.SendMessage("SetNumber", (healInfo.healAmount - overHealAmount).ToString());
 
         gameplayUI.UpdatePlayerHealth(health, maxHealth);
     }
