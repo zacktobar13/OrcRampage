@@ -93,6 +93,8 @@ public class PlayerHealth : MonoBehaviour
 
         GameObject healNumber = Instantiate(floatingHealNumber, new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z), Quaternion.identity);
         healNumber.SendMessage("SetNumber", healInfo.healAmount.ToString());
+
+        gameplayUI.UpdatePlayerHealth(health, maxHealth);
     }
 
     public void Death()
