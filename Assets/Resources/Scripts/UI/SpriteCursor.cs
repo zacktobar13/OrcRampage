@@ -9,7 +9,7 @@ public class SpriteCursor : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.position = cursorPosition;

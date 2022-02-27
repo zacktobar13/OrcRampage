@@ -66,8 +66,6 @@ public class PlayerAnimation : MonoBehaviour
         TriggerToNextLevel.onCollideWithPlayer += PlayWalkIntoLevelAnimation;
         WoodSignBehavior.onPlayerInteracted += PlayInteractWithSignAnimation;
         WoodSignBehavior.onPlayerInteracted += DisableSpriteFlipping;
-        ChooseAffixMenu.onShowAffixMenu += DisableSpriteFlipping;
-        AffixButton.onAffixChosen += EnableSpriteFlipping;
         LevelInfo.onEnterHubWorld += DisableSpriteFlipping;
         TriggerToNextLevel.onCollideWithPlayer += DisableSpriteFlipping;
         LevelInfo.onNewLevel += EnableSpriteFlipping;
@@ -277,8 +275,6 @@ public class PlayerAnimation : MonoBehaviour
         TriggerToNextLevel.onCollideWithPlayer -= PlayWalkIntoLevelAnimation;
         WoodSignBehavior.onPlayerInteracted -= PlayInteractWithSignAnimation;
         WoodSignBehavior.onPlayerInteracted -= DisableSpriteFlipping;
-        ChooseAffixMenu.onShowAffixMenu -= DisableSpriteFlipping;
-        AffixButton.onAffixChosen -= EnableSpriteFlipping;
         LevelInfo.onEnterHubWorld -= DisableSpriteFlipping;
         TriggerToNextLevel.onCollideWithPlayer -= DisableSpriteFlipping;
     }

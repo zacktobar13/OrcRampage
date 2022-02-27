@@ -14,8 +14,6 @@ public class SmoothTrackTarget : MonoBehaviour
 
     private void Awake()
     {
-        AffixButton.onAffixChosen += EnableAffixMenuMouseBias;
-        ChooseAffixMenu.onShowAffixMenu += DisableAffixMenuMouseBias;
 
         GameplayUI.onFadeCompleted += EnableScreenFadeMouseBias;
         WoodSignBehavior.onPlayerInteracted += DisableScreenFadeMouseBias;
@@ -92,9 +90,6 @@ public class SmoothTrackTarget : MonoBehaviour
 
     private void OnDestroy()
     {
-        AffixButton.onAffixChosen -= EnableAffixMenuMouseBias;
-        ChooseAffixMenu.onShowAffixMenu -= DisableAffixMenuMouseBias;
-
         WoodSignBehavior.onPlayerInteracted -= DisableScreenFadeMouseBias;
         GameplayUI.onFadeCompleted -= EnableScreenFadeMouseBias;
     }

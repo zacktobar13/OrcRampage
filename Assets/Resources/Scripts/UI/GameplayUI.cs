@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameplayUI : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip collectExperienceAudio;
     public Image playerHealthBar;
     public Image playerExperienceBar;
     public TextMeshProUGUI healthText;
@@ -14,6 +16,8 @@ public class GameplayUI : MonoBehaviour
     public TextMeshProUGUI playerLevelInfo;
     public TextMeshProUGUI xpInfo;
     public Animator currencyAnim;
+    public GameObject affixPanel;
+    public GameObject playerInfoPanel;
 
     public GameObject[] weaponInfoGroup;
 
@@ -30,6 +34,7 @@ public class GameplayUI : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += FadeFromBlack;
         DontDestroyOnLoad(gameObject);
     }
@@ -47,6 +52,7 @@ public class GameplayUI : MonoBehaviour
 
     public void UpdatePlayerExperienceBar(int currentXP, int xpToNextLevel)
     {
+        PlayCollectExperienceSound();
         xpInfo.text = currentXP + " / " + xpToNextLevel;
         playerExperienceBar.fillAmount = (float) currentXP / xpToNextLevel;
     }
@@ -55,6 +61,12 @@ public class GameplayUI : MonoBehaviour
     {
         currencyAnim.SetTrigger("AddCurrency");
         currencyInfo.text = "$ " + newCurrencyAmount.ToString();
+    }
+
+    private void PlayCollectExperienceSound()
+    {
+        audioSource.volume = Random.Range(.35f, .45f);
+        audioSource.PlayOneShot(collectExperienceAudio);
     }
 
     private void FixedUpdate()

@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: b399b7adbf6e4dd4ca2d29025f7acdca
+guid: 3265939002063c2489e7e7424699b484
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2637839990271757405
-    second: XPGlobe_0
-  - first:
-      213: 5878772271737368276
-    second: XPGlobe_1
+      213: 5695144912973170895
+    second: UIpackSheet_transparent_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -133,10 +130,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: XPGlobe_0
+      name: UIpackSheet_transparent_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 88
         y: 0
         width: 16
         height: 16
@@ -147,29 +144,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5cc77ace7d7b9420800000000000000
-      internalID: 2637839990271757405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: XPGlobe_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4de625ceb38959150800000000000000
-      internalID: 5878772271737368276
+      spriteID: fc8832acf18390f40800000000000000
+      internalID: 5695144912973170895
       vertices: []
       indices: 
       edges: []
