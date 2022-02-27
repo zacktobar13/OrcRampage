@@ -25,6 +25,7 @@ public class AffixButton : MonoBehaviour
 	public void SetMyAffix(AffixObject affix)
 	{
 		affixReference = affix.affixPrefab.GetComponent<BaseAffix>();
+		affixReference.IntializeFromScriptableObject(affix);
 		affixTitle.text = affix.affixName;
 		affixDescription.text = affix.affixDescription;
 		affixIcon.sprite = affix.icon;

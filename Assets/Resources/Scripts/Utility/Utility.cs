@@ -46,40 +46,21 @@ public class Utility : MonoBehaviour {
         return Quaternion.Euler(0, delta, 0) * v;
     }
 
-    public static int GetPlayerFacingDirection(float angle)
-    {
-        if ( angle < 105 && angle >= 75 ) // Facing up
-        {
-            return 0;
-        }
-        else if ( angle >= 105 && angle < 180 ) // Facing up left
-        {
-            return 5;
-        }
-        else if (angle > -180 && angle <= -105) // Facing down left
-        {
-            return 4;
-        }
-        else if (angle > -105 && angle < -75) // Facing down
-        {
-            return 3;
-        }
-        else if (angle >= -75 && angle < 0) // Facing down right
-        {
-            return 2;
-        }
-        else if(angle >= 0 && angle < 75 ) // Facing up right
-        {
-            return 1;
-        }
-
-        Debug.LogError("Player facing direction angle out of range: " + angle.ToString());
-        return -1;
-    }
-
     public static int Mod(int x, int n)
     {
         return (x % n + n) % n;
+    }
+
+    public static T[] RemoveAt<T>(T[] source, int index)
+    {
+        T[] dest = new T[source.Length - 1];
+        if (index > 0)
+            System.Array.Copy(source, 0, dest, 0, index);
+
+        if (index < source.Length - 1)
+            System.Array.Copy(source, index + 1, dest, index, source.Length - index - 1);
+
+        return dest;
     }
 
     public static float EaseOutQuad( float start, float end, float value )
