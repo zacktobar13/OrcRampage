@@ -66,6 +66,13 @@ public class GameplayUI : MonoBehaviour
     public void ShowAffixPanel(int numberToChoose)
     {
         affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);
+        StartCoroutine(ShowAffixPanelAfterSeconds(.2f));
+    }
+
+    IEnumerator ShowAffixPanelAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        HidePlayerInfoPanel();
         timeManager.PauseGame(true);
         affixPanel.SetActive(true);
     }
