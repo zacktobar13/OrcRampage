@@ -15,5 +15,6 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 7ec1519cd8e27f74ea2c099f3d6ccb07, type: 3}
   affixName: Piercing
   affixDescription: Projectiles pierce enemies and walls
+  isUniqueAffix: 1
   affixPrefab: {fileID: 1964983919791719321, guid: 71e3011d36379964e80804858efd06ce,
     type: 3}

@@ -52,7 +52,6 @@ public class PlayerExperience : MonoBehaviour
 
 	void ToggleAffixPanel(int numberToChoose)
 	{
-		gameplayUI.HidePlayerInfoPanel();
 		gameplayUI.ShowAffixPanel(numberToChoose);
 	}
 	

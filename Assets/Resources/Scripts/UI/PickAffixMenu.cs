@@ -12,7 +12,7 @@ public class PickAffixMenu : MonoBehaviour
     public GameObject buttonGameObject;
     public RectTransform menuBackground;
 
-    int affixChoiceQuantity;
+    int affixChoicesRemaining;
     int choicesAvailable = 3;
     GameObject player;
     GameplayUI gameplayUI;
@@ -21,7 +21,6 @@ public class PickAffixMenu : MonoBehaviour
 
 	private void OnEnable()
 	{
-        choicesAvailable = Mathf.Min(3, affixChoices.Length);
         SpawnAffixButtons();
         gameplayUI = transform.parent.GetComponent<GameplayUI>();
         player = PlayerManagement.player;
@@ -33,7 +32,7 @@ public class PickAffixMenu : MonoBehaviour
 
 	public void SetQuantityToChoose(int val)
     {
-        affixChoiceQuantity = val;
+        affixChoicesRemaining = val;
     }
 
     public void SpawnAffixButtons()
@@ -41,7 +40,7 @@ public class PickAffixMenu : MonoBehaviour
         AffixButton affixButton;
         spawnedButtons = new GameObject[choicesAvailable];
 
-
+        choicesAvailable = Mathf.Min(3, affixChoices.Length);
         for (int i = 0; i < choicesAvailable; i++)
         {
             GameObject button = Instantiate(buttonGameObject);
@@ -66,15 +65,29 @@ public class PickAffixMenu : MonoBehaviour
             player.AddComponent(affix.GetType());
         }
 
+        // Remove affix from options if it's unique
+        if (affix.isUnique)
+        {
+            for (int i = 0; i < affixChoices.Length; i++)
+            {
+                AffixObject affixChoice = affixChoices[i];
+                if (affixChoice.affixName == affix.affixName)
+                {
+                    affixChoices = Utility.RemoveAt<AffixObject>(affixChoices, i);
+                    break;
+                }
+            }
+        }
+
         foreach (GameObject a in spawnedButtons)
         {
             Destroy(a);
         }
 
-        affixChoiceQuantity -= 1;
+        affixChoicesRemaining -= 1;
         UpdateRewardText();
 
-        if (affixChoiceQuantity <= 0)
+        if (affixChoicesRemaining <= 0)
         {
             gameplayUI.HideAffixPanel();
             gameplayUI.ShowPlayerInfoPanel();
@@ -92,13 +105,13 @@ public class PickAffixMenu : MonoBehaviour
 
     void UpdateRewardText()
     {
-        if (affixChoiceQuantity > 1)
+        if (affixChoicesRemaining > 1)
         {
-            rewardText.text = "Choose " + affixChoiceQuantity.ToString() + " rewards";
+            rewardText.text = "Choose " + affixChoicesRemaining.ToString() + " rewards";
         }
         else
         {
-            rewardText.text = "Choose " + affixChoiceQuantity.ToString() + " reward";
+            rewardText.text = "Choose " + affixChoicesRemaining.ToString() + " reward";
         }
     }
 }
