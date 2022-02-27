@@ -17,9 +17,13 @@ public class PickAffixMenu : MonoBehaviour
     PlayerExperience playerExperience;
     GameObject[] spawnedButtons;
 
+    TimeManager timeManager;
+
 	private void OnEnable()
 	{
-        Time.timeScale = 0;
+        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+        timeManager.PauseGame(true);
+        choicesAvailable = Mathf.Min(3, affixChoices.Length);
         SpawnAffixButtons();
         gameplayUI = transform.parent.GetComponent<GameplayUI>();
         player = PlayerManagement.player;
