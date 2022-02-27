@@ -14,6 +14,7 @@ public class PlayerExperience : MonoBehaviour
 	{
 		playerLevel = 1;
 		xpToNextLevel = 20;
+		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
 	public int CalculateXpToNextLevel(int level)
@@ -23,18 +24,20 @@ public class PlayerExperience : MonoBehaviour
 
 	public void AddXp(int amount)
 	{
-		Debug.Log("Adding " + amount + " experience");
 		currentXp += amount;
 
-		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
-		
-		if (ReachedNextLevel())
+		int numberOfLevelsGained = 0;
+
+		while (ReachedNextLevel())
 		{
+			numberOfLevelsGained++;
 			currentXp -= xpToNextLevel;
 			playerLevel += 1;
 			xpToNextLevel = CalculateXpToNextLevel(playerLevel);
-			gameplayUI.UpdatePlayerLevel(playerLevel);
 		}
+
+		gameplayUI.UpdatePlayerLevel(playerLevel);
+		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
 	public bool ReachedNextLevel()
