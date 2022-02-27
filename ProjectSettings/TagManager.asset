@@ -29,9 +29,9 @@ TagManager:
   - Clutter Remains
   - Map Clutter
   - Walls
-  - Coin
-  - Coin World Collider
   - Hit Proj World Collider
+  - Dropped Item
+  - 
   - 
   - 
   - 

@@ -15,6 +15,7 @@ public class StaticResources : MonoBehaviour
     public static GameObject explosiveArrowExplosion;
     public static GameObject hitEffect1;
     public static GameObject copperCoin;
+    public static GameObject xpGlobe;
     public static Material pixelSnap;
     public static Material shadowMaterial;
     public static Material decorationShadowMaterial;
@@ -36,6 +37,7 @@ public class StaticResources : MonoBehaviour
         shadowMaterial = Resources.Load("Materials/ShadowMaterial") as Material;
         decorationShadowMaterial = Resources.Load("Materials/DecorationShadowMaterial") as Material;
         copperCoin = Resources.Load("Prefabs/Interactibles/Copper Coin") as GameObject;
+        xpGlobe = Resources.Load("Prefabs/Interactibles/XP Globe") as GameObject;
         runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("SpriteAnimController");
     }
 }

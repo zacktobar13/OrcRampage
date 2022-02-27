@@ -35,6 +35,7 @@ public class BaseEnemy : MonoBehaviour {
     public AnimationClip deathAnimation;
 
     private GameObject copperCoin;
+    private GameObject xpGlobe;
     private GameObject floatingDamageNumber;
     private GameObject critDamageNumber;
     protected GameObject damageCollider;
@@ -96,6 +97,7 @@ public class BaseEnemy : MonoBehaviour {
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
         copperCoin = StaticResources.copperCoin;
+        xpGlobe = StaticResources.xpGlobe;
         floatingDamageNumber = StaticResources.floatingDamageNumber;
         critDamageNumber = StaticResources.critDamageNumber;
         damageCollider = StaticResources.damageCollider;
@@ -207,7 +209,9 @@ public class BaseEnemy : MonoBehaviour {
         DisableComponentsOnDeath();
 
         // Drop currency
-        GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
+       // GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
+        //Drop XP
+        GameObject xpDropped = Instantiate(xpGlobe, transform.position, Quaternion.identity);
         
         if (healthGlobeDropChance >= Random.Range(0, 100))
             DropItem();
