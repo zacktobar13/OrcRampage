@@ -26,7 +26,6 @@ public class PlayerAttack : MonoBehaviour
         currentWeapon = GetComponentInChildren<Weapon>();
         weapons[0] = currentWeapon;
         currentWeapon.PickupWeapon(gameObject);
-        gameplayUI.UpdateWeapon(currentWeapon);
     }
 
     void Update()
@@ -80,7 +79,6 @@ public class PlayerAttack : MonoBehaviour
         weapons[index].gameObject.SetActive(true);
         currentWeaponIndex = index;
         currentWeapon = weapons[currentWeaponIndex];
-        gameplayUI.UpdateWeapon(currentWeapon);
     }
 
     public void PickupWeapon(GameObject weaponObject)
@@ -130,7 +128,6 @@ public class PlayerAttack : MonoBehaviour
             weapon.PickupWeapon(gameObject);
             weapons[currentWeaponIndex] = weapon;
             currentWeapon = weapon;
-            gameplayUI.UpdateWeapon(currentWeapon);
             return;
         }
     }

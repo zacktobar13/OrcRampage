@@ -18,9 +18,9 @@ public class Coin : DroppedItem
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
     }
 
-    protected override void OnTriggerStay2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerStay2D(collision);
+        base.OnTriggerEnter2D(collision);
         //playerCurrency.AddCurrency(value);
     }
 

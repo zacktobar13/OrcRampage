@@ -89,6 +89,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5626404799186207183, guid: 9299969938198fe43a563cb9bf4c3879,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6338699040454664113, guid: 9299969938198fe43a563cb9bf4c3879,
         type: 3}
       propertyPath: m_Layer
@@ -212,3 +217,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnMovementSpeed: 6
+  xpValue: 1

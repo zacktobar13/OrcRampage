@@ -37,11 +37,10 @@ public class DroppedItem : MonoBehaviour
 
     public virtual void Anim_EnableMagnetism()
     {
-        Debug.Log("why");
         magnetism.enabled = true;
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasBeenConsumed || Time.time < timeSpawned + collectionTimer)
             return;

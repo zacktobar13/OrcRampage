@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class XPGlobe : DroppedItem
 {
-    // Start is called before the first frame update
+    public int xpValue;
+    PlayerExperience playerExperience;
     protected new void Start()
     {
+        playerExperience = PlayerManagement.player.GetComponent<PlayerExperience>();
         base.Start();
-        Debug.Log(magnetism);
     }
 
     // Update is called once per frame
-    protected override void OnTriggerStay2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        base.OnTriggerStay2D(collision);
-        // Add xp
+        playerExperience.AddXp(xpValue);
+        base.OnTriggerEnter2D(collision);
     }
 
-	
 }

@@ -8,10 +8,11 @@ using UnityEngine.SceneManagement;
 public class GameplayUI : MonoBehaviour
 {
     public Image playerHealthBar;
-    public Image weaponImage;
-    public Image weaponShadowImage;
+    public Image playerExperienceBar;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI currencyInfo;
+    public TextMeshProUGUI playerLevelInfo;
+    public TextMeshProUGUI xpInfo;
     public Animator currencyAnim;
 
     public GameObject[] weaponInfoGroup;
@@ -33,21 +34,21 @@ public class GameplayUI : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void UpdateWeapon(Weapon newWeapon)
-    {
-        UpdateWeaponSprite(newWeapon.notFiringSprite);
-    }
-
-    public void UpdateWeaponSprite(Sprite newSprite)
-    {
-        weaponImage.sprite = newSprite;
-        weaponShadowImage.sprite = newSprite;
-    }
-
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)
     {
         healthText.text = currentHealth + " / " + maxHealth;
         playerHealthBar.fillAmount = (float) currentHealth / maxHealth;
+    }
+
+    public void UpdatePlayerLevel(int currentLevel)
+    {
+        playerLevelInfo.text = "LVL " + currentLevel.ToString();
+    }
+
+    public void UpdatePlayerExperienceBar(int currentXP, int xpToNextLevel)
+    {
+        xpInfo.text = currentXP + " / " + xpToNextLevel;
+        playerExperienceBar.fillAmount = (float) currentXP / xpToNextLevel;
     }
 
     public void UpdateCurrencyInfo(int newCurrencyAmount)
