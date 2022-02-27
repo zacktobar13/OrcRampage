@@ -16,7 +16,6 @@ public class ExplosionBehavior : MonoBehaviour
 
     private void Start()
     {
-        CameraShaker.Instance.ShakeOnce(2f, 2f, .1f, 1f);
         audioSource.pitch = Random.Range(.5f, 2f);
     }
 
