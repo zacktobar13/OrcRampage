@@ -217,4 +217,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnMovementSpeed: 6
-  xpValue: 150
+  xpValue: 8

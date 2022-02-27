@@ -19,13 +19,14 @@ public class PlayerExperience : MonoBehaviour
 
 	public int CalculateXpToNextLevel(int level)
 	{
-		return 1000;
+		return 100 * level;
 	}
 
 	public void AddXp(int amount)
 	{
 		currentXp += amount;
 
+		// TODO: This will be the number of times the affix menu needs to pop-up
 		int numberOfLevelsGained = 0;
 
 		while (ReachedNextLevel())
