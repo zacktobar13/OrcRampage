@@ -6,7 +6,7 @@ public struct DamageInfo
 {
     static private float defaultKnockbackSpeed = 0.0375f;
     static private float defaultKnockbackDistance = .5f;
-    static private float defaultKnockbackDuration = 0.1f;
+    static private float defaultKnockbackDuration = 0.2f;
     public int damageAmount;
     public Vector2 knockbackDirection;
     public float knockbackSpeed;
