@@ -7,5 +7,7 @@ public class AffixObject : ScriptableObject
     public string affixName;
     public string affixDescription;
     public bool isUniqueAffix;
+    public int baseDamage;
+    public float baseProcChance;
     public GameObject affixPrefab;
 }

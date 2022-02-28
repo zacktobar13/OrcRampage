@@ -42,7 +42,6 @@ public class GameplayUI : MonoBehaviour
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += FadeFromBlack;
-        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)

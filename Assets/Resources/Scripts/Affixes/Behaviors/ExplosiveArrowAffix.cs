@@ -9,7 +9,7 @@ public class ExplosiveArrowAffix : BaseAffix
 
     public void OnShoot(PlayerAttack playerShoot, Projectile projectile)
     { 
-        projectile.hitEffect = StaticResources.explosiveArrowExplosion;
+        //projectile.hitEffect = StaticResources.explosiveArrowExplosion;
     }
     void OnDestroy()
     {

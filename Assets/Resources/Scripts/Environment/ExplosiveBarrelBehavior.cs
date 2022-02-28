@@ -75,7 +75,6 @@ public class ExplosiveBarrelBehavior : DestructibleObject
         Instantiate(debris, transform.position, transform.rotation);
         GameObject damageCircle = Instantiate(explosion, new Vector2(transform.position.x, transform.position.y + 3f), transform.rotation);
         ExplosionBehavior circle = damageCircle.GetComponent<ExplosionBehavior>();
-        circle.creator = gameObject;
         circle.damageAmount = 100;
         base.Death();
     }

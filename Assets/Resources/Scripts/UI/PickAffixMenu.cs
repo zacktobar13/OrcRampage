@@ -53,7 +53,7 @@ public class PickAffixMenu : MonoBehaviour
         }
     }
 
-    public void AddAffixToPlayer(BaseAffix affix)
+    public void AddAffixToPlayer(BaseAffix affix, AffixObject affixData)
     {
         BaseAffix alreadyOnPlayer = (BaseAffix)player.GetComponent(affix.GetType());
         if (alreadyOnPlayer != null)
@@ -62,16 +62,17 @@ public class PickAffixMenu : MonoBehaviour
         }
         else
         {
-            player.AddComponent(affix.GetType());
+            BaseAffix addedAffix = player.AddComponent(affix.GetType()) as BaseAffix;
+            addedAffix.IntializeFromScriptableObject(affixData);
         }
 
         // Remove affix from options if it's unique
-        if (affix.isUnique)
+        if (affixData.isUniqueAffix)
         {
             for (int i = 0; i < affixChoices.Length; i++)
             {
                 AffixObject affixChoice = affixChoices[i];
-                if (affixChoice.affixName == affix.affixName)
+                if (affixChoice.affixName == affixData.affixName)
                 {
                     affixChoices = Utility.RemoveAt<AffixObject>(affixChoices, i);
                     break;

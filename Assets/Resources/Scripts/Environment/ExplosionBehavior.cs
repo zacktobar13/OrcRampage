@@ -5,8 +5,6 @@ using PowerTools;
 using EZCameraShake;
 public class ExplosionBehavior : MonoBehaviour
 {
-    public GameObject creator;
-    public GameObject player;
     public Vector2 damageDirection = Vector2.zero;
     public int damageAmount;
     public AudioSource audioSource;
@@ -29,10 +27,10 @@ public class ExplosionBehavior : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && !canHurtPlayer)
+        if (collision.tag == "Player")
             return;
 
-        if (collision.gameObject != creator && collision.isTrigger)
+        if (collision.isTrigger)
         {
             if (damageDirection == Vector2.zero)
             {

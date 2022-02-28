@@ -5,7 +5,12 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
     Transform player;
-    
+
+    int enemiesAlive = 0;
+
+    public delegate void OnEnemyDeath(BaseEnemy enemy);
+    public event OnEnemyDeath onEnemyDeath;
+
     void Start()
     {
         player = PlayerManagement.player.transform;
@@ -30,5 +35,16 @@ public class EnemySpawner : MonoBehaviour
 
         int randomRoll = (int)Random.Range(0, enemiesToSpawn.Length);
         Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation);
+        enemiesAlive++;
+    }
+
+    public void EnemyDeath(BaseEnemy enemy)
+    {
+        if (onEnemyDeath != null)
+        {
+            onEnemyDeath(enemy);
+        }
+
+        enemiesAlive--;
     }
 }

@@ -16,16 +16,17 @@ public class AffixButton : MonoBehaviour
 	public PickAffixMenu affixMenu;
 
 	BaseAffix affixReference;
+	AffixObject affixData;
 
 	public void Select()
 	{
-		affixMenu.AddAffixToPlayer(affixReference);
+		affixMenu.AddAffixToPlayer(affixReference, affixData);
 	}
 
 	public void SetMyAffix(AffixObject affix)
 	{
 		affixReference = affix.affixPrefab.GetComponent<BaseAffix>();
-		affixReference.IntializeFromScriptableObject(affix);
+		affixData = affix;
 		affixTitle.text = affix.affixName;
 		affixDescription.text = affix.affixDescription;
 		affixIcon.sprite = affix.icon;

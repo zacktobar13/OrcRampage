@@ -12,7 +12,7 @@ public class StaticResources : MonoBehaviour
     public static GameObject floatingExperienceNumber;
     public static GameObject arrow;
     public static GameObject blood;
-    public static GameObject explosiveArrowExplosion;
+    public static GameObject explosionSmall;
     public static GameObject hitEffect1;
     public static GameObject copperCoin;
     public static GameObject xpGlobe;
@@ -25,7 +25,7 @@ public class StaticResources : MonoBehaviour
     {
         hitEffect1 = Resources.Load("Prefabs/Visual Effects/Hit Effect Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
-        explosiveArrowExplosion = Resources.Load("Prefabs/Explosions/Explosive Arrow Explosion") as GameObject;
+        explosionSmall = Resources.Load("Prefabs/Explosions/Explosion Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
         blood = Resources.Load("Prefabs/Visual Effects/Blood Particle 1") as GameObject;
         whiteMaterial = Resources.Load("Materials/WhiteFlash", typeof(Material)) as Material;

@@ -462,11 +462,11 @@ GameObject:
   - component: {fileID: 7175836991511995825}
   - component: {fileID: 7175836991511995855}
   - component: {fileID: 7175836991511995854}
+  - component: {fileID: 8330082725367575504}
   - component: {fileID: 7175836991511995853}
   - component: {fileID: 3236591511651761512}
   - component: {fileID: 7175836991511995852}
   - component: {fileID: 7175836991511995851}
-  - component: {fileID: 7175836991511995850}
   - component: {fileID: 7175836991511995849}
   - component: {fileID: 7175836991511995848}
   - component: {fileID: 7175836991511995846}
@@ -654,6 +654,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8330082725367575504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7175836991511995844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbbbb6b7d2089d4c9e4b978c8bde790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7175836991511995853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,18 +752,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7175836989742708477}
   isCurrentlyDead: 0
   hurtThisFrame: 0
---- !u!114 &7175836991511995850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175836991511995844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbbbb6b7d2089d4c9e4b978c8bde790, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7175836991511995849
 MonoBehaviour:
   m_ObjectHideFlags: 0

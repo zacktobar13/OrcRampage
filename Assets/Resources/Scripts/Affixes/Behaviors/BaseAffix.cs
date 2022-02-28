@@ -12,6 +12,8 @@ public class BaseAffix : MonoBehaviour
     public string affixName;
     public string affixDescription;
     public bool isUnique;
+    public int baseDamage;
+    public float baseProcChance;
     public int affixCount = 1;
 
     public virtual void AddAffixCount(int increment)
@@ -19,11 +21,13 @@ public class BaseAffix : MonoBehaviour
         affixCount += increment;
     }
 
-    public void IntializeFromScriptableObject(AffixObject data)
+    public virtual void IntializeFromScriptableObject(AffixObject data)
     {
         affixIcon = data.icon;
         affixName = data.name;
         affixDescription = data.affixDescription;
         isUnique = data.isUniqueAffix;
+        baseDamage = data.baseDamage;
+        baseProcChance = data.baseProcChance;
     }
 }

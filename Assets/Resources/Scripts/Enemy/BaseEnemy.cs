@@ -53,11 +53,11 @@ public class BaseEnemy : MonoBehaviour {
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
     protected GameObject spriteGameObject;
+    protected EnemySpawner enemySpawner;
 
     // Sometimes when enemies die, they need a different shadow for it to look natural (bigger, smaller etc)
     public GameObject aliveShadow;
     public GameObject deadShadow;
-
 
     protected GameObject target = null;
     protected float distanceToTarget;
@@ -96,6 +96,7 @@ public class BaseEnemy : MonoBehaviour {
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
+        enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
         copperCoin = StaticResources.copperCoin;
         xpGlobe = StaticResources.xpGlobe;
         floatingDamageNumber = StaticResources.floatingDamageNumber;
@@ -203,7 +204,7 @@ public class BaseEnemy : MonoBehaviour {
 
     public void DeathInternal()
     {
-        WaveManager.EnemyDied(gameObject);
+        enemySpawner.EnemyDeath(this);
 
         spriteAnim.Play(deathAnimation);
         DisableComponentsOnDeath();
@@ -243,6 +244,10 @@ public class BaseEnemy : MonoBehaviour {
 
     public virtual void ApplyDamage(DamageInfo damageInfo)
     {
+        // We're already dead -- don't do anything
+        if (health <= 0)
+            return;
+
         // Enable our health UI if it's the first time we're hit.
         if (health == maxHealth)
             healthUI.SetActive(true);
