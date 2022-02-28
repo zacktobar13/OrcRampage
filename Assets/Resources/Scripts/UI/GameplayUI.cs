@@ -151,8 +151,8 @@ public class GameplayUI : MonoBehaviour
 
     private void PlayCollectExperienceSound()
     {
-        audioSource.volume = Random.Range(.35f, .45f);
-        audioSource.PlayOneShot(collectExperienceAudio);
+        SoundManagerArgs soundManagerArgs = new SoundManagerArgs(.4f, new Vector2(.35f, .45f));
+        SoundManager.PlayOneShot(audioSource, collectExperienceAudio, soundManagerArgs);
     }
 
     private void FixedUpdate()

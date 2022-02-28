@@ -280,7 +280,7 @@ public class BaseEnemy : MonoBehaviour {
         GameObject damageNumberToSpawn = damageInfo.criticalHit ? critDamageNumber : floatingDamageNumber;
         Vector3 damageNumberPosition = transform.position;
         damageNumberPosition.y += 7; // TODO: will this work for enemies of all sizes? Maybe map this number to "size" of enemy that doesn't exist yet but will need to for fire
-        GameObject damageNumber = Instantiate(damageNumberToSpawn, damageNumberPosition, Quaternion.identity );
+        GameObject damageNumber = Instantiate( damageNumberToSpawn, damageNumberPosition, Quaternion.identity );
         damageNumber.SendMessage( "SetNumber", damageInfo.damageAmount.ToString() );
 
         if ( damageInfo.spawnBlood )
@@ -288,8 +288,8 @@ public class BaseEnemy : MonoBehaviour {
 
 
         // Play hit sound
-        if (hitSound != null)
-            audioSource.PlayOneShot(hitSound);
+        //if (hitSound != null)
+        //    SoundManager.PlayOneShot(audioSource, hitSound);
 
         healthbar.fillAmount = health / maxHealth;
 

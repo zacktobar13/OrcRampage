@@ -46,8 +46,7 @@ public class BulletCasing : MonoBehaviour
 
                 if (hitGroundSFX)
                 {
-                    audioSource.pitch = Random.Range(.7f, 1.3f);
-                    audioSource.PlayOneShot(hitGroundSFX);
+                    SoundManager.PlayOneShot(audioSource, hitGroundSFX);
                 }
 
                 return;

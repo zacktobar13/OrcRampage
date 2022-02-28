@@ -181,7 +181,7 @@ public class PlayerAnimation : MonoBehaviour
     public void FootStep()
     {
         audioSource.Stop();
-        audioSource.PlayOneShot(footstepAudioClip, 4f);
+        //SoundManager.PlayOneShot(audioSource, footstepAudioClip, new SoundManagerArgs(4f));
         Instantiate(footstepDust, transform.position, transform.rotation);
     }
 

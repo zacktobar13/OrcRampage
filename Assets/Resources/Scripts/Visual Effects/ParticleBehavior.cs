@@ -38,8 +38,7 @@ public class ParticleBehavior : MonoBehaviour
                 Destroy(particle);
                 spriteRenderer.material = StaticResources.pixelSnap;
                 spriteRenderer.sprite = restingSprites[(int)Random.Range(0f, restingSprites.Length)];
-                audioSource.pitch = Random.Range(.8f, 1.2f);
-                audioSource.PlayOneShot(hitGroundSFX);
+                SoundManager.PlayOneShot(audioSource, hitGroundSFX);
                 return;
             }
 

@@ -82,7 +82,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void FireEmpty()
     {
-        audioSource.PlayOneShot(emptySound);
+        SoundManager.PlayOneShot(audioSource, emptySound);
     }
 
     public virtual Projectile SpawnProjectile(float offset)
@@ -108,8 +108,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void PlayAttackSound()
     {
-        audioSource.pitch = Random.Range(.9f, 1.2f);
-        audioSource.PlayOneShot(shootSound);
+        SoundManager.PlayOneShot(audioSource, shootSound, new SoundManagerArgs(true));
     }
 
     public virtual IEnumerator VisualEffects()

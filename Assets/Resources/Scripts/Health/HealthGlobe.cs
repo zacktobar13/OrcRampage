@@ -31,7 +31,8 @@ public class HealthGlobe : MonoBehaviour
         HealInfo healInfo = new HealInfo((int)(playerHealth.maxHealth * healPercentage));
         collision.GetComponent<PlayerHealth>().ApplyHeal(healInfo);
 
-        audioSource.PlayOneShot(healSoundEffect);
+        SoundManager.PlayOneShot(audioSource, healSoundEffect);
+
         circleCollider.enabled = false;
 
         foreach(SpriteRenderer sr in spriteRenderers)
