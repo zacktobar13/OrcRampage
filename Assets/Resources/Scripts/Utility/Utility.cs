@@ -62,6 +62,16 @@ public class Utility : MonoBehaviour {
 
         return dest;
     }
+    public static void Shuffle<T>(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int newIndex = Random.Range(0, array.Length);
+            T temp = array[i];
+            array[i] = array[newIndex];
+            array[newIndex] = temp;
+        }
+    }
 
     public static float EaseOutQuad( float start, float end, float value )
     {

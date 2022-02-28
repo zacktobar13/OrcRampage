@@ -57,11 +57,18 @@ public class PickAffixMenu : MonoBehaviour
         spawnedButtons = new GameObject[choicesAvailable];
 
         choicesAvailable = Mathf.Min(3, currentRunAffixChoices.Length);
+        int[] affixChoices = new int[choicesAvailable];
+        for (int i = 0; i < affixChoices.Length; i++)
+        {
+            affixChoices[i] = i;
+        }
+        Utility.Shuffle(affixChoices);
+
         for (int i = 0; i < choicesAvailable; i++)
         {
             GameObject button = Instantiate(buttonGameObject);
             spawnedButtons[i] = button;
-            AffixObject affixChosen = currentRunAffixChoices[Random.Range(0, currentRunAffixChoices.Length)];
+            AffixObject affixChosen = currentRunAffixChoices[affixChoices[i]];
             affixButton = button.GetComponent<AffixButton>();
             affixButton.affixMenu = this;
             affixButton.SetMyAffix(affixChosen);
