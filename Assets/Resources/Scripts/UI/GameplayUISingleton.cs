@@ -21,7 +21,7 @@ public class GameplayUISingleton : MonoBehaviour
 
 #if UNITY_EDITOR
         if (Application.isPlaying)
-            UnityEditor.SceneVisibilityManager.instance.Show(gameObject, false);
+            UnityEditor.SceneVisibilityManager.instance.ShowAll();
 #endif
 
         //Sets this to not be destroyed when reloading scene
