@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PickAffixMenu : MonoBehaviour
 {
     public AffixObject[] affixChoices;
+    public AffixObject[] currentRunAffixChoices;
     public TextMeshProUGUI playerLevelText;
     public TextMeshProUGUI rewardText;
     public GameObject buttonGameObject;
@@ -21,6 +23,12 @@ public class PickAffixMenu : MonoBehaviour
 
 	private void OnEnable()
 	{
+        // Only re initialize if we are of length 0 (i.e. this is a new run)
+        if (currentRunAffixChoices.Length == 0)
+        {
+            InitializeAffixChoices(SceneManager.GetActiveScene(), LoadSceneMode.Single);
+        }
+
         SpawnAffixButtons();
         gameplayUI = transform.parent.GetComponent<GameplayUI>();
         player = PlayerManagement.player;
@@ -28,6 +36,14 @@ public class PickAffixMenu : MonoBehaviour
         UpdateRewardText();
         UpdatePlayerLevelText();
         menuBackground.sizeDelta = new Vector2(300f * choicesAvailable, menuBackground.rect.height);
+        SceneManager.sceneLoaded += InitializeAffixChoices;
+    }
+
+    void InitializeAffixChoices(Scene scene, LoadSceneMode mode)
+    {
+        choicesAvailable = affixChoices.Length;
+        currentRunAffixChoices = new AffixObject[affixChoices.Length];
+        affixChoices.CopyTo(currentRunAffixChoices, 0);
     }
 
 	public void SetQuantityToChoose(int val)
@@ -40,12 +56,12 @@ public class PickAffixMenu : MonoBehaviour
         AffixButton affixButton;
         spawnedButtons = new GameObject[choicesAvailable];
 
-        choicesAvailable = Mathf.Min(3, affixChoices.Length);
+        choicesAvailable = Mathf.Min(3, currentRunAffixChoices.Length);
         for (int i = 0; i < choicesAvailable; i++)
         {
             GameObject button = Instantiate(buttonGameObject);
             spawnedButtons[i] = button;
-            AffixObject affixChosen = affixChoices[Random.Range(0, affixChoices.Length)];
+            AffixObject affixChosen = currentRunAffixChoices[Random.Range(0, currentRunAffixChoices.Length)];
             affixButton = button.GetComponent<AffixButton>();
             affixButton.affixMenu = this;
             affixButton.SetMyAffix(affixChosen);
@@ -71,10 +87,10 @@ public class PickAffixMenu : MonoBehaviour
         {
             for (int i = 0; i < affixChoices.Length; i++)
             {
-                AffixObject affixChoice = affixChoices[i];
+                AffixObject affixChoice = currentRunAffixChoices[i];
                 if (affixChoice.affixName == affixData.affixName)
                 {
-                    affixChoices = Utility.RemoveAt<AffixObject>(affixChoices, i);
+                    currentRunAffixChoices = Utility.RemoveAt<AffixObject>(currentRunAffixChoices, i);
                     break;
                 }
             }
