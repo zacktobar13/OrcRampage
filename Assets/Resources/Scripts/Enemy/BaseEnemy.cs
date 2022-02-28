@@ -254,13 +254,6 @@ public class BaseEnemy : MonoBehaviour {
 
         health -= damageInfo.damageAmount;
 
-        // TODO: replace with "size" of hit
-        if (damageInfo.damageAmount < 4)
-            damageInfo.knockbackDuration /= 3;
-        if (damageInfo.damageAmount > 8)
-            damageInfo.knockbackDuration *= 1.5f;
-
-
         // Spawn floating damage numbers
         GameObject damageNumberToSpawn = damageInfo.criticalHit ? critDamageNumber : floatingDamageNumber;
         Vector3 damageNumberPosition = transform.position;

@@ -5,51 +5,45 @@ using PowerTools;
 using EZCameraShake;
 public class ExplosionBehavior : MonoBehaviour
 {
-    public Vector2 damageDirection = Vector2.zero;
     public int damageAmount;
-    public AudioSource audioSource;
-    public CircleCollider2D circleCollider;
-    public Light pointLight;
     public bool canHurtPlayer;
+    public float explosionRadius = 8f;
+    
+    AudioSource audioSource;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         audioSource.pitch = Random.Range(.5f, 2f);
+        SpriteAnim spriteAnim = GetComponent<SpriteAnim>();
+        float animationLength = spriteAnim.GetCurrentAnimation().length;
+        float animationSpeed = spriteAnim.GetSpeed();
+        Destroy(gameObject, animationLength / animationSpeed);
+
+        Explode();
     }
 
-    private void FixedUpdate()
+    public void Explode()
     {
-        if (!audioSource.isPlaying)
+        Collider2D[] collisions = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+        foreach (Collider2D collision in collisions)
         {
-            Destroy(gameObject);
+            DealDamage(collision);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void DealDamage(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (!canHurtPlayer && collision.tag == "Player")
             return;
 
         if (collision.isTrigger)
         {
-            if (damageDirection == Vector2.zero)
-            {
-                damageDirection = collision.transform.position - transform.position;
-            }
+            Vector2 damageDirection = collision.transform.position - transform.position;
 
             DamageInfo damageInfo = new DamageInfo(damageAmount, false, damageDirection);
             collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
             damageDirection = Vector2.zero;
         }
-    }
-
-    public void DisableSelf()
-    {
-        circleCollider.enabled = false;
-    }
-
-    public void DisableLight()
-    {
-        pointLight.enabled = false;
     }
 }

@@ -569,6 +569,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1148274904076453574, guid: e51b7c3e840bfb14183853b0eed9aac8,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752832195663036020, guid: e51b7c3e840bfb14183853b0eed9aac8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7175836991511995828, guid: e51b7c3e840bfb14183853b0eed9aac8,
         type: 3}
       propertyPath: m_RootOrder
@@ -629,7 +639,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4752832195663036020, guid: e51b7c3e840bfb14183853b0eed9aac8, type: 3}
+    - {fileID: 170501146668704384, guid: e51b7c3e840bfb14183853b0eed9aac8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e51b7c3e840bfb14183853b0eed9aac8, type: 3}
 --- !u!1001 &587435810
 PrefabInstance:
@@ -1540,7 +1552,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 900967496}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1348240916
+--- !u!114 &1348240910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

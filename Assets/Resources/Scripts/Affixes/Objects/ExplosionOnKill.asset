@@ -16,7 +16,7 @@ MonoBehaviour:
   affixName: Explosion
   affixDescription: Chance for enemies to explode when they are killed.
   isUniqueAffix: 1
-  baseDamage: 1
+  baseDamage: 5
   baseProcChance: 100
   affixPrefab: {fileID: 762910085599845253, guid: 4ccc8515964dfd1489e00ee73f949c14,
     type: 3}

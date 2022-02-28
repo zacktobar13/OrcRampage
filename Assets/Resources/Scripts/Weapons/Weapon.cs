@@ -146,7 +146,7 @@ public class Weapon : MonoBehaviour
         transform.localScale = Vector3.one;
         moveCoroutine = StartCoroutine(MoveOnDrop());
         transform.parent = null;
-        GetComponent<BoxCollider2D>().enabled = true;
+        //GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<RotateWeapon>().enabled = false;
         transform.rotation = Quaternion.identity;
         isOnPlayer = false;
@@ -162,7 +162,7 @@ public class Weapon : MonoBehaviour
         shadow.SetActive(false);
         anim.enabled = false;
         transform.parent = newOwner.transform;
-        GetComponent<BoxCollider2D>().enabled = false;
+        //GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateWeapon>().enabled = true;
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
 
