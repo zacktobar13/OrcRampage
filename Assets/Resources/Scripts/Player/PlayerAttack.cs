@@ -62,7 +62,7 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Forces an attack that ignores cooldown, doesn't play a sound, and doesn't trigger OnShoot event
-    public void ForceAttack(Vector2 offset)
+    public void ForceAttack(float offset)
     {
         Attack(offset, false, true);
     }
@@ -72,10 +72,10 @@ public class PlayerAttack : MonoBehaviour
         if (onPlayerShoot != null && CanWeaponAttack())
             onPlayerShoot(this);
 
-        Attack(Vector2.zero, true);
+        Attack(0, true);
     }
 
-    private void Attack(Vector2 offset, bool playSound, bool ignoreCooldown=false)
+    private void Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
         currentWeapon.attackDamage = CalculateDamage();
         Projectile projectileSpawned = currentWeapon.Attack(offset, playSound, ignoreCooldown);

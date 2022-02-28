@@ -14,7 +14,9 @@ public class PlayerExperience : MonoBehaviour
 	{
 		gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
 		playerLevel = 1;
-		xpToNextLevel = 20;
+		xpToNextLevel = CalculateXpToNextLevel(playerLevel);
+		gameplayUI.UpdatePlayerLevel(playerLevel);
+		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
 	public int CalculateXpToNextLevel(int level)

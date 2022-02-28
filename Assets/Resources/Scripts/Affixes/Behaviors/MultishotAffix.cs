@@ -3,7 +3,7 @@
 public class MultishotAffix : BaseAffix
 {
     public int extraShots;
-    public float bulletPadding;
+    float angleDeltaIncrement;
 
     PlayerAttack playerAttack;
 
@@ -12,7 +12,7 @@ public class MultishotAffix : BaseAffix
         playerAttack = GetComponent<PlayerAttack>();
         playerAttack.onPlayerShoot += OnShoot;
         extraShots = affixCount;
-        bulletPadding = 3f;
+        angleDeltaIncrement = 15f;
     }
 
     public override void AddAffixCount(int increment)
@@ -24,19 +24,16 @@ public class MultishotAffix : BaseAffix
     public void OnShoot(PlayerAttack playerShoot)
     {
         int directionFlip = 1;
-        float distance = 0;
+        float angleDelta = 0;
         for (int i = 0; i < extraShots; i++)
         {
             if (directionFlip == 1)
             {
-                distance += bulletPadding;
+                angleDelta += angleDeltaIncrement;
             }
             directionFlip *= -1;
 
-            float weaponRotation = playerShoot.GetWeaponRotation();
-            Vector2 weaponOffsetDirection = Utility.Rotate(Vector2.right, weaponRotation + 90);
-
-            playerShoot.ForceAttack(weaponOffsetDirection * distance * directionFlip);
+            playerShoot.ForceAttack(angleDelta * directionFlip);
         }
     }
 

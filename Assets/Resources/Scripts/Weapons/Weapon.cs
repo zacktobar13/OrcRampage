@@ -58,7 +58,7 @@ public class Weapon : MonoBehaviour
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
     }
 
-	public virtual Projectile Attack(Vector2 offset, bool playSound, bool ignoreCooldown=false)
+	public virtual Projectile Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
         if (!ignoreCooldown && !CanAttack())
             return null;
@@ -77,7 +77,7 @@ public class Weapon : MonoBehaviour
 
     public virtual Projectile Attack()
     {
-        return Attack(Vector2.zero, true);
+        return Attack(0, true);
     }
 
     public virtual void FireEmpty()
@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
         audioSource.PlayOneShot(emptySound);
     }
 
-    public virtual Projectile SpawnProjectile(Vector2 spawnOffset)
+    public virtual Projectile SpawnProjectile(float offset)
     {
         if (!projectile)
             return null;
@@ -93,13 +93,14 @@ public class Weapon : MonoBehaviour
         if (bulletCasing)
             Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
 
-        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position + (Vector3)spawnOffset, Quaternion.identity);
+        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
         bool isCritical = RollCrit();
         projectileInfo.projectileDamage = CalculateDamage(isCritical);
         projectileInfo.isCriticalHit = isCritical;
         //projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.shotByPlayer = isOnPlayer;
+        projectileInfo.rotationOffset = offset;
 
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
         return projectileInfo;

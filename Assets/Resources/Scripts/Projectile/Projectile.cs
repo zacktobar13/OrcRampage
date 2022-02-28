@@ -6,7 +6,7 @@ public class Projectile : MonoBehaviour
     Animator anim;
     public int projectileDamage;
     public bool shotByPlayer;
-    public float spread;
+    public float rotationOffset;
     [HideInInspector] public bool isCriticalHit;
     [HideInInspector] public float knockbackAmount;
     public GameObject hitEffect;
@@ -33,6 +33,8 @@ public class Projectile : MonoBehaviour
         {
             spriteGameObject.transform.localScale *= Random.Range(.8f, 1.1f);
         }
+
+        transform.right = Utility.Rotate((Vector2)transform.right, rotationOffset);
         movementDirection = transform.right;
         movementSpeed *= Random.Range(.98f, 1.01f);
         Destroy(gameObject, 5);
