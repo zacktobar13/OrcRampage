@@ -54,7 +54,7 @@ public class MeleeWeapon : Weapon
     DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)
     {
         Vector2 damageDirection = (targetPosition - weaponPosition).normalized;
-        return new DamageInfo(attackPower, RollCrit(), damageDirection);
+        return new DamageInfo(attackDamage, RollCrit(), damageDirection);
     }
 
     private void OnDrawGizmos()

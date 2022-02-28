@@ -569,6 +569,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 41296551, guid: e51b7c3e840bfb14183853b0eed9aac8, type: 3}
+      propertyPath: baseDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1148274904076453574, guid: e51b7c3e840bfb14183853b0eed9aac8,
         type: 3}
       propertyPath: m_TagString

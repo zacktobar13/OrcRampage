@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     public GameObject shadow;
 
     public float movementSpeed;
-    public bool isPiercing;
+    public int numberOfPierces;
     Vector2 movementDirection;
 
     void Start()
@@ -76,7 +76,9 @@ public class Projectile : MonoBehaviour
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
         
         bool hitMapClutter = collision.gameObject.layer == LayerMask.NameToLayer("Map Clutter");
-        if (!isPiercing && !hitMapClutter) 
+        if (numberOfPierces <= 0 && !hitMapClutter) 
             Destroy(gameObject);
+
+        numberOfPierces--;
     }
 }

@@ -18,6 +18,10 @@ public class BaseEnemy : MonoBehaviour {
     public float healthGlobeDropChance;
     public float enemyDetectionDistanceCurrent;
 
+    [Header("Scaling")]
+    public int healthScalingStepSize = 10;
+    public int attackDamageScalingStepSize = 3;
+
     [Header("Sound Effects")]
     public AudioClip hitSound;
     public AudioClip hurtSound;
@@ -89,7 +93,9 @@ public class BaseEnemy : MonoBehaviour {
         worldCollider = transform.Find("World Collider").gameObject;
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
+        maxHealth = CalculateMaxHealth();
         health = maxHealth;
+        attackDamage = CalculateAttackDamage();
         //Debug.Assert(attackRange <= enemyDetectionDistanceCurrent, "Attack range must be less than or equal to enemyDetectionDistance!");
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
@@ -105,7 +111,11 @@ public class BaseEnemy : MonoBehaviour {
         damageSpawnPoint = transform.Find("Damage Spawn Point");
         currentWeapon = GetComponentInChildren<Weapon>();
         if (currentWeapon)
+        {
+            currentWeapon.attackDamage = attackDamage;
             currentWeapon.PickupWeapon(gameObject);
+        }
+
     }
 
     float timeUntilAttackAfterStop;
@@ -154,6 +164,18 @@ public class BaseEnemy : MonoBehaviour {
                 ChaseTarget();
             }
         }
+    }
+
+    int CalculateMaxHealth()
+    {
+        int numberOfScalingSteps = (int)Time.time / 30;
+        return maxHealth + healthScalingStepSize * numberOfScalingSteps;
+    }
+
+    int CalculateAttackDamage()
+    {
+        int numberOfScalingSteps = (int)Time.time / 30;
+        return attackDamage + attackDamageScalingStepSize * numberOfScalingSteps;
     }
 
     public void MoveTowards(Vector2 targetPosition, float speed)

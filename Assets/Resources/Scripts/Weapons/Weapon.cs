@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     [Header("Weapon Attributes")]
     public WeaponIdentifier weaponID;
     public bool isAutomatic;
-    public int attackPower;
+    public int attackDamage;
     public int critChance;
     public int critPower;
     public float attacksPerSecond;
@@ -181,11 +181,11 @@ public class Weapon : MonoBehaviour
     {
         if (isCrit)
         {
-            return (int)Random.Range((attackPower * critPower) * 1f, (attackPower * critPower) * 1.25f);
+            return (int)(attackDamage * critPower);
         }
         else
         {
-            return (int)Random.Range(attackPower * .8f, attackPower * 1.25f);
+            return attackDamage;
         }
     }
 

@@ -901,7 +901,7 @@ MonoBehaviour:
   attackRange: 5.5
   movementSpeed: 8
   attackDamage: 10
-  stopToAttackTime: 0.5
+  stopToAttackTime: 0
   maxHealth: 10
   droppables:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
@@ -909,6 +909,8 @@ MonoBehaviour:
     type: 3}
   healthGlobeDropChance: 0.05
   enemyDetectionDistanceCurrent: 40
+  healthScalingStepSize: 10
+  attackDamageScalingStepSize: 3
   hitSound: {fileID: 8300000, guid: e8f48fb98e5cf3a48a25c92dd194486e, type: 3}
   hurtSound: {fileID: 8300000, guid: 06f18c84e4255ce46a20d7edbf373389, type: 3}
   deadSound: {fileID: 8300000, guid: 1238ec830efd44e4a8014fcb986b887d, type: 3}
@@ -924,6 +926,6 @@ MonoBehaviour:
   aliveShadow: {fileID: 7519290321174004400}
   deadShadow: {fileID: 6240988419750726965}
   attackCooldown: 2.5
-  telegraphDuration: 0.5
+  telegraphDuration: 0
   wanderMovementSpeed: 1.5
   damageColliderDistance: 3.5

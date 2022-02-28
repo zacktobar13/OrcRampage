@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public int baseDamage;
+
     public delegate void OnShoot(PlayerAttack playerAttack);
     public event OnShoot onPlayerShoot;
 
@@ -54,6 +56,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    int CalculateDamage()
+    {
+        return (int)Random.Range(baseDamage * .8f, baseDamage * 1.2f);
+    }
+
     // Forces an attack that ignores cooldown, doesn't play a sound, and doesn't trigger OnShoot event
     public void ForceAttack(Vector2 offset)
     {
@@ -70,30 +77,11 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack(Vector2 offset, bool playSound, bool ignoreCooldown=false)
     {
+        currentWeapon.attackDamage = CalculateDamage();
         Projectile projectileSpawned = currentWeapon.Attack(offset, playSound, ignoreCooldown);
 
         if (projectileSpawned && onProjectileSpawned != null)
             onProjectileSpawned(this, projectileSpawned);
-    }
-
-    public float GetWeaponRotation()
-    {
-        return currentWeapon.transform.rotation.eulerAngles.z;
-    }
-
-    public bool CanWeaponAttack()
-    {
-        return currentWeapon.CanAttack();
-    }
-
-    public void DisableWeapon()
-    {
-        currentWeapon.gameObject.SetActive(false);
-    }
-
-    public void EnableWeapon()
-    {
-        currentWeapon.gameObject.SetActive(true);
     }
 
     public void ChangeToWeapon(int index)
@@ -213,5 +201,25 @@ public class PlayerAttack : MonoBehaviour
     public Weapon GetCurrentWeapon()
     {
         return currentWeapon;
+    }
+
+    public float GetWeaponRotation()
+    {
+        return currentWeapon.transform.rotation.eulerAngles.z;
+    }
+
+    public bool CanWeaponAttack()
+    {
+        return currentWeapon.CanAttack();
+    }
+
+    public void DisableWeapon()
+    {
+        currentWeapon.gameObject.SetActive(false);
+    }
+
+    public void EnableWeapon()
+    {
+        currentWeapon.gameObject.SetActive(true);
     }
 }

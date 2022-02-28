@@ -10,7 +10,7 @@
 
     public void OnProjectileSpawned(PlayerAttack playerShoot, Projectile projectile)
     {
-        projectile.isPiercing = true;
+        projectile.numberOfPierces = affixCount;
     }
 
     void OnDestroy()
