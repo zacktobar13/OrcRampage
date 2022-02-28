@@ -38,11 +38,29 @@ public class GameplayUI : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+        SceneManager.sceneLoaded += FadeFromBlack;
+        SceneManager.sceneLoaded += LoadNewLevel;
+    }
+
+	private void LoadNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
+    {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         canvas = GetComponent<Canvas>();
-        canvas.worldCamera = Camera.main;
+        SetRenderCamera(Camera.main);
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
         SceneManager.sceneLoaded += FadeFromBlack;
+        SceneManager.sceneLoaded += LoadNewLevel;
+    }
+
+    public void SetRenderCamera(Camera camera)
+    {
+        canvas.worldCamera = camera;
     }
 
     // AFFIX PANEL //
@@ -127,7 +145,6 @@ public class GameplayUI : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         HidePlayerInfoPanel();
-        //timeManager.PauseGame(true);
         ShowDeathPanel();
     }
     // ------------------------------------------------------

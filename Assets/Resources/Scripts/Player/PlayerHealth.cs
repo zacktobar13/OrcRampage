@@ -62,6 +62,10 @@ public class PlayerHealth : MonoBehaviour
             return;
 
         health -= damageInfo.damageAmount;
+        if (health < 0)
+        {
+            health = 0;
+        }
 
         if (onDamageTaken != null)
             onDamageTaken(this);

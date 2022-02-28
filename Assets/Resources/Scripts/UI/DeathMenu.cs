@@ -11,7 +11,7 @@ public class DeathMenu : MonoBehaviour
     {
         StartCoroutine(ReloadLevel());
     }
-
+    
     IEnumerator ReloadLevel()
     {
         gameplayUI.FadeToBlack();
@@ -21,6 +21,7 @@ public class DeathMenu : MonoBehaviour
         PlayerManagement.RestorePlayer();
         gameplayUI.InitializePlayerInfoPanel();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name.ToString());
+        gameplayUI.SetRenderCamera(Camera.main);
     }
 
     public void QuitToMainMenu()
