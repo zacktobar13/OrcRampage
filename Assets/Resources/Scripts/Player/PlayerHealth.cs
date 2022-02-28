@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     [HideInInspector] public SpriteRenderer spriteRenderer;
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
+    PlayerAttack playerAttack;
     GameplayUI gameplayUI;
 
     public bool isCurrentlyDead = false;
@@ -40,11 +41,12 @@ public class PlayerHealth : MonoBehaviour
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
+        playerAttack = GetComponent<PlayerAttack>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         gameplayUI.UpdatePlayerHealth(health, maxHealth);
-
+        
         if (onRespawn != null)
             onRespawn(this);
     }
@@ -108,7 +110,8 @@ public class PlayerHealth : MonoBehaviour
         if (onDeath != null)
             onDeath(this);
 
-        playerMovement.movementEnabled = false;
+        PlayerManagement.TogglePlayerControl(false);
+        gameplayUI.StartCoroutine("ShowDeathPanelAfterSeconds", 1f);
     }
 
     public void Respawn()

@@ -722,7 +722,7 @@ MonoBehaviour:
   runAnimation: {fileID: 7400000, guid: fea435ed1b727b34595ec5100cde86d9, type: 2}
   dodgeRollAnimation: {fileID: 7400000, guid: 46c82cd4d8adba744a10edba8a94a405, type: 2}
   hurtAnimation: {fileID: 7400000, guid: 4191236f2f5adf943a4a5d18a5929ba3, type: 2}
-  deathAnimation: {fileID: 7400000, guid: ab412bac8c435264786d66cb426ebae0, type: 2}
+  deathAnimation: {fileID: 7400000, guid: c85887e4799bf694abc770fe14c8d2df, type: 2}
   aimIdleAnimation: {fileID: 7400000, guid: aedefb96e973a2840bf9ba16bcfe0c4d, type: 2}
   aimRunAnimation: {fileID: 7400000, guid: 0ea58d8eb17470640900535292ede1c3, type: 2}
   fallAnimation: {fileID: 7400000, guid: bad2bb0cce9dc0e49bd2a4d1466eb62c, type: 2}

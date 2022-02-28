@@ -14,10 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Resources/Scenes/VIllage.unity
     guid: 470aa7baadd3f6d4ca43e1b00452a2e9
-  - enabled: 0
-    path: Assets/Resources/Scenes/1_Forest/Easy Levels/Forest Easy Level 2.unity
-    guid: af722e96ba080394f85f0ae51f55de2b
-  - enabled: 1
-    path: Assets/Resources/Scenes/1_Forest/Boss Levels/World 1 Boss Level 1.unity
-    guid: c03fc9d3b8eee1d41a444ecb4d16e11a
   m_configObjects: {}

@@ -19,6 +19,7 @@ public class GameplayUI : MonoBehaviour
     public Animator currencyAnim;
     public GameObject affixPanel;
     public GameObject playerInfoPanel;
+    public GameObject deathPanel;
 
     public GameObject[] weaponInfoGroup;
 
@@ -44,6 +45,48 @@ public class GameplayUI : MonoBehaviour
         SceneManager.sceneLoaded += FadeFromBlack;
     }
 
+    // AFFIX PANEL //
+    public void ShowAffixPanel(int numberToChoose)
+    {
+        affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);
+        StartCoroutine(ShowAffixPanelAfterSeconds(.2f));
+    }
+    public void HideAffixPanel()
+    {
+        timeManager.PauseGame(false);
+        affixPanel.SetActive(false);
+    }
+
+    IEnumerator ShowAffixPanelAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        HidePlayerInfoPanel();
+        timeManager.PauseGame(true);
+        affixPanel.SetActive(true);
+    }
+    // -------------------------------------------------------
+
+
+    // PLAYER INFO PANEL //
+    public void ShowPlayerInfoPanel()
+    {
+        playerInfoPanel.SetActive(true);
+    }
+
+    public void HidePlayerInfoPanel()
+    {
+        playerInfoPanel.SetActive(false);
+    }
+
+    public void InitializePlayerInfoPanel()
+    {
+        int health = PlayerManagement.player.GetComponent<PlayerHealth>().health;
+        int experience = PlayerManagement.player.GetComponent<PlayerExperience>().xpToNextLevel;
+        UpdatePlayerHealth(health, health);
+        UpdatePlayerLevel(1);
+        UpdatePlayerExperienceBar(0, experience);
+    }
+
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)
     {
         healthText.text = currentHealth + " / " + maxHealth;
@@ -62,41 +105,32 @@ public class GameplayUI : MonoBehaviour
         playerExperienceBar.fillAmount = (float) currentXP / xpToNextLevel;
     }
 
-    public void ShowAffixPanel(int numberToChoose)
-    {
-        affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);
-        StartCoroutine(ShowAffixPanelAfterSeconds(.2f));
-    }
-
-    IEnumerator ShowAffixPanelAfterSeconds(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        HidePlayerInfoPanel();
-        timeManager.PauseGame(true);
-        affixPanel.SetActive(true);
-    }
-
-    public void HideAffixPanel()
-    {
-        timeManager.PauseGame(false);
-        affixPanel.SetActive(false);
-    }
-
-    public void ShowPlayerInfoPanel()
-    {
-        playerInfoPanel.SetActive(true);
-    }
-
-    public void HidePlayerInfoPanel()
-    {
-        playerInfoPanel.SetActive(false);
-    }
-
     public void UpdateCurrencyInfo(int newCurrencyAmount)
     {
         currencyAnim.SetTrigger("AddCurrency");
         currencyInfo.text = "$ " + newCurrencyAmount.ToString();
     }
+    // ----------------------------------------------------
+
+    //  DEATH PANEL //
+    public void ShowDeathPanel()
+    {
+        deathPanel.SetActive(true);
+    }
+
+    public void HideDeathPanel()
+    {
+        deathPanel.SetActive(false);
+    }
+
+    IEnumerator ShowDeathPanelAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        HidePlayerInfoPanel();
+        //timeManager.PauseGame(true);
+        ShowDeathPanel();
+    }
+    // ------------------------------------------------------
 
     private void PlayCollectExperienceSound()
     {
@@ -140,15 +174,6 @@ public class GameplayUI : MonoBehaviour
                     onScreenBlack();
                 }
             }
-        }
-    }
-
-    // Toggles weapon info group UI
-    public void ToggleWeaponInfoGroup(bool toggle)
-    {
-        foreach (GameObject member in weaponInfoGroup)
-        {
-            member.SetActive(toggle);
         }
     }
 

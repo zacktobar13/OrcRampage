@@ -12,6 +12,7 @@ public class PlayerExperience : MonoBehaviour
 
 	private void Start()
 	{
+		gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
 		playerLevel = 1;
 		xpToNextLevel = 20;
 	}

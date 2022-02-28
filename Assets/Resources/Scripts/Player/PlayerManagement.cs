@@ -29,4 +29,21 @@ public class PlayerManagement : MonoBehaviour
             }
         }
     }
+
+    public static void RestorePlayer()
+    {
+        player.GetComponent<PlayerHealth>().maxHealth = 100;
+        player.GetComponent<PlayerHealth>().health = 100;
+        player.GetComponent<PlayerHealth>().isCurrentlyDead = false;
+        player.GetComponent<PlayerExperience>().currentXp = 0;
+        player.GetComponent<PlayerExperience>().xpToNextLevel = 100;
+
+        foreach (BaseAffix affix in player.GetComponentsInChildren<BaseAffix>())
+        {
+            Destroy(affix);
+        }
+        // Stat reset goes here
+
+        TogglePlayerControl(true);
+    }
 }
