@@ -137,17 +137,5 @@ public class PlayerHealth : MonoBehaviour
     {
         isCurrentlyDead = false;
         health = baseMaxHealth;
-
-        if (onRespawn != null)
-            onRespawn(this);
-
-        bow.SetActive(true);
-        playerMovement.movementEnabled = true;
-
-        BaseAffix[] affixes = gameObject.GetComponents<BaseAffix>();
-        foreach (BaseAffix affix in affixes)
-        {
-            Destroy(affix);
-        }
     }
 }
