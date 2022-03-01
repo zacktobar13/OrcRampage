@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4379012329778144014, guid: b132325cf52840a4cb27e323cc188f6b,
         type: 3}
       propertyPath: damageAmount
-      value: 1
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4379012329778144014, guid: b132325cf52840a4cb27e323cc188f6b,
         type: 3}
@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 4379012329778144014, guid: b132325cf52840a4cb27e323cc188f6b,
         type: 3}
       propertyPath: explosionRadius
-      value: 7
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4641360524582414267, guid: b132325cf52840a4cb27e323cc188f6b,
         type: 3}
