@@ -9,6 +9,7 @@ public class AffixButton : MonoBehaviour
 	public TextMeshProUGUI affixTitle;
 	public TextMeshProUGUI affixDescription;
 	public Image affixIcon;
+	public Image affixIconShadow;
 
 	[HideInInspector]
 	public GameplayUI gameplayUI;
@@ -30,5 +31,6 @@ public class AffixButton : MonoBehaviour
 		affixTitle.text = affix.affixName;
 		affixDescription.text = affix.affixDescription;
 		affixIcon.sprite = affix.icon;
+		affixIconShadow.sprite = affix.icon;
 	}
 }

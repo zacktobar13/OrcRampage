@@ -4273,6 +4273,8 @@ MonoBehaviour:
   affixPanel: {fileID: 7035663868609800736}
   playerInfoPanel: {fileID: 2967133195277427329}
   deathPanel: {fileID: 4526528745921716004}
+  playerAffixDisplay: {fileID: 0}
+  affixDisplayObject: {fileID: 0}
   weaponInfoGroup: []
   blackFade: {fileID: 7395227555049048678}
 --- !u!82 &1772304936382459305

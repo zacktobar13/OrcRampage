@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: MaxHealth
   m_EditorClassIdentifier: 
-  icon: {fileID: 1308289501738166742, guid: 20e22b9c220d8d442b5e45d9742be45d, type: 3}
-  affixName: Max Health
+  icon: {fileID: 8929449388006921600, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: fat juicy steak
   affixDescription: Increases max health by 20%
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 3a07397a2a7764f4a8d58750169cc095,

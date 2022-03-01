@@ -21,7 +21,16 @@ public class PlayerExperience : MonoBehaviour
 		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
-	public int CalculateXpToNextLevel(int level)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+			Debug.Log("Added 1000 XP");
+			AddXp(1000);
+        }
+    }
+
+    public int CalculateXpToNextLevel(int level)
 	{
 		return 100 * level;
 	}

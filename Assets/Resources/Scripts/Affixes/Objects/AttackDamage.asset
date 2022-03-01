@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: AttackDamage
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: ee1f7539753bef0448263513877ac9f7, type: 3}
-  affixName: All damage increase
+  icon: {fileID: 4241130824804038561, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Blade of Might
   affixDescription: Increases all damage by 20%
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 2e383dec1ab1dee41a83798bb2f600e4,

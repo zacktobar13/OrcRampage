@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: ExperienceGained
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 3cb77161dc8eaed4182327a4e0d9e062, type: 3}
-  affixName: Experience Gained
+  icon: {fileID: -2985551742865625149, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Tome of knowledge
   affixDescription: Increases all experience gained by 20%
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 0178368c8b1442f4fb541c9ff7b81d1e,
