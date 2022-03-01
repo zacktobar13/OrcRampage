@@ -35,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
 
         int randomRoll = (int)Random.Range(0, enemiesToSpawn.Length);
         Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation);
-        Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation);
         enemiesAlive++;
     }
 

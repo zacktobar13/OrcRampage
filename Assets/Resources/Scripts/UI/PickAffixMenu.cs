@@ -85,9 +85,11 @@ public class PickAffixMenu : MonoBehaviour
         }
         else
         {
-            BaseAffix addedAffix = player.AddComponent(affix.GetType()) as BaseAffix;
-            addedAffix.IntializeFromScriptableObject(affixData);
+            alreadyOnPlayer = player.AddComponent(affix.GetType()) as BaseAffix;
+            alreadyOnPlayer.IntializeFromScriptableObject(affixData);
         }
+
+        gameplayUI.UpdatePlayerAffixDisplay(alreadyOnPlayer);
 
         // Remove affix from options if it's unique
         if (affixData.isUniqueAffix)

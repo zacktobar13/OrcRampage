@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     float damageScalar = 1f;
     float attackSpeedScalar = 1f;
     float movementSpeedScalar = 1f;
+    float experienceGainedScalar = 1f;
 
     public int CalculateDamage(int baseDamage)
     {
@@ -23,6 +24,11 @@ public class PlayerStats : MonoBehaviour
         return baseAttacksPerSecond * attackSpeedScalar;
     }
 
+    public int CalculateExperienceGained(int baseExperienceGained)
+    {
+        return (int)(baseExperienceGained * experienceGainedScalar);
+    }
+
     public void IncreaseDamageScalar(float amount)
     {
         damageScalar += amount;
@@ -36,5 +42,10 @@ public class PlayerStats : MonoBehaviour
     public void IncreaseMovementSpeedScalar(float amount)
     {
         movementSpeedScalar += amount;
+    }
+
+    public void IncreaseExperienceGainedScalar(float amount)
+    {
+        experienceGainedScalar += amount;
     }
 }

@@ -902,7 +902,7 @@ MonoBehaviour:
   movementSpeed: 8
   attackDamage: 10
   stopToAttackTime: 0
-  maxHealth: 10
+  maxHealth: 5
   droppables:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
   deadBody: {fileID: 1421758693350179690, guid: a9f1adda83ef5734e957d51e00b2fbe4,

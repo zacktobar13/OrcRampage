@@ -482,6 +482,12 @@ Transform:
   m_Father: {fileID: 261669095}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 39.598003, y: -23.488, z: 5.064}
+--- !u!1 &489242612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 489242612, guid: 2bd6441f7bc17554ba871237554a6b1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 900967496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &494936112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8446820333640441776, guid: c7fa5e187bdea4f4195fbe1ecfb60ddc,
@@ -941,29 +947,28 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+    - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
-      propertyPath: affixChoices.Array.size
-      value: 6
+      propertyPath: affixDisplay
+      value: 
+      objectReference: {fileID: 4252158325778326433, guid: 2e94bfaae4e7c0f47a5769277f3f84c9,
+        type: 3}
+    - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixDisplayObject
+      value: 
+      objectReference: {fileID: 4252158325778326433, guid: 2e94bfaae4e7c0f47a5769277f3f84c9,
+        type: 3}
+    - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: playerAffixDisplay
+      value: 
+      objectReference: {fileID: 489242612}
+    - target: {fileID: 2205745785299277065, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
-        type: 3}
-      propertyPath: affixChoices.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6b17441c2cafd1f4980c773e30b702c2,
-        type: 2}
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
-        type: 3}
-      propertyPath: affixChoices.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: 58d5370da0b17cb4fb6b773250c0d872,
-        type: 2}
-    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
-        type: 3}
-      propertyPath: affixChoices.Array.data[5]
-      value: 
-      objectReference: {fileID: 11400000, guid: 5b9f61c6487662d4f9625f8b5b921489,
-        type: 2}
     - target: {fileID: 8291927606920865230, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
       propertyPath: m_Name
@@ -1596,24 +1601,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fa5e187bdea4f4195fbe1ecfb60ddc, type: 3}
---- !u!1 &1348240909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8291927606920865230, guid: 2bd6441f7bc17554ba871237554a6b1c,
-    type: 3}
-  m_PrefabInstance: {fileID: 900967496}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1348240910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348240909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0c396b47de0bb84fb1507a3b161e0cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1423953773
 PrefabInstance:
   m_ObjectHideFlags: 0

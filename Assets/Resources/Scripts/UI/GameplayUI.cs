@@ -20,6 +20,8 @@ public class GameplayUI : MonoBehaviour
     public GameObject affixPanel;
     public GameObject playerInfoPanel;
     public GameObject deathPanel;
+    public GameObject playerAffixDisplay;
+    public GameObject affixDisplayObject;
 
     public GameObject[] weaponInfoGroup;
 
@@ -61,6 +63,14 @@ public class GameplayUI : MonoBehaviour
     public void SetRenderCamera(Camera camera)
     {
         canvas.worldCamera = camera;
+    }
+
+    public void UpdatePlayerAffixDisplay(BaseAffix newAffix)
+    {
+        Sprite affixIcon = newAffix.affixIcon;
+        GameObject affixIconDisplay = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
+        Image spriteRenderer = affixIconDisplay.GetComponent<Image>();
+        spriteRenderer.sprite = affixIcon;
     }
 
     // AFFIX PANEL //

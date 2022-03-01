@@ -9,10 +9,12 @@ public class PlayerExperience : MonoBehaviour
 	public int currentXp;
 	public int xpToNextLevel;
 	public GameplayUI gameplayUI;
+	PlayerStats playerStats;
 
 	private void Start()
 	{
 		gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
+		playerStats = GetComponent<PlayerStats>();
 		playerLevel = 1;
 		xpToNextLevel = CalculateXpToNextLevel(playerLevel);
 		gameplayUI.UpdatePlayerLevel(playerLevel);
@@ -26,7 +28,7 @@ public class PlayerExperience : MonoBehaviour
 
 	public void AddXp(int amount)
 	{
-		currentXp += amount;
+		currentXp += playerStats.CalculateExperienceGained(amount);
 
 		// TODO: This will be the number of times the affix menu needs to pop-up
 		int numberOfLevelsGained = 0;
