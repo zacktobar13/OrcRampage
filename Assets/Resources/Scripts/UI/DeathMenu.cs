@@ -6,6 +6,7 @@ using System.Collections;
 public class DeathMenu : MonoBehaviour
 {
     public GameplayUI gameplayUI;
+    TimeManager timeManager;
 
     public void ClickRetry()
     {
@@ -20,8 +21,8 @@ public class DeathMenu : MonoBehaviour
         gameplayUI.ShowPlayerInfoPanel();
         PlayerManagement.RestorePlayer();
         gameplayUI.InitializePlayerInfoPanel();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name.ToString());
         gameplayUI.SetRenderCamera(Camera.main);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name.ToString());
     }
 
     public void QuitToMainMenu()

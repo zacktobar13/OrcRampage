@@ -38,10 +38,7 @@ public class BaseEnemy : MonoBehaviour {
     public AnimationClip attackAnimation;
     public AnimationClip deathAnimation;
 
-    private GameObject copperCoin;
-    private GameObject xpGlobe;
-    private GameObject floatingDamageNumber;
-    private GameObject critDamageNumber;
+    private TimeManager timeManager;
     protected GameObject damageCollider;
     protected Transform damageSpawnPoint;
 
@@ -84,7 +81,6 @@ public class BaseEnemy : MonoBehaviour {
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
-        attackRange = Random.Range ( attackRange * 0.95f, attackRange * 1.05f );
         movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
         damageTrigger = GetComponent<BoxCollider2D>();
         spriteGameObject = transform.Find("Sprite").gameObject;
@@ -93,22 +89,22 @@ public class BaseEnemy : MonoBehaviour {
         worldCollider = transform.Find("World Collider").gameObject;
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
-        maxHealth = CalculateMaxHealth();
-        health = maxHealth;
-        attackDamage = CalculateAttackDamage();
-        //Debug.Assert(attackRange <= enemyDetectionDistanceCurrent, "Attack range must be less than or equal to enemyDetectionDistance!");
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
-        enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
-        copperCoin = StaticResources.copperCoin;
-        xpGlobe = StaticResources.xpGlobe;
-        floatingDamageNumber = StaticResources.floatingDamageNumber;
-        critDamageNumber = StaticResources.critDamageNumber;
-        damageCollider = StaticResources.damageCollider;
         damageSpawnPoint = transform.Find("Damage Spawn Point");
+
+        GameObject gameManagement = GameObject.Find("Game Management");
+        enemySpawner = gameManagement.GetComponent<EnemySpawner>();
+        timeManager = gameManagement.GetComponent<TimeManager>();
+        Debug.Assert(timeManager != null);
+
+        maxHealth = CalculateMaxHealth();
+        attackDamage = CalculateAttackDamage();
+        health = maxHealth;
+
         currentWeapon = GetComponentInChildren<Weapon>();
         if (currentWeapon)
         {
@@ -168,13 +164,13 @@ public class BaseEnemy : MonoBehaviour {
 
     int CalculateMaxHealth()
     {
-        int numberOfScalingSteps = (int)Time.time / 30;
+        int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
         return maxHealth + healthScalingStepSize * numberOfScalingSteps;
     }
 
     int CalculateAttackDamage()
     {
-        int numberOfScalingSteps = (int)Time.time / 30;
+        int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
         return attackDamage + attackDamageScalingStepSize * numberOfScalingSteps;
     }
 
@@ -234,7 +230,7 @@ public class BaseEnemy : MonoBehaviour {
         // Drop currency
        // GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
         //Drop XP
-        GameObject xpDropped = Instantiate(xpGlobe, transform.position, Quaternion.identity);
+        GameObject xpDropped = Instantiate(StaticResources.xpGlobe, transform.position, Quaternion.identity);
         
         if (healthGlobeDropChance >= Random.Range(0, 100))
             DropItem();
@@ -277,7 +273,7 @@ public class BaseEnemy : MonoBehaviour {
         health -= damageInfo.damageAmount;
 
         // Spawn floating damage numbers
-        GameObject damageNumberToSpawn = damageInfo.criticalHit ? critDamageNumber : floatingDamageNumber;
+        GameObject damageNumberToSpawn = damageInfo.criticalHit ? StaticResources.critDamageNumber : StaticResources.floatingDamageNumber;
         Vector3 damageNumberPosition = transform.position;
         damageNumberPosition.y += 7; // TODO: will this work for enemies of all sizes? Maybe map this number to "size" of enemy that doesn't exist yet but will need to for fire
         GameObject damageNumber = Instantiate( damageNumberToSpawn, damageNumberPosition, Quaternion.identity );

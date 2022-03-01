@@ -16,7 +16,6 @@ public class SoundManager : MonoBehaviour
     {
         if (!args.alwaysPlay && Time.time < minimumTimeBetweenSounds + lastSoundTime)
         {
-            Debug.Log("Skipped playing sound from: " + audioSource.gameObject);
             return;
         }
 

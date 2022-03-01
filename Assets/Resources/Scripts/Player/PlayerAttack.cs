@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public int baseDamage;
+    PlayerStats playerStats;
 
     public delegate void OnShoot(PlayerAttack playerAttack);
     public event OnShoot onPlayerShoot;
@@ -24,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
     {
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+        
+        playerStats = GetComponent<PlayerStats>();
 
         currentWeapon = GetComponentInChildren<Weapon>();
         weapons[0] = currentWeapon;
@@ -56,11 +59,6 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    int CalculateDamage()
-    {
-        return (int)Random.Range(baseDamage * .8f, baseDamage * 1.2f);
-    }
-
     // Forces an attack that ignores cooldown, doesn't play a sound, and doesn't trigger OnShoot event
     public void ForceAttack(float offset)
     {
@@ -77,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
-        currentWeapon.attackDamage = CalculateDamage();
+        currentWeapon.attackDamage = playerStats.CalculateDamage(baseDamage);
         Projectile projectileSpawned = currentWeapon.Attack(offset, playSound, ignoreCooldown);
 
         if (projectileSpawned && onProjectileSpawned != null)

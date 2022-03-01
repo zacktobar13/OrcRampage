@@ -12,9 +12,11 @@ public class BaseAffix : MonoBehaviour
     public string affixName;
     public string affixDescription;
     public bool isUnique;
+    public float scalarIncreasePerAffix;
     public int baseDamage;
     public float baseProcChance;
     public int affixCount = 1;
+    protected PlayerStats playerStats;
 
     public virtual void AddAffixCount(int increment)
     {
@@ -29,5 +31,7 @@ public class BaseAffix : MonoBehaviour
         isUnique = data.isUniqueAffix;
         baseDamage = data.baseDamage;
         baseProcChance = data.baseProcChance;
+        scalarIncreasePerAffix = data.scalarIncreasePerAffix;
+        playerStats = GetComponent<PlayerStats>();
     }
 }

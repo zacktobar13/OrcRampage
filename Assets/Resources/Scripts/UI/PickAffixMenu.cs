@@ -57,7 +57,7 @@ public class PickAffixMenu : MonoBehaviour
         spawnedButtons = new GameObject[choicesAvailable];
 
         choicesAvailable = Mathf.Min(3, currentRunAffixChoices.Length);
-        int[] affixChoices = new int[choicesAvailable];
+        int[] affixChoices = new int[currentRunAffixChoices.Length];
         for (int i = 0; i < affixChoices.Length; i++)
         {
             affixChoices[i] = i;

@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6694057511024031758}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5768626958900145213
 PrefabInstance:
@@ -269,10 +269,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 4
   isAutomatic: 1
-  attackPower: 15
+  attackDamage: 0
   critChance: 10
   critPower: 2
-  attacksPerSecond: 1
+  baseAttacksPerSecond: 0.5
   projectileSpreadAmount: 0
   maxAmmo: 1
   currentAmmo: 1

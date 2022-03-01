@@ -300,7 +300,7 @@ PrefabInstance:
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
@@ -440,10 +440,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponID: 2
   isAutomatic: 1
-  attackPower: 7
+  attackDamage: 0
   critChance: 10
   critPower: 2
-  attacksPerSecond: 4
+  baseAttacksPerSecond: 1.5
   projectileSpreadAmount: 1
   maxAmmo: 50
   currentAmmo: 50

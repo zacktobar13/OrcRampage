@@ -10,7 +10,7 @@ public class Weapon : MonoBehaviour
     public int attackDamage;
     public int critChance;
     public int critPower;
-    public float attacksPerSecond;
+    public float baseAttacksPerSecond;
 
     [Header("Ranged Weapon")]
   //  public float projectileSpeed;
@@ -18,7 +18,6 @@ public class Weapon : MonoBehaviour
     public int maxAmmo;
     public int currentAmmo;
     public GameObject projectile;
-    public GameObject bulletCasing;
 
     [Header("Visual Effects")]
     public Sprite notFiringSprite;
@@ -38,7 +37,9 @@ public class Weapon : MonoBehaviour
 
     protected Transform projectileSpawn;
     protected float lastAttackTime;
+    
     protected bool isOnPlayer;
+    protected PlayerStats playerStats;
 
     private Vector2 randomDropDir;
     private float droppedWeaponMovementSpeed = .01f;
@@ -56,6 +57,8 @@ public class Weapon : MonoBehaviour
         sprite.sprite = notFiringSprite;
         projectileSpawn = transform.Find("Projectile Spawn");
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
+        if (isOnPlayer)
+            playerStats = GetComponentInParent<PlayerStats>();
     }
 
 	public virtual Projectile Attack(float offset, bool playSound, bool ignoreCooldown=false)
@@ -89,9 +92,6 @@ public class Weapon : MonoBehaviour
     {
         if (!projectile)
             return null;
-
-        if (bulletCasing)
-            Instantiate(bulletCasing, new Vector2(transform.position.x, transform.position.y - 3.5f), Quaternion.Euler(0f, 0f, 0f));
 
         GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
@@ -206,6 +206,10 @@ public class Weapon : MonoBehaviour
 
     public virtual bool CanAttack()
     {
+        float attacksPerSecond = baseAttacksPerSecond;
+        if (isOnPlayer)
+            attacksPerSecond = playerStats.CalculateAttackSpeed(baseAttacksPerSecond);
+
         return isActiveAndEnabled && Time.time > lastAttackTime + (1 / attacksPerSecond);
     }
 

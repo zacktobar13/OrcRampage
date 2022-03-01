@@ -7,7 +7,12 @@ public class AffixObject : ScriptableObject
     public string affixName;
     public string affixDescription;
     public bool isUniqueAffix;
+    public GameObject affixPrefab;
+
+    [Header("Scalar Increasing Affixes")]
+    public float scalarIncreasePerAffix;
+
+    [Header("Damage Dealing Affixes")]
     public int baseDamage;
     public float baseProcChance;
-    public GameObject affixPrefab;
 }

@@ -28,9 +28,11 @@ public class PlayerMovement : MonoBehaviour
     float knockbackTime;
 
     TimeManager timeManager;
+    PlayerStats playerStats;
 
     private void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
@@ -114,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        rigidBody.position += movement * Time.deltaTime * movementSpeed;
+        rigidBody.position += movement * Time.deltaTime * playerStats.CalculateMovementSpeed(movementSpeed);
     }
 
     public void MovePlayer(Vector2 position)
