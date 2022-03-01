@@ -32,12 +32,16 @@ public class PlayerManagement : MonoBehaviour
 
     public static void RestorePlayer()
     {
-        player.GetComponent<PlayerHealth>().maxHealth = 100;
-        player.GetComponent<PlayerHealth>().health = 100;
-        player.GetComponent<PlayerHealth>().isCurrentlyDead = false;
-        player.GetComponent<PlayerExperience>().currentXp = 0;
-        player.GetComponent<PlayerExperience>().playerLevel = 1;
-        player.GetComponent<PlayerExperience>().xpToNextLevel = 100;
+        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+        playerHealth.isCurrentlyDead = false;
+
+        PlayerExperience playerExperience = player.GetComponent<PlayerExperience>();
+        playerExperience.currentXp = 0;
+        playerExperience.playerLevel = 1;
+        playerExperience.xpToNextLevel = 100;
+
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        playerStats.ResetStats();
 
         foreach (BaseAffix affix in player.GetComponentsInChildren<BaseAffix>())
         {

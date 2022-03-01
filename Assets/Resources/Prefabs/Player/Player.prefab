@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 100
+  baseMaxHealth: 100
   floatingDamageNumber: {fileID: 4130821441948528224, guid: 4a53a76d0d132b84c9f01fbf46fee8ac,
     type: 3}
   floatingHealNumber: {fileID: 3704987405052076587, guid: 7422d9d4814592d4c953013f38a44252,
@@ -887,6 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f6a1701ae5db64290233d5d564c9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseDamage: 0
   currentWeapon: {fileID: 0}
 --- !u!114 &386291819
 MonoBehaviour:

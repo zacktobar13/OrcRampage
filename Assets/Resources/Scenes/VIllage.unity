@@ -947,6 +947,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: b8fe33bed89270d4b87b8c349ce61f13,
+        type: 2}
+    - target: {fileID: 787999479951105272, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixChoices.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3c87761bf2479ee4b94185e74fe514b0,
+        type: 2}
     - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
       propertyPath: affixDisplay

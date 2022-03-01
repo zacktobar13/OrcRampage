@@ -5,9 +5,40 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     float damageScalar = 1f;
+    float maxHealthScalar = 1f;
     float attackSpeedScalar = 1f;
     float movementSpeedScalar = 1f;
     float experienceGainedScalar = 1f;
+    float magnetismDistanceScalar = 1f;
+
+    PlayerHealth playerHealth;
+
+    private void Start()
+    {
+        playerHealth = GetComponent<PlayerHealth>();
+    }
+
+    public void ResetStats()
+    {
+        damageScalar = 1f;
+        maxHealthScalar = 1f;
+        attackSpeedScalar = 1f;
+        movementSpeedScalar = 1f;
+        experienceGainedScalar = 1f;
+        magnetismDistanceScalar = 1f;
+
+        playerHealth.UpdateMaxHealth();
+    }
+
+    public int CalculateMaxHealth(int baseMaxHealth)
+    {
+        return (int)(baseMaxHealth * maxHealthScalar);
+    }
+
+    public float CalculateMagnetismDistance(float baseRadius)
+    {
+        return baseRadius * magnetismDistanceScalar;
+    }
 
     public int CalculateDamage(int baseDamage)
     {
@@ -47,5 +78,16 @@ public class PlayerStats : MonoBehaviour
     public void IncreaseExperienceGainedScalar(float amount)
     {
         experienceGainedScalar += amount;
+    }
+
+    public void IncreaseMaxHealthScalar(float amount)
+    {
+        maxHealthScalar += amount;
+        playerHealth.UpdateMaxHealth();
+    }
+
+    public void IncreaseMagnetismDistanceScalar(float amount)
+    {
+        magnetismDistanceScalar += amount;
     }
 }

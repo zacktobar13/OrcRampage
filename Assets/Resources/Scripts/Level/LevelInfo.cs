@@ -46,6 +46,7 @@ public class LevelInfo : MonoBehaviour
             onEnterHubWorld();
 
         SceneManager.LoadScene("Hub World");
+        PlayerManagement.player.GetComponent<PlayerStats>().ResetStats();
         PlayerManagement.player.GetComponent<PlayerHealth>().Respawn();
         PlayerManagement.TogglePlayerControl(false);
     }

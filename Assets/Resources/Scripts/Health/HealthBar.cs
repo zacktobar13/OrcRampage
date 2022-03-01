@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthbar(PlayerHealth playerHealth)
     {
-        healthBar.fillAmount = playerHealth.health / playerHealth.maxHealth;
+        healthBar.fillAmount = playerHealth.health / playerHealth.currentMaxHealth;
     }
 
     public void ToggleHealthBar(PlayerHealth playerHealth)

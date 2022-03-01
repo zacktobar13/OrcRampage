@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd79128a62c6224e8040a2fe703c302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healPercentage: 0.3
+  healAmount: 30
   healSoundEffect: {fileID: 8300000, guid: 04d2f30ff6348c84a964d8be6e01a056, type: 3}
   spriteRenderers:
   - {fileID: 8126465347058691138}

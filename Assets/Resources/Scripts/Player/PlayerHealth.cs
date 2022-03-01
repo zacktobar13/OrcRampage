@@ -6,14 +6,15 @@ using EZCameraShake;
 public class PlayerHealth : MonoBehaviour
 {
     public int health;
-    public int maxHealth;
+    public int currentMaxHealth;
+    [SerializeField] int baseMaxHealth;
     public GameObject floatingDamageNumber;
     public GameObject floatingHealNumber;
     GameObject bow;
     [HideInInspector] public SpriteRenderer spriteRenderer;
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
-    PlayerAttack playerAttack;
+    PlayerStats playerStats;
     GameplayUI gameplayUI;
 
     public bool isCurrentlyDead = false;
@@ -34,21 +35,35 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-        health = maxHealth;
+        health = baseMaxHealth;
     }
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
-        playerAttack = GetComponent<PlayerAttack>();
+        playerStats = GetComponent<PlayerStats>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
-        gameplayUI.UpdatePlayerHealth(health, maxHealth);
+        currentMaxHealth = playerStats.CalculateMaxHealth(baseMaxHealth);
+        gameplayUI.UpdatePlayerHealth(health, baseMaxHealth);
         
         if (onRespawn != null)
             onRespawn(this);
+    }
+
+    public void UpdateMaxHealth()
+    {
+        float currentHealthPercentage = health / (float)currentMaxHealth;
+        currentMaxHealth = playerStats.CalculateMaxHealth(baseMaxHealth);
+        health = Mathf.CeilToInt(currentMaxHealth * currentHealthPercentage);
+        gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
+    }
+
+    public bool IsAtMaxHealth()
+    {
+        return currentMaxHealth == health;
     }
 
     public bool IsImmuneToDamage()
@@ -85,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
             GameObject bloodParticle = Instantiate(StaticResources.blood, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
 
-        gameplayUI.UpdatePlayerHealth(health, maxHealth);
+        gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
     }
     public void ApplyHeal(HealInfo healInfo)
     {
@@ -95,16 +110,16 @@ public class PlayerHealth : MonoBehaviour
         if (onHeal != null)
             onHeal(this);
 
-        if (health > maxHealth)
+        if (health > currentMaxHealth)
         {
-            overHealAmount = health - maxHealth;
-            health = maxHealth;
+            overHealAmount = health - currentMaxHealth;
+            health = currentMaxHealth;
         }
 
         GameObject healNumber = Instantiate(floatingHealNumber, new Vector3(transform.position.x, transform.position.y + 7f, transform.position.z), Quaternion.identity);
         healNumber.SendMessage("SetNumber", (healInfo.healAmount - overHealAmount).ToString());
 
-        gameplayUI.UpdatePlayerHealth(health, maxHealth);
+        gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
     }
 
     public void Death()
@@ -121,7 +136,7 @@ public class PlayerHealth : MonoBehaviour
     public void Respawn()
     {
         isCurrentlyDead = false;
-        health = maxHealth;
+        health = baseMaxHealth;
 
         if (onRespawn != null)
             onRespawn(this);

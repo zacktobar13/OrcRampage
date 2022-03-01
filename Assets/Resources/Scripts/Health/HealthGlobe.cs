@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthGlobe : MonoBehaviour
 {
-    public float healPercentage;
+    public int healAmount;
     AudioSource audioSource;
     public AudioClip healSoundEffect;
     PlayerHealth playerHealth;
@@ -25,10 +25,10 @@ public class HealthGlobe : MonoBehaviour
             return;
 
         // Don't heal player if they are at full health.
-        if (playerHealth.health >= playerHealth.maxHealth)
+        if (playerHealth.IsAtMaxHealth())
             return;
 
-        HealInfo healInfo = new HealInfo((int)(playerHealth.maxHealth * healPercentage));
+        HealInfo healInfo = new HealInfo(healAmount);
         collision.GetComponent<PlayerHealth>().ApplyHeal(healInfo);
 
         SoundManager.PlayOneShot(audioSource, healSoundEffect);

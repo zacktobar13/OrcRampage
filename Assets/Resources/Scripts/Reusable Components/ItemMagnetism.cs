@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class ItemMagnetism : MonoBehaviour
 {
-    public float magnestismDistance = 15f;
+    public float baseMagnetismDistance = 10f;
     public float magnetismSpeed = .03f;
 
     GameObject nearestPlayer = null;
     float distanceToPlayer;
+    PlayerStats playerStats;
+
+    private void Start()
+    {
+        playerStats = PlayerManagement.player.GetComponent<PlayerStats>();
+    }
 
     void FixedUpdate()
     {
+        nearestPlayer = PlayerManagement.player;
         if (nearestPlayer == null)
         {
-            nearestPlayer = PlayerManagement.player;
-
-            if (nearestPlayer == null)
-            {
-                Debug.LogWarning(gameObject.name + " could not find a player!");
-                return;
-            }
+            Debug.LogWarning(gameObject.name + " could not find a player!");
+            return;
         }
         else
         {
@@ -28,7 +30,7 @@ public class ItemMagnetism : MonoBehaviour
         }
 
         // Move towards player if they are in magnetism range.
-        if (distanceToPlayer < magnestismDistance)
+        if (distanceToPlayer < playerStats.CalculateMagnetismDistance(baseMagnetismDistance))
         {
             transform.position = Vector2.MoveTowards(transform.position, nearestPlayer.transform.position, magnetismSpeed);
         }
