@@ -16,6 +16,7 @@ public class GameplayUI : MonoBehaviour
     public TextMeshProUGUI currencyInfo;
     public TextMeshProUGUI playerLevelInfo;
     public TextMeshProUGUI xpInfo;
+    public TextMeshProUGUI killCountText;
     public Animator currencyAnim;
     public GameObject affixPanel;
     public GameObject playerInfoPanel;
@@ -26,11 +27,13 @@ public class GameplayUI : MonoBehaviour
     public GameObject[] weaponInfoGroup;
 
     public Image blackFade;
+    EnemySpawner enemySpawner;
 
     TimeManager timeManager;
     bool fadingFromBlack = true;
     bool fadingToBlack = false;
     float blackFadeAlpha = 1f;
+    int killCount;
 
     public delegate void OnScreenBlack();
     public static event OnScreenBlack onScreenBlack;
@@ -40,9 +43,12 @@ public class GameplayUI : MonoBehaviour
 
     private void Start()
     {
+
         Initialize();
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
+        enemySpawner.onEnemyDeath += IncrementKillCounter;
+
     }
 
 	private void LoadNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
@@ -54,8 +60,10 @@ public class GameplayUI : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         SetRenderCamera(Camera.main);
+        enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
+        ResetKillCounter();
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
     }
@@ -204,6 +212,20 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
+    // KILL COUNTER ---------------------------------------------------
+    public void IncrementKillCounter(BaseEnemy enemy)
+    {
+        killCount += 1;
+        killCountText.text = killCount.ToString();
+    }
+
+    public void ResetKillCounter()
+    {
+        killCount = 0;
+        killCountText.text = killCount.ToString();
+    }
+
+    //----------------------------------------------------------------
     public void FadeFromBlack(Scene scene, LoadSceneMode sceneLoadMode)
     {
         blackFade.enabled = true;

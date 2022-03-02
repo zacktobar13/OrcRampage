@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: AttackSpeed
   m_EditorClassIdentifier: 
-  icon: {fileID: 3462020022882300012, guid: 05e3fd8b685653d419d9d46ad26dd6bb, type: 3}
-  affixName: Attack Speed
+  icon: {fileID: 6421707582095905444, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Adrenal Injection
   affixDescription: Increases Attack Speed by 20%
   isUniqueAffix: 0
   affixPrefab: {fileID: 1772268094596002201, guid: 8dc9bf55324b6654c80d9d8be8d6d53a,

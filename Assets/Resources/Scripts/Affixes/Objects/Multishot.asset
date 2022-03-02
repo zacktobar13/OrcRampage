@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: Multishot
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 922d5a2fa4c14c14eae9eb55138d5ce4, type: 3}
+  icon: {fileID: -3779966509232188982, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: Multishot
-  affixDescription: Shoot lots
-  affixBehaviorName: MultishotAffix
+  affixDescription: +1 projectile fired\nart is shit i know relax
+  isUniqueAffix: 0
   affixPrefab: {fileID: 5339313895243650046, guid: bdf79fac782d0a54b9eb55d29d6ffcfa,
     type: 3}
+  scalarIncreasePerAffix: 0
+  baseDamage: 0
+  baseProcChance: 0
