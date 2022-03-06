@@ -58,7 +58,7 @@ TagManager:
   - name: Walls
     uniqueID: 3661440601
     locked: 0
-  - name: Objects
+  - name: Enemy
     uniqueID: 453797103
     locked: 0
   - name: Visual Effects

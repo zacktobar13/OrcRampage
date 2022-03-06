@@ -63,11 +63,7 @@ public class PlayerAnimation : MonoBehaviour
         playerAttack = GetComponentInChildren<PlayerAttack>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
 
-        TriggerToNextLevel.onCollideWithPlayer += PlayWalkIntoLevelAnimation;
-        WoodSignBehavior.onPlayerInteracted += PlayInteractWithSignAnimation;
-        WoodSignBehavior.onPlayerInteracted += DisableSpriteFlipping;
         LevelInfo.onEnterHubWorld += DisableSpriteFlipping;
-        TriggerToNextLevel.onCollideWithPlayer += DisableSpriteFlipping;
         LevelInfo.onNewLevel += EnableSpriteFlipping;
 
         spriteFlipEnabled = true;
@@ -272,10 +268,6 @@ public class PlayerAnimation : MonoBehaviour
 
     private void OnDestroy()
     {
-        TriggerToNextLevel.onCollideWithPlayer -= PlayWalkIntoLevelAnimation;
-        WoodSignBehavior.onPlayerInteracted -= PlayInteractWithSignAnimation;
-        WoodSignBehavior.onPlayerInteracted -= DisableSpriteFlipping;
         LevelInfo.onEnterHubWorld -= DisableSpriteFlipping;
-        TriggerToNextLevel.onCollideWithPlayer -= DisableSpriteFlipping;
     }
 }

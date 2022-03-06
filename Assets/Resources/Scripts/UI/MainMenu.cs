@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
         if (onGameStart != null)
             onGameStart();
 
-        SceneManager.LoadScene("Hub World");
+        SceneManager.LoadScene("Village");
     }
 
     public void QuitGame()

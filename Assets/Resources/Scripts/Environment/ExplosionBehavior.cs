@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PowerTools;
-using EZCameraShake;
+
 public class ExplosionBehavior : MonoBehaviour
 {
     public int damageAmount;

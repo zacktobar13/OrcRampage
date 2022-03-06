@@ -34,7 +34,8 @@ public class EnemySpawner : MonoBehaviour
         Vector3[] spawnLocations = { leftMiddleWorldPos, topMiddleWorldPos, rightMiddleWorldPos, bottomMiddleWorldPos };
 
         int randomRoll = (int)Random.Range(0, enemiesToSpawn.Length);
-        Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation);
+        BaseEnemy enemy = Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
+        enemy.SetRarity(RollEnemyRarity());
         enemiesAlive++;
     }
 
@@ -46,5 +47,23 @@ public class EnemySpawner : MonoBehaviour
         }
 
         enemiesAlive--;
+    }
+
+    private RarityUtil.Rarity RollEnemyRarity()
+    {
+        float roll = Random.Range(0f, 100f);
+
+        if (roll <= 95f)
+            return RarityUtil.Rarity.COMMON;
+        else if (roll <= 99.3f)
+            return RarityUtil.Rarity.UNCOMMON;
+        else if (roll <= 99.6f)
+            return RarityUtil.Rarity.MAGIC;
+        else if (roll <= 99.8f)
+            return RarityUtil.Rarity.EPIC;
+        else if (roll <= 99.95f)
+            return RarityUtil.Rarity.LEGENDARY;
+        else
+            return RarityUtil.Rarity.ANCIENT;
     }
 }

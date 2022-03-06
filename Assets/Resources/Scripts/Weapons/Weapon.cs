@@ -161,7 +161,7 @@ public class Weapon : MonoBehaviour
 
         shadow.SetActive(false);
         anim.enabled = false;
-        transform.parent = newOwner.transform;
+       // transform.parent = newOwner.Gametransform;
         //GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<RotateWeapon>().enabled = true;
         isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");

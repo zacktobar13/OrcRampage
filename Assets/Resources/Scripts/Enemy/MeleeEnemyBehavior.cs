@@ -40,14 +40,14 @@ public class MeleeEnemyBehavior : BaseEnemy
                 isRunningAway = true;
             }
 
-            spriteAnim.Play(chaseAnimation);
+            spriteAnim.Play(movingAnimation);
             MoveTowards(runAwayDirection, movementSpeed * Time.deltaTime);
         }
         else if (distanceToTarget >= attackRange)
         {
             // Chase Target
             isRunningAway = false;
-            spriteAnim.Play(chaseAnimation);
+            spriteAnim.Play(movingAnimation);
             MoveTowards(target.transform.position, movementSpeed * Time.deltaTime);
         }
         else
@@ -131,7 +131,7 @@ public class MeleeEnemyBehavior : BaseEnemy
             wanderPosition.y = transform.position.y + Random.Range(-10f, 10f);
         }
 
-        spriteAnim.Play(wanderAnimation);
+        spriteAnim.Play(movingAnimation);
         MoveTowards(wanderPosition, wanderMovementSpeed * Time.deltaTime);
     }
 

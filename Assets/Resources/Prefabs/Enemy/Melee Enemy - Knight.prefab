@@ -7,6 +7,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 355904155929049300, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: leftSideWeaponTransform
+      value: 
+      objectReference: {fileID: 8364124459347362562}
+    - target: {fileID: 355904155929049300, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rightSideWeaponTransform
+      value: 
+      objectReference: {fileID: 7217650268938607090}
+    - target: {fileID: 2352582858295608164, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe0434303a7a4934294f4c4cb8dee255, type: 2}
+    - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cc460e5b1c6c0bd498b44195a0c3da99, type: 2}
     - target: {fileID: 7116363276101727033, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: m_RootOrder
@@ -62,10 +122,134 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rarity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 5494372150155008528}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: accentColorDelta
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor.b
+      value: 0.17130059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor.g
+      value: 0.14509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor.r
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rarityOutlines.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rarityOutlines.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rarityOutlines.Array.data[0].g
+      value: 0.45679283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: rarityOutlines.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].b
+      value: 0.7924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].g
+      value: 0.2740611
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].r
+      value: 0.15325737
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].b
+      value: 0.17644179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].g
+      value: 0.17644179
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].r
+      value: 0.6132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].b
+      value: 0.58999497
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].g
+      value: 0.17647058
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].r
+      value: 0.6117647
+      objectReference: {fileID: 0}
     - target: {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: m_Name
-      value: Melee Enemy
+      value: Melee Enemy - Knight
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
+--- !u!114 &5494372150155008528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5127816633094082113, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7307790ca15340b4c830ae9599eeee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &8364124459347362562 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9152742375321114451, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7217650268938607090 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8015416671377739171, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}

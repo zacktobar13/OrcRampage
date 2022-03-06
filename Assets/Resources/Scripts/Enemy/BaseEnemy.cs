@@ -8,13 +8,13 @@ public class BaseEnemy : MonoBehaviour {
 
     // Assigned in inspector
     [Header("Basic Attributes")]
+    public RarityUtil.Rarity rarity;
     public float attackRange;
     public float movementSpeed;
     public int attackDamage;
     public float stopToAttackTime;
     public int maxHealth;
     public GameObject[] droppables;
-    public GameObject deadBody;
     public float healthGlobeDropChance;
     public float enemyDetectionDistanceCurrent;
 
@@ -30,12 +30,8 @@ public class BaseEnemy : MonoBehaviour {
 
     [Header("Animations")]
     public AnimationClip idleAnimation;
-    public AnimationClip wanderAnimation;
-    public AnimationClip chaseAnimation;
     public AnimationClip movingAnimation;
     public AnimationClip hurtAnimation;
-    public AnimationClip telegraphAnimation;
-    public AnimationClip attackAnimation;
     public AnimationClip deathAnimation;
 
     private TimeManager timeManager;
@@ -49,17 +45,21 @@ public class BaseEnemy : MonoBehaviour {
     GameObject healthUI;
     Image healthbar;
     protected float health;
-    protected Weapon currentWeapon;
+    public Weapon currentWeapon;
     protected GameObject worldCollider;
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
     protected GameObject spriteGameObject;
     protected EnemySpawner enemySpawner;
+    protected Material shaderMaterial;
 
     // Sometimes when enemies die, they need a different shadow for it to look natural (bigger, smaller etc)
     public GameObject aliveShadow;
     public GameObject deadShadow;
 
+    public Color[] baseAccentColorChoices;
+    protected Color baseAccentColor;
+    public float accentColorDelta;
     protected GameObject target = null;
     protected float distanceToTarget;
     protected bool canMove = true;
@@ -70,7 +70,6 @@ public class BaseEnemy : MonoBehaviour {
     protected float lastAttackTime = Mathf.NegativeInfinity;
     private IEnumerator disableMovement;
     private IEnumerator knockBack;
-    private IEnumerator flashWhiteForSeconds;
 
     protected IEnumerator telegraphAttack;
     protected IEnumerator hurt;
@@ -105,13 +104,17 @@ public class BaseEnemy : MonoBehaviour {
         attackDamage = CalculateAttackDamage();
         health = maxHealth;
 
-        currentWeapon = GetComponentInChildren<Weapon>();
         if (currentWeapon)
         {
             currentWeapon.attackDamage = attackDamage;
             currentWeapon.PickupWeapon(gameObject);
         }
 
+        shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
+
+
+        ProcessRarity();
+        RandomizeAccentColor();
     }
 
     float timeUntilAttackAfterStop;
@@ -162,7 +165,39 @@ public class BaseEnemy : MonoBehaviour {
         }
     }
 
-    int CalculateMaxHealth()
+    public void RandomizeAccentColor()
+    {
+        baseAccentColor = baseAccentColorChoices[Random.Range(0, baseAccentColorChoices.Length)];
+        Color randomColor = new Color(baseAccentColor.r + Random.Range(-accentColorDelta, accentColorDelta),
+                                      baseAccentColor.g + Random.Range(-accentColorDelta, accentColorDelta),
+                                      baseAccentColor.b + Random.Range(-accentColorDelta, accentColorDelta),
+                                      baseAccentColor.a);
+
+        shaderMaterial.SetColor("_ColorChangeNewCol", randomColor);
+    }
+
+    /** Sets the rarity of the enemy */
+    public void SetRarity(RarityUtil.Rarity r)
+    {
+        rarity = r;
+    } 
+
+    /** Handles the logic for changing the enemy based on their rarity.
+     * i.e., scaling their attributes, size, changing outline color etc. */
+    public void ProcessRarity()
+    {
+		if (rarity != RarityUtil.Rarity.COMMON)
+        {
+            shaderMaterial.SetFloat("_OutlineAlpha", 1f);
+        }
+
+        float[] rarityColor = RarityUtil.GetRarityColor(rarity);
+        shaderMaterial.SetColor("_OutlineColor", new Color(rarityColor[0], rarityColor[1], rarityColor[2]));
+
+        spriteGameObject.transform.localScale *= RarityUtil.GetRaritySizeScalar(rarity);
+	}
+
+	int CalculateMaxHealth()
     {
         int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
         return maxHealth + healthScalingStepSize * numberOfScalingSteps;
