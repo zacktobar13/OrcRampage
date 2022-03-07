@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameplayUI : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class GameplayUI : MonoBehaviour
     public GameObject affixDisplayObject;
 
     public GameObject[] weaponInfoGroup;
+    public Transform affixIconDisplay;
 
     public Image blackFade;
     EnemySpawner enemySpawner;
@@ -41,6 +43,8 @@ public class GameplayUI : MonoBehaviour
     public delegate void OnFadeCompleted();
     public static event OnFadeCompleted onFadeCompleted;
 
+    public List<string> affixIcons = new List<string>();
+
     private void Start()
     {
 
@@ -48,6 +52,7 @@ public class GameplayUI : MonoBehaviour
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
         enemySpawner.onEnemyDeath += IncrementKillCounter;
+        SceneManager.sceneLoaded += ClearAffixIcons;
 
     }
 
@@ -66,6 +71,7 @@ public class GameplayUI : MonoBehaviour
         ResetKillCounter();
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
+        SceneManager.sceneLoaded += ClearAffixIcons;
     }
 
     public void SetRenderCamera(Camera camera)
@@ -73,15 +79,36 @@ public class GameplayUI : MonoBehaviour
         canvas.worldCamera = camera;
     }
 
+    // AFFIX PANEL //
     public void UpdatePlayerAffixDisplay(BaseAffix newAffix)
     {
-        Sprite affixIcon = newAffix.affixIcon;
-        GameObject affixIconDisplay = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
-        Image spriteRenderer = affixIconDisplay.GetComponent<Image>();
-        spriteRenderer.sprite = affixIcon;
+        
+        if (affixIcons.Contains(newAffix.affixName))
+        {
+            int currentQuantity = Int32.Parse(affixIconDisplay.Find(newAffix.affixName).GetComponentInChildren<TextMeshProUGUI>().text);
+            affixIconDisplay.Find(newAffix.affixName).GetComponentInChildren<TextMeshProUGUI>().text = (currentQuantity + 1).ToString();
+        }
+        else
+        {
+            Sprite affixIcon = newAffix.affixIcon;
+            GameObject affixIconDisplay = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
+            Image spriteRenderer = affixIconDisplay.GetComponent<Image>();
+            affixIconDisplay.name = newAffix.affixName;
+            spriteRenderer.sprite = affixIcon;
+            affixIcons.Add(newAffix.affixName);
+        }
     }
 
-    // AFFIX PANEL //
+    public void ClearAffixIcons(Scene scene, LoadSceneMode sceneLoadMode)
+    {
+        foreach (String name in affixIcons)
+        {
+            Destroy(affixIconDisplay.Find(name).gameObject);
+        }
+
+        affixIcons = new List<string>();
+    }
+
     public void ShowAffixPanel(int numberToChoose)
     {
         affixPanel.GetComponent<PickAffixMenu>().SetQuantityToChoose(numberToChoose);

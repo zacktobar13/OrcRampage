@@ -488,6 +488,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 900967496}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &489242614 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 489242613, guid: 2bd6441f7bc17554ba871237554a6b1c,
+    type: 3}
+  m_PrefabInstance: {fileID: 900967496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &494936112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8446820333640441776, guid: c7fa5e187bdea4f4195fbe1ecfb60ddc,
@@ -970,6 +976,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4252158325778326433, guid: 2e94bfaae4e7c0f47a5769277f3f84c9,
         type: 3}
+    - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
+        type: 3}
+      propertyPath: affixIconDisplay
+      value: 
+      objectReference: {fileID: 489242614}
     - target: {fileID: 859891013805040339, guid: 2bd6441f7bc17554ba871237554a6b1c,
         type: 3}
       propertyPath: affixDisplayObject
