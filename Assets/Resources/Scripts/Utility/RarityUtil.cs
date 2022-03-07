@@ -10,6 +10,29 @@ public static class RarityUtil
 		ANCIENT
 	}
 
+    /** Return index representation of rarity. Currently used for indexing
+     * into rarity stat scalars in BaseEnemy. */
+    public static int GetRarityIndex(Rarity rarity)
+    {
+        switch (rarity)
+        {
+            case Rarity.COMMON:
+                return 0;
+            case Rarity.UNCOMMON:
+                return 1;
+            case Rarity.MAGIC:
+                return 2;
+            case Rarity.EPIC:
+                return 3;
+            case Rarity.LEGENDARY:
+                return 4;
+            case Rarity.ANCIENT:
+                return 5;
+            default:
+                return -1;
+        }
+    }
+
 	public static float[] GetRarityColor(Rarity rarity)
     {
         float[] color = new float[3];

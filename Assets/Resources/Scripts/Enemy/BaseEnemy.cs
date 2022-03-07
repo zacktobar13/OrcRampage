@@ -21,6 +21,10 @@ public class BaseEnemy : MonoBehaviour {
     [Header("Scaling")]
     public int healthScalingStepSize = 10;
     public int attackDamageScalingStepSize = 3;
+    [SerializeField]
+    protected float[] rarityStatScalars = {1f, 2f, 3f, 4f, 5f, 6f};
+    protected float rarityStatScalar = 1f;
+    protected int rarityIndex;
 
     [Header("Sound Effects")]
     public AudioClip hitSound;
@@ -56,7 +60,7 @@ public class BaseEnemy : MonoBehaviour {
     // Sometimes when enemies die, they need a different shadow for it to look natural (bigger, smaller etc)
     public GameObject aliveShadow;
     public GameObject deadShadow;
-
+    
     public Color[] baseAccentColorChoices;
     protected Color baseAccentColor;
     public float accentColorDelta;
@@ -100,6 +104,9 @@ public class BaseEnemy : MonoBehaviour {
         timeManager = gameManagement.GetComponent<TimeManager>();
         Debug.Assert(timeManager != null);
 
+        shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
+        ProcessRarity();
+
         maxHealth = CalculateMaxHealth();
         attackDamage = CalculateAttackDamage();
         health = maxHealth;
@@ -110,10 +117,6 @@ public class BaseEnemy : MonoBehaviour {
             currentWeapon.PickupWeapon(gameObject);
         }
 
-        shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
-
-
-        ProcessRarity();
         RandomizeAccentColor();
     }
 
@@ -183,7 +186,7 @@ public class BaseEnemy : MonoBehaviour {
     } 
 
     /** Handles the logic for changing the enemy based on their rarity.
-     * i.e., scaling their attributes, size, changing outline color etc. */
+     * i.e., setting the stat scalar value, size, changing outline color etc. */
     public void ProcessRarity()
     {
 		if (rarity != RarityUtil.Rarity.COMMON)
@@ -191,22 +194,25 @@ public class BaseEnemy : MonoBehaviour {
             shaderMaterial.SetFloat("_OutlineAlpha", 1f);
         }
 
+        rarityIndex = RarityUtil.GetRarityIndex(rarity);
+
         float[] rarityColor = RarityUtil.GetRarityColor(rarity);
         shaderMaterial.SetColor("_OutlineColor", new Color(rarityColor[0], rarityColor[1], rarityColor[2]));
 
         spriteGameObject.transform.localScale *= RarityUtil.GetRaritySizeScalar(rarity);
+        rarityStatScalar = rarityStatScalars[rarityIndex];
 	}
 
 	int CalculateMaxHealth()
     {
         int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return maxHealth + healthScalingStepSize * numberOfScalingSteps;
+        return (int)(maxHealth + healthScalingStepSize * numberOfScalingSteps * rarityStatScalar);
     }
 
     int CalculateAttackDamage()
     {
         int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return attackDamage + attackDamageScalingStepSize * numberOfScalingSteps;
+        return (int)(attackDamage + attackDamageScalingStepSize * numberOfScalingSteps * rarityStatScalar);
     }
 
     public void MoveTowards(Vector2 targetPosition, float speed)
@@ -262,10 +268,11 @@ public class BaseEnemy : MonoBehaviour {
         spriteAnim.Play(deathAnimation);
         DisableComponentsOnDeath();
 
-        // Drop currency
-       // GameObject currencyDropped = Instantiate(copperCoin, transform.position, Quaternion.identity);
-        //Drop XP
-        GameObject xpDropped = Instantiate(StaticResources.xpGlobe, transform.position, Quaternion.identity);
+        /* Drop number of XP globes based on enemy's rarity index (1-6) */
+        for (int i = 0; i < rarityIndex + 1; i++)
+        {
+            GameObject xpDropped = Instantiate(StaticResources.xpGlobe, transform.position, Quaternion.identity);
+        }
         
         if (healthGlobeDropChance >= Random.Range(0, 100))
             DropItem();
