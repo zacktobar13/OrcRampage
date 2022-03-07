@@ -43,8 +43,6 @@ public class GameplayUI : MonoBehaviour
     public delegate void OnFadeCompleted();
     public static event OnFadeCompleted onFadeCompleted;
 
-    public List<string> affixIcons = new List<string>();
-
     private void Start()
     {
 
@@ -82,11 +80,11 @@ public class GameplayUI : MonoBehaviour
     // AFFIX PANEL //
     public void UpdatePlayerAffixDisplay(BaseAffix newAffix)
     {
-        
-        if (affixIcons.Contains(newAffix.affixName))
+        Transform existingAffixIcon = affixIconDisplay.Find(newAffix.affixName);
+        if (existingAffixIcon != null)
         {
-            int currentQuantity = Int32.Parse(affixIconDisplay.Find(newAffix.affixName).GetComponentInChildren<TextMeshProUGUI>().text);
-            affixIconDisplay.Find(newAffix.affixName).GetComponentInChildren<TextMeshProUGUI>().text = (currentQuantity + 1).ToString();
+            String newQuantity = (newAffix.affixCount + 1).ToString();
+            existingAffixIcon.GetComponentInChildren<TextMeshProUGUI>().text = newQuantity;
         }
         else
         {
@@ -95,18 +93,16 @@ public class GameplayUI : MonoBehaviour
             Image spriteRenderer = affixIconDisplay.GetComponent<Image>();
             affixIconDisplay.name = newAffix.affixName;
             spriteRenderer.sprite = affixIcon;
-            affixIcons.Add(newAffix.affixName);
         }
     }
 
     public void ClearAffixIcons(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        foreach (String name in affixIcons)
+        for (int i = 0; i < affixIconDisplay.childCount; i++)
         {
-            Destroy(affixIconDisplay.Find(name).gameObject);
+            Transform child = affixIconDisplay.GetChild(i);
+            Destroy(child.gameObject);
         }
-
-        affixIcons = new List<string>();
     }
 
     public void ShowAffixPanel(int numberToChoose)
