@@ -1,77 +1,46 @@
-public static class RarityUtil
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public enum Rarity
 {
-	public enum Rarity
-	{
-		COMMON,
-		UNCOMMON,
-		MAGIC,
-		EPIC,
-		LEGENDARY,
-		ANCIENT
-	}
+    COMMON,
+    UNCOMMON,
+    MAGIC,
+    EPIC,
+    LEGENDARY,
+    ANCIENT
+}
 
-    /** Return index representation of rarity. Currently used for indexing
-     * into rarity stat scalars in BaseEnemy. */
-    public static int GetRarityIndex(Rarity rarity)
+public class RarityUtil : MonoBehaviour
+{
+    public static Color CommonColor = Color.white;
+    public static Color UncommonColor = Color.green;
+    public static Color MagicColor = Color.blue;
+    public static Color EpicColor = new Color(.75f, 0, 1f, 1f);
+    public static Color LegendaryColor = new Color(1f, .5f, 0f, 1f);
+    public static Color AncientColor = Color.red;
+
+    public static Color GetRarityColor(Rarity rarity)
     {
-        switch (rarity)
-        {
-            case Rarity.COMMON:
-                return 0;
-            case Rarity.UNCOMMON:
-                return 1;
-            case Rarity.MAGIC:
-                return 2;
-            case Rarity.EPIC:
-                return 3;
-            case Rarity.LEGENDARY:
-                return 4;
-            case Rarity.ANCIENT:
-                return 5;
-            default:
-                return -1;
-        }
-    }
-
-	public static float[] GetRarityColor(Rarity rarity)
-    {
-        float[] color = new float[3];
-
         switch(rarity)
         {
-            case RarityUtil.Rarity.COMMON: // WHITE
-                color[0] = 1f;
-                color[1] = 1f;
-                color[2] = 1f;
-                break;
-            case RarityUtil.Rarity.UNCOMMON: // GREEN
-                color[0] = 0f;
-                color[1] = 1f;
-                color[2] = 0f;
-                break;
-            case RarityUtil.Rarity.MAGIC: // BLUE
-                color[0] = 0f;
-                color[1] = 0f;
-                color[2] = 1f;
-                break;
-            case RarityUtil.Rarity.EPIC: // PURP
-                color[0] = .6f;
-                color[1] = 0f;
-                color[2] = 1f;
-                break;
-            case RarityUtil.Rarity.LEGENDARY: // ORANGE
-                color[0] = 1f;
-                color[1] = .5f;
-                color[2] = 0f;
-                break;
-            case RarityUtil.Rarity.ANCIENT: // RED
-                color[0] = 1f;
-                color[1] = 0f;
-                color[2] = 0f;
-                break;
+            case Rarity.COMMON: // WHITE
+                return CommonColor;
+            case Rarity.UNCOMMON: // GREEN
+                return UncommonColor;
+            case Rarity.MAGIC: // BLUE
+                return MagicColor;
+            case Rarity.EPIC: // PURP
+                return EpicColor;
+            case Rarity.LEGENDARY: // ORANGE
+                return LegendaryColor;
+            case Rarity.ANCIENT: // RED
+                return AncientColor;
+            default:
+                Debug.Assert(false, "Rarity isn't assigned a color");
+                return Color.white;
         }
-
-        return color;
     }
 
     public static float GetRaritySizeScalar(Rarity rarity)

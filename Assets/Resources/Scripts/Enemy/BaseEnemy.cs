@@ -8,7 +8,7 @@ public class BaseEnemy : MonoBehaviour {
 
     // Assigned in inspector
     [Header("Basic Attributes")]
-    public RarityUtil.Rarity rarity;
+    public Rarity rarity;
     public float attackRange;
     public float movementSpeed;
     public int attackDamage;
@@ -105,6 +105,7 @@ public class BaseEnemy : MonoBehaviour {
         Debug.Assert(timeManager != null);
 
         shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
+        rarity = RollRarity();
         ProcessRarity();
 
         maxHealth = CalculateMaxHealth();
@@ -180,24 +181,41 @@ public class BaseEnemy : MonoBehaviour {
     }
 
     /** Sets the rarity of the enemy */
-    public void SetRarity(RarityUtil.Rarity r)
+    public void SetRarity(Rarity r)
     {
         rarity = r;
-    } 
+    }
+
+    private Rarity RollRarity()
+    {
+        float roll = Random.Range(0f, 100f);
+        if (roll <= 95f)
+            return Rarity.COMMON;
+        else if (roll <= 99.3f)
+            return Rarity.UNCOMMON;
+        else if (roll <= 99.6f)
+            return Rarity.MAGIC;
+        else if (roll <= 99.8f)
+            return Rarity.EPIC;
+        else if (roll <= 99.95f)
+            return Rarity.LEGENDARY;
+        else
+            return Rarity.ANCIENT;
+    }
 
     /** Handles the logic for changing the enemy based on their rarity.
      * i.e., setting the stat scalar value, size, changing outline color etc. */
     public void ProcessRarity()
     {
-		if (rarity != RarityUtil.Rarity.COMMON)
+		if (rarity != Rarity.COMMON)
         {
             shaderMaterial.SetFloat("_OutlineAlpha", 1f);
         }
 
-        rarityIndex = RarityUtil.GetRarityIndex(rarity);
+        rarityIndex = (int)rarity;
 
-        float[] rarityColor = RarityUtil.GetRarityColor(rarity);
-        shaderMaterial.SetColor("_OutlineColor", new Color(rarityColor[0], rarityColor[1], rarityColor[2]));
+        Color rarityColor = RarityUtil.GetRarityColor(rarity);
+        shaderMaterial.SetColor("_OutlineColor", rarityColor);
 
         spriteGameObject.transform.localScale *= RarityUtil.GetRaritySizeScalar(rarity);
         rarityStatScalar = rarityStatScalars[rarityIndex];
@@ -206,13 +224,13 @@ public class BaseEnemy : MonoBehaviour {
 	int CalculateMaxHealth()
     {
         int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return (int)(maxHealth + healthScalingStepSize * numberOfScalingSteps * rarityStatScalar);
+        return (int)((maxHealth + healthScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
     }
 
     int CalculateAttackDamage()
     {
         int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return (int)(attackDamage + attackDamageScalingStepSize * numberOfScalingSteps * rarityStatScalar);
+        return (int)((attackDamage + attackDamageScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
     }
 
     public void MoveTowards(Vector2 targetPosition, float speed)
