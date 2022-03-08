@@ -9,7 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: EnemyShaderMaterial
   m_Shader: {fileID: 4800000, guid: a36b7719ff0465b42ab1407d67672c5f, type: 3}
-  m_ShaderKeywords: CHANGECOLOR_ON ETC1_EXTERNAL_ALPHA OUTBASEPIXELPERF_ON OUTBASE_ON
+  m_ShaderKeywords: CHANGECOLOR2_ON CHANGECOLOR_ON ETC1_EXTERNAL_ALPHA OUTBASEPIXELPERF_ON
+    OUTBASE_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -87,7 +88,7 @@ Material:
     - _ClipUvUp: 1
     - _ColorChangeLuminosity: 1
     - _ColorChangeTolerance: 0.6
-    - _ColorChangeTolerance2: 0.379
+    - _ColorChangeTolerance2: 0.6
     - _ColorChangeTolerance3: 0.25
     - _ColorRampBlend: 1
     - _ColorRampLuminosity: -0.352
@@ -219,10 +220,10 @@ Material:
     - _AlphaOutlineColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorChangeNewCol: {r: 0.26125845, g: 0.3219531, b: 0.9716981, a: 1}
-    - _ColorChangeNewCol2: {r: 0, g: 1, b: 0.71723104, a: 1}
+    - _ColorChangeNewCol2: {r: 0.4056604, g: 0.17735432, b: 0, a: 1}
     - _ColorChangeNewCol3: {r: 1, g: 1, b: 0, a: 1}
     - _ColorChangeTarget: {r: 0.97647065, g: 0.003921569, b: 0.654902, a: 1}
-    - _ColorChangeTarget2: {r: 0, g: 0.27450982, b: 0.0627451, a: 1}
+    - _ColorChangeTarget2: {r: 0.003921569, g: 0.93725497, b: 0.97647065, a: 1}
     - _ColorChangeTarget3: {r: 1, g: 0, b: 0, a: 1}
     - _ColorSwapBlue: {r: 1, g: 1, b: 1, a: 1}
     - _ColorSwapGreen: {r: 1, g: 1, b: 1, a: 1}

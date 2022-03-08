@@ -4,6 +4,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
+    public float[] spawnChances;
+
     Transform player;
 
     int enemiesAlive = 0;
@@ -33,9 +35,18 @@ public class EnemySpawner : MonoBehaviour
 
         Vector3[] spawnLocations = { leftMiddleWorldPos, topMiddleWorldPos, rightMiddleWorldPos, bottomMiddleWorldPos };
 
-        int randomRoll = (int)Random.Range(0, enemiesToSpawn.Length);
-        BaseEnemy enemy = Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
-        BaseEnemy enemy2 = Instantiate(enemiesToSpawn[randomRoll], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
+        float randomRoll = Random.Range(0f, 100f);
+
+        if (randomRoll <= spawnChances[0])
+        {
+            BaseEnemy enemy = Instantiate(enemiesToSpawn[0], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
+            BaseEnemy enemy2 = Instantiate(enemiesToSpawn[0], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>(); 
+        }
+        else
+        {
+            BaseEnemy enemy = Instantiate(enemiesToSpawn[1], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
+            BaseEnemy enemy2 = Instantiate(enemiesToSpawn[1], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
+        }
         enemiesAlive += 2;
     }
 

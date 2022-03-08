@@ -247,7 +247,22 @@ PrefabInstance:
       objectReference: {fileID: 7400000, guid: d7da57d28069d754aa03ca10d9c0c620, type: 2}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
+      propertyPath: accentColorDelta
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: accentColor2Delta
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
       propertyPath: baseAccentColorChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
@@ -294,6 +309,51 @@ PrefabInstance:
         type: 3}
       propertyPath: baseAccentColorChoices.Array.data[2].r
       value: 0.3773585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[0].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[0].g
+      value: 0.1764706
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[0].r
+      value: 0.4039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[1].b
+      value: 0.046146322
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[1].g
+      value: 0.2538657
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[1].r
+      value: 0.5754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[2].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[2].g
+      value: 0.044444434
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColor2Choices.Array.data[2].r
+      value: 0.11320752
       objectReference: {fileID: 0}
     - target: {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}

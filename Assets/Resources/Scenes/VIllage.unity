@@ -6720,18 +6720,30 @@ PrefabInstance:
       value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
+      propertyPath: spawnChances.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
       propertyPath: enemiesToSpawn.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
+      propertyPath: spawnChances.Array.data[0]
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
+      propertyPath: spawnChances.Array.data[1]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
       propertyPath: enemiesToSpawn.Array.data[0]
       value: 
-      objectReference: {fileID: 6929825264576763222, guid: d6e5d2229bc955c4caf211030fef8000,
+      objectReference: {fileID: 6929825264576763222, guid: 09f13a3f9698bc94094415fcf6764d99,
         type: 3}
     - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
       propertyPath: enemiesToSpawn.Array.data[1]
       value: 
-      objectReference: {fileID: 6929825264576763222, guid: 09f13a3f9698bc94094415fcf6764d99,
+      objectReference: {fileID: 6929825264576763222, guid: d6e5d2229bc955c4caf211030fef8000,
         type: 3}
     - target: {fileID: 4720611606181078256, guid: 589079d0dd211df4682cbcebfce4ada0,
         type: 3}

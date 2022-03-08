@@ -64,6 +64,11 @@ public class BaseEnemy : MonoBehaviour {
     public Color[] baseAccentColorChoices;
     protected Color baseAccentColor;
     public float accentColorDelta;
+
+    public Color[] baseAccentColor2Choices;
+    protected Color baseAccent2Color;
+    public float accentColor2Delta;
+
     protected GameObject target = null;
     protected float distanceToTarget;
     protected bool canMove = true;
@@ -178,6 +183,17 @@ public class BaseEnemy : MonoBehaviour {
                                       baseAccentColor.a);
 
         shaderMaterial.SetColor("_ColorChangeNewCol", randomColor);
+
+        if (baseAccentColor2Choices.Length > 0)
+        {
+            baseAccent2Color = baseAccentColor2Choices[Random.Range(0, baseAccentColor2Choices.Length)];
+            Color randomColor2 = new Color(baseAccent2Color.r + Random.Range(-accentColor2Delta, accentColor2Delta),
+                                           baseAccent2Color.g + Random.Range(-accentColor2Delta, accentColor2Delta),
+                                           baseAccent2Color.b + Random.Range(-accentColor2Delta, accentColor2Delta),
+                                           baseAccent2Color.a);
+
+            shaderMaterial.SetColor("_ColorChangeNewCol2", randomColor2);
+        }
     }
 
     /** Sets the rarity of the enemy */
