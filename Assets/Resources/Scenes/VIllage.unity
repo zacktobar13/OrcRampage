@@ -6729,7 +6729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
       propertyPath: spawnChances.Array.data[0]
-      value: 80
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 1458680464, guid: 589079d0dd211df4682cbcebfce4ada0, type: 3}
       propertyPath: spawnChances.Array.data[1]

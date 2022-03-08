@@ -74,7 +74,7 @@ public class Projectile : MonoBehaviour
         // Spawn hit effect
         Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
 
-        DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit);
+        DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit, false, Random.Range(.8f, 1.2f));
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
         
         bool hitMapClutter = collision.gameObject.layer == LayerMask.NameToLayer("Map Clutter");

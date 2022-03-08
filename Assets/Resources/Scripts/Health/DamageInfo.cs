@@ -85,4 +85,15 @@ public struct DamageInfo
 
         spawnBlood = blood;
     }
+
+    public DamageInfo(int damage, Vector2 dir, float knockbackSpeedScalar, float knockbackDistanceScalar, bool crit, bool blood, float spreadScalar)
+    {
+        damageAmount = (int) (damage * spreadScalar);
+        criticalHit = crit;
+
+        knockbackDirection = dir.normalized * knockbackDistanceScalar;
+        knockbackSpeed = defaultKnockbackSpeed * knockbackSpeedScalar;
+        knockbackDuration = defaultKnockbackDuration;
+        spawnBlood = blood;
+    }
 }
