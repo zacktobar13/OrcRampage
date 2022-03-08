@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7625758418901264232}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6338813177834341309
 SpriteRenderer:
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_Size: {x: 8, y: 8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &798901107330929745
@@ -131,9 +131,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: cc460e5b1c6c0bd498b44195a0c3da99, type: 2}
     - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
+      propertyPath: m_Size.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140428559806079376, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 32c2ae7f3ac4750459342809b9846067,
+      objectReference: {fileID: -203661239432679192, guid: b6255adee4f080040b5aedd551e19946,
         type: 3}
     - target: {fileID: 7116363276101727033, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
@@ -198,8 +203,13 @@ PrefabInstance:
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: attackDamage
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: currentWeapon
+      value: 
+      objectReference: {fileID: 5494372150155008528}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: hurtAnimation
@@ -213,7 +223,7 @@ PrefabInstance:
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: movementSpeed
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
@@ -235,10 +245,60 @@ PrefabInstance:
       propertyPath: wanderAnimation
       value: 
       objectReference: {fileID: 7400000, guid: d7da57d28069d754aa03ca10d9c0c620, type: 2}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].b
+      value: 0.9528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[0].r
+      value: 0.33223966
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].b
+      value: 0.3490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].g
+      value: 0.16300283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[1].r
+      value: 0.17755835
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].b
+      value: 0.13705945
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].g
+      value: 0.13705945
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: baseAccentColorChoices.Array.data[2].r
+      value: 0.3773585
+      objectReference: {fileID: 0}
     - target: {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: m_Name
-      value: Melee Enemy - Villager 1
+      value: Melee Enemy - Villager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
@@ -248,3 +308,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 798901107330929745}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5494372150155008528 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5127816633094082113, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7307790ca15340b4c830ae9599eeee16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
