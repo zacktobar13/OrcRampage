@@ -15,8 +15,7 @@ public class BaseEnemy : MonoBehaviour {
     public float stopToAttackTime;
     public int maxHealth;
     public GameObject[] droppables;
-    public float healthGlobeDropChance;
-    public float enemyDetectionDistanceCurrent;
+    public float droppableDropChance;
 
     [Header("Scaling")]
     public int healthScalingStepSize = 10;
@@ -83,7 +82,6 @@ public class BaseEnemy : MonoBehaviour {
     protected IEnumerator telegraphAttack;
     protected IEnumerator hurt;
 
-    bool hasEverSeenPlayer = false;
     bool isDisabled = false;
 
     protected void Start ()
@@ -147,7 +145,6 @@ public class BaseEnemy : MonoBehaviour {
         }
         else
         {
-            hasEverSeenPlayer = true;
             if (ShouldAttack())
             {
                 if (!hasStoppedToAttack)
@@ -270,11 +267,6 @@ public class BaseEnemy : MonoBehaviour {
         deadShadow.SetActive(true);
     }
 
-    public virtual bool canSeePlayer()
-    {
-        return hasEverSeenPlayer || distanceToTarget < enemyDetectionDistanceCurrent;
-    }
-
     public virtual void ChaseTarget()
     {
 
@@ -308,7 +300,7 @@ public class BaseEnemy : MonoBehaviour {
             GameObject xpDropped = Instantiate(StaticResources.xpGlobe, transform.position, Quaternion.identity);
         }
         
-        if (healthGlobeDropChance >= Random.Range(0, 100))
+        if (droppableDropChance >= Random.Range(0, 100))
             DropItem();
 
         Death();

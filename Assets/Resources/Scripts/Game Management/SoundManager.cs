@@ -6,6 +6,7 @@ public class SoundManager : MonoBehaviour
 {
     static float minimumTimeBetweenSounds = .05f;
     static float lastSoundTime = Mathf.NegativeInfinity;
+    static AudioSource globalAudioSource;
 
     public static void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
     {
@@ -26,6 +27,16 @@ public class SoundManager : MonoBehaviour
         lastSoundTime = Time.time;
 
         audioSource.pitch = oldPitch;
+    }
+
+    public static void SetGlobalAudioSource(AudioSource audioSource)
+    {
+        globalAudioSource = audioSource;
+    }
+
+    public static void PlayGlobalAudio(AudioClip audioClip, SoundManagerArgs args)
+    {
+        PlayOneShot(globalAudioSource, audioClip, args);
     }
 }
 

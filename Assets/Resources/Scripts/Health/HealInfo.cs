@@ -5,9 +5,11 @@ using UnityEngine;
 public struct HealInfo
 {
     public int healAmount;
+    public AudioClip healSound;
 
-    public HealInfo(int heal)
+    public HealInfo(int healAmount, AudioClip healSound)
     {
-        healAmount = heal;
+        this.healAmount = healAmount;
+        this.healSound = healSound;
     }
 }

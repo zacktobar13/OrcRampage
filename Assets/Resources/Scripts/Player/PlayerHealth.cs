@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public GameObject floatingHealNumber;
     GameObject bow;
     [HideInInspector] public SpriteRenderer spriteRenderer;
+    AudioSource audioSource;
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
     PlayerStats playerStats;
@@ -42,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
         playerStats = GetComponent<PlayerStats>();
+        audioSource = GetComponent<AudioSource>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
@@ -103,6 +105,10 @@ public class PlayerHealth : MonoBehaviour
     }
     public void ApplyHeal(HealInfo healInfo)
     {
+        SoundManager.PlayOneShot(audioSource, healInfo.healSound, new SoundManagerArgs(5));
+        if (IsAtMaxHealth())
+            return;
+
         health += healInfo.healAmount;
         int overHealAmount = 0;
 
