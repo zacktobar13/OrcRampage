@@ -12,7 +12,7 @@ public class MeleeWeapon : Weapon
         return true;
     }
 
-    public override Projectile Attack()
+    public override Projectile Attack(bool isCritical)
     {
         if (!CanAttack())
             return null;
@@ -54,7 +54,7 @@ public class MeleeWeapon : Weapon
     DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)
     {
         Vector2 damageDirection = (targetPosition - weaponPosition).normalized;
-        return new DamageInfo(attackDamage, RollCrit(), damageDirection);
+        return new DamageInfo(attackDamage, false, damageDirection);
     }
 
     private void OnDrawGizmos()

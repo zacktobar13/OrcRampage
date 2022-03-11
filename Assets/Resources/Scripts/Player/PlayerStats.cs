@@ -11,6 +11,9 @@ public class PlayerStats : MonoBehaviour
     float experienceGainedScalar = 1f;
     float magnetismDistanceScalar = 1f;
 
+    float criticalScalar = 1.5f;
+    float criticalChance = 20f;
+
     PlayerHealth playerHealth;
 
     private void Start()
@@ -20,6 +23,9 @@ public class PlayerStats : MonoBehaviour
 
     public void ResetStats()
     {
+        criticalScalar = 1.5f;
+        criticalChance = 20f;
+
         damageScalar = 1f;
         maxHealthScalar = 1f;
         attackSpeedScalar = 1f;
@@ -40,9 +46,18 @@ public class PlayerStats : MonoBehaviour
         return baseRadius * magnetismDistanceScalar;
     }
 
-    public int CalculateDamage(int baseDamage)
+    public bool RollCritical()
     {
-        return (int)(baseDamage * damageScalar);
+        return Random.Range(0f, 100f) <= criticalChance;
+    }
+
+    public int CalculateDamage(int baseDamage, bool isCritical)
+    {
+        Vector2 damageSpread = new Vector2(.6f, 1.4f);
+        if (isCritical)
+            return (int)((baseDamage * damageScalar * criticalScalar) * Random.Range(damageSpread.x, damageSpread.y));
+        else
+            return (int)(baseDamage * damageScalar * Random.Range(damageSpread.x, damageSpread.y));
     }
 
     public float CalculateMovementSpeed(float baseMovementSpeed)
@@ -63,6 +78,11 @@ public class PlayerStats : MonoBehaviour
     public void IncreaseDamageScalar(float amount)
     {
         damageScalar += amount;
+    }
+
+    public void IncreaseCriticalScalar(float amount)
+    {
+        criticalScalar += amount;
     }
 
     public void IncreaseAttackSpeedScalar(float amount)

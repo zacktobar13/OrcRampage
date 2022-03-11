@@ -75,8 +75,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
-        currentWeapon.attackDamage = playerStats.CalculateDamage(baseDamage);
-        Projectile projectileSpawned = currentWeapon.Attack(offset, playSound, ignoreCooldown);
+        bool isCritical = playerStats.RollCritical();
+        currentWeapon.attackDamage = playerStats.CalculateDamage(baseDamage, isCritical);
+        Projectile projectileSpawned = currentWeapon.Attack(isCritical, offset, playSound, ignoreCooldown);
 
         if (projectileSpawned && onProjectileSpawned != null)
             onProjectileSpawned(this, projectileSpawned);

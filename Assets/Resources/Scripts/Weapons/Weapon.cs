@@ -8,8 +8,6 @@ public class Weapon : MonoBehaviour
     public WeaponIdentifier weaponID;
     public bool isAutomatic;
     public int attackDamage;
-    public int critChance;
-    public int critPower;
     public float baseAttacksPerSecond;
 
     [Header("Ranged Weapon")]
@@ -61,13 +59,13 @@ public class Weapon : MonoBehaviour
             playerStats = GetComponentInParent<PlayerStats>();
     }
 
-	public virtual Projectile Attack(float offset, bool playSound, bool ignoreCooldown=false)
+	public virtual Projectile Attack(bool isCritical, float offset, bool playSound, bool ignoreCooldown=false)
     {
         if (!ignoreCooldown && !CanAttack())
             return null;
 
         StartCoroutine(VisualEffects());
-        Projectile projectileSpawned = SpawnProjectile(offset);
+        Projectile projectileSpawned = SpawnProjectile(isCritical, offset);
 
         if (playSound)
             PlayAttackSound();
@@ -78,9 +76,9 @@ public class Weapon : MonoBehaviour
         return projectileSpawned;
     }
 
-    public virtual Projectile Attack()
+    public virtual Projectile Attack(bool isCritical)
     {
-        return Attack(0, true);
+        return Attack(isCritical, 0, true);
     }
 
     public virtual void FireEmpty()
@@ -88,15 +86,14 @@ public class Weapon : MonoBehaviour
         SoundManager.PlayOneShot(audioSource, emptySound);
     }
 
-    public virtual Projectile SpawnProjectile(float offset)
+    public virtual Projectile SpawnProjectile(bool isCritical, float offset)
     {
         if (!projectile)
             return null;
 
         GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
-        bool isCritical = RollCrit();
-        projectileInfo.projectileDamage = CalculateDamage(isCritical);
+        projectileInfo.projectileDamage = attackDamage;
         projectileInfo.isCriticalHit = isCritical;
         //projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.shotByPlayer = isOnPlayer;
@@ -168,25 +165,6 @@ public class Weapon : MonoBehaviour
 
         // Reset weapon's sprite position that gets changed from the idle floating animation.
         sprite.gameObject.transform.localPosition = Vector3.zero;
-    }
-
-    //Checks to see if a shot will be a crit
-    public virtual bool RollCrit()
-    {
-        return ( critChance >= Random.Range( 0, 100 ) );
-    }
-
-    //All attacks roll a random range to create a spread of damage.
-    public virtual int CalculateDamage(bool isCrit)
-    {
-        if (isCrit)
-        {
-            return (int)(attackDamage * critPower);
-        }
-        else
-        {
-            return attackDamage;
-        }
     }
 
     public virtual bool HasAmmo()

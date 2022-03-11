@@ -62,7 +62,7 @@ public class MeleeEnemyBehavior : BaseEnemy
     {
         if (ShouldAttack())
         {
-            currentWeapon.Attack();
+            currentWeapon.Attack(false);
             lastAttackTime = Time.time;
         }
     }
