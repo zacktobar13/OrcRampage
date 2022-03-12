@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public int baseDamage;
     PlayerStats playerStats;
 
     public delegate void OnShoot(PlayerAttack playerAttack);
@@ -76,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
     private void Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
         bool isCritical = playerStats.RollCritical();
-        currentWeapon.attackDamage = playerStats.CalculateDamage(baseDamage, isCritical);
+        currentWeapon.attackDamage = playerStats.CalculateDamage(isCritical);
         Projectile projectileSpawned = currentWeapon.Attack(isCritical, offset, playSound, ignoreCooldown);
 
         if (projectileSpawned && onProjectileSpawned != null)

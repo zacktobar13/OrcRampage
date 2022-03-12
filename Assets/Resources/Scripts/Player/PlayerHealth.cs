@@ -6,7 +6,6 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health;
     public int currentMaxHealth;
-    [SerializeField] int baseMaxHealth;
     public GameObject floatingDamageNumber;
     public GameObject floatingHealNumber;
     GameObject bow;
@@ -35,20 +34,21 @@ public class PlayerHealth : MonoBehaviour
 
     void Awake()
     {
-        health = baseMaxHealth;
+        playerStats = GetComponent<PlayerStats>();
+        currentMaxHealth = playerStats.CalculateMaxHealth();
+        health = currentMaxHealth;
     }
 
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
-        playerStats = GetComponent<PlayerStats>();
         audioSource = GetComponent<AudioSource>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
-        currentMaxHealth = playerStats.CalculateMaxHealth(baseMaxHealth);
-        gameplayUI.UpdatePlayerHealth(health, baseMaxHealth);
+        
+        gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
         
         if (onRespawn != null)
             onRespawn(this);
@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
     public void UpdateMaxHealth()
     {
         float currentHealthPercentage = health / (float)currentMaxHealth;
-        currentMaxHealth = playerStats.CalculateMaxHealth(baseMaxHealth);
+        currentMaxHealth = playerStats.CalculateMaxHealth();
         health = Mathf.CeilToInt(currentMaxHealth * currentHealthPercentage);
         gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
     }
@@ -141,6 +141,7 @@ public class PlayerHealth : MonoBehaviour
     public void Respawn()
     {
         isCurrentlyDead = false;
-        health = baseMaxHealth;
+        currentMaxHealth = playerStats.CalculateMaxHealth();
+        health = currentMaxHealth;
     }
 }

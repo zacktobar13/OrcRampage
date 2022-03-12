@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 7175836991511995846}
   - component: {fileID: 41296551}
   - component: {fileID: 386291819}
+  - component: {fileID: 1102896693}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -744,7 +745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  baseMaxHealth: 100
+  currentMaxHealth: 0
   floatingDamageNumber: {fileID: 4130821441948528224, guid: 4a53a76d0d132b84c9f01fbf46fee8ac,
     type: 3}
   floatingHealNumber: {fileID: 3704987405052076587, guid: 7422d9d4814592d4c953013f38a44252,
@@ -887,7 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f6a1701ae5db64290233d5d564c9c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 0
   currentWeapon: {fileID: 0}
 --- !u!114 &386291819
 MonoBehaviour:
@@ -905,6 +905,28 @@ MonoBehaviour:
   currentXp: 0
   xpToNextLevel: 0
   gameplayUI: {fileID: 0}
+--- !u!114 &1102896693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7175836991511995844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0f38423adaebb488937613db15f4b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxHealth: 100
+  maxHealthScalar: 1
+  baseDamage: 5
+  damageScalar: 1
+  attackSpeedScalar: 1
+  criticalChance: 20
+  criticalDamageScalar: 1.5
+  movementSpeedScalar: 1
+  experienceGainedScalar: 1
+  magnetismDistanceScalar: 1
 --- !u!1 &7175836991557105939
 GameObject:
   m_ObjectHideFlags: 0

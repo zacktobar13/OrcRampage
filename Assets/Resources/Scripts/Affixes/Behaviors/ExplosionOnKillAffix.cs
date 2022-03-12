@@ -25,7 +25,7 @@ public class ExplosionOnKillAffix : BaseAffix
 
         GameObject explosionSpawned = Instantiate(explosion, enemy.transform.position, Quaternion.identity);
         ExplosionBehavior explosionBehavior = explosion.GetComponent<ExplosionBehavior>();
-        explosionBehavior.damageAmount = playerStats.CalculateDamage(baseDamage, false);
+        explosionBehavior.damageAmount = playerStats.CalculateDamage(false, 2);
     }
 
     public override void AddAffixCount(int increment)

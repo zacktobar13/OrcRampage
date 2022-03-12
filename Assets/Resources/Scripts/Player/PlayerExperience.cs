@@ -35,6 +35,16 @@ public class PlayerExperience : MonoBehaviour
 		return 100 * level;
 	}
 
+	void LevelUp()
+    {
+		// Boost stats
+		playerStats.LevelUp();
+
+		currentXp -= xpToNextLevel;
+		playerLevel += 1;
+		xpToNextLevel = CalculateXpToNextLevel(playerLevel);
+	}
+
 	public void AddXp(int amount)
 	{
 		currentXp += playerStats.CalculateExperienceGained(amount);
@@ -44,10 +54,8 @@ public class PlayerExperience : MonoBehaviour
 
 		while (ReachedNextLevel())
 		{
+			LevelUp();
 			numberOfLevelsGained++;
-			currentXp -= xpToNextLevel;
-			playerLevel += 1;
-			xpToNextLevel = CalculateXpToNextLevel(playerLevel);
 		}
 
 		if (numberOfLevelsGained > 0)

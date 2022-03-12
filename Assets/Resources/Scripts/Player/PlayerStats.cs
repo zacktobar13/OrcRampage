@@ -4,27 +4,50 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    float damageScalar = 1f;
-    float maxHealthScalar = 1f;
-    float attackSpeedScalar = 1f;
-    float movementSpeedScalar = 1f;
-    float experienceGainedScalar = 1f;
-    float magnetismDistanceScalar = 1f;
+    [Header("Health Info")]
+    [SerializeField] public int baseMaxHealth;
+    [SerializeField] float maxHealthScalar = 1f;
 
-    float criticalScalar = 1.5f;
-    float criticalChance = 20f;
+    [Header("Damage Info")]
+    [SerializeField] int baseDamage;
+    [SerializeField] float damageScalar = 1f;
+    [SerializeField] float attackSpeedScalar = 1f;
+
+    [Header("Crit Info")]
+    [SerializeField] float criticalChance;
+    [SerializeField] float criticalDamageScalar = 1.5f;
+
+    [Header("Uncategorized Scalars")]
+    [SerializeField] float movementSpeedScalar = 1f;
+    [SerializeField] float experienceGainedScalar = 1f;
+    [SerializeField] float magnetismDistanceScalar = 1f;
 
     PlayerHealth playerHealth;
 
+
+    int startingMaxHealth;
+    int startingBaseDamage;
+    float startingCritChance;
     private void Start()
     {
+        startingMaxHealth = baseMaxHealth;
+        startingBaseDamage = baseDamage;
+        startingCritChance = criticalChance;
+
         playerHealth = GetComponent<PlayerHealth>();
+    }
+
+    public void LevelUp()
+    {
+        baseDamage += 1;
+        baseMaxHealth += 2;
+        playerHealth.UpdateMaxHealth();
     }
 
     public void ResetStats()
     {
-        criticalScalar = 1.5f;
-        criticalChance = 20f;
+        criticalDamageScalar = 1.5f;
+        criticalChance = startingCritChance;
 
         damageScalar = 1f;
         maxHealthScalar = 1f;
@@ -33,10 +56,13 @@ public class PlayerStats : MonoBehaviour
         experienceGainedScalar = 1f;
         magnetismDistanceScalar = 1f;
 
+        baseMaxHealth = startingMaxHealth;
+        baseDamage = startingBaseDamage;
+
         playerHealth.UpdateMaxHealth();
     }
 
-    public int CalculateMaxHealth(int baseMaxHealth)
+    public int CalculateMaxHealth()
     {
         return (int)(baseMaxHealth * maxHealthScalar);
     }
@@ -51,13 +77,18 @@ public class PlayerStats : MonoBehaviour
         return Random.Range(0f, 100f) <= criticalChance;
     }
 
-    public int CalculateDamage(int baseDamage, bool isCritical)
+    public int CalculateDamage(bool isCritical, float percentageOfBaseDamage)
     {
         Vector2 damageSpread = new Vector2(.6f, 1.4f);
         if (isCritical)
-            return (int)((baseDamage * damageScalar * criticalScalar) * Random.Range(damageSpread.x, damageSpread.y));
+            return (int)((baseDamage * damageScalar * criticalDamageScalar) * percentageOfBaseDamage * Random.Range(damageSpread.x, damageSpread.y));
         else
-            return (int)(baseDamage * damageScalar * Random.Range(damageSpread.x, damageSpread.y));
+            return (int)(baseDamage * damageScalar * percentageOfBaseDamage * Random.Range(damageSpread.x, damageSpread.y));
+    }
+
+    public int CalculateDamage(bool isCritical)
+    {
+        return CalculateDamage(isCritical, 1);
     }
 
     public float CalculateMovementSpeed(float baseMovementSpeed)
@@ -82,7 +113,7 @@ public class PlayerStats : MonoBehaviour
 
     public void IncreaseCriticalScalar(float amount)
     {
-        criticalScalar += amount;
+        criticalDamageScalar += amount;
     }
 
     public void IncreaseAttackSpeedScalar(float amount)
