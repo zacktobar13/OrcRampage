@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: -2356953126101439243
     second: UsedIcons_8
+  - first:
+      213: 3780681074442426108
+    second: UsedIcons_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -338,6 +341,27 @@ TextureImporter:
       bones: []
       spriteID: 5fc2a769e9b6a4fd0800000000000000
       internalID: -2356953126101439243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UsedIcons_9
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 480
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6de23086da77430800000000000000
+      internalID: 3780681074442426108
       vertices: []
       indices: 
       edges: []
