@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: CriticalDamage
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: dffef66376be4fa480fb02b19edbe903, type: 3}
+  icon: {fileID: 3780681074442426108, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: Devil's Dice
   affixDescription: Increases Critical Strike Damage
   isUniqueAffix: 0
