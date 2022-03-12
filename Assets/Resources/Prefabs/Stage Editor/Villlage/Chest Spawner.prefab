@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3665763438364679746
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: chanceForNothing
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: availableObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: availableObjects.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 5163067539969973883, guid: 80f9592cb6bf4864d8973f67f5f878b3,
+        type: 3}
+    - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: availableObjects.Array.data[0].spawnChance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389469, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_Name
+      value: Chest Spawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389470, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4679439362217389471, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6631089013861749692, guid: 17c861e55eb0cf140ba7cdd7ea988589,
+        type: 3}
+    - target: {fileID: 4679439362217389471, guid: 6f364ad8f79f1404090694dd7bfb614d,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f364ad8f79f1404090694dd7bfb614d, type: 3}
