@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
+  m_Name: CriticalChance
+  m_EditorClassIdentifier: 
+  icon: {fileID: -2356953126101439243, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Lucky Dice
+  affixDescription: Increases Critical Chance
+  isUniqueAffix: 0
+  affixPrefab: {fileID: 4800203761241068539, guid: c3179c594a267034a9a981150381702d,
+    type: 3}
+  scalarIncreasePerAffix: 10
+  baseDamage: 0
+  baseProcChance: 0

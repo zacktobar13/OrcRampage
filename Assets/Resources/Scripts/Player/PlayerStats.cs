@@ -79,7 +79,7 @@ public class PlayerStats : MonoBehaviour
 
     public int CalculateDamage(bool isCritical, float percentageOfBaseDamage)
     {
-        Vector2 damageSpread = new Vector2(.6f, 1.4f);
+        Vector2 damageSpread = new Vector2(.9f, 1.1f);
         if (isCritical)
             return (int)((baseDamage * damageScalar * criticalDamageScalar) * percentageOfBaseDamage * Random.Range(damageSpread.x, damageSpread.y));
         else
@@ -111,9 +111,14 @@ public class PlayerStats : MonoBehaviour
         damageScalar += amount;
     }
 
-    public void IncreaseCriticalScalar(float amount)
+    public void IncreaseCriticalDamageScalar(float amount)
     {
         criticalDamageScalar += amount;
+    }
+
+    public void IncreaseCriticalChanceAffix(float amount)
+    {
+        criticalChance += amount;
     }
 
     public void IncreaseAttackSpeedScalar(float amount)
