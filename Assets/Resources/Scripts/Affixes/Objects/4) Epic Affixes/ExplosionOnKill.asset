@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
+  m_Name: ExplosionOnKill
+  m_EditorClassIdentifier: 
+  icon: {fileID: -9047456131319280050, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Explosive shot
+  affixDescription: Chance for enemies to explode when they are killed.
+  affixRarity: 2
+  isUniqueAffix: 1
+  affixPrefab: {fileID: 762910085599845253, guid: 4ccc8515964dfd1489e00ee73f949c14,
+    type: 3}
+  scalarIncreasePerAffix: 0
+  baseDamage: 5
+  baseProcChance: 5

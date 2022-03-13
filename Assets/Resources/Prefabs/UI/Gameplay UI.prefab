@@ -128,7 +128,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 3
   m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -4122,15 +4122,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3687d56c2cbc3f14a951d403fbb1bd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  affixChoices:
-  - {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c, type: 2}
-  - {fileID: 11400000, guid: 21aacf0445ed34f498cd54c07b184499, type: 2}
-  - {fileID: 11400000, guid: 0820d989853ecc943affb860a897d346, type: 2}
-  - {fileID: 11400000, guid: 6b17441c2cafd1f4980c773e30b702c2, type: 2}
-  - {fileID: 11400000, guid: 58d5370da0b17cb4fb6b773250c0d872, type: 2}
-  - {fileID: 11400000, guid: 5b9f61c6487662d4f9625f8b5b921489, type: 2}
+  commonAffixChoices:
+  - {fileID: 11400000, guid: f7d5160b9a5c4734eae982becbe16c3b, type: 2}
+  - {fileID: 11400000, guid: 04e7ac1af2bb8fd41bf324f8fe146f83, type: 2}
   - {fileID: 11400000, guid: bfd8e40c259f7264d80a9e8f9a926d02, type: 2}
-  currentRunAffixChoices: []
+  - {fileID: 11400000, guid: 3c87761bf2479ee4b94185e74fe514b0, type: 2}
+  - {fileID: 11400000, guid: b8fe33bed89270d4b87b8c349ce61f13, type: 2}
+  - {fileID: 11400000, guid: 5b9f61c6487662d4f9625f8b5b921489, type: 2}
+  uncommonAffixChoices:
+  - {fileID: 11400000, guid: 58d5370da0b17cb4fb6b773250c0d872, type: 2}
+  magicAffixChoices:
+  - {fileID: 11400000, guid: 6b17441c2cafd1f4980c773e30b702c2, type: 2}
+  epicAffixChoices:
+  - {fileID: 11400000, guid: 0820d989853ecc943affb860a897d346, type: 2}
+  legendaryAffixChoices:
+  - {fileID: 11400000, guid: 21aacf0445ed34f498cd54c07b184499, type: 2}
+  ancientAffixChoices:
+  - {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c, type: 2}
+  commonAffixChance: 17
+  uncommonAffixChance: 17
+  magicAffixChance: 17
+  epicAffixChance: 17
+  legendaryAffixChance: 17
+  ancientAffixChance: 17
   playerLevelText: {fileID: 3675730494575886252}
   rewardText: {fileID: 3824391923571294957}
   buttonGameObject: {fileID: 8729128414493436510, guid: c88228e49fb063d4cbea68feaf40915a,
@@ -4487,9 +4501,11 @@ MonoBehaviour:
   affixPanel: {fileID: 7035663868609800736}
   playerInfoPanel: {fileID: 2967133195277427329}
   deathPanel: {fileID: 4526528745921716004}
-  playerAffixDisplay: {fileID: 0}
-  affixDisplayObject: {fileID: 0}
+  playerAffixDisplay: {fileID: 489242612}
+  affixDisplayObject: {fileID: 4252158325778326433, guid: 2e94bfaae4e7c0f47a5769277f3f84c9,
+    type: 3}
   weaponInfoGroup: []
+  affixIconDisplay: {fileID: 489242613}
   blackFade: {fileID: 7395227555049048678}
 --- !u!82 &1772304936382459305
 AudioSource:

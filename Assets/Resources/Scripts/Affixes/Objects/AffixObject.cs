@@ -6,6 +6,7 @@ public class AffixObject : ScriptableObject
     public Sprite icon;
     public string affixName;
     public string affixDescription;
+    public Rarity affixRarity;
     public bool isUniqueAffix;
     public GameObject affixPrefab;
 

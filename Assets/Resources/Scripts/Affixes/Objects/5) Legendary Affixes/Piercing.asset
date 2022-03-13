@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
-  m_Name: ExplosionOnKill
+  m_Name: Piercing
   m_EditorClassIdentifier: 
-  icon: {fileID: -9047456131319280050, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
-  affixName: Explosive shot
-  affixDescription: Chance for enemies to explode when they are killed.
-  isUniqueAffix: 1
-  affixPrefab: {fileID: 762910085599845253, guid: 4ccc8515964dfd1489e00ee73f949c14,
+  icon: {fileID: 21300000, guid: 7ec1519cd8e27f74ea2c099f3d6ccb07, type: 3}
+  affixName: Piercing
+  affixDescription: Projectiles pierce enemies and walls
+  affixRarity: 3
+  isUniqueAffix: 0
+  affixPrefab: {fileID: 1964983919791719321, guid: 71e3011d36379964e80804858efd06ce,
     type: 3}
   scalarIncreasePerAffix: 0
-  baseDamage: 5
-  baseProcChance: 5
+  baseDamage: 0
+  baseProcChance: 0

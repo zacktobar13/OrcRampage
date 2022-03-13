@@ -15,6 +15,7 @@ MonoBehaviour:
   icon: {fileID: -3779966509232188982, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: Multishot
   affixDescription: +1 projectile fired\nart is shit i know relax
+  affixRarity: 3
   isUniqueAffix: 0
   affixPrefab: {fileID: 5339313895243650046, guid: bdf79fac782d0a54b9eb55d29d6ffcfa,
     type: 3}

@@ -11,6 +11,7 @@ public class BaseAffix : MonoBehaviour
     public Sprite affixIcon;
     public string affixName;
     public string affixDescription;
+    public Rarity rarity;
     public bool isUnique;
     public float scalarIncreasePerAffix;
     public int baseDamage;
@@ -32,6 +33,7 @@ public class BaseAffix : MonoBehaviour
         baseDamage = data.baseDamage;
         baseProcChance = data.baseProcChance;
         scalarIncreasePerAffix = data.scalarIncreasePerAffix;
+        rarity = data.affixRarity;
         playerStats = GetComponent<PlayerStats>();
     }
 }
