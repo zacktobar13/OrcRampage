@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
     public float[] spawnChances;
+    List<Vector3> spawnPointList = new List<Vector3>();
 
     Transform player;
 
@@ -12,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
 
     public delegate void OnEnemyDeath(BaseEnemy enemy);
     public event OnEnemyDeath onEnemyDeath;
+    
 
     void Start()
     {
@@ -32,22 +35,47 @@ public class EnemySpawner : MonoBehaviour
         Vector3 topMiddleWorldPos = Camera.main.ScreenToWorldPoint(topScreenPos);
         Vector3 rightMiddleWorldPos = Camera.main.ScreenToWorldPoint(rightScreenPos);
         Vector3 bottomMiddleWorldPos = Camera.main.ScreenToWorldPoint(bottomScreenPos);
-
-        Vector3[] spawnLocations = { leftMiddleWorldPos, topMiddleWorldPos, rightMiddleWorldPos, bottomMiddleWorldPos };
-
+        
+        if (SpaceAvailable(leftMiddleWorldPos))
+        {
+            spawnPointList.Add(leftMiddleWorldPos);
+        }
+        if (SpaceAvailable(rightMiddleWorldPos))
+        {
+            spawnPointList.Add(rightMiddleWorldPos);
+        }
+        if (SpaceAvailable(topMiddleWorldPos))
+        {
+            spawnPointList.Add(topMiddleWorldPos);
+        }
+        if (SpaceAvailable(bottomMiddleWorldPos))
+        {
+            spawnPointList.Add(bottomMiddleWorldPos);
+        }
+       
         float randomRoll = Random.Range(0f, 100f);
 
-        if (randomRoll <= spawnChances[0])
+        if (spawnPointList.Count > 0)
         {
-            BaseEnemy enemy = Instantiate(enemiesToSpawn[0], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
-            BaseEnemy enemy2 = Instantiate(enemiesToSpawn[0], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>(); 
+            if (randomRoll <= spawnChances[0])
+            {
+                BaseEnemy enemy = Instantiate(enemiesToSpawn[0], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
+                BaseEnemy enemy2 = Instantiate(enemiesToSpawn[0], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>(); 
+            }
+            else
+            {
+                BaseEnemy enemy = Instantiate(enemiesToSpawn[1], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
+                BaseEnemy enemy2 = Instantiate(enemiesToSpawn[1], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
+            }
         }
-        else
-        {
-            BaseEnemy enemy = Instantiate(enemiesToSpawn[1], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
-            BaseEnemy enemy2 = Instantiate(enemiesToSpawn[1], spawnLocations[Random.Range(0, spawnLocations.Length)], transform.rotation).GetComponent<BaseEnemy>();
-        }
+
+        spawnPointList.Clear();
         enemiesAlive += 2;
+    }
+
+    public bool SpaceAvailable(Vector3 position)
+    {
+        return !Physics2D.Raycast(position, Vector3.forward);
     }
 
     public void EnemyDeath(BaseEnemy enemy)

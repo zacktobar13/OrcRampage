@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1542577615427232365}
-  - component: {fileID: 2623900127553495188}
   - component: {fileID: 2120615007481868089}
   m_Layer: 0
   m_Name: Grass Top 1
@@ -33,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2623900127553495188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542577615427232366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc3aefa58bba454393f687305e9870c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2120615007481868089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +59,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1542577616466008228}
   - component: {fileID: 1542577616466008410}
-  - component: {fileID: 1542577616466008411}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -145,19 +131,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1542577616466008411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542577616466008229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee158225ee1e59f4791627785501d950, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shaderTypes: 0
-  normalStrength: 5
-  normalSmoothing: 1
-  computingNormal: 0
