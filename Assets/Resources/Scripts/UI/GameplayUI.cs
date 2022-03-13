@@ -25,6 +25,8 @@ public class GameplayUI : MonoBehaviour
     public GameObject playerAffixDisplay;
     public GameObject affixDisplayObject;
 
+    public Shader affixShader;
+
     public GameObject[] weaponInfoGroup;
     public Transform affixIconDisplay;
 
@@ -90,9 +92,18 @@ public class GameplayUI : MonoBehaviour
         {
             Sprite affixIcon = newAffix.affixIcon;
             GameObject affixIconDisplay = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
-            Image spriteRenderer = affixIconDisplay.GetComponent<Image>();
+            Image image = affixIconDisplay.GetComponent<Image>();
             affixIconDisplay.name = newAffix.affixName;
-            spriteRenderer.sprite = affixIcon;
+            image.sprite = affixIcon;
+
+            // Outline logic
+            Material shaderMaterial = new Material(affixShader);
+            shaderMaterial.EnableKeyword("OUTBASE_ON");
+            shaderMaterial.EnableKeyword("OUTBASEPIXELPERF_ON");
+            if (newAffix.rarity != Rarity.COMMON)
+                shaderMaterial.SetFloat("_OutlineAlpha", 1f);
+            shaderMaterial.SetColor("_OutlineColor", RarityUtil.GetRarityColor(newAffix.rarity));
+            image.material = shaderMaterial;
         }
     }
 

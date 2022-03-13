@@ -803,6 +803,7 @@ MonoBehaviour:
   affixDescription: {fileID: 4952488405963047511}
   affixIcon: {fileID: 4553558992207797158}
   affixIconShadow: {fileID: 1189626727395812640}
+  iconShader: {fileID: 4800000, guid: a53f4bb29f3644b43b5075c6dcfecb32, type: 3}
   gameplayUI: {fileID: 0}
   affixMenu: {fileID: 0}
 --- !u!1 &8759821445373300911
