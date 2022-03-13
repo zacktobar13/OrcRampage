@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1542577615427232365}
   - component: {fileID: 2623900127553495188}
+  - component: {fileID: 2120615007481868089}
   m_Layer: 0
   m_Name: Grass Top 1
   m_TagString: Untagged
@@ -44,6 +45,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc3aefa58bba454393f687305e9870c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2120615007481868089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542577615427232366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8d842e1e26f7742bc680e72dab5320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1542577616466008410}
+  sprites:
+  - {fileID: 21300000, guid: 3ecc39f252dc410438d3cafb87d77738, type: 3}
+  - {fileID: -4215280245068214687, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
+  - {fileID: -5102181244215890417, guid: bd19948105c27fc48a27a42e752879e9, type: 3}
 --- !u!1 &1542577616466008229
 GameObject:
   m_ObjectHideFlags: 0

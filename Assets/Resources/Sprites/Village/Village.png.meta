@@ -167,6 +167,21 @@ TextureImporter:
   - first:
       213: 7886202035623863157
     second: grass_top_1
+  - first:
+      213: 3292043069463351445
+    second: water_0
+  - first:
+      213: 3554787032305821545
+    second: campfire_lit
+  - first:
+      213: -3792368441930353062
+    second: campfire_dead
+  - first:
+      213: 2677570042197995760
+    second: campfire_log
+  - first:
+      213: 1877869025284174288
+    second: campfire_logs
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1434,7 +1449,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1442,6 +1457,111 @@ TextureImporter:
       bones: []
       spriteID: 573a250f7fa617d60800000000000000
       internalID: 7886202035623863157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59056accabfafad20800000000000000
+      internalID: 3292043069463351445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_lit
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 967e0c8c8f3255130800000000000000
+      internalID: 3554787032305821545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_dead
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 63
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a56f651befcce5bc0800000000000000
+      internalID: -3792368441930353062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_log
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 79
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f0707a54c3a82520800000000000000
+      internalID: 2677570042197995760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: campfire_logs
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 79
+        width: 16
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d1b5cadde78f0a10800000000000000
+      internalID: 1877869025284174288
       vertices: []
       indices: 
       edges: []
