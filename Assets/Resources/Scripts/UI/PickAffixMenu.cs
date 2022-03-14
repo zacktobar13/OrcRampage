@@ -7,12 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PickAffixMenu : MonoBehaviour
 {
-    public AffixObject[] commonAffixChoices;
-    public AffixObject[] uncommonAffixChoices;
-    public AffixObject[] magicAffixChoices;
-    public AffixObject[] epicAffixChoices;
-    public AffixObject[] legendaryAffixChoices;
-    public AffixObject[] ancientAffixChoices;
+    public AffixObject[] allAffixesChoices;
+
     AffixObject[] currentRunCommonAffixChoices;
     AffixObject[] currentRunUncommonAffixChoices;
     AffixObject[] currentRunMagicAffixChoices;
@@ -71,6 +67,7 @@ public class PickAffixMenu : MonoBehaviour
         for (int i = 0; i < numberOfChoices; i++)
         {
             Rarity rarity = RollAffixRarity();
+            Debug.Log(rarity);
             AffixObject[] affixChoices = getAffixChoices(rarity);
             AffixObject affixChoice = affixChoices[Random.Range(0, affixChoices.Length)];
             SpawnAffixButton(affixChoice, i);
@@ -79,23 +76,66 @@ public class PickAffixMenu : MonoBehaviour
 
     void InitializeAffixChoices(Scene scene, LoadSceneMode mode)
     {
-        currentRunCommonAffixChoices = new AffixObject[commonAffixChoices.Length];
-        commonAffixChoices.CopyTo(currentRunCommonAffixChoices, 0);
+        List<AffixObject> commonAffixChoices = new List<AffixObject>();
+        List<AffixObject> uncommonAffixChoices = new List<AffixObject>();
+        List<AffixObject> magicAffixChoices = new List<AffixObject>();
+        List<AffixObject> epicAffixChoices = new List<AffixObject>();
+        List<AffixObject> legendaryAffixChoices = new List<AffixObject>();
+        List<AffixObject> ancientAffixChoices = new List<AffixObject>();
 
-        currentRunUncommonAffixChoices = new AffixObject[uncommonAffixChoices.Length];
-        uncommonAffixChoices.CopyTo(currentRunUncommonAffixChoices, 0);
+        foreach(AffixObject affix in allAffixesChoices)
+        {
+            switch (affix.affixRarity)
+            {
+                case Rarity.COMMON:
+                    commonAffixChoices.Add(affix);
+                    continue;
+                case Rarity.UNCOMMON:
+                    uncommonAffixChoices.Add(affix);
+                    continue;
+                case Rarity.MAGIC:
+                    magicAffixChoices.Add(affix);
+                    continue;
+                case Rarity.EPIC:
+                    epicAffixChoices.Add(affix);
+                    continue;
+                case Rarity.LEGENDARY:
+                    legendaryAffixChoices.Add(affix);
+                    continue;
+                case Rarity.ANCIENT:
+                    ancientAffixChoices.Add(affix);
+                    continue;
+            }
+        }
 
-        currentRunMagicAffixChoices = new AffixObject[magicAffixChoices.Length];
-        magicAffixChoices.CopyTo(currentRunMagicAffixChoices, 0);
+        currentRunCommonAffixChoices = commonAffixChoices.ToArray();
+        currentRunUncommonAffixChoices = uncommonAffixChoices.ToArray();
+        currentRunMagicAffixChoices = magicAffixChoices.ToArray();
+        currentRunEpicAffixChoices = epicAffixChoices.ToArray();
+        currentRunLegendaryAffixChoices = legendaryAffixChoices.ToArray();
+        currentRunAncientAffixChoices = ancientAffixChoices.ToArray();
 
-        currentRunEpicAffixChoices = new AffixObject[epicAffixChoices.Length];
-        epicAffixChoices.CopyTo(currentRunEpicAffixChoices, 0);
+        /*
+        Debug.Log("Common: " + PrintAffixArray(currentRunCommonAffixChoices));
+        Debug.Log("Uncommon: " + PrintAffixArray(currentRunUncommonAffixChoices));
+        Debug.Log("Magic: " + PrintAffixArray(currentRunMagicAffixChoices));
+        Debug.Log("Epic: " + PrintAffixArray(currentRunEpicAffixChoices));
+        Debug.Log("Legendary: " + PrintAffixArray(currentRunLegendaryAffixChoices));
+        Debug.Log("Ancient: " + PrintAffixArray(currentRunAncientAffixChoices));
+        */
+    }
 
-        currentRunLegendaryAffixChoices = new AffixObject[legendaryAffixChoices.Length];
-        legendaryAffixChoices.CopyTo(currentRunLegendaryAffixChoices, 0);
+    string PrintAffixArray(AffixObject[] array)
+    {
+        string output = "{ ";
 
-        currentRunAncientAffixChoices = new AffixObject[ancientAffixChoices.Length];
-        ancientAffixChoices.CopyTo(currentRunAncientAffixChoices, 0);
+        foreach(AffixObject affix in array)
+        {
+            output += affix.affixName + ", ";
+        }
+
+        output += " }";
+        return output;
     }
 
 	public void SetQuantityToChoose(int val)
