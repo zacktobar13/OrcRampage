@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 8608761420387006298, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: Golden Arrow
-  affixDescription: Projectiles pierce an additional enemy
+  affixDescription: Projectiles pierce an extra enemy
   affixRarity: 4
   isUniqueAffix: 0
   affixPrefab: {fileID: 1964983919791719321, guid: 71e3011d36379964e80804858efd06ce,

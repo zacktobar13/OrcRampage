@@ -27,7 +27,7 @@ public class PickAffixMenu : MonoBehaviour
     public TextMeshProUGUI playerLevelText;
     public TextMeshProUGUI rewardText;
     public GameObject buttonGameObject;
-    public RectTransform menuBackground;
+    //public RectTransform menuBackground;
 
     int affixChoicesRemaining;
     int choicesAvailable = 3;
@@ -51,8 +51,7 @@ public class PickAffixMenu : MonoBehaviour
         player = PlayerManagement.player;
         playerExperience = player.GetComponent<PlayerExperience>();
         UpdateRewardText();
-        UpdatePlayerLevelText();
-        menuBackground.sizeDelta = new Vector2(300f * choicesAvailable, menuBackground.rect.height);        
+        UpdatePlayerLevelText();   
     }
 
     private void OnDestroy()
