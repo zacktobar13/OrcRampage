@@ -271,7 +271,7 @@ public class PickAffixMenu : MonoBehaviour
 
     void UpdatePlayerLevelText()
     {
-        playerLevelText.text = "You've reached\nlevel " + playerExperience.playerLevel.ToString() + "!";
+        playerLevelText.text = "level " + playerExperience.playerLevel.ToString() + "!";
     }
 
     void UpdateRewardText()
