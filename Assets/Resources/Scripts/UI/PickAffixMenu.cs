@@ -64,12 +64,23 @@ public class PickAffixMenu : MonoBehaviour
     {
         int numberOfChoices = 3;
         spawnedButtons = new GameObject[numberOfChoices];
+        AffixObject[] chosenAffixes = new AffixObject[numberOfChoices];
         for (int i = 0; i < numberOfChoices; i++)
         {
             Rarity rarity = RollAffixRarity();
-            Debug.Log(rarity);
             AffixObject[] affixChoices = getAffixChoices(rarity);
+            if (affixChoices.Length == 0)
+            {
+                Debug.Log("No " + rarity.ToString() + " affixes to choose, skipping");
+                continue;
+            }
             AffixObject affixChoice = affixChoices[Random.Range(0, affixChoices.Length)];
+            if (AffixArrayContainsAffix(chosenAffixes, affixChoice))
+            {
+                Debug.Log(affixChoice.affixName + " detected as duplicate, skipping");
+                continue;
+            }
+            chosenAffixes[i] = affixChoice;
             SpawnAffixButton(affixChoice, i);
         }
     }
@@ -123,6 +134,7 @@ public class PickAffixMenu : MonoBehaviour
         Debug.Log("Legendary: " + PrintAffixArray(currentRunLegendaryAffixChoices));
         Debug.Log("Ancient: " + PrintAffixArray(currentRunAncientAffixChoices));
         */
+        
     }
 
     string PrintAffixArray(AffixObject[] array)
@@ -136,6 +148,20 @@ public class PickAffixMenu : MonoBehaviour
 
         output += " }";
         return output;
+    }
+
+    bool AffixArrayContainsAffix(AffixObject[] array, AffixObject affix)
+    {
+        foreach (AffixObject current in array)
+        {
+            if (current == null)
+                continue;
+
+            if (current.affixName == affix.affixName)
+                return true;
+        }
+
+        return false;
     }
 
 	public void SetQuantityToChoose(int val)
