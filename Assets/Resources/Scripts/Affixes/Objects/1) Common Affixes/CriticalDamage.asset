@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CriticalDamage
   m_EditorClassIdentifier: 
   icon: {fileID: 3780681074442426108, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
-  affixName: Devil's Dice
+  affixName: Ace of spades
   affixDescription: Increases Critical Strike Damage
+  affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 22d124ed0f752e249bcc1fda986f31c4,
     type: 3}

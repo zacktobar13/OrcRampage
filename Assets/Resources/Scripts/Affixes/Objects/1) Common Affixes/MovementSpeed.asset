@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 4723585436892185342, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: boots of swiftness
-  affixDescription: Increases Movement Speed by 10%
+  affixDescription: Increases Movement Speed
+  affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 7510747842064241646, guid: f7f0927e01d072c4db612a5c98d919c2,
     type: 3}

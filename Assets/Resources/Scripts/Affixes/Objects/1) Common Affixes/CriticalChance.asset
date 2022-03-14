@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CriticalChance
   m_EditorClassIdentifier: 
   icon: {fileID: -2356953126101439243, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
-  affixName: Lucky Dice
+  affixName: Loaded Die
   affixDescription: Increases Critical Chance
+  affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: c3179c594a267034a9a981150381702d,
     type: 3}

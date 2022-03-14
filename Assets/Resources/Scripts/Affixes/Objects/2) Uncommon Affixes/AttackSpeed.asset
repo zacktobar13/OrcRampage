@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: AttackSpeed
   m_EditorClassIdentifier: 
   icon: {fileID: 6421707582095905444, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
-  affixName: Adrenal Injection
-  affixDescription: Increases Attack Speed by 20%
+  affixName: Odd mushroom
+  affixDescription: Increases Attack Speed
+  affixRarity: 1
   isUniqueAffix: 0
   affixPrefab: {fileID: 1772268094596002201, guid: 8dc9bf55324b6654c80d9d8be8d6d53a,
     type: 3}

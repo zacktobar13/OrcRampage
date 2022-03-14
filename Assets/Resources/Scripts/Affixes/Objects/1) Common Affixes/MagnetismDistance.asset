@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: MagnetismDistance
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 804483c93287f47508f8db86f0ea3725, type: 3}
-  affixName: Magnetism Distance
-  affixDescription: Increases item magnetism distance by 20%
+  icon: {fileID: -1358563921286297298, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
+  affixName: Gravity amulet
+  affixDescription: Increases item pickup radius
+  affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 89ced7f6dfc1c454d9d3248454edd3e1,
     type: 3}

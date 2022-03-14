@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 8929449388006921600, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: fat juicy steak
-  affixDescription: Increases max health by 20%
+  affixDescription: Increases max health
+  affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 3a07397a2a7764f4a8d58750169cc095,
     type: 3}
