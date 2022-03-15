@@ -13,6 +13,7 @@ public class GameplayUI : MonoBehaviour
     public AudioClip collectExperienceAudio;
     public Image playerHealthBar;
     public Image playerExperienceBar;
+    public Image playerBossBar;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI currencyInfo;
     public TextMeshProUGUI playerLevelInfo;
@@ -45,6 +46,8 @@ public class GameplayUI : MonoBehaviour
     public delegate void OnFadeCompleted();
     public static event OnFadeCompleted onFadeCompleted;
 
+    int enemiesToSpawnBoss = 200; // BIG TIME TEMP
+
     private void Start()
     {
 
@@ -52,8 +55,8 @@ public class GameplayUI : MonoBehaviour
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
         enemySpawner.onEnemyDeath += IncrementKillCounter;
+        enemySpawner.onEnemyDeath += UpdateBossBar;
         SceneManager.sceneLoaded += ClearAffixIcons;
-
     }
 
 	private void LoadNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
@@ -69,6 +72,7 @@ public class GameplayUI : MonoBehaviour
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
         ResetKillCounter();
+        ResetBossBar();
         SceneManager.sceneLoaded += FadeFromBlack;
         SceneManager.sceneLoaded += LoadNewLevel;
         SceneManager.sceneLoaded += ClearAffixIcons;
@@ -246,7 +250,7 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
-    // KILL COUNTER ---------------------------------------------------
+    // KILL COUNTER, BOSS BAR ---------------------------------------------------
     public void IncrementKillCounter(BaseEnemy enemy)
     {
         killCount += 1;
@@ -258,6 +262,17 @@ public class GameplayUI : MonoBehaviour
         killCount = 0;
         killCountText.text = killCount.ToString();
     }
+
+	public void UpdateBossBar(BaseEnemy enemy)
+	{
+        playerBossBar.fillAmount = (float) killCount / enemiesToSpawnBoss;
+	}
+
+    public void ResetBossBar()
+    {
+        playerBossBar.fillAmount = 0f;
+    }
+
 
     //----------------------------------------------------------------
     public void FadeFromBlack(Scene scene, LoadSceneMode sceneLoadMode)
