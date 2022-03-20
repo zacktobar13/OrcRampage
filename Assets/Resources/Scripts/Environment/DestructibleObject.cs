@@ -19,7 +19,7 @@ public class DestructibleObject : MonoBehaviour
 
     protected void Start()
     {
-        floatingDamageNumber = StaticResources.floatingDamageNumber;
+        floatingDamageNumber = StaticResources.damageNumber;
         critDamageNumber = StaticResources.critDamageNumber;
     }
 

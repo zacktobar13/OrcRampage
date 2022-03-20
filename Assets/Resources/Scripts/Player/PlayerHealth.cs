@@ -6,10 +6,9 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health;
     public int currentMaxHealth;
-    public GameObject floatingDamageNumber;
-    public GameObject floatingHealNumber;
-    GameObject bow;
     [HideInInspector] public SpriteRenderer spriteRenderer;
+    GameObject floatingHealNumber;
+    GameObject floatingDamageNumber;
     AudioSource audioSource;
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
@@ -37,6 +36,8 @@ public class PlayerHealth : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         currentMaxHealth = playerStats.CalculateMaxHealth();
         health = currentMaxHealth;
+        floatingDamageNumber = StaticResources.playerDamageNumber;
+        floatingHealNumber = StaticResources.healNumber;
     }
 
     private void Start()

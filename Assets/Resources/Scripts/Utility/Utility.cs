@@ -76,6 +76,13 @@ public class Utility : MonoBehaviour {
         }
     }
 
+    /* Returns a random item from an array with equal probability
+     * for each element of the array. */
+    public static T Choose<T>(T[] array)
+    {
+        return array[Random.Range(0, array.Length)];
+    }
+
     public static float EaseOutQuad( float start, float end, float value )
     {
         end -= start;

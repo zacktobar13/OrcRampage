@@ -5,9 +5,12 @@ using UnityEngine;
 public class StaticResources : MonoBehaviour
 {
 
-    public static Material whiteMaterial;
-    public static GameObject floatingDamageNumber;
+    public static GameObject damageNumber;
+    public static GameObject healNumber;
     public static GameObject critDamageNumber;
+    public static GameObject playerDamageNumber;
+
+    public static Material whiteMaterial;
     public static GameObject damageCollider;
     public static GameObject floatingExperienceNumber;
     public static GameObject arrow;
@@ -23,14 +26,17 @@ public class StaticResources : MonoBehaviour
 
     void Awake()
     {
+        damageNumber = Resources.Load("Prefabs/UI/Damage Number", typeof(GameObject)) as GameObject;
+        healNumber = Resources.Load("Prefabs/UI/Heal Number", typeof(GameObject)) as GameObject;
+        critDamageNumber = Resources.Load("Prefabs/UI/Crit Damage Number", typeof(GameObject)) as GameObject;
+        playerDamageNumber = Resources.Load("Prefabs/UI/Player Damage Number", typeof(GameObject)) as GameObject;
+
         hitEffect1 = Resources.Load("Prefabs/Visual Effects/Hit Effect Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
         explosionSmall = Resources.Load("Prefabs/Explosions/Explosion Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;
         blood = Resources.Load("Prefabs/Visual Effects/Blood Particle 1") as GameObject;
         whiteMaterial = Resources.Load("Materials/WhiteFlash", typeof(Material)) as Material;
-        floatingDamageNumber = Resources.Load("Prefabs/UI/Damage Number", typeof(GameObject)) as GameObject;
-        critDamageNumber = Resources.Load("Prefabs/UI/Crit Damage Number", typeof(GameObject)) as GameObject;
         damageCollider = Resources.Load("Prefabs/Damage/Damage Collider Small 1", typeof(GameObject)) as GameObject;
         floatingExperienceNumber = Resources.Load("Prefabs/UI/XP Number", typeof(GameObject)) as GameObject;
         pixelSnap = Resources.Load("Materials/Pixel Snap") as Material;

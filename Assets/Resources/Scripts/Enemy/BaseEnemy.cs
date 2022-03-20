@@ -341,7 +341,7 @@ public class BaseEnemy : MonoBehaviour {
         health -= damageInfo.damageAmount;
 
         // Spawn floating damage numbers
-        GameObject damageNumberToSpawn = damageInfo.criticalHit ? StaticResources.critDamageNumber : StaticResources.floatingDamageNumber;
+        GameObject damageNumberToSpawn = damageInfo.criticalHit ? StaticResources.critDamageNumber : StaticResources.damageNumber;
         Vector3 damageNumberPosition = transform.position;
         damageNumberPosition.y += 7; // TODO: will this work for enemies of all sizes? Maybe map this number to "size" of enemy that doesn't exist yet but will need to for fire
         GameObject damageNumber = Instantiate( damageNumberToSpawn, damageNumberPosition, Quaternion.identity );
