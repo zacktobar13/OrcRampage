@@ -87,7 +87,7 @@ public class BaseEnemy : MonoBehaviour {
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
-        movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
+        //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
         damageTrigger = GetComponent<BoxCollider2D>();
         spriteGameObject = transform.Find("Sprite").gameObject;
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);

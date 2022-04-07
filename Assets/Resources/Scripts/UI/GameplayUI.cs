@@ -89,7 +89,7 @@ public class GameplayUI : MonoBehaviour
         Transform existingAffixIcon = affixIconDisplay.Find(newAffix.affixName);
         if (existingAffixIcon != null)
         {
-            String newQuantity = (newAffix.affixCount + 1).ToString();
+            String newQuantity = (newAffix.affixCount).ToString();
             existingAffixIcon.GetComponentInChildren<TextMeshProUGUI>().text = newQuantity;
         }
         else

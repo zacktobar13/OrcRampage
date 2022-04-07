@@ -31,7 +31,7 @@ public class RarityUtil : MonoBehaviour
                 return UncommonColor;
             case Rarity.MAGIC: // BLUE
                 return MagicColor;
-            case Rarity.EPIC: // PURP
+            case Rarity.EPIC: // PURPLE
                 return EpicColor;
             case Rarity.LEGENDARY: // ORANGE
                 return LegendaryColor;

@@ -6,23 +6,56 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
     public float[] spawnChances;
+
+    [Header("Event Info")]
+    public float eventRate;
+    public int surroundEventEnemyCount;
+
     List<Vector3> spawnPointList = new List<Vector3>();
 
-    Transform player;
-
     int enemiesAlive = 0;
+    Transform player;
 
     public delegate void OnEnemyDeath(BaseEnemy enemy);
     public event OnEnemyDeath onEnemyDeath;
-    
 
     void Start()
     {
         player = PlayerManagement.player.transform;
         InvokeRepeating("SpawnEnemy", 0f, spawnRate);
+        InvokeRepeating("SpawnEvent", eventRate, eventRate);
     }
 
-    public void SpawnEnemy()
+    void SpawnEnemy()
+    {
+        SpawnEnemy(null, null);
+    }
+
+    void SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
+    {
+        Vector3 spawnPosition;
+        if (forcedPosition.HasValue && SpaceAvailable(forcedPosition.GetValueOrDefault()))
+        {
+            spawnPosition = forcedPosition.GetValueOrDefault();
+        }
+        else
+        {
+            spawnPosition = GetRandomSpawnPosition();
+            if (spawnPosition == Vector3.zero)
+                return;
+        }
+
+        GameObject enemyToSpawn = forcedEnemyType == null ? GetRandomEnemyToSpawn() : forcedEnemyType;
+        Instantiate(enemyToSpawn, spawnPosition, transform.rotation);
+        enemiesAlive++;
+    }
+
+    GameObject GetRandomEnemyToSpawn()
+    {
+        return Random.Range(0f, 100f) <= spawnChances[0] ? enemiesToSpawn[0] : enemiesToSpawn[1];
+    }
+
+    Vector3 GetRandomSpawnPosition()
     {
         float offScreenXOffset = Screen.width * .1f;
         float offScreenYOffset = Screen.height * .1f;
@@ -35,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 topMiddleWorldPos = Camera.main.ScreenToWorldPoint(topScreenPos);
         Vector3 rightMiddleWorldPos = Camera.main.ScreenToWorldPoint(rightScreenPos);
         Vector3 bottomMiddleWorldPos = Camera.main.ScreenToWorldPoint(bottomScreenPos);
-        
+
         if (SpaceAvailable(leftMiddleWorldPos))
         {
             spawnPointList.Add(leftMiddleWorldPos);
@@ -52,25 +85,13 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnPointList.Add(bottomMiddleWorldPos);
         }
-       
-        float randomRoll = Random.Range(0f, 100f);
 
-        if (spawnPointList.Count > 0)
-        {
-            if (randomRoll <= spawnChances[0])
-            {
-                BaseEnemy enemy = Instantiate(enemiesToSpawn[0], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
-                BaseEnemy enemy2 = Instantiate(enemiesToSpawn[0], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>(); 
-            }
-            else
-            {
-                BaseEnemy enemy = Instantiate(enemiesToSpawn[1], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
-                BaseEnemy enemy2 = Instantiate(enemiesToSpawn[1], spawnPointList[Random.Range(0, spawnPointList.Count)], transform.rotation).GetComponent<BaseEnemy>();
-            }
-        }
+        if (spawnPointList.Count == 0)
+            return Vector3.zero;
 
+        Vector3 spawnPosition = spawnPointList[Random.Range(0, spawnPointList.Count)];
         spawnPointList.Clear();
-        enemiesAlive += 2;
+        return spawnPosition;
     }
 
     public bool SpaceAvailable(Vector3 position)
@@ -86,5 +107,37 @@ public class EnemySpawner : MonoBehaviour
         }
 
         enemiesAlive--;
+    }
+
+    void SpawnEvent()
+    {
+        System.Action[] events = { SpawnSurroundEvent };
+        System.Action eventToTrigger = events[Random.Range(0, events.Length)];
+        eventToTrigger.Invoke();
+    }
+
+    void SpawnSurroundEvent()
+    {
+        Debug.Log("Spawning Surround Event");
+        Vector2[] enemySpawnDirections = new Vector2[surroundEventEnemyCount];
+        Vector2 originalDirection = new Vector2(1, 0).normalized;
+        Vector2 rotatedDirection = originalDirection;
+
+        for (int i = 0; i < surroundEventEnemyCount; i++)
+        {
+            enemySpawnDirections[i] = rotatedDirection;
+            float rotationIncrement = (360f / surroundEventEnemyCount) * (i + 1);
+            rotatedDirection = Utility.Rotate(originalDirection, rotationIncrement);
+        }
+
+        float magnitude = new Vector2(Screen.width, Screen.height).magnitude / 2;
+        Vector2 cameraCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        GameObject enemyToSpawn = GetRandomEnemyToSpawn();
+
+        foreach (Vector2 direction in enemySpawnDirections)
+        {
+            Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(cameraCenter + direction * magnitude);
+            SpawnEnemy(spawnPosition, enemyToSpawn);
+        }
     }
 }
