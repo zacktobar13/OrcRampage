@@ -38,15 +38,12 @@ public class GameplayUI : MonoBehaviour
     bool fadingFromBlack = true;
     bool fadingToBlack = false;
     float blackFadeAlpha = 1f;
-    int killCount;
 
     public delegate void OnScreenBlack();
     public static event OnScreenBlack onScreenBlack;
 
     public delegate void OnFadeCompleted();
     public static event OnFadeCompleted onFadeCompleted;
-
-    int enemiesToSpawnBoss = 200; // BIG TIME TEMP
 
     private void Start()
     {
@@ -251,21 +248,19 @@ public class GameplayUI : MonoBehaviour
     }
 
     // KILL COUNTER, BOSS BAR ---------------------------------------------------
-    public void IncrementKillCounter(BaseEnemy enemy)
+    public void IncrementKillCounter(BaseEnemy enemy, EnemySpawner spawner)
     {
-        killCount += 1;
-        killCountText.text = killCount.ToString();
+        killCountText.text = spawner.enemiesKilled.ToString();
     }
 
     public void ResetKillCounter()
     {
-        killCount = 0;
-        killCountText.text = killCount.ToString();
+        killCountText.text = "0";
     }
 
-	public void UpdateBossBar(BaseEnemy enemy)
+	public void UpdateBossBar(BaseEnemy enemy, EnemySpawner spawner)
 	{
-        playerBossBar.fillAmount = (float) killCount / enemiesToSpawnBoss;
+        playerBossBar.fillAmount = (float) spawner.enemiesKilled / spawner.enemiesToSpawnBoss;
 	}
 
     public void ResetBossBar()

@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
     public float[] spawnChances;
+    public int enemiesToSpawnBoss;
 
     [Header("Event Info")]
     public float eventRate;
@@ -13,11 +14,18 @@ public class EnemySpawner : MonoBehaviour
 
     List<Vector3> spawnPointList = new List<Vector3>();
 
-    int enemiesAlive = 0;
+    [HideInInspector]
+    public int enemiesAlive = 0;
+    [HideInInspector]
+    public int enemiesKilled = 0;
+
     Transform player;
 
-    public delegate void OnEnemyDeath(BaseEnemy enemy);
+    public delegate void OnEnemyDeath(BaseEnemy enemy, EnemySpawner enemySpawner);
     public event OnEnemyDeath onEnemyDeath;
+
+    public delegate void OnBossSpawn();
+    public event OnBossSpawn onBossSpawn;
 
     void Start()
     {
@@ -99,13 +107,20 @@ public class EnemySpawner : MonoBehaviour
         return !Physics2D.Raycast(position, Vector3.forward);
     }
 
-    public void EnemyDeath(BaseEnemy enemy)
+    public void EnemyDeath(BaseEnemy enemy, EnemySpawner enemySpawner)
     {
+        enemiesKilled++;
+
         if (onEnemyDeath != null)
         {
-            onEnemyDeath(enemy);
+            onEnemyDeath(enemy, this);
         }
 
+
+        if (ShouldSpawnBoss())
+        {
+            SpawnBoss();
+        }
         enemiesAlive--;
     }
 
@@ -114,6 +129,21 @@ public class EnemySpawner : MonoBehaviour
         System.Action[] events = { SpawnSurroundEvent };
         System.Action eventToTrigger = events[Random.Range(0, events.Length)];
         eventToTrigger.Invoke();
+    }
+
+    public bool ShouldSpawnBoss()
+    {
+        return enemiesKilled >= enemiesToSpawnBoss;
+    }
+
+    public void SpawnBoss()
+    {
+        Debug.Log("Spawn Boss");
+
+        if (onBossSpawn != null)
+        {
+            onBossSpawn();
+        }
     }
 
     void SpawnSurroundEvent()

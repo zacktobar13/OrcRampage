@@ -17,7 +17,7 @@ public class ExplosionOnKillAffix : BaseAffix
         enemySpawner.onEnemyDeath += OnEnemyDeath;
     }
 
-    public void OnEnemyDeath(BaseEnemy enemy)
+    public void OnEnemyDeath(BaseEnemy enemy, EnemySpawner spawner)
     {
         bool willExplode = Random.Range(0f, 100f) <= chanceForExplosion;
         if (!willExplode)

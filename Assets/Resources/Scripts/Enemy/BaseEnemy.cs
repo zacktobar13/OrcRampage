@@ -289,7 +289,7 @@ public class BaseEnemy : MonoBehaviour {
 
     public void DeathInternal()
     {
-        enemySpawner.EnemyDeath(this);
+        enemySpawner.EnemyDeath(this, null);
 
         spriteAnim.Play(deathAnimation);
         DisableComponentsOnDeath();
