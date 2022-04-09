@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bc9456d03d064144b23418a1b218d20, type: 3}
   m_Name: BiggerProjectile
   m_EditorClassIdentifier: 
-  icon: {fileID: -7799845631344554787, guid: 5e222822463f63544806db15b7e483f7, type: 3}
+  icon: {fileID: 7657277840562832421, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
   affixName: World Shrinker
   affixDescription: Makes everything except projectiles smaller
   affixRarity: 3
