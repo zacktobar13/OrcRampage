@@ -29,11 +29,6 @@ public class Projectile : MonoBehaviour
             anim.speed = Random.Range(.8f, 1.2f);
         }
 
-        if (spriteGameObject)
-        {
-            spriteGameObject.transform.localScale *= Random.Range(.8f, 1.1f);
-        }
-
         transform.right = Utility.Rotate((Vector2)transform.right, rotationOffset);
         movementDirection = transform.right;
         movementSpeed *= Random.Range(.98f, 1.01f);
