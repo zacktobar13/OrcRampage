@@ -229,10 +229,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppableItems:
-  - {fileID: 6338699041248146883, guid: 0bb8026930b46fc46a38823d3a6a275f, type: 3}
-  - {fileID: 6338699041248146883, guid: 2e170a507a0277b40b0f08cb08fc1d88, type: 3}
+  - {fileID: 8734921152756357161, guid: 3030eab890043854d925ef24069e6833, type: 3}
   openDistance: 5
-  cost: 20
+  cost: 5
   debug: 1
 --- !u!114 &5163067539969973857
 MonoBehaviour:

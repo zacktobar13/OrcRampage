@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
     public float openDistance;
     public int cost;
     public bool debug;
+    bool isOpen;
 
     Transform playerTransform;
     Animator animator;
@@ -22,6 +23,9 @@ public class Chest : MonoBehaviour
 
     private void Update() {
 
+        if (isOpen)
+            return;
+
         if (!PlayerInput.interact)
             return;
 
@@ -33,6 +37,8 @@ public class Chest : MonoBehaviour
     }
 
     public void Open() {
+        isOpen = true;
+
         animator.SetBool("isOpen", true);
 
         GameObject drop = droppableItems[Random.Range(0, droppableItems.Length)];
