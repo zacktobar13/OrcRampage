@@ -32,7 +32,7 @@ public class PlayerExperience : MonoBehaviour
 
     public int CalculateXpToNextLevel(int level)
 	{
-		return 100 * level;
+		return 50 * level;
 	}
 
 	void LevelUp()
