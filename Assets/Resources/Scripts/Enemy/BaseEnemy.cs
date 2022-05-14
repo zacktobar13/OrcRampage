@@ -295,7 +295,7 @@ public class BaseEnemy : MonoBehaviour {
         DisableComponentsOnDeath();
 
         /* Drop number of XP globes based on enemy's rarity index (1-6) */
-        for (int i = 0; i < rarityIndex + 1; i++)
+        for (int i = 0; i < Random.Range(4, 6)*(rarityIndex + 1); i++)
         {
             GameObject xpDropped = Instantiate(StaticResources.xpGlobe, transform.position, Quaternion.identity);
         }

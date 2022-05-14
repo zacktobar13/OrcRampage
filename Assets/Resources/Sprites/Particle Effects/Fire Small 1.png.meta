@@ -96,7 +96,7 @@ TextureImporter:
       213: 21300058
     second: SmallFireParticles.png_29
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -116,6 +116,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -125,8 +127,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -147,11 +149,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -162,7 +168,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -173,6 +180,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -816,6 +824,37 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      SmallFireParticles.png_17: 21300034
+      SmallFireParticles.png_25: 21300050
+      SmallFireParticles.png_12: 21300024
+      SmallFireParticles.png_9: 21300018
+      SmallFireParticles.png_20: 21300040
+      SmallFireParticles.png_29: 21300058
+      SmallFireParticles.png_10: 21300020
+      SmallFireParticles.png_14: 21300028
+      SmallFireParticles.png_2: 21300004
+      SmallFireParticles.png_16: 21300032
+      SmallFireParticles.png_13: 21300026
+      SmallFireParticles.png_1: 21300002
+      SmallFireParticles.png_5: 21300010
+      SmallFireParticles.png_18: 21300036
+      SmallFireParticles.png_11: 21300022
+      SmallFireParticles.png_7: 21300014
+      SmallFireParticles.png_8: 21300016
+      SmallFireParticles.png_22: 21300044
+      SmallFireParticles.png_26: 21300052
+      SmallFireParticles.png_15: 21300030
+      SmallFireParticles.png_0: 21300000
+      SmallFireParticles.png_19: 21300038
+      SmallFireParticles.png_28: 21300056
+      SmallFireParticles.png_23: 21300046
+      SmallFireParticles.png_4: 21300008
+      SmallFireParticles.png_24: 21300048
+      SmallFireParticles.png_27: 21300054
+      SmallFireParticles.png_21: 21300042
+      SmallFireParticles.png_3: 21300006
+      SmallFireParticles.png_6: 21300012
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

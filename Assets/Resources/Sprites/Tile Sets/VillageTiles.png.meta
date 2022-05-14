@@ -306,6 +306,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1825,6 +1826,74 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      VillageTiles_1: -3447304964943152845
+      VillageTiles_23: 5291192586014682987
+      VillageTiles_28: 2972993633391481989
+      VillageTiles_49: -1985448746926909415
+      VillageTiles_0: 2695107891268054261
+      VillageTiles_58: 9135222423819949844
+      VillageTiles_7: 6411449967151591384
+      VillageTiles_25: 4064847245878581852
+      VillageTiles_8: -5102181244215890417
+      VillageTiles_27: -2197907560738828664
+      VillageTiles_12: -1651434049396424758
+      VillageTiles_48: -3061343977952340720
+      VillageTiles_11: -1415362297573472335
+      VillageTiles_16: 4411111042999432139
+      VillageTiles_44: -2693194940581273747
+      VillageTiles_64: 1298728378850959242
+      VillageTiles_66: 7344401408957640824
+      VillageTiles_4: -1564510267420629596
+      VillageTiles_2: 4678091333671019254
+      VillageTiles_19: -7520346520268848308
+      VillageTiles_22: -8860099162431996477
+      VillageTiles_9: -4215280245068214687
+      VillageTiles_29: 7706321576787112192
+      VillageTiles_3: 4314285743359828786
+      VillageTiles_6: 7017732580077562115
+      VillageTiles_50: 7035433597692001662
+      VillageTiles_65: -602222014921914244
+      VillageTiles_63: 6709214045403328687
+      VillageTiles_18: 6288505988342903599
+      VillageTiles_59: 5496288420046131002
+      VillageTiles_55: 2271407870111149455
+      VillageTiles_24: 7779949252875952122
+      VillageTiles_60: 4803993019470834759
+      VillageTiles_38: 5631523052193577481
+      VillageTiles_39: 1160677776841887130
+      VillageTiles_17: 4325920387597226117
+      VillageTiles_20: 5013857049390505922
+      VillageTiles_32: -2844781348128165710
+      VillageTiles_41: -8974886115834336946
+      VillageTiles_45: 5474704647611526227
+      VillageTiles_10: -3009932689679684927
+      VillageTiles_30: 7416654963042375885
+      VillageTiles_46: 4392695378204791107
+      VillageTiles_62: -7381595079727887384
+      VillageTiles_31: -4247941262418593437
+      VillageTiles_52: 2680055470886973032
+      VillageTiles_42: 773852250341070264
+      VillageTiles_54: 2323435903135982733
+      VillageTiles_56: 5767615845845195385
+      VillageTiles_13: 2537922721095044094
+      VillageTiles_47: -2008225249437647567
+      VillageTiles_61: 1832463675005198396
+      VillageTiles_37: -2956165389791282194
+      VillageTiles_43: -7297384036909403959
+      VillageTiles_5: 5803537352077040366
+      VillageTiles_57: 8824159179494751502
+      VillageTiles_21: -6047818497649028333
+      VillageTiles_33: -6642164646432678882
+      VillageTiles_35: 260151293417723926
+      VillageTiles_14: 6602142142874010891
+      VillageTiles_40: 601537038281750631
+      VillageTiles_34: -499078456274426838
+      VillageTiles_36: -2575545499632899105
+      VillageTiles_15: -3296885034596736114
+      VillageTiles_51: -2562590292555048298
+      VillageTiles_26: -7921428772298271033
+      VillageTiles_53: -4273801585093883396
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

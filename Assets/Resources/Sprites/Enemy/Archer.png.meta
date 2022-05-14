@@ -51,6 +51,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -352,6 +353,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Archer_3: -2936497657700248757
+      Archer_4: 818616984480399886
+      Archer_7: -5511490489121558247
+      Archer_1: -1353735933490891112
+      Archer_5: -3506536579647068688
+      Archer_0: -7132172409892320828
+      Archer_6: 7243941689720402736
+      Archer_8: -6542253794372221699
+      Archer_2: 3001767060249510921
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

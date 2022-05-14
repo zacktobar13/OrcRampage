@@ -130,13 +130,18 @@ PrefabInstance:
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: currentWeapon
       value: 
       objectReference: {fileID: 5494372150155008528}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
       propertyPath: accentColorDelta
@@ -262,15 +267,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7307790ca15340b4c830ae9599eeee16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &8364124459347362562 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9152742375321114451, guid: db2923e03d7a84047835ae022d9e67ff,
-    type: 3}
-  m_PrefabInstance: {fileID: 798901107330929745}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7217650268938607090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8015416671377739171, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8364124459347362562 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9152742375321114451, guid: db2923e03d7a84047835ae022d9e67ff,
     type: 3}
   m_PrefabInstance: {fileID: 798901107330929745}
   m_PrefabAsset: {fileID: 0}

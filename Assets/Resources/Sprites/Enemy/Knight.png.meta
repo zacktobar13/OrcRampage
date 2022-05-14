@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -328,6 +329,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Knight_2: 7827260208125532704
+      Knight_3: 5457420103614929235
+      Knight_4: 8480205167599975839
+      Knight_0: -5711848221618334454
+      Knight_7: -7232600524240232993
+      Knight_1: -8985680732576350864
+      Knight_6: 5891436520834976337
+      Knight_5: 1086178698101399146
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

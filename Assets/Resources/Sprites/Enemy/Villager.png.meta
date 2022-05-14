@@ -48,6 +48,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -328,6 +329,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Villager_5: 497873542229483995
+      Villager_1: 2707228883162791875
+      Villager_4: 1832750334866107353
+      Villager_6: 6180798291460603356
+      Villager_7: -2851297785831275420
+      Villager_3: 9196104817815572301
+      Villager_2: 4966075338716586333
+      Villager_0: -203661239432679192
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -243,6 +243,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1888,6 +1889,80 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      campfire_lit: 3554787032305821545
+      dirt_grass_16: 4556825025469176791
+      dirt_grass_10: 6618955051440559458
+      rock_barrier_2: -8466930177100791321
+      water_grass_2: 7252992886784424323
+      dirt_grass_7: -6547794498023210737
+      dirt_grass_13: 972466363972267924
+      cliff_2: 9216196993258409879
+      campfire_log: 2677570042197995760
+      bush_2: 6979234091517765916
+      water_grass_5: -8082023041111768439
+      water_1: 2022807719561474530
+      rock_barrier_4: -6852755800091667110
+      fence_5: 7664133065143346876
+      dirt_grass_12: -22096172995160973
+      dirt_grass_8: 2158439633983044298
+      rock_barrier_3: 5314534387842043588
+      dirt_grass_15: -3701273680765976962
+      water_grass_1: 4750771297606448685
+      rock_barrier_9: -2139339221396662319
+      fence_1: -4421484937958194054
+      tree_3: 4568070514916017829
+      dirt_grass_3: -2877969685674601728
+      cliff_4: -8959166138935651997
+      fence_4: 2635568258960554721
+      water_grass_11: 5493769676652066239
+      tree_1: -1189772244825860195
+      cliff_3: 2934548030241770382
+      grass_top_1: 7886202035623863157
+      dirt_grass_11: 4925038834227820499
+      water_2: -7226582618517675224
+      stump_1: -7505409694357261899
+      dirt_grass_14: -5259745295985254043
+      campfire_logs: 1877869025284174288
+      cliff_1: 9011214644508922953
+      fence_0: 6291183955855089312
+      rock_barrier_1: -4677669918671272708
+      fence_6: -7208741848179193203
+      cliff_9: -3399838558309605121
+      rock_2: 3105487901236340311
+      dirt_grass_1: 6530068522027406341
+      cliff_8: -2451583852097872431
+      water_grass_13: 4400312935790430024
+      dirt_grass_2: -1037374583654773965
+      tree_2: -3161178442214641638
+      cliff_7: 3019473631648787605
+      cliff_5: 1683081797911465160
+      tree_4: 2367744938804967120
+      water_grass_6: -8651352107461996597
+      water_0: 3292043069463351445
+      dirt_grass_9: -788252574411124675
+      water_grass_8: -2664438734397302317
+      water_lilypad: -485404547224201680
+      fence_3: -1580308602318090427
+      rock_1: -5499718864720509026
+      dirt_grass_5: 6744047719790872225
+      cliff_6: -1484158789563995611
+      rock_barrier_5: -6665513993185490073
+      rock_barrier_6: -2798217911539741370
+      rock_barrier_8: -2759125660036707812
+      bush_1: 3461850574408800985
+      water_grass_3: 4496487006100575865
+      dirt_grass_4: -4690271107893176541
+      rock_3: 4221391891632534971
+      fence_2: -5567902231347033571
+      water_grass_9: -8574701311455289554
+      rock_barrier_7: 8862496502146071939
+      water_grass_10: 5822253518535410999
+      water_grass_4: 5102241968828195920
+      water_grass_7: -2914755168009056471
+      dirt_grass_6: 6351507947548048454
+      campfire_dead: -3792368441930353062
+      water_grass_12: 8681233517589966950
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

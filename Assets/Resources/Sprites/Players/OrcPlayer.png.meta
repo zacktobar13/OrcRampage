@@ -63,6 +63,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -448,6 +449,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      OrcPlayer_8: -4622513501232477265
+      OrcPlayer_1: -4589798277878832208
+      OrcPlayer_6: -4742075012829753428
+      OrcPlayer_4: -247008958016724117
+      OrcPlayer_10: -4506820576039549206
+      OrcPlayer_7: -3928341079302802722
+      OrcPlayer_5: 3143116785976871529
+      OrcPlayer_9: 1374476271109858335
+      OrcPlayer_3: 2920083774323270490
+      OrcPlayer_0: -2326323257253099657
+      OrcPlayer_11: 539144761769133496
+      OrcPlayer_2: -6859843433996544910
+      OrcPlayer_12: -4598932270730482332
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

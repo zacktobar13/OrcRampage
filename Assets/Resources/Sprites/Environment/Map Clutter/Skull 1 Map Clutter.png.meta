@@ -42,6 +42,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -280,6 +281,13 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Skull 1 Map Clutter_5: 4933515210290250850
+      Skull 1 Map Clutter_1: 4268434753631394234
+      Skull 1 Map Clutter_2: 5574215804479624446
+      Skull 1 Map Clutter_0: 4772836483143970651
+      Skull 1 Map Clutter_4: 1618783614758423195
+      Skull 1 Map Clutter_3: 8139656505738164900
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
