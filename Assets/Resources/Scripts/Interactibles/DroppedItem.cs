@@ -8,8 +8,7 @@ public class DroppedItem : MonoBehaviour
     Vector2 randomDirection = Vector2.zero;
     protected Animator anim;
     protected ItemMagnetism magnetism;
-
-    float collectionTimer = .5f;
+    
     float timeSpawned;
     bool hasBeenConsumed;
 
@@ -42,7 +41,7 @@ public class DroppedItem : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hasBeenConsumed || Time.time < timeSpawned + collectionTimer)
+        if (hasBeenConsumed || !magnetism.enabled)
             return;
 
         if (collision.gameObject.tag.Equals("Player"))
@@ -50,6 +49,11 @@ public class DroppedItem : MonoBehaviour
             Consume();
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        OnTriggerEnter2D(collision);
     }
 
     protected virtual void Consume()

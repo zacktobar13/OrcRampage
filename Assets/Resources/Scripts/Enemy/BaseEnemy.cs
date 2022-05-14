@@ -236,14 +236,16 @@ public class BaseEnemy : MonoBehaviour {
 
 	int CalculateMaxHealth()
     {
-        int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return (int)((maxHealth + healthScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
+        return (int)(maxHealth * rarityStatScalar);
+        //int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
+        //return (int)((maxHealth + healthScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
     }
 
     int CalculateAttackDamage()
     {
-        int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
-        return (int)((attackDamage + attackDamageScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
+        return (int)(attackDamage * rarityStatScalar);
+        //int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
+        //return (int)((attackDamage + attackDamageScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
     }
 
     public void MoveTowards(Vector2 targetPosition, float speed)

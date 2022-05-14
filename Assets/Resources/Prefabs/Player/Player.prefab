@@ -471,7 +471,6 @@ GameObject:
   - component: {fileID: 7175836991511995854}
   - component: {fileID: 8330082725367575504}
   - component: {fileID: 7175836991511995853}
-  - component: {fileID: 3236591511651761512}
   - component: {fileID: 7175836991511995852}
   - component: {fileID: 7175836991511995851}
   - component: {fileID: 7175836991511995849}
@@ -699,19 +698,6 @@ MonoBehaviour:
   weapons:
   - {fileID: 0}
   rigidBody: {fileID: 7175836991511995825}
---- !u!114 &3236591511651761512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175836991511995844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d3825e8fa9e62499dc4405a117baf2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localCurrency: 0
 --- !u!114 &7175836991511995852
 MonoBehaviour:
   m_ObjectHideFlags: 0

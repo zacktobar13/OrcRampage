@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class Chest : MonoBehaviour
 {
-    public GameObject copperCoin;
-    public GameObject silverCoin;
-    public GameObject goldCoin;
+    public GameObject[] droppableItems;
+    PlayerCurrencyManager playerCurrencyManager;
     public float openDistance;
-    public int keysRequired = 0;
+    public int cost;
     public bool debug;
 
     Transform playerTransform;
@@ -16,29 +15,28 @@ public class Chest : MonoBehaviour
 
     void Start() {
         animator = GetComponent<Animator>();
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        GameObject player = GameObject.Find("Player");
+        playerTransform = player.transform;
+        playerCurrencyManager = GameObject.Find("Game Management").GetComponent<PlayerCurrencyManager>();
     }
 
     private void Update() {
-        if (PlayerInput.interact && Vector2.Distance(transform.position, playerTransform.position) <= openDistance) {
-            AttemptOpen();
-        }
+
+        if (!PlayerInput.interact)
+            return;
+
+        if (Vector2.Distance(transform.position, playerTransform.position) > openDistance)
+            return;
+
+        if (playerCurrencyManager.RemoveCurrency(cost))
+            Open();
     }
 
-    public void AttemptOpen() {
+    public void Open() {
         animator.SetBool("isOpen", true);
 
-        for (int i = 0; i < 10; i++) {
-            Instantiate(copperCoin, transform.position, Quaternion.identity);
-        }
-
-        for (int i = 0; i < 7; i++) {
-            Instantiate(silverCoin, transform.position, Quaternion.identity);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            Instantiate(goldCoin, transform.position, Quaternion.identity);
-        }
+        GameObject drop = droppableItems[Random.Range(0, droppableItems.Length)];
+        Instantiate(drop, transform.position, Quaternion.identity);
     }
 }
 

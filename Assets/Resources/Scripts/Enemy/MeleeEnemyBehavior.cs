@@ -26,24 +26,7 @@ public class MeleeEnemyBehavior : BaseEnemy
 
     public override void ChaseTarget()
     {
-        
-        if (IsAttackOnCooldown())
-        {
-            // Run away from target
-            if (!isRunningAway)
-            {
-                // Initialize runAway direction and stick to it until you can attack again
-                Vector2 directionToEnemy = (transform.position - target.transform.position).normalized;
-                runAwayDirection = (Vector2)transform.position + (directionToEnemy);
-                runAwayDirection = Utility.Rotate(runAwayDirection, Random.Range(-180, 180));
-                runAwayDirection *= 100;
-                isRunningAway = true;
-            }
-
-            spriteAnim.Play(movingAnimation);
-            MoveTowards(runAwayDirection, movementSpeed * Time.deltaTime);
-        }
-        else if (distanceToTarget >= attackRange)
+        if (distanceToTarget >= attackRange)
         {
             // Chase Target
             isRunningAway = false;

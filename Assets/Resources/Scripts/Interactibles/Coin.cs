@@ -6,7 +6,6 @@ public class Coin : DroppedItem
     public SpriteRenderer spriteRenderer;
     public float spinAnimSpeed = 0f;
     public int value;
-    bool triggered;
 
     public Sprite[] sprites;
     int anim_index;

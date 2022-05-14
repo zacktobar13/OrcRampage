@@ -40,7 +40,6 @@ public class GameObjectSpawner : MonoBehaviour
 
         if (randomRoll <= 0)
         {
-            Debug.Log("Spawned nothing");
             return;
         }
 
@@ -56,6 +55,5 @@ public class GameObjectSpawner : MonoBehaviour
         }
         
         Instantiate(toSpawn, transform.position, Quaternion.identity);
-        Debug.Log("Spawned " + toSpawn.name);
     }
 }
