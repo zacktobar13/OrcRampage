@@ -478,7 +478,6 @@ GameObject:
   - component: {fileID: 7175836991511995848}
   - component: {fileID: 7175836991511995846}
   - component: {fileID: 41296551}
-  - component: {fileID: 386291819}
   - component: {fileID: 1102896693}
   m_Layer: 12
   m_Name: Player
@@ -893,22 +892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 0}
---- !u!114 &386291819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7175836991511995844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30dbe7c746a295a4a9571656fad6845f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLevel: 1
-  currentXp: 0
-  xpToNextLevel: 0
-  gameplayUI: {fileID: 0}
 --- !u!114 &1102896693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -923,7 +906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseMaxHealth: 100
   maxHealthScalar: 1
-  baseDamage: 5
+  baseDamage: 3
   damageScalar: 1
   attackSpeedScalar: 1
   criticalChance: 20
@@ -1142,6 +1125,11 @@ PrefabInstance:
         type: 3}
       propertyPath: visualsCooldown
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
+        type: 3}
+      propertyPath: baseAttacksPerSecond
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8731313941730147161, guid: 8ca2be2116eaae247963dfd7f5e3e532,
         type: 3}

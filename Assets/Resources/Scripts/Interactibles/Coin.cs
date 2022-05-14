@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Coin : DroppedItem
 {
-    //PlayerCurrencyManager playerCurrency;
+    PlayerCurrencyManager playerCurrency;
     public SpriteRenderer spriteRenderer;
-    float spinAnimSpeed = 0f;
+    public float spinAnimSpeed = 0f;
     public int value;
+    bool triggered;
 
     public Sprite[] sprites;
     int anim_index;
@@ -15,18 +14,22 @@ public class Coin : DroppedItem
     protected new void Start()
     {
         base.Start();
+        anim_index = Random.Range(0, sprites.Length);
+        spinAnimSpeed *= Random.Range(.8f, 1.2f);
+        playerCurrency = GameObject.Find("Game Management").GetComponent<PlayerCurrencyManager>();
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision);
-        //playerCurrency.AddCurrency(value);
-    }
-
+	protected override void Consume()
+	{
+		base.Consume();
+        playerCurrency.AddCurrency(value);
+	}
     void SpinAnimation()
     {
         spriteRenderer.sprite = sprites[anim_index % 4];
         anim_index += 1;
     }
+
+
 }

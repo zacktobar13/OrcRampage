@@ -12,12 +12,9 @@ public class GameplayUI : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip collectExperienceAudio;
     public Image playerHealthBar;
-    public Image playerExperienceBar;
     public Image playerBossBar;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI currencyInfo;
-    public TextMeshProUGUI playerLevelInfo;
-    public TextMeshProUGUI xpInfo;
     public TextMeshProUGUI killCountText;
     public Animator currencyAnim;
     public GameObject affixPanel;
@@ -154,8 +151,6 @@ public class GameplayUI : MonoBehaviour
         int health = PlayerManagement.player.GetComponent<PlayerHealth>().health;
         int experience = PlayerManagement.player.GetComponent<PlayerExperience>().xpToNextLevel;
         UpdatePlayerHealth(health, health);
-        UpdatePlayerLevel(1);
-        UpdatePlayerExperienceBar(0, experience);
     }
 
     public void UpdatePlayerHealth(int currentHealth, int maxHealth)
@@ -164,22 +159,10 @@ public class GameplayUI : MonoBehaviour
         playerHealthBar.fillAmount = (float) currentHealth / maxHealth;
     }
 
-    public void UpdatePlayerLevel(int currentLevel)
-    {
-        playerLevelInfo.text = "LVL " + currentLevel.ToString();
-    }
-
-    public void UpdatePlayerExperienceBar(int currentXP, int xpToNextLevel)
-    {
-        PlayCollectExperienceSound();
-        xpInfo.text = currentXP + " / " + xpToNextLevel;
-        playerExperienceBar.fillAmount = (float) currentXP / xpToNextLevel;
-    }
-
     public void UpdateCurrencyInfo(int newCurrencyAmount)
     {
         currencyAnim.SetTrigger("AddCurrency");
-        currencyInfo.text = "$ " + newCurrencyAmount.ToString();
+        currencyInfo.text = newCurrencyAmount.ToString();
     }
     // ----------------------------------------------------
 
@@ -201,12 +184,6 @@ public class GameplayUI : MonoBehaviour
         ShowDeathPanel();
     }
     // ------------------------------------------------------
-
-    private void PlayCollectExperienceSound()
-    {
-        SoundManagerArgs soundManagerArgs = new SoundManagerArgs(.4f, new Vector2(.35f, .45f));
-       // SoundManager.PlayOneShot(audioSource, collectExperienceAudio, soundManagerArgs); //TODO Reenable
-    }
 
     private void FixedUpdate()
     {

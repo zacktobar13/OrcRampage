@@ -17,8 +17,6 @@ public class PlayerExperience : MonoBehaviour
 		playerStats = GetComponent<PlayerStats>();
 		playerLevel = 1;
 		xpToNextLevel = CalculateXpToNextLevel(playerLevel);
-		gameplayUI.UpdatePlayerLevel(playerLevel);
-		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
     private void Update()
@@ -62,9 +60,6 @@ public class PlayerExperience : MonoBehaviour
 		{
 			ToggleAffixPanel(numberOfLevelsGained);
 		}
-
-		gameplayUI.UpdatePlayerLevel(playerLevel);
-		gameplayUI.UpdatePlayerExperienceBar(currentXp, xpToNextLevel);
 	}
 
 	public bool ReachedNextLevel()

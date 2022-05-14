@@ -47,8 +47,14 @@ public class DroppedItem : MonoBehaviour
 
         if (collision.gameObject.tag.Equals("Player"))
         {
-            hasBeenConsumed = true;
+            Consume();
             Destroy(gameObject);
         }
+    }
+
+    protected virtual void Consume()
+    {
+        hasBeenConsumed = true;
+        return;
     }
 }
