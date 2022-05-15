@@ -42,7 +42,7 @@ public class StaticResources : MonoBehaviour
         pixelSnap = Resources.Load("Materials/Pixel Snap") as Material;
         shadowMaterial = Resources.Load("Materials/ShadowMaterial") as Material;
         decorationShadowMaterial = Resources.Load("Materials/DecorationShadowMaterial") as Material;
-        copperCoin = Resources.Load("Prefabs/Interactibles/Copper Coin") as GameObject;
+        copperCoin = Resources.Load("Prefabs/Interactibles/Coins/Copper Coin") as GameObject;
         xpGlobe = Resources.Load("Prefabs/Interactibles/XP Globe") as GameObject;
         runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("SpriteAnimController");
     }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
         type: 3}
       propertyPath: chanceForNothing
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
         type: 3}
@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 4679439362217389468, guid: 6f364ad8f79f1404090694dd7bfb614d,
         type: 3}
       propertyPath: availableObjects.Array.data[0].spawnChance
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4679439362217389469, guid: 6f364ad8f79f1404090694dd7bfb614d,
         type: 3}

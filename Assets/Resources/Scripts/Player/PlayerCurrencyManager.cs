@@ -4,16 +4,19 @@ public class PlayerCurrencyManager : MonoBehaviour
 {
     public int localCurrency;
     GameplayUI gameplayUI;
+    PlayerStats playerStats;
 
     private void Start()
     {
+        GameObject player = PlayerManagement.player;
+        playerStats = player.GetComponent<PlayerStats>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         gameplayUI.UpdateCurrencyInfo(localCurrency);
     }
 
     public void AddCurrency(int amountToAdd)
     {
-        localCurrency += amountToAdd;
+        localCurrency += playerStats.CalculateGoldGained(amountToAdd);
         gameplayUI.UpdateCurrencyInfo(localCurrency);
     }
 

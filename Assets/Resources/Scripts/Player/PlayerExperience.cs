@@ -45,7 +45,7 @@ public class PlayerExperience : MonoBehaviour
 
 	public void AddXp(int amount)
 	{
-		currentXp += playerStats.CalculateExperienceGained(amount);
+		currentXp += playerStats.CalculateGoldGained(amount);
 
 		// TODO: This will be the number of times the affix menu needs to pop-up
 		int numberOfLevelsGained = 0;

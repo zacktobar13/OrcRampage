@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExperienceGainedAffix : BaseAffix
+public class GoldGainedAffix : BaseAffix
 {
     public void Start()
     {
-        playerStats.IncreaseExperienceGainedScalar(scalarIncreasePerAffix);
+        playerStats.IncreaseGoldGainedScalar(scalarIncreasePerAffix);
     }
 
     public override void AddAffixCount(int increment)
@@ -14,7 +14,7 @@ public class ExperienceGainedAffix : BaseAffix
         base.AddAffixCount(increment);
         for (int i = 0; i < increment; i++)
         {
-            playerStats.IncreaseExperienceGainedScalar(scalarIncreasePerAffix);
+            playerStats.IncreaseGoldGainedScalar(scalarIncreasePerAffix);
         }
     }
 }

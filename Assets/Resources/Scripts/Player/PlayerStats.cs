@@ -19,7 +19,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Uncategorized Scalars")]
     [SerializeField] float movementSpeedScalar = 1f;
-    [SerializeField] float experienceGainedScalar = 1f;
+    [SerializeField] float goldGainedScalar = 1f;
     [SerializeField] float magnetismDistanceScalar = 1f;
 
     PlayerHealth playerHealth;
@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
         maxHealthScalar = 1f;
         attackSpeedScalar = 1f;
         movementSpeedScalar = 1f;
-        experienceGainedScalar = 1f;
+        goldGainedScalar = 1f;
         magnetismDistanceScalar = 1f;
 
         baseMaxHealth = startingMaxHealth;
@@ -101,9 +101,9 @@ public class PlayerStats : MonoBehaviour
         return baseAttacksPerSecond * attackSpeedScalar;
     }
 
-    public int CalculateExperienceGained(int baseExperienceGained)
+    public int CalculateGoldGained(int baseGoldGained)
     {
-        return (int)(baseExperienceGained * experienceGainedScalar);
+        return (int)(baseGoldGained * goldGainedScalar);
     }
 
     public void IncreaseDamageScalar(float amount)
@@ -131,9 +131,9 @@ public class PlayerStats : MonoBehaviour
         movementSpeedScalar += amount;
     }
 
-    public void IncreaseExperienceGainedScalar(float amount)
+    public void IncreaseGoldGainedScalar(float amount)
     {
-        experienceGainedScalar += amount;
+        goldGainedScalar += amount;
     }
 
     public void IncreaseMaxHealthScalar(float amount)

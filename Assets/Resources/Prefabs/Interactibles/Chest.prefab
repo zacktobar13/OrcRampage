@@ -229,7 +229,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droppableItems:
+  - {fileID: 8734921152756357161, guid: e6802905b3ba15345b41b37f571aaad5, type: 3}
+  - {fileID: 8734921152756357161, guid: b92e7d0a6f9785142a98d3ea3a58c4bc, type: 3}
+  - {fileID: 8734921152756357161, guid: 29fe6d6ff8a890245a80b3de68666fa1, type: 3}
   - {fileID: 8734921152756357161, guid: 3030eab890043854d925ef24069e6833, type: 3}
+  - {fileID: 8734921152756357161, guid: d39b4802f355d19438b6ccb5fb8abbfd, type: 3}
+  - {fileID: 8734921152756357161, guid: e366dbe997b038a48ac2316b04a490ae, type: 3}
+  - {fileID: 8734921152756357161, guid: 3e45f050c3d585747aaac71315ffde6e, type: 3}
+  - {fileID: 8734921152756357161, guid: 09f6dff93cc01ce49b31d08522582d4d, type: 3}
+  - {fileID: 8734921152756357161, guid: 2f6f665bcdc7e50478361eeb0a79433f, type: 3}
+  - {fileID: 8734921152756357161, guid: b6471d24617465b4d8a5f260e2cb7403, type: 3}
+  - {fileID: 8734921152756357161, guid: 14817bb5484920d4fb9ba7732fc6b71b, type: 3}
+  - {fileID: 8734921152756357161, guid: 360a55dd399db4e4bb3198e74b646367, type: 3}
   openDistance: 5
   cost: 5
   debug: 1
