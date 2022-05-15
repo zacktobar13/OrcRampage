@@ -220,9 +220,9 @@ public class BaseEnemy : MonoBehaviour {
      * i.e., setting the stat scalar value, size, changing outline color etc. */
     public void ProcessRarity()
     {
-		if (rarity != Rarity.COMMON)
+		if (rarity == Rarity.COMMON)
         {
-            shaderMaterial.SetFloat("_OutlineAlpha", 1f);
+            shaderMaterial.SetFloat("_OutlineAlpha", 0f);
         }
 
         rarityIndex = (int)rarity;

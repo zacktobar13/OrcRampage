@@ -10,14 +10,19 @@ public class AffixDrop : DroppedItem
     GameObject player;
     GameplayUI gameplayUI;
     SpriteRenderer spriteRenderer;
+    protected Material shaderMaterial; 
 
     private new void Start()
     {
         base.Start();
+        shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = affix.icon;
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         player = PlayerManagement.player;
+
+        Color rarityColor = RarityUtil.GetRarityColor(affix.affixRarity);
+        shaderMaterial.SetColor("_OutlineColor", rarityColor);
     }
 
 	protected override void Consume()
