@@ -33,4 +33,9 @@ public class PlayerCurrencyManager : MonoBehaviour
         gameplayUI.UpdateCurrencyInfo(localCurrency);
         return true;
     }
+
+    public bool CanAfford(int price)
+    {
+        return localCurrency >= price;
+    }
 }

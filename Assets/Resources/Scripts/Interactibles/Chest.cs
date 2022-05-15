@@ -9,15 +9,21 @@ public class Chest : MonoBehaviour
     Animator animator;
     GameObject player;
     Transform playerTransform;
+    AudioSource audioSource;
     PlayerCurrencyManager playerCurrencyManager;
 
+    public Color cantBuyColor;
     public GameObject costInfoGameObject;
     public TextMeshProUGUI text;
     public TextMeshProUGUI shadowText;
+    public AudioClip openAudio;
+    public AudioClip lockedAudio;
     public GameObject[] droppableItems;
     public float openDistance;
     public int cost;
     public bool debug;
+    
+    Color currentTextColor;
     bool isOpen;
 
     void Start() {
@@ -25,6 +31,7 @@ public class Chest : MonoBehaviour
         player = PlayerManagement.player;
         playerTransform = player.transform;
         playerCurrencyManager = GameObject.Find("Game Management").GetComponent<PlayerCurrencyManager>();
+        audioSource = GetComponent<AudioSource>();
         UpdateText(cost);
     }
 
@@ -35,13 +42,16 @@ public class Chest : MonoBehaviour
 
         costInfoGameObject.SetActive(IsPlayerInRange());
 
-        if (!PlayerInput.interact)
-            return;
-
         if (!IsPlayerInRange())
             return;
 
+        if (playerCurrencyManager.CanAfford(cost))
+            text.color = Color.white;
+        else
+            text.color = cantBuyColor; 
 
+        if (!PlayerInput.interact)
+            return;
         if (playerCurrencyManager.RemoveCurrency(cost))
             Open();
     }
@@ -51,6 +61,7 @@ public class Chest : MonoBehaviour
         costInfoGameObject.SetActive(false);
         animator.SetBool("isOpen", true);
 
+        SoundManager.PlayOneShot(audioSource, openAudio, new SoundManagerArgs(.3f));
         GameObject drop = droppableItems[Random.Range(0, droppableItems.Length)];
         Instantiate(drop, transform.position, Quaternion.identity);
     }
