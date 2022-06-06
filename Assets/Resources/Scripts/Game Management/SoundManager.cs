@@ -59,6 +59,13 @@ public struct SoundManagerArgs
         alwaysPlay = false;
     }
 
+    public SoundManagerArgs(float volume, bool alwaysPlay)
+    {
+        volumeScalar = volume;
+        customPitchRange = new Vector2(.8f, 1.2f);
+        this.alwaysPlay = alwaysPlay;
+    }
+
     public SoundManagerArgs(Vector2 customPitchRange)
     {
         volumeScalar = 1;

@@ -67,7 +67,8 @@ public class Projectile : MonoBehaviour
         }
 
         // Spawn hit effect
-        Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
+        GameObject spawnedHitEffect = Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
+        spawnedHitEffect.transform.localScale = transform.localScale;
 
         DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit, false);
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
