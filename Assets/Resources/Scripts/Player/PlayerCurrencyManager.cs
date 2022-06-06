@@ -28,7 +28,6 @@ public class PlayerCurrencyManager : MonoBehaviour
             return false;
         }
 
-        Debug.Log("Spending money: " + amountToRemove);
         localCurrency -= amountToRemove;
         gameplayUI.UpdateCurrencyInfo(localCurrency);
         return true;

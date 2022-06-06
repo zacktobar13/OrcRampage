@@ -149,7 +149,7 @@ public class GameplayUI : MonoBehaviour
     public void InitializePlayerInfoPanel()
     {
         int health = PlayerManagement.player.GetComponent<PlayerHealth>().health;
-        int experience = PlayerManagement.player.GetComponent<PlayerExperience>().xpToNextLevel;
+        //int experience = PlayerManagement.player.GetComponent<PlayerExperience>().xpToNextLevel;
         UpdatePlayerHealth(health, health);
     }
 

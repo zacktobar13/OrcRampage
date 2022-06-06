@@ -105,6 +105,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void PlayAttackSound()
     {
+        if (!audioSource || !audioSource.isActiveAndEnabled || !shootSound)
+            return;
         SoundManager.PlayOneShot(audioSource, shootSound, new SoundManagerArgs(true));
     }
 

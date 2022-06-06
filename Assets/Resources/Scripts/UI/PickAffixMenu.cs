@@ -51,7 +51,7 @@ public class PickAffixMenu : MonoBehaviour
         player = PlayerManagement.player;
         playerExperience = player.GetComponent<PlayerExperience>();
         UpdateRewardText();
-        UpdatePlayerLevelText();   
+        //UpdatePlayerLevelText();   
     }
 
     private void OnDestroy()

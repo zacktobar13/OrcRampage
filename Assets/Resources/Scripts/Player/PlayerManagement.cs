@@ -34,9 +34,12 @@ public class PlayerManagement : MonoBehaviour
     {
 
         PlayerExperience playerExperience = player.GetComponent<PlayerExperience>();
-        playerExperience.currentXp = 0;
-        playerExperience.playerLevel = 1;
-        playerExperience.xpToNextLevel = 100;
+        if (playerExperience)
+        {
+            playerExperience.currentXp = 0;
+            playerExperience.playerLevel = 1;
+            playerExperience.xpToNextLevel = 100;
+        }
 
         foreach (BaseAffix affix in player.GetComponentsInChildren<BaseAffix>())
         {
