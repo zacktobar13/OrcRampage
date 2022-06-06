@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameObjectSpawner : MonoBehaviour
 {
     public ObjectParameters[] availableObjects;
-    public int chanceForNothing;
-    int totalObjectNumber;
+    int chanceForNothing;
+    int chanceForObject;
 
     [System.Serializable]
     public struct ObjectParameters
@@ -16,8 +16,9 @@ public class GameObjectSpawner : MonoBehaviour
     }
     void Start()
     {
-        totalObjectNumber = GetTotalChanceNumber();
-        Debug.Assert(totalObjectNumber == 100f, "Chances at " + gameObject.name + " did not add up to 100!");
+        chanceForObject = GetTotalChanceNumber();
+        chanceForNothing = 100 - chanceForObject;
+        Debug.Assert(chanceForObject + chanceForNothing == 100f, "Chances at " + gameObject.name + " did not add up to 100!");
         SpawnChest();
     }
 
@@ -29,7 +30,7 @@ public class GameObjectSpawner : MonoBehaviour
             total += availableObjects[i].spawnChance;
         }
 
-        return total + chanceForNothing;
+        return total;
     }
 
     public void SpawnChest()
