@@ -32,7 +32,6 @@ public class PlayerManagement : MonoBehaviour
 
     public static void RestorePlayer()
     {
-
         PlayerExperience playerExperience = player.GetComponent<PlayerExperience>();
         if (playerExperience)
         {

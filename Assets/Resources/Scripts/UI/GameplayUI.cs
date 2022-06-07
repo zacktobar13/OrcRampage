@@ -95,14 +95,10 @@ public class GameplayUI : MonoBehaviour
             affixIconDisplay.name = newAffix.affixName;
             image.sprite = affixIcon;
 
-            // Outline logic
-            Material shaderMaterial = new Material(affixShader);
-            shaderMaterial.EnableKeyword("OUTBASE_ON");
-            shaderMaterial.EnableKeyword("OUTBASEPIXELPERF_ON");
+            Material shaderMaterial = image.material;
             if (newAffix.rarity != Rarity.COMMON)
                 shaderMaterial.SetFloat("_OutlineAlpha", 1f);
             shaderMaterial.SetColor("_OutlineColor", RarityUtil.GetRarityColor(newAffix.rarity));
-            image.material = shaderMaterial;
         }
     }
 
