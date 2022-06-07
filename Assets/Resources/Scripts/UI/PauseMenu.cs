@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuGameObject;
+    public GameplayUI gameplayUI;
 
     bool gamePaused = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (PlayerInput.pressedPause)
@@ -40,7 +40,8 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         ResumeGame();
-        SceneManager.LoadScene("Village");
+        PlayerManagement.RestorePlayer();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name.ToString());
     }
 
     public void GoToMainMenu()

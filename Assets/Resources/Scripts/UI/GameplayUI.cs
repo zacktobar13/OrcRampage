@@ -43,8 +43,9 @@ public class GameplayUI : MonoBehaviour
     public static event OnFadeCompleted onFadeCompleted;
 
 
-    private void Start()
+    private void Awake()
     {
+        SetMyReferenceForPlayer();
         enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
@@ -56,6 +57,12 @@ public class GameplayUI : MonoBehaviour
         SetRenderCamera(Camera.main);
         ResetKillCounter();
         ResetBossBar();
+    }
+
+    public void SetMyReferenceForPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.SendMessage("SetGameplayUI", this);
     }
 
     private void OnDestroy()

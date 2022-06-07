@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -13,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
     PlayerStats playerStats;
-    GameplayUI gameplayUI;
+    public GameplayUI gameplayUI;
 
     public bool isCurrentlyDead = false;
     public bool hurtThisFrame = false;
@@ -40,6 +41,11 @@ public class PlayerHealth : MonoBehaviour
         floatingHealNumber = StaticResources.healNumber;
     }
 
+    public void SetGameplayUI(GameplayUI ui)
+    {
+        gameplayUI = ui;
+    }
+
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -47,8 +53,7 @@ public class PlayerHealth : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
-        
+
         gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
         
         if (onRespawn != null)
@@ -102,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
             GameObject bloodParticle = Instantiate(StaticResources.blood, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         }
 
-        gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
+         gameplayUI.UpdatePlayerHealth(health, currentMaxHealth);
     }
     public void ApplyHeal(HealInfo healInfo)
     {
