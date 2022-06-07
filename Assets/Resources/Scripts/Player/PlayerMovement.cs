@@ -151,7 +151,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPositionOnNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        transform.position = GameObject.Find("Level Entry Point").transform.position;
+        if (scene.name != "Main Menu")
+        {
+            transform.position = GameObject.Find("Level Entry Point").transform.position;
+        }
     }
 
     private void OnDestroy()

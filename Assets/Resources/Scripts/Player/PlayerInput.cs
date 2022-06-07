@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour {
     public static bool interact;
     public static bool changeToFirstWeapon;
     public static bool changeToSecondWeapon;
+    public static bool pressedPause;
 
     Camera mainCamera;
 
@@ -29,5 +30,6 @@ public class PlayerInput : MonoBehaviour {
         interact = Input.GetKeyDown(KeyCode.E);
         changeToFirstWeapon = Input.GetKeyDown(KeyCode.Alpha1);
         changeToSecondWeapon = Input.GetKeyDown(KeyCode.Alpha2);
+        pressedPause = Input.GetKeyDown(KeyCode.Escape);
     }
 }

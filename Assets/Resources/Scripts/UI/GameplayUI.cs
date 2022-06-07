@@ -42,34 +42,28 @@ public class GameplayUI : MonoBehaviour
     public delegate void OnFadeCompleted();
     public static event OnFadeCompleted onFadeCompleted;
 
+
     private void Start()
     {
-
-        Initialize();
-        SceneManager.sceneLoaded += FadeFromBlack;
-        SceneManager.sceneLoaded += LoadNewLevel;
-        enemySpawner.onEnemyDeath += IncrementKillCounter;
-        enemySpawner.onEnemyDeath += UpdateBossBar;
-        SceneManager.sceneLoaded += ClearAffixIcons;
-    }
-
-	private void LoadNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
-    {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        canvas = GetComponent<Canvas>();
-        SetRenderCamera(Camera.main);
         enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
+        canvas = GetComponent<Canvas>();
+        enemySpawner.onEnemyDeath += IncrementKillCounter;
+        enemySpawner.onEnemyDeath += UpdateBossBar;
+        SceneManager.sceneLoaded += ClearAffixIcons;
+        SceneManager.sceneLoaded += FadeFromBlack;
+        SetRenderCamera(Camera.main);
         ResetKillCounter();
         ResetBossBar();
-        SceneManager.sceneLoaded += FadeFromBlack;
-        SceneManager.sceneLoaded += LoadNewLevel;
-        SceneManager.sceneLoaded += ClearAffixIcons;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= FadeFromBlack;
+        enemySpawner.onEnemyDeath -= IncrementKillCounter;
+        enemySpawner.onEnemyDeath -= UpdateBossBar;
+        SceneManager.sceneLoaded -= ClearAffixIcons;
     }
 
     public void SetRenderCamera(Camera camera)
