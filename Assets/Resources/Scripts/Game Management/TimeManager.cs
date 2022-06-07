@@ -10,13 +10,21 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
-        SetMyReferrenceForPlayer();
+        SetMyReferrencesForPlayer();
     }
 
-    public void SetMyReferrenceForPlayer()
+    public void SetMyReferrencesForPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.SendMessage("SetTimeManager", this);
+        PlayerMovement movement = player.GetComponent<PlayerMovement>();
+        GameObject weaponGameObject = player.transform.Find("Staff").gameObject;
+        Weapon weapon = weaponGameObject.GetComponent<Weapon>();
+        RotateWeapon rotate = weaponGameObject.GetComponent<RotateWeapon>();
+        PlayerAnimation animation = player.GetComponent<PlayerAnimation>();
+        weapon.SetTimeManager(this);
+        movement.SetTimeManager(this);
+        rotate.SetTimeManager(this);
+        animation.SetTimeManager(this);
     }
 
     public void RestartRoundTimer()

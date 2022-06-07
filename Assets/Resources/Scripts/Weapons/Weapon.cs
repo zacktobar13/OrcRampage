@@ -44,13 +44,20 @@ public class Weapon : MonoBehaviour
 	private Coroutine moveCoroutine;
     private Animator anim;
 
+    TimeManager timeManager;
+
 	private void Awake()
 	{
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-	private void OnEnable()
+    public void SetTimeManager(TimeManager tm)
+    {
+        timeManager = tm;
+    }
+
+    private void OnEnable()
     {
         sprite.sprite = notFiringSprite;
         projectileSpawn = transform.Find("Projectile Spawn");
@@ -61,6 +68,9 @@ public class Weapon : MonoBehaviour
 
 	public virtual Projectile Attack(bool isCritical, float offset, bool playSound, bool ignoreCooldown=false)
     {
+        if (timeManager.IsGamePaused())
+            return null;
+
         if (!ignoreCooldown && !CanAttack())
             return null;
 
@@ -78,6 +88,8 @@ public class Weapon : MonoBehaviour
 
     public virtual Projectile Attack(bool isCritical)
     {
+        if (timeManager.IsGamePaused())
+            return null;
         return Attack(isCritical, 0, true);
     }
 
@@ -88,6 +100,9 @@ public class Weapon : MonoBehaviour
 
     public virtual Projectile SpawnProjectile(bool isCritical, float offset)
     {
+        if (timeManager.IsGamePaused())
+            return null;
+
         if (!projectile)
             return null;
 

@@ -69,6 +69,11 @@ public class PlayerAnimation : MonoBehaviour
         spriteFlipEnabled = true;
     }
 
+    public void SetTimeManager(TimeManager tm)
+    {
+        timeManager = tm;
+    }
+
     private void Update()
     {
         if (timeManager.IsGamePaused())

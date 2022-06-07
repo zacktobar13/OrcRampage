@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
      //   timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
     }
 
-    private void SetTimeManager(TimeManager tm)
+    public void SetTimeManager(TimeManager tm)
     {
         timeManager = tm;
     }

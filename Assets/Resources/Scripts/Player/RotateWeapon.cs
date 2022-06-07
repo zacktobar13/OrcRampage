@@ -32,6 +32,11 @@ public class RotateWeapon : MonoBehaviour
         Update();
     }
 
+    public void SetTimeManager(TimeManager tm)
+    {
+        timeManager = tm;
+    }
+
     public void Update()
     {
         if (timeManager.IsGamePaused())
