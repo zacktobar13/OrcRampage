@@ -95,10 +95,12 @@ public class GameplayUI : MonoBehaviour
             affixIconDisplay.name = newAffix.affixName;
             image.sprite = affixIcon;
 
-            Material shaderMaterial = image.material;
+            Material shaderMaterial = new Material(image.material);
             if (newAffix.rarity != Rarity.COMMON)
                 shaderMaterial.SetFloat("_OutlineAlpha", 1f);
             shaderMaterial.SetColor("_OutlineColor", RarityUtil.GetRarityColor(newAffix.rarity));
+
+            image.material = shaderMaterial;
         }
     }
 
