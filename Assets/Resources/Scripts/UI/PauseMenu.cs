@@ -5,14 +5,13 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuGameObject;
     public GameplayUI gameplayUI;
-
-    bool gamePaused = false;
+    public TimeManager timeManager;
 
     void Update()
     {
         if (PlayerInput.pressedPause)
         {
-            if (gamePaused)
+            if (timeManager.IsGamePaused())
             {
                 ResumeGame();
             }
@@ -25,16 +24,14 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        gamePaused = true;
-        Time.timeScale = 0f;
         pauseMenuGameObject.SetActive(true);
+        timeManager.PauseGame(true);
     }
 
     public void ResumeGame()
     {
-        gamePaused = false;
-        Time.timeScale = 1f;
         pauseMenuGameObject.SetActive(false);
+        timeManager.PauseGame(false);
     }
 
     public void Restart()

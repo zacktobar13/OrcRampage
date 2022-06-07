@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     bool firstKnockback = true;
     float knockbackTime;
 
-    TimeManager timeManager;
+    public TimeManager timeManager;
     PlayerStats playerStats;
 
     private void Start()
@@ -35,7 +35,12 @@ public class PlayerMovement : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
-        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+     //   timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+    }
+
+    private void SetTimeManager(TimeManager tm)
+    {
+        timeManager = tm;
     }
 
     private void FixedUpdate()

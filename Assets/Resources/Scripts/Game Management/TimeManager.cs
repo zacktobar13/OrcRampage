@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
-    bool gamePaused = false;
+    public bool gamePaused = false;
 
     float roundStartTime = 0f;
+
+    private void Awake()
+    {
+        SetMyReferrenceForPlayer();
+    }
+
+    public void SetMyReferrenceForPlayer()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.SendMessage("SetTimeManager", this);
+    }
 
     public void RestartRoundTimer()
     {
