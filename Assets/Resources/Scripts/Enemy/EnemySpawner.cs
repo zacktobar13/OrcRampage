@@ -28,9 +28,11 @@ public class EnemySpawner : MonoBehaviour
     public delegate void OnBossSpawn();
     public event OnBossSpawn onBossSpawn;
 
-    public int currentWave = 1;
+    public int currentWave = 0;
     public int waveSize;
     public int enemiesRemaining;
+
+    GameplayUI gameplayUI;
 
     void Start()
     {
@@ -46,6 +48,11 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void UpdateGameplayUIReference(GameplayUI gameUI)
+    {
+        gameplayUI = gameUI;
+    }
+
     void SpawnEnemy()
     {
         SpawnEnemy(null, null);
@@ -53,6 +60,9 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator BeginWave(float waveDuration, float enemiesPerSecond)
     {
+        gameplayUI.EnableCurrentWaveText();
+        currentWave++;
+        gameplayUI.UpdateCurrentWaveText(currentWave);
         int enemiesSpawned = 0;
         waveSize = (int) (waveDuration * enemiesPerSecond);
         while (enemiesSpawned < waveSize)

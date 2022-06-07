@@ -29,6 +29,8 @@ public class GameplayUI : MonoBehaviour
     public TextMeshProUGUI pickedUpAffixDescriptionText;
     public float pickedUpAffixWindowDuration;
 
+    public TextMeshProUGUI currentWaveText;
+
     public Shader affixShader;
 
     public GameObject[] weaponInfoGroup;
@@ -56,6 +58,7 @@ public class GameplayUI : MonoBehaviour
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
         canvas = GetComponent<Canvas>();
+        enemySpawner.UpdateGameplayUIReference(this);
         enemySpawner.onEnemyDeath += IncrementKillCounter;
         enemySpawner.onEnemyDeath += UpdateBossBar;
         SceneManager.sceneLoaded += ClearAffixIcons;
@@ -82,6 +85,16 @@ public class GameplayUI : MonoBehaviour
     public void SetRenderCamera(Camera camera)
     {
         canvas.worldCamera = camera;
+    }
+
+    public void EnableCurrentWaveText()
+    {
+        currentWaveText.enabled = true;
+    }
+
+    public void UpdateCurrentWaveText(int waveNumber)
+    {
+        currentWaveText.text = "Wave: " + waveNumber.ToString();
     }
 
     // AFFIX PANEL //
