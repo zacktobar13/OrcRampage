@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -27,16 +28,39 @@ public class EnemySpawner : MonoBehaviour
     public delegate void OnBossSpawn();
     public event OnBossSpawn onBossSpawn;
 
+    public int currentWave = 1;
+    public int waveSize;
+    public int enemiesRemaining;
+
     void Start()
     {
         player = PlayerManagement.player.transform;
-        InvokeRepeating("SpawnEnemy", 0f, spawnRate);
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            StartCoroutine(BeginWave(5f, 1f));
+        }
     }
 
     void SpawnEnemy()
     {
         SpawnEnemy(null, null);
+    }
+
+    public IEnumerator BeginWave(float waveDuration, float enemiesPerSecond)
+    {
+        int enemiesSpawned = 0;
+        waveSize = (int) (waveDuration * enemiesPerSecond);
+        while (enemiesSpawned < waveSize)
+        {
+            yield return new WaitForSeconds(1f / enemiesPerSecond);
+            SpawnEnemy();
+            enemiesSpawned++;
+        }
     }
 
     void SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
