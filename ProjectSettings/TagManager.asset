@@ -12,6 +12,7 @@ TagManager:
   - DamageCollider
   - Next Level Trigger
   - Shadow
+  - Chest
   layers:
   - Default
   - TransparentFX

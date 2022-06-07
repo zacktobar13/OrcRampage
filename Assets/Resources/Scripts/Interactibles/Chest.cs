@@ -57,7 +57,7 @@ public class Chest : MonoBehaviour
         isOpen = true;
         costInfoGameObject.SetActive(false);
         animator.SetBool("isOpen", true);
-
+        gameObject.tag = "Untagged";
         SoundManager.PlayOneShot(audioSource, openAudio, new SoundManagerArgs(.3f, true));
         GameObject drop = droppableItems[Random.Range(0, droppableItems.Length)];
         Instantiate(drop, transform.position, Quaternion.identity);
