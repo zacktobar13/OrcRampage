@@ -46,5 +46,6 @@ public class AffixDrop : DroppedItem
         }
 
         gameplayUI.UpdatePlayerAffixDisplay(alreadyOnPlayer);
+        gameplayUI.ShowPickedUpAffixPanel(affix);
     }
 }

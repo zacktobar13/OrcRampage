@@ -23,6 +23,12 @@ public class GameplayUI : MonoBehaviour
     public GameObject playerAffixDisplay;
     public GameObject affixDisplayObject;
 
+    public GameObject pickedUpAffixPanel;
+    public Image pickedUpAffixIconImage;
+    public TextMeshProUGUI pickedUpAffixTitleText;
+    public TextMeshProUGUI pickedUpAffixDescriptionText;
+    public float pickedUpAffixWindowDuration;
+
     public Shader affixShader;
 
     public GameObject[] weaponInfoGroup;
@@ -162,6 +168,28 @@ public class GameplayUI : MonoBehaviour
     {
         currencyAnim.SetTrigger("AddCurrency");
         currencyInfo.text = newCurrencyAmount.ToString();
+    }
+    // ----------------------------------------------------
+
+    // PICKED UP AFFIX PANEL //
+    public void ShowPickedUpAffixPanel(AffixObject affix)
+    {
+        StartCoroutine(PickUpAffixCoroutine(affix));
+    }
+
+    IEnumerator PickUpAffixCoroutine(AffixObject affix)
+    {
+        UpdatePickedUpAffixPanel(affix);
+        pickedUpAffixPanel.SetActive(true);
+        yield return new WaitForSeconds(pickedUpAffixWindowDuration);
+        pickedUpAffixPanel.SetActive(false);
+    }
+
+    public void UpdatePickedUpAffixPanel(AffixObject affix)
+    {
+        pickedUpAffixIconImage.sprite = affix.icon;
+        pickedUpAffixTitleText.text = affix.affixName;
+        pickedUpAffixDescriptionText.text = affix.affixDescription;
     }
     // ----------------------------------------------------
 
