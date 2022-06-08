@@ -277,7 +277,7 @@ public class GameplayUI : MonoBehaviour
 
 	public void UpdateBossBar(BaseEnemy enemy, EnemySpawner spawner)
 	{
-        playerBossBar.fillAmount = (float) spawner.enemiesKilled / spawner.enemiesToSpawnBoss;
+     //   playerBossBar.fillAmount = (float) spawner.enemiesKilled / spawner.enemiesToSpawnBoss;
 	}
 
     public void ResetBossBar()

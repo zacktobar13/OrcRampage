@@ -7,7 +7,8 @@ public class EnemySpawner : MonoBehaviour
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
     public float[] spawnChances;
-    public int enemiesToSpawnBoss;
+    public int waveToSpawnBoss;
+    public float waveCooldownTimer;
 
     [Header("Event Info")]
     public float eventRate;
@@ -34,10 +35,13 @@ public class EnemySpawner : MonoBehaviour
 
     GameplayUI gameplayUI;
 
+    Coroutine waveCountdownCo;
+
     void Start()
     {
         player = PlayerManagement.player.transform;
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
+        waveCountdownCo = StartCoroutine(WaveCountdownCo());
     }
 
     public void BeginWave()
@@ -47,17 +51,30 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator BeginWaveCo(float waveDuration, float enemiesPerSecond)
     {
+        if (waveCountdownCo != null)
+        {
+            StopCoroutine(waveCountdownCo);
+        }
         gameplayUI.EnableCurrentWaveText();
         currentWave++;
+        Debug.Log("Wave: " + currentWave);
         gameplayUI.UpdateCurrentWaveText(currentWave);
         int enemiesSpawned = 0;
         waveSize = (int) (waveDuration * enemiesPerSecond);
+        enemiesRemaining += waveSize;
         while (enemiesSpawned < waveSize)
         {
             yield return new WaitForSeconds(1f / enemiesPerSecond);
             SpawnEnemy();
             enemiesSpawned++;
         }
+    }
+
+    IEnumerator WaveCountdownCo()
+    {
+        Debug.Log("Starting wave in " + waveCooldownTimer + " seconds.");
+        yield return new WaitForSeconds(waveCooldownTimer);
+        StartCoroutine(BeginWaveCo(5f, 1f));
     }
 
     public void UpdateGameplayUIReference(GameplayUI gameUI)
@@ -142,18 +159,23 @@ public class EnemySpawner : MonoBehaviour
     public void EnemyDeath(BaseEnemy enemy, EnemySpawner enemySpawner)
     {
         enemiesKilled++;
+        enemiesAlive--;
+        enemiesRemaining--;
 
         if (onEnemyDeath != null)
         {
             onEnemyDeath(enemy, this);
         }
 
+        if (ShouldBeginWaveCountDown())
+        {
+            waveCountdownCo = StartCoroutine(WaveCountdownCo());
+        }
 
         if (ShouldSpawnBoss())
         {
             SpawnBoss();
         }
-        enemiesAlive--;
     }
 
     void SpawnEvent()
@@ -165,7 +187,12 @@ public class EnemySpawner : MonoBehaviour
 
     public bool ShouldSpawnBoss()
     {
-        return enemiesKilled >= enemiesToSpawnBoss;
+        return currentWave == waveToSpawnBoss;
+    }
+
+    public bool ShouldBeginWaveCountDown()
+    {
+        return enemiesRemaining == 0;
     }
 
     public void SpawnBoss()
