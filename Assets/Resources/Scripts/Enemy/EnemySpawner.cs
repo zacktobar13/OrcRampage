@@ -40,25 +40,12 @@ public class EnemySpawner : MonoBehaviour
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
     }
 
-    private void Update()
+    public void BeginWave()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            StartCoroutine(BeginWave(5f, 1f));
-        }
+        StartCoroutine(BeginWaveCo(5f, 1f));
     }
 
-    public void UpdateGameplayUIReference(GameplayUI gameUI)
-    {
-        gameplayUI = gameUI;
-    }
-
-    void SpawnEnemy()
-    {
-        SpawnEnemy(null, null);
-    }
-
-    public IEnumerator BeginWave(float waveDuration, float enemiesPerSecond)
+    IEnumerator BeginWaveCo(float waveDuration, float enemiesPerSecond)
     {
         gameplayUI.EnableCurrentWaveText();
         currentWave++;
@@ -72,6 +59,17 @@ public class EnemySpawner : MonoBehaviour
             enemiesSpawned++;
         }
     }
+
+    public void UpdateGameplayUIReference(GameplayUI gameUI)
+    {
+        gameplayUI = gameUI;
+    }
+
+    void SpawnEnemy()
+    {
+        SpawnEnemy(null, null);
+    }
+
 
     void SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
     {
