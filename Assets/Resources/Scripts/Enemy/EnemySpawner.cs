@@ -6,6 +6,7 @@ public class EnemySpawner : MonoBehaviour
 {
     public float spawnRate;
     public GameObject[] enemiesToSpawn;
+    public GameObject bossToSpawn;
     public float[] spawnChances;
     public int waveToSpawnBoss;
     public float waveCooldownTimer;
@@ -26,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
     public delegate void OnEnemyDeath(BaseEnemy enemy, EnemySpawner enemySpawner);
     public event OnEnemyDeath onEnemyDeath;
 
-    public delegate void OnBossSpawn();
+    public delegate void OnBossSpawn(GameObject boss);
     public event OnBossSpawn onBossSpawn;
 
     public int currentWave = 0;
@@ -37,6 +38,8 @@ public class EnemySpawner : MonoBehaviour
 
     Coroutine waveCountdownCo;
 
+    bool hasSpawnedBoss = false;
+
     void Start()
     {
         player = PlayerManagement.player.transform;
@@ -46,7 +49,17 @@ public class EnemySpawner : MonoBehaviour
 
     public void BeginWave()
     {
-        StartCoroutine(BeginWaveCo(5f, 1f));
+        if (hasSpawnedBoss)
+            return;
+
+        if (ShouldSpawnBoss())
+        {
+            SpawnBoss();
+        }
+        else
+        {
+            StartCoroutine(BeginWaveCo(5f, 1f));
+        }
     }
 
     IEnumerator BeginWaveCo(float waveDuration, float enemiesPerSecond)
@@ -57,7 +70,6 @@ public class EnemySpawner : MonoBehaviour
         }
         gameplayUI.EnableCurrentWaveText();
         currentWave++;
-        Debug.Log("Wave: " + currentWave);
         gameplayUI.UpdateCurrentWaveText(currentWave);
         int enemiesSpawned = 0;
         waveSize = (int) (waveDuration * enemiesPerSecond);
@@ -72,9 +84,13 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator WaveCountdownCo()
     {
-        Debug.Log("Starting wave in " + waveCooldownTimer + " seconds.");
-        yield return new WaitForSeconds(waveCooldownTimer);
-        StartCoroutine(BeginWaveCo(5f, 1f));
+        for (int i = 0; i < waveCooldownTimer; i++)
+        {
+            Debug.Log("Spawning Wave in... " + (waveCooldownTimer - i));
+            yield return new WaitForSeconds(1);
+        }
+
+        BeginWave();
     }
 
     public void UpdateGameplayUIReference(GameplayUI gameUI)
@@ -82,13 +98,13 @@ public class EnemySpawner : MonoBehaviour
         gameplayUI = gameUI;
     }
 
-    void SpawnEnemy()
+    GameObject SpawnEnemy()
     {
-        SpawnEnemy(null, null);
+        return SpawnEnemy(null, null);
     }
 
 
-    void SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
+    GameObject SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
     {
         Vector3 spawnPosition;
         if (forcedPosition.HasValue && SpaceAvailable(forcedPosition.GetValueOrDefault()))
@@ -99,12 +115,13 @@ public class EnemySpawner : MonoBehaviour
         {
             spawnPosition = GetRandomSpawnPosition();
             if (spawnPosition == Vector3.zero)
-                return;
+                return null;
         }
 
         GameObject enemyToSpawn = forcedEnemyType == null ? GetRandomEnemyToSpawn() : forcedEnemyType;
         Instantiate(enemyToSpawn, spawnPosition, transform.rotation);
         enemiesAlive++;
+        return enemyToSpawn;
     }
 
     GameObject GetRandomEnemyToSpawn()
@@ -171,11 +188,6 @@ public class EnemySpawner : MonoBehaviour
         {
             waveCountdownCo = StartCoroutine(WaveCountdownCo());
         }
-
-        if (ShouldSpawnBoss())
-        {
-            SpawnBoss();
-        }
     }
 
     void SpawnEvent()
@@ -187,21 +199,33 @@ public class EnemySpawner : MonoBehaviour
 
     public bool ShouldSpawnBoss()
     {
-        return currentWave == waveToSpawnBoss;
+        return currentWave == waveToSpawnBoss - 1;
     }
 
     public bool ShouldBeginWaveCountDown()
     {
-        return enemiesRemaining == 0;
+        return enemiesRemaining == 0 && !hasSpawnedBoss;
     }
 
     public void SpawnBoss()
     {
-        Debug.Log("Spawn Boss");
+        if (waveCountdownCo != null)
+        {
+            StopCoroutine(waveCountdownCo);
+        }
+
+        Vector3 spawnPosition = GetRandomSpawnPosition();
+        if (spawnPosition == Vector3.zero)
+            Debug.LogError("Failed to find spawn location for boss");
+
+        Debug.Log("Spawning Boss");
+        GameObject boss = Instantiate(bossToSpawn, spawnPosition, Quaternion.identity);
+
+        hasSpawnedBoss = true;
 
         if (onBossSpawn != null)
         {
-            onBossSpawn();
+            onBossSpawn(boss);
         }
     }
 

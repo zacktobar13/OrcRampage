@@ -9,6 +9,7 @@ public class BaseEnemy : MonoBehaviour {
     // Assigned in inspector
     [Header("Basic Attributes")]
     public Rarity rarity;
+    public bool forceUseInspectorRarity;
     public float attackRange;
     public float movementSpeed;
     public int attackDamage;
@@ -108,7 +109,7 @@ public class BaseEnemy : MonoBehaviour {
         Debug.Assert(timeManager != null);
 
         shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
-        rarity = RollRarity();
+        rarity = forceUseInspectorRarity ? rarity : RollRarity();
         ProcessRarity();
 
         maxHealth = CalculateMaxHealth();
