@@ -4,25 +4,29 @@ using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public float spawnRate;
-    public GameObject[] enemiesToSpawn;
-    public GameObject bossToSpawn;
-    public float[] spawnChances;
+    [Header("Wave Parameters")]
+    public float enemiesPerSecond;
+    public float waveDuration;
     public int waveToSpawnBoss;
     public float waveCooldownTimer;
-
-    [Header("Event Info")]
-    public float eventRate;
-    public int surroundEventEnemyCount;
-
-    List<Vector3> spawnPointList = new List<Vector3>();
+    public GameObject bossToSpawn;
+    public GameObject[] enemiesToSpawn;
+    public float[] spawnChances;
 
     [HideInInspector]
     public int enemiesAlive = 0;
     [HideInInspector]
     public int enemiesKilled = 0;
+    [HideInInspector]
+    public int currentWave = 0;
+    [HideInInspector]
+    public int enemiesRemaining;
 
-    Transform player;
+    [Space(20)]
+
+    [Header("Event Info")]
+    public float eventRate;
+    public int surroundEventEnemyCount;
 
     public delegate void OnEnemyDeath(BaseEnemy enemy, EnemySpawner enemySpawner);
     public event OnEnemyDeath onEnemyDeath;
@@ -30,19 +34,14 @@ public class EnemySpawner : MonoBehaviour
     public delegate void OnBossSpawn(GameObject boss);
     public event OnBossSpawn onBossSpawn;
 
-    public int currentWave = 0;
-    public int waveSize;
-    public int enemiesRemaining;
-
+    List<Vector3> spawnPointList = new List<Vector3>();
     GameplayUI gameplayUI;
-
+    int waveSize;
     Coroutine waveCountdownCo;
-
     bool hasSpawnedBoss = false;
 
     void Start()
     {
-        player = PlayerManagement.player.transform;
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
         waveCountdownCo = StartCoroutine(WaveCountdownCo());
     }
@@ -58,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            StartCoroutine(BeginWaveCo(5f, 1f));
+            StartCoroutine(BeginWaveCo(waveDuration, enemiesPerSecond));
         }
     }
 
