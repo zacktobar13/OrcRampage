@@ -64,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator BeginWaveCo(float waveDuration, float enemiesPerSecond)
     {
+        gameplayUI.ToggleWaveInfoText(false);
         if (waveCountdownCo != null)
         {
             StopCoroutine(waveCountdownCo);
@@ -84,9 +85,22 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator WaveCountdownCo()
     {
+        gameplayUI.ToggleWaveInfoText(true);
+        string counterString;
+
+        if (ShouldSpawnBoss())
+        {
+            counterString = "An elite enemy\napproaches in ";
+        }
+        else
+        {
+            counterString = "Wave " + (currentWave + 1).ToString() + "\n begins in ";
+        }
+
         for (int i = 0; i < waveCooldownTimer; i++)
         {
-            Debug.Log("Spawning Wave in... " + (waveCooldownTimer - i));
+            
+            gameplayUI.UpdateWaveInfoText(counterString + (waveCooldownTimer - i).ToString());
             yield return new WaitForSeconds(1);
         }
 
@@ -209,6 +223,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnBoss()
     {
+        gameplayUI.ToggleWaveInfoText(false);
+
         if (waveCountdownCo != null)
         {
             StopCoroutine(waveCountdownCo);

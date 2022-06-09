@@ -31,6 +31,9 @@ public class GameplayUI : MonoBehaviour
 
     public TextMeshProUGUI currentWaveText;
 
+    public GameObject waveInfoGameObject;
+    public TextMeshProUGUI waveInfoText;
+
     public Shader affixShader;
 
     public GameObject[] weaponInfoGroup;
@@ -60,12 +63,12 @@ public class GameplayUI : MonoBehaviour
         canvas = GetComponent<Canvas>();
         enemySpawner.UpdateGameplayUIReference(this);
         enemySpawner.onEnemyDeath += IncrementKillCounter;
-        enemySpawner.onEnemyDeath += UpdateBossBar;
+      //  enemySpawner.onEnemyDeath += UpdateBossBar;
         SceneManager.sceneLoaded += ClearAffixIcons;
         SceneManager.sceneLoaded += FadeFromBlack;
         SetRenderCamera(Camera.main);
         ResetKillCounter();
-        ResetBossBar();
+      //  ResetBossBar();
     }
 
     public void SetMyReferenceForPlayer()
@@ -78,7 +81,7 @@ public class GameplayUI : MonoBehaviour
     {
         SceneManager.sceneLoaded -= FadeFromBlack;
         enemySpawner.onEnemyDeath -= IncrementKillCounter;
-        enemySpawner.onEnemyDeath -= UpdateBossBar;
+       // enemySpawner.onEnemyDeath -= UpdateBossBar;
         SceneManager.sceneLoaded -= ClearAffixIcons;
     }
 
@@ -96,6 +99,18 @@ public class GameplayUI : MonoBehaviour
     {
         currentWaveText.text = "Wave: " + waveNumber.ToString();
     }
+
+    // WAVE INFO TEXT //
+    public void ToggleWaveInfoText(bool toggle)
+    {
+        waveInfoGameObject.SetActive(toggle);
+    }
+
+    public void UpdateWaveInfoText(string text)
+    {
+        waveInfoText.text = text;
+    }
+    // -------------------------------------------------------
 
     // AFFIX PANEL //
     public void UpdatePlayerAffixDisplay(BaseAffix newAffix)
@@ -275,15 +290,15 @@ public class GameplayUI : MonoBehaviour
         killCountText.text = "0";
     }
 
-	public void UpdateBossBar(BaseEnemy enemy, EnemySpawner spawner)
-	{
-     //   playerBossBar.fillAmount = (float) spawner.enemiesKilled / spawner.enemiesToSpawnBoss;
-	}
+	//public void UpdateBossBar(BaseEnemy enemy, EnemySpawner spawner)
+	//{
+ //      // playerBossBar.fillAmount = (float) spawner.enemiesKilled / spawner.enemiesToSpawnBoss;
+	//}
 
-    public void ResetBossBar()
-    {
-        playerBossBar.fillAmount = 0f;
-    }
+ //   public void ResetBossBar()
+ //   {
+ //       playerBossBar.fillAmount = 0f;
+ //   }
 
 
     //----------------------------------------------------------------
