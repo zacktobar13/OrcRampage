@@ -22,7 +22,8 @@ public class Coin : DroppedItem
 	protected override void Consume()
 	{
 		base.Consume();
-        playerCurrency.AddCurrency(value);
+        playerCurrency.AddLocalCurrency(value);
+        playerCurrency.AddGlobalCurrency(value / 2);
 	}
     void SpinAnimation()
     {

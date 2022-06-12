@@ -158,7 +158,7 @@ MonoBehaviour:
   spawnMovementSpeed: 6
   spriteRenderer: {fileID: 6338699040454664127}
   spinAnimSpeed: 0.2
-  value: 3
+  value: 5
   sprites:
   - {fileID: 5522397121026081838, guid: 7787a7c963acadf4f850f1f7e56dc35b, type: 3}
   - {fileID: 4786861022352539597, guid: 7787a7c963acadf4f850f1f7e56dc35b, type: 3}

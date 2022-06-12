@@ -11,16 +11,17 @@ public class PlayerCurrencyManager : MonoBehaviour
         GameObject player = PlayerManagement.player;
         playerStats = player.GetComponent<PlayerStats>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
-        gameplayUI.UpdateCurrencyInfo(localCurrency);
+        gameplayUI.UpdateLocalCurrencyInfo(localCurrency);
+        gameplayUI.UpdateGlobalCurrencyInfo(PlayerSerializedStats.GetGlobalCurrency());
     }
 
-    public void AddCurrency(int amountToAdd)
+    public void AddLocalCurrency(int amountToAdd)
     {
         localCurrency += playerStats.CalculateGoldGained(amountToAdd);
-        gameplayUI.UpdateCurrencyInfo(localCurrency);
+        gameplayUI.UpdateLocalCurrencyInfo(localCurrency);
     }
 
-    public bool RemoveCurrency(int amountToRemove)
+    public bool RemoveLocalCurrency(int amountToRemove)
     {
         if (amountToRemove > localCurrency)
         {
@@ -29,12 +30,41 @@ public class PlayerCurrencyManager : MonoBehaviour
         }
 
         localCurrency -= amountToRemove;
-        gameplayUI.UpdateCurrencyInfo(localCurrency);
+        gameplayUI.UpdateLocalCurrencyInfo(localCurrency);
         return true;
     }
 
-    public bool CanAfford(int price)
+    public bool CanAffordLocal(int price)
     {
         return localCurrency >= price;
+    }
+
+    public void AddGlobalCurrency(int amountToAdd)
+    {
+        int newAmount = PlayerSerializedStats.AddGlobalCurrency(amountToAdd);
+        gameplayUI.UpdateGlobalCurrencyInfo(newAmount);
+    }
+
+    public bool RemoveGlobalCurrency(int amountToRemove)
+    {
+        int currentGlobalCurrency = PlayerSerializedStats.GetGlobalCurrency();
+        if (amountToRemove > currentGlobalCurrency)
+        {
+            return false;
+        }
+
+        int newAmount = PlayerSerializedStats.RemoveGlobalCurrency(amountToRemove);
+        gameplayUI.UpdateGlobalCurrencyInfo(newAmount);
+        return true;
+    }
+
+    public bool CanAffordGlobal(int price)
+    {
+        return PlayerSerializedStats.GetGlobalCurrency() >= price;
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerSerializedStats.SerializeAllStats();
     }
 }

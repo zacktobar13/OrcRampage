@@ -44,13 +44,16 @@ public class Chest : MonoBehaviour
         if (!IsPlayerInRange())
             return;
 
-        text.color = playerCurrencyManager.CanAfford(cost) ? Color.white : cantBuyColor;
+        text.color = playerCurrencyManager.CanAffordLocal(cost) ? Color.white : cantBuyColor;
 
         if (!PlayerInput.interact)
             return;
 
-        if (playerCurrencyManager.RemoveCurrency(cost))
+        if (playerCurrencyManager.RemoveLocalCurrency(cost))
             Open();
+
+        if (playerCurrencyManager.CanAffordGlobal(cost))
+            playerCurrencyManager.RemoveGlobalCurrency(cost);
     }
 
     public void Open() {

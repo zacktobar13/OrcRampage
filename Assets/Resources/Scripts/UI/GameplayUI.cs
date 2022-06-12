@@ -14,9 +14,11 @@ public class GameplayUI : MonoBehaviour
     public Image playerHealthBar;
     public Image playerBossBar;
     public TextMeshProUGUI healthText;
-    public TextMeshProUGUI currencyInfo;
+    public TextMeshProUGUI localCurrencyInfo;
+    public TextMeshProUGUI globalCurrencyInfo;
     public TextMeshProUGUI killCountText;
     public Animator currencyAnim;
+    public Animator globalCurrencyAnim;
     public GameObject affixPanel;
     public GameObject playerInfoPanel;
     public GameObject deathPanel;
@@ -192,10 +194,16 @@ public class GameplayUI : MonoBehaviour
         playerHealthBar.fillAmount = (float) currentHealth / maxHealth;
     }
 
-    public void UpdateCurrencyInfo(int newCurrencyAmount)
+    public void UpdateLocalCurrencyInfo(int newCurrencyAmount)
     {
         currencyAnim.SetTrigger("AddCurrency");
-        currencyInfo.text = newCurrencyAmount.ToString();
+        localCurrencyInfo.text = newCurrencyAmount.ToString();
+    }
+
+    public void UpdateGlobalCurrencyInfo(int newCurrencyAmount)
+    {
+        globalCurrencyAnim.SetTrigger("AddCurrency");
+        globalCurrencyInfo.text = newCurrencyAmount.ToString();
     }
     // ----------------------------------------------------
 

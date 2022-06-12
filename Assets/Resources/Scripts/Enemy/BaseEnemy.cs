@@ -306,6 +306,8 @@ public class BaseEnemy : MonoBehaviour {
         if (droppableDropChance >= Random.Range(0, 100))
             DropItem();
 
+        PlayerSerializedStats.IncrementLifetimeKills();
+
         Death();
     }
 
