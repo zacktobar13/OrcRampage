@@ -122,7 +122,7 @@ public class Weapon : MonoBehaviour
     {
         if (!audioSource || !audioSource.isActiveAndEnabled || !shootSound)
             return;
-        SoundManager.PlayOneShot(audioSource, shootSound, new SoundManagerArgs(true));
+        SoundManager.PlayOneShot(audioSource, shootSound, new SoundManagerArgs(true, shootSound.name));
     }
 
     public virtual IEnumerator VisualEffects()

@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
     static float minimumTimeBetweenSounds = .05f;
     static float lastSoundTime = Mathf.NegativeInfinity;
     static AudioSource globalAudioSource;
+    static AudioMixer mixer;
+
+    private void Start() 
+    {
+        mixer = Resources.Load("Audio/MasterMixer") as AudioMixer;
+    }
 
     public static void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
     {
-        PlayOneShot(audioSource, audioClip, new SoundManagerArgs(1));
+        PlayOneShot(audioSource, audioClip, new SoundManagerArgs(false));
     }
 
     public static void PlayOneShot(AudioSource audioSource, AudioClip audioClip, SoundManagerArgs args)
@@ -20,10 +27,11 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
+        audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups(args.mixerName)[0];   
         float oldPitch = audioSource.pitch;
         audioSource.pitch = Random.Range(args.customPitchRange.x, args.customPitchRange.y);
 
-        audioSource.PlayOneShot(audioClip, args.volumeScalar);
+        audioSource.PlayOneShot(audioClip, 1f);
         lastSoundTime = Time.time;
 
         audioSource.pitch = oldPitch;
@@ -42,48 +50,44 @@ public class SoundManager : MonoBehaviour
 
 public struct SoundManagerArgs
 {
-    public float volumeScalar;
     public Vector2 customPitchRange;
 
     /// <summary>
     /// Should this sound always play, even if there are a lot of other sounds playing
     /// </summary>
     public bool alwaysPlay;
+    /// <summary>
+    /// The name of the audio mixer this sound effect routes to
+    /// </summary>
+    public string mixerName;
 
 
     // TODO: Make the other constructors as they're needed
-    public SoundManagerArgs(float volume)
+    public SoundManagerArgs(bool alwaysPlay)
     {
-        volumeScalar = volume;
-        customPitchRange = new Vector2(.8f, 1.2f);
-        alwaysPlay = false;
-    }
-
-    public SoundManagerArgs(float volume, bool alwaysPlay)
-    {
-        volumeScalar = volume;
         customPitchRange = new Vector2(.8f, 1.2f);
         this.alwaysPlay = alwaysPlay;
+        this.mixerName = "Master";
+    }
+
+    public SoundManagerArgs(string mixer)
+    {
+        customPitchRange = new Vector2(.8f, 1.2f);
+        this.alwaysPlay = false;
+        this.mixerName = mixer;
+    }
+
+    public SoundManagerArgs(bool alwaysPlay, string mixer)
+    {
+        customPitchRange = new Vector2(.8f, 1.2f);
+        this.alwaysPlay = alwaysPlay;
+        this.mixerName = mixer;
     }
 
     public SoundManagerArgs(Vector2 customPitchRange)
     {
-        volumeScalar = 1;
         this.customPitchRange = customPitchRange;
         alwaysPlay = false;
-    }
-
-    public SoundManagerArgs(bool alwaysPlay)
-    {
-        volumeScalar = 1;
-        customPitchRange = new Vector2(.8f, 1.2f);
-        this.alwaysPlay = alwaysPlay;
-    }
-
-    public SoundManagerArgs(float volume, Vector2 customPitchRange)
-    {
-        volumeScalar = volume;
-        this.customPitchRange = customPitchRange;
-        alwaysPlay = false;
+        this.mixerName = "Master";
     }
 }

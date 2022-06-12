@@ -829,6 +829,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 0}
   rigidBody: {fileID: 7175836991511995825}
+  timeManager: {fileID: 0}
 --- !u!114 &7175836991511995852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,6 +872,7 @@ MonoBehaviour:
   health: 0
   currentMaxHealth: 0
   spriteRenderer: {fileID: 7175836989742708477}
+  gameplayUI: {fileID: 0}
   isCurrentlyDead: 0
   hurtThisFrame: 0
 --- !u!114 &7175836991511995849
@@ -1237,6 +1239,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Staff
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
+        type: 3}
+      propertyPath: mixerName
+      value: MageFire
       objectReference: {fileID: 0}
     - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
         type: 3}
