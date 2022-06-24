@@ -12,7 +12,6 @@ public class PlayerCurrencyManager : MonoBehaviour
         playerStats = player.GetComponent<PlayerStats>();
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         gameplayUI.UpdateLocalCurrencyInfo(localCurrency);
-        gameplayUI.UpdateGlobalCurrencyInfo(PlayerSerializedStats.GetGlobalCurrency());
     }
 
     public void AddLocalCurrency(int amountToAdd)
@@ -37,30 +36,6 @@ public class PlayerCurrencyManager : MonoBehaviour
     public bool CanAffordLocal(int price)
     {
         return localCurrency >= price;
-    }
-
-    public void AddGlobalCurrency(int amountToAdd)
-    {
-        int newAmount = PlayerSerializedStats.AddGlobalCurrency(amountToAdd);
-        gameplayUI.UpdateGlobalCurrencyInfo(newAmount);
-    }
-
-    public bool RemoveGlobalCurrency(int amountToRemove)
-    {
-        int currentGlobalCurrency = PlayerSerializedStats.GetGlobalCurrency();
-        if (amountToRemove > currentGlobalCurrency)
-        {
-            return false;
-        }
-
-        int newAmount = PlayerSerializedStats.RemoveGlobalCurrency(amountToRemove);
-        gameplayUI.UpdateGlobalCurrencyInfo(newAmount);
-        return true;
-    }
-
-    public bool CanAffordGlobal(int price)
-    {
-        return PlayerSerializedStats.GetGlobalCurrency() >= price;
     }
 
     private void OnApplicationQuit()

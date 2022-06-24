@@ -54,6 +54,7 @@ public class BaseEnemy : MonoBehaviour {
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
     protected GameObject spriteGameObject;
+    protected AffixManager affixManager;
     protected EnemySpawner enemySpawner;
     protected Material shaderMaterial;
 
@@ -104,6 +105,7 @@ public class BaseEnemy : MonoBehaviour {
         damageSpawnPoint = transform.Find("Damage Spawn Point");
 
         GameObject gameManagement = GameObject.Find("Game Management");
+        affixManager = gameManagement.GetComponent<AffixManager>();
         enemySpawner = gameManagement.GetComponent<EnemySpawner>();
         timeManager = gameManagement.GetComponent<TimeManager>();
         Debug.Assert(timeManager != null);
@@ -421,15 +423,8 @@ public class BaseEnemy : MonoBehaviour {
     /* TODO: Again, eventually maybe don't instantiate an item here. */
     protected void DropItem()
     {
-        int dropIndex = Random.Range ( 0, droppables.Length );
-
-        if (droppables.Length == 0)
-        {
-            return;
-        }
-
-        // TODO: a little offset off of enemy.
-        Instantiate ( droppables[ dropIndex ], transform.position, Quaternion.identity );
+        Rarity[] rarities = { Rarity.COMMON, Rarity.UNCOMMON, Rarity.MAGIC, Rarity.EPIC, Rarity.LEGENDARY, Rarity.ANCIENT, };
+        Instantiate (affixManager.GetRandomAffixDrop(rarities[Random.Range(0, rarities.Length)]), transform.position, Quaternion.identity );
     }
 
     protected bool IsPlayerOnRightSide ()

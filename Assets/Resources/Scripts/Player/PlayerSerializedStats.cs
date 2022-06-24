@@ -48,25 +48,25 @@ public static class PlayerSerializedStats
             DeserializeAllStats();
     }
 
-    public static int AddGlobalCurrency(int amount)
+    public static int AddExperience(int amount)
     {
         EnsureDeserialized();
-        statWrapper.globalCurrency += amount;
-        return statWrapper.globalCurrency;
+        statWrapper.experience += amount;
+        return statWrapper.experience;
     }
 
-    public static int RemoveGlobalCurrency(int amount)
+    public static int RemoveExperience(int amount)
     {
         EnsureDeserialized();
-        statWrapper.globalCurrency -= amount;
+        statWrapper.experience -= amount;
         Debug.Assert(amount >= 0);
-        return statWrapper.globalCurrency;
+        return statWrapper.experience;
     }
 
-    public static int GetGlobalCurrency()
+    public static int GetExperience()
     {
         EnsureDeserialized();
-        return statWrapper.globalCurrency;
+        return statWrapper.experience;
     }
 
     public static int IncrementLifetimeKills()
@@ -80,6 +80,6 @@ public static class PlayerSerializedStats
 [System.Serializable]
 class PlayerStatWrapper
 {
-    public int globalCurrency;
+    public int experience;
     public int LifetimeKills;
 }

@@ -23,7 +23,6 @@ public class Coin : DroppedItem
 	{
 		base.Consume();
         playerCurrency.AddLocalCurrency(value);
-        playerCurrency.AddGlobalCurrency(value / 2);
 	}
     void SpinAnimation()
     {

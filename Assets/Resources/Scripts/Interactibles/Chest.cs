@@ -34,8 +34,8 @@ public class Chest : MonoBehaviour
         UpdateText(cost);
     }
 
-    private void Update() {
-
+    private void Update()
+    {
         if (isOpen)
             return;
 
@@ -51,9 +51,6 @@ public class Chest : MonoBehaviour
 
         if (playerCurrencyManager.RemoveLocalCurrency(cost))
             Open();
-
-        if (playerCurrencyManager.CanAffordGlobal(cost))
-            playerCurrencyManager.RemoveGlobalCurrency(cost);
     }
 
     public void Open() {
