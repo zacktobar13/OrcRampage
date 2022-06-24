@@ -152,4 +152,9 @@ public class PlayerHealth : MonoBehaviour
     {
         Start();
     }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= ReInitialize;
+    }
 }

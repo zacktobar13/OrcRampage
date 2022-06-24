@@ -231,4 +231,9 @@ public class PlayerAttack : MonoBehaviour
     {
         Start();
     }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= ReInitialize;
+    }
 }

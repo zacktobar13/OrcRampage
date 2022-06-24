@@ -47,5 +47,7 @@ public class PlayerSingleton : MonoBehaviour
     {
         if (this == instance)
             instance = null;
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

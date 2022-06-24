@@ -166,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= ResetPositionOnNewLevel;
+
     }
 
     private void OnDisable()

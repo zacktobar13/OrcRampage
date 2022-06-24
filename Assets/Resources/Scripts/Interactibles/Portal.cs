@@ -23,8 +23,11 @@ public class Portal : MonoBehaviour
 
     public void LoadNextScene()
     {
+        float roll = Random.Range(0f, 1f);
+        if (nextScene == "Victory Scene")
+        {
+            Destroy(PlayerManagement.player);
+        }
         SceneManager.LoadScene(nextScene);
     }
-
-
 }

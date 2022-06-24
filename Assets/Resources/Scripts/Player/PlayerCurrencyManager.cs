@@ -53,4 +53,9 @@ public class PlayerCurrencyManager : MonoBehaviour
     {
         Start();
     }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= ReInitialize;
+    }
 }
