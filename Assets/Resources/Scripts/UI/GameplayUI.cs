@@ -58,7 +58,6 @@ public class GameplayUI : MonoBehaviour
 
     private void Awake()
     {
-        SetMyReferenceForPlayer();
         enemySpawner = GameObject.Find("Game Management").GetComponent<EnemySpawner>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
         audioSource = GetComponent<AudioSource>();
@@ -73,10 +72,18 @@ public class GameplayUI : MonoBehaviour
       //  ResetBossBar();
     }
 
-    public void SetMyReferenceForPlayer()
+    private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        player.SendMessage("SetGameplayUI", this);
+        RefreshPlayerAffixUI();
+    }
+
+    public void RefreshPlayerAffixUI()
+    {
+        BaseAffix[] playerAffixes = PlayerManagement.player.GetComponents<BaseAffix>();
+        foreach (BaseAffix affix in playerAffixes)
+        {
+            UpdatePlayerAffixDisplay(affix);
+        }
     }
 
     private void OnDestroy()
@@ -117,18 +124,17 @@ public class GameplayUI : MonoBehaviour
     // AFFIX PANEL //
     public void UpdatePlayerAffixDisplay(BaseAffix newAffix)
     {
-        Transform existingAffixIcon = affixIconDisplay.Find(newAffix.affixName);
-        if (existingAffixIcon != null)
-        {
-            String newQuantity = (newAffix.affixCount).ToString();
-            existingAffixIcon.GetComponentInChildren<TextMeshProUGUI>().text = newQuantity;
-        }
-        else
+        Transform existingAffixIconTransform = affixIconDisplay.Find(newAffix.affixName);
+        GameObject existingAffixIcon = null;
+        if (existingAffixIconTransform)
+            existingAffixIcon = existingAffixIconTransform.gameObject;
+
+        if (existingAffixIcon == null)
         {
             Sprite affixIcon = newAffix.affixIcon;
-            GameObject affixIconDisplay = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
-            Image image = affixIconDisplay.GetComponent<Image>();
-            affixIconDisplay.name = newAffix.affixName;
+            existingAffixIcon = Instantiate(affixDisplayObject, playerAffixDisplay.transform);
+            Image image = existingAffixIcon.GetComponent<Image>();
+            existingAffixIcon.name = newAffix.affixName;
             image.sprite = affixIcon;
 
             Material shaderMaterial = new Material(image.material);
@@ -138,6 +144,9 @@ public class GameplayUI : MonoBehaviour
 
             image.material = shaderMaterial;
         }
+
+        String newQuantity = (newAffix.affixCount).ToString();
+        existingAffixIcon.GetComponentInChildren<TextMeshProUGUI>().text = newQuantity;
     }
 
     public void ClearAffixIcons(Scene scene, LoadSceneMode sceneLoadMode)

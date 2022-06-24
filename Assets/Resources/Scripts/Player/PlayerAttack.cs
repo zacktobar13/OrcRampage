@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -219,5 +220,15 @@ public class PlayerAttack : MonoBehaviour
     public void EnableWeapon()
     {
         currentWeapon.gameObject.SetActive(true);
+    }
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += ReInitialize;
+    }
+
+    public void ReInitialize(Scene scene, LoadSceneMode lsm)
+    {
+        Start();
     }
 }

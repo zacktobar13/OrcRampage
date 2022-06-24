@@ -15,7 +15,7 @@ public class Coin : DroppedItem
         base.Start();
         anim_index = Random.Range(0, sprites.Length);
         spinAnimSpeed *= Random.Range(.8f, 1.2f);
-        playerCurrency = GameObject.Find("Game Management").GetComponent<PlayerCurrencyManager>();
+        playerCurrency = PlayerManagement.player.GetComponent<PlayerCurrencyManager>();
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
     }
 

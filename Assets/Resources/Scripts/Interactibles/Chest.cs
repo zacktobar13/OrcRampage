@@ -29,7 +29,7 @@ public class Chest : MonoBehaviour
         animator = GetComponent<Animator>();
         player = PlayerManagement.player;
         playerTransform = player.transform;
-        playerCurrencyManager = GameObject.Find("Game Management").GetComponent<PlayerCurrencyManager>();
+        playerCurrencyManager = player.GetComponent<PlayerCurrencyManager>();
         audioSource = GetComponent<AudioSource>();
         UpdateText(cost);
     }

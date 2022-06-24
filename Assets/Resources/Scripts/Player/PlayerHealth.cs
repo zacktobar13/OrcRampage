@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
     PlayerMovement playerMovement;
     PlayerAnimation playerAnimation;
     PlayerStats playerStats;
-    public GameplayUI gameplayUI;
+    GameplayUI gameplayUI;
 
     public bool isCurrentlyDead = false;
     public bool hurtThisFrame = false;
@@ -31,23 +31,15 @@ public class PlayerHealth : MonoBehaviour
     public delegate void OnHeal(PlayerHealth playerHealth);
     public static event OnHeal onHeal;
 
-
-    void Awake()
+    private void Start()
     {
+        gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         playerStats = GetComponent<PlayerStats>();
         currentMaxHealth = playerStats.CalculateMaxHealth();
         health = currentMaxHealth;
         floatingDamageNumber = StaticResources.playerDamageNumber;
         floatingHealNumber = StaticResources.healNumber;
-    }
 
-    public void SetGameplayUI(GameplayUI ui)
-    {
-        gameplayUI = ui;
-    }
-
-    private void Start()
-    {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimation = GetComponent<PlayerAnimation>();
         audioSource = GetComponent<AudioSource>();
@@ -149,5 +141,15 @@ public class PlayerHealth : MonoBehaviour
         isCurrentlyDead = false;
         currentMaxHealth = playerStats.CalculateMaxHealth();
         health = currentMaxHealth;
+    }
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += ReInitialize;
+    }
+
+    public void ReInitialize(Scene scene, LoadSceneMode lsm)
+    {
+        Start();
     }
 }

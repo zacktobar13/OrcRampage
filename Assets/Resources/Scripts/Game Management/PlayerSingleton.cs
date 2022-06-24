@@ -19,7 +19,8 @@ public class PlayerSingleton : MonoBehaviour
         else if (instance != this)
         {
             //Then destroy this. This enforces our singleton pattern, meaning there can only ever be one instance of a GameManager.
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
+            return;
         }
 
 #if UNITY_EDITOR

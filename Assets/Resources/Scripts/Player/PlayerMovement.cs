@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
-     //   timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
     }
 
     public void SetTimeManager(TimeManager tm)
@@ -156,9 +155,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void ResetPositionOnNewLevel(Scene scene, LoadSceneMode sceneLoadMode)
     {
-        if (scene.name != "Main Menu")
+        GameObject entryPoint = GameObject.Find("Level Entry Point");
+
+        if (scene.name != "Main Menu" && transform && entryPoint) 
         {
-            transform.position = GameObject.Find("Level Entry Point").transform.position;
+            transform.position = entryPoint.transform.position;
         }
     }
 

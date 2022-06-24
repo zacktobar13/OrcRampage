@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCurrencyManager : MonoBehaviour
 {
@@ -41,5 +42,15 @@ public class PlayerCurrencyManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         PlayerSerializedStats.SerializeAllStats();
+    }
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += ReInitialize;
+    }
+
+    public void ReInitialize(Scene scene, LoadSceneMode lsm)
+    {
+        Start();
     }
 }
