@@ -91,9 +91,9 @@ public class PlayerStats : MonoBehaviour
         return CalculateDamage(isCritical, 1);
     }
 
-    public float CalculateMovementSpeed(float baseMovementSpeed)
+    public float CalculateMovementSpeed(float baseMovementSpeed, float attackMovementScalar)
     {
-        return movementSpeedScalar * baseMovementSpeed;
+        return movementSpeedScalar * baseMovementSpeed * attackMovementScalar;
     }
 
     public float CalculateAttackSpeed(float baseAttacksPerSecond)

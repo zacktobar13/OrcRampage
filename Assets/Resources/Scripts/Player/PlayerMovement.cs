@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed;
     public float dodgeRollSpeedScalar;
+    [Tooltip("Percent movement speed is reduced while attacking")]
+    public float attackMovementPercentReduced;
     public bool isRunning = false;
 
     // TODO: Maybe make this a separate variable for each potential case that wants to stop shooting,
@@ -18,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDuration;
     public float knockbackDistanceMultiplier;
     public GameObject[] weapons;
-    PlayerAttack playerAttack;
     public Rigidbody2D rigidBody;
 
     Vector2 fallRecoveryPoint;
@@ -26,8 +27,10 @@ public class PlayerMovement : MonoBehaviour
     float currentSpeed;
     bool firstKnockback = true;
     float knockbackTime;
+    float attackMovementScalar;
 
     public TimeManager timeManager;
+    PlayerAttack playerAttack;
     PlayerStats playerStats;
 
     private void Start()
@@ -83,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 horizontalMovement = Vector3.right * PlayerInput.movementHorizontal;
         Vector2 movement = verticalMovement + horizontalMovement;
         movement = movement.normalized;
+        attackMovementScalar = playerAttack.IsAttacking() ? attackMovementPercentReduced : 1f;
 
         // Dodge roll detection.
         if (PlayerInput.pressedSpacebar)
@@ -120,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        rigidBody.position += movement * Time.deltaTime * playerStats.CalculateMovementSpeed(movementSpeed);
+        rigidBody.position += movement * Time.deltaTime * playerStats.CalculateMovementSpeed(movementSpeed, attackMovementScalar);
     }
 
     public void MovePlayer(Vector2 position)

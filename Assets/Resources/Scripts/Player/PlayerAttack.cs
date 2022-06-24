@@ -20,6 +20,7 @@ public class PlayerAttack : MonoBehaviour
     int currentWeaponIndex = 0;
 
     TimeManager timeManager;
+    bool isAttacking;
 
     void Start()
     {
@@ -42,6 +43,10 @@ public class PlayerAttack : MonoBehaviour
         {
             Attack();
         }
+        else
+        {
+            isAttacking = false;
+        }
 
         if (PlayerInput.changeToFirstWeapon)
         {
@@ -59,6 +64,11 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public bool IsAttacking()
+    {
+        return isAttacking;
+    }
+
     // Forces an attack that ignores cooldown, doesn't play a sound, and doesn't trigger OnShoot event
     public void ForceAttack(float offset)
     {
@@ -67,6 +77,8 @@ public class PlayerAttack : MonoBehaviour
 
     private void Attack()
     {
+        isAttacking = true;
+
         if (onPlayerShoot != null && CanWeaponAttack())
             onPlayerShoot(this);
 
