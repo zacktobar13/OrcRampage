@@ -500,7 +500,7 @@ MonoBehaviour:
   - {fileID: 8734921152756357161, guid: 14817bb5484920d4fb9ba7732fc6b71b, type: 3}
   - {fileID: 8734921152756357161, guid: 360a55dd399db4e4bb3198e74b646367, type: 3}
   openDistance: 9
-  cost: 10
+  cost: 25
   debug: 1
 --- !u!82 &3713687858364756167
 AudioSource:

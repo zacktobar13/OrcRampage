@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Coin : DroppedItem
 {
@@ -6,6 +7,7 @@ public class Coin : DroppedItem
     public SpriteRenderer spriteRenderer;
     public float spinAnimSpeed = 0f;
     public int value;
+    float secondsUntilDestroy = 15f;
 
     public Sprite[] sprites;
     int anim_index;
@@ -17,6 +19,7 @@ public class Coin : DroppedItem
         spinAnimSpeed *= Random.Range(.8f, 1.2f);
         playerCurrency = PlayerManagement.player.GetComponent<PlayerCurrencyManager>();
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
+        StartCoroutine(DestroyAfterTime());
     }
 
 	protected override void Consume()
@@ -30,5 +33,9 @@ public class Coin : DroppedItem
         anim_index += 1;
     }
 
-
+    IEnumerator DestroyAfterTime()
+    {
+        yield return new WaitForSeconds(secondsUntilDestroy);
+        Destroy(gameObject);
+    }
 }
