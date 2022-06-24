@@ -139,6 +139,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 4739921678577487285, guid: 348793669a81ca242b65034c526dc991,
+        type: 3}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
       propertyPath: rarity
       value: 5
       objectReference: {fileID: 0}
@@ -146,6 +152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: maxHealth
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: nextScene
+      value: Victory Scene
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}
@@ -176,6 +187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: baseAccentColor.r
       value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      propertyPath: spawnPortalOnDeath
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7183355947068607890, guid: db2923e03d7a84047835ae022d9e67ff,
         type: 3}

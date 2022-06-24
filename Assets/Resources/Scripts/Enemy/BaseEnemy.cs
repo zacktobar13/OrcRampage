@@ -42,6 +42,11 @@ public class BaseEnemy : MonoBehaviour {
     protected GameObject damageCollider;
     protected Transform damageSpawnPoint;
 
+    [Header("Portal")]
+    public bool spawnPortalOnDeath;
+    public GameObject portal;
+    public string nextScene;
+
     // Referenced in Start()
     protected AudioSource audioSource;
     protected SpriteAnim spriteAnim;
@@ -295,6 +300,13 @@ public class BaseEnemy : MonoBehaviour {
     public void DeathInternal()
     {
         enemySpawner.EnemyDeath(this, null);
+
+        if (spawnPortalOnDeath)
+        {
+            GameObject newPortal = Instantiate(portal, transform.position, Quaternion.identity);
+            Portal portalData = newPortal.GetComponent<Portal>();
+            portalData.SetNextScene(nextScene);
+        }
 
         spriteAnim.Play(deathAnimation);
         DisableComponentsOnDeath();
