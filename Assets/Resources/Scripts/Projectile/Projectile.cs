@@ -18,10 +18,12 @@ public class Projectile : MonoBehaviour
     public float movementSpeed;
     public int numberOfPierces;
     Vector2 movementDirection;
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
         spriteGameObject = transform.Find("Sprite").gameObject;
+        spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
 
         if (anim)
         {
@@ -65,10 +67,13 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-
+        
         // Spawn hit effect
-        GameObject spawnedHitEffect = Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
-        spawnedHitEffect.transform.localScale = transform.localScale;
+        if (spriteRenderer.isVisible)
+        {
+            GameObject spawnedHitEffect = Instantiate(hitEffect, collision.bounds.ClosestPoint(frontOfProjectile.position), collision.transform.rotation);
+            spawnedHitEffect.transform.localScale = transform.localScale;
+        }
 
         DamageInfo damageInfo = new DamageInfo(projectileDamage, movementDirection.normalized, 1f, 1f, isCriticalHit, false);
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
