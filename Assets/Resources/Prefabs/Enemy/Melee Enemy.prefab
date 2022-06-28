@@ -937,7 +937,7 @@ MonoBehaviour:
   movementSpeed: 8
   attackDamage: 10
   stopToAttackTime: 0
-  maxHealth: 5
+  maxHealth: 2
   droppables:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
   droppableDropChance: 5
@@ -958,6 +958,9 @@ MonoBehaviour:
   movingAnimation: {fileID: 7400000, guid: dafc9b61d63e04749ba03d1bc1735641, type: 2}
   hurtAnimation: {fileID: 7400000, guid: c5464ec1cb1081743bccac03996fdb77, type: 2}
   deathAnimation: {fileID: 7400000, guid: 3c87f8fd7e9910749992c468614e743c, type: 2}
+  spawnPortalOnDeath: 0
+  portal: {fileID: 0}
+  nextScene: 
   currentWeapon: {fileID: 0}
   aliveShadow: {fileID: 7519290321174004400}
   deadShadow: {fileID: 6240988419750726965}

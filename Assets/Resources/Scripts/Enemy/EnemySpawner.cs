@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public float waveCooldownTimer;
     public GameObject bossToSpawn;
     public GameObject[] enemiesToSpawn;
-    public float[] spawnChances;
+    public float[] enemyDistribution;
 
     [HideInInspector]
     public int enemiesAlive = 0;
@@ -44,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
     {
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
         waveCountdownCo = StartCoroutine(WaveCountdownCo());
+        CheckEnemyDistribution();
     }
 
     public void BeginWave()
@@ -116,6 +117,22 @@ public class EnemySpawner : MonoBehaviour
         return SpawnEnemy(null, null);
     }
 
+    // Check that our enemy and distribution arrays are of the same size and that the 
+    // distribution array sums to 100.
+    void CheckEnemyDistribution()
+    {
+        Debug.Assert(enemyDistribution.Length == enemiesToSpawn.Length, "Enemy to spawn array and distribution array should be the same size.");
+        float sum = 0;
+        int index = 0;
+
+        while (index < enemyDistribution.Length)
+        {
+            sum += enemyDistribution[index];
+            index++;
+        }
+
+        Debug.Assert(sum == 100f, "Distribution of enemies doesn't sum to 100.");
+    }
 
     GameObject SpawnEnemy(Vector3? forcedPosition = null, GameObject forcedEnemyType = null)
     {
@@ -139,7 +156,28 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject GetRandomEnemyToSpawn()
     {
-        return Random.Range(0f, 100f) <= spawnChances[0] ? enemiesToSpawn[0] : enemiesToSpawn[1];
+        float roll = Random.Range(0f, 100f);
+        int index = 0;
+        float sum = 0f;
+   
+        while (index < enemyDistribution.Length)
+        {
+            sum += enemyDistribution[index];
+            
+            if (roll < sum)
+            {
+                return enemiesToSpawn[index];
+            }
+            else
+            {
+                index++;
+                continue;
+            }
+        }
+
+        Debug.LogError("Enemy not found");
+        return null;
+       // return Random.Range(0f, 100f) <= enemyDistribution[0] ? enemiesToSpawn[0] : enemiesToSpawn[1];
     }
 
     Vector3 GetRandomSpawnPosition()
