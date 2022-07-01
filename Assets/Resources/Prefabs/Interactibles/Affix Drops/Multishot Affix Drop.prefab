@@ -94,4 +94,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnMovementSpeed: 6
+  consumeSound: {fileID: 8300000, guid: 2533f132a01cf45ad8377f6f5eea6bf7, type: 3}
   affix: {fileID: 11400000, guid: 8bafb50ae1dfdf4479e1cbd245a49e6c, type: 2}

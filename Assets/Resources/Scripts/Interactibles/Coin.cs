@@ -25,6 +25,8 @@ public class Coin : DroppedItem
 	protected override void Consume()
 	{
 		base.Consume();
+
+        //SoundManager.PlayOneShot(audioSource, consumeSound, new SoundManagerArgs(true, consumeSound.name));
         playerCurrency.AddLocalCurrency(value);
 	}
     void SpinAnimation()

@@ -5,18 +5,18 @@ using UnityEngine;
 public class DroppedItem : MonoBehaviour
 {
     public float spawnMovementSpeed;
+    public AudioClip consumeSound;
     Vector2 randomDirection = Vector2.zero;
     protected Animator anim;
     protected ItemMagnetism magnetism;
-    
-    float timeSpawned;
+    AudioSource audioSource;
     bool hasBeenConsumed;
 
     protected virtual void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        timeSpawned = Time.time;
         anim.speed = Random.Range(.9f, 1.1f);
         magnetism = GetComponent<ItemMagnetism>();
     }
@@ -59,6 +59,11 @@ public class DroppedItem : MonoBehaviour
     protected virtual void Consume()
     {
         hasBeenConsumed = true;
+
+        if (!audioSource || !audioSource.isActiveAndEnabled || !consumeSound)
+            return;
+        Debug.Log("About to play sound " + consumeSound.name);
+        SoundManager.PlayOneShot(audioSource, consumeSound, new SoundManagerArgs(true, consumeSound.name));
         return;
     }
 }

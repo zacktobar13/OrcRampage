@@ -16,7 +16,7 @@ PrefabInstance:
     - target: {fileID: 6338699041248146883, guid: 9299969938198fe43a563cb9bf4c3879,
         type: 3}
       propertyPath: m_Name
-      value: Crit Chance Item Drop
+      value: Crit Chance Affix Drop
       objectReference: {fileID: 0}
     - target: {fileID: 6338699041248146895, guid: 9299969938198fe43a563cb9bf4c3879,
         type: 3}
@@ -94,4 +94,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnMovementSpeed: 6
+  consumeSound: {fileID: 8300000, guid: 2533f132a01cf45ad8377f6f5eea6bf7, type: 3}
   affix: {fileID: 11400000, guid: f7d5160b9a5c4734eae982becbe16c3b, type: 2}

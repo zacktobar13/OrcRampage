@@ -485,7 +485,7 @@ MonoBehaviour:
   text: {fileID: 7713430699588577537}
   shadowText: {fileID: 7980771969616416543}
   openAudio: {fileID: 8300000, guid: 5ca3f95149051c74a973344a1782510c, type: 3}
-  lockedAudio: {fileID: 0}
+  lockedAudio: {fileID: 8300000, guid: 7b71d2674b54647f88a377cccbd828e4, type: 3}
   droppableItems:
   - {fileID: 8734921152756357161, guid: e6802905b3ba15345b41b37f571aaad5, type: 3}
   - {fileID: 8734921152756357161, guid: b92e7d0a6f9785142a98d3ea3a58c4bc, type: 3}
