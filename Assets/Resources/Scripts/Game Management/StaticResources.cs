@@ -9,6 +9,7 @@ public class StaticResources : MonoBehaviour
     public static GameObject healNumber;
     public static GameObject critDamageNumber;
     public static GameObject playerDamageNumber;
+    public static GameObject soundEffect;
 
     public static Material whiteMaterial;
     public static GameObject damageCollider;
@@ -30,6 +31,7 @@ public class StaticResources : MonoBehaviour
         healNumber = Resources.Load("Prefabs/UI/Heal Number", typeof(GameObject)) as GameObject;
         critDamageNumber = Resources.Load("Prefabs/UI/Crit Damage Number", typeof(GameObject)) as GameObject;
         playerDamageNumber = Resources.Load("Prefabs/UI/Player Damage Number", typeof(GameObject)) as GameObject;
+        soundEffect = Resources.Load("Prefabs/Game Management/Sound Effect", typeof(GameObject)) as GameObject;
 
         hitEffect1 = Resources.Load("Prefabs/Visual Effects/Hit Effect Small 1") as GameObject;
         arrow = Resources.Load("Prefabs/Projectiles/Arrow") as GameObject;

@@ -60,14 +60,14 @@ public class Chest : MonoBehaviour
         costInfoGameObject.SetActive(false);
         animator.SetBool("isOpen", true);
         gameObject.tag = "Untagged";
-        SoundManager.PlayOneShot(audioSource, openAudio, new SoundManagerArgs(true, openAudio.name));
+        SoundManager.PlayOneShot(transform.position, openAudio, new SoundManagerArgs(true, openAudio.name));
         GameObject drop = droppableItems[Random.Range(0, droppableItems.Length)];
         Instantiate(drop, transform.position, Quaternion.identity);
     }
 
     public void Locked()
     {
-        SoundManager.PlayOneShot(audioSource, lockedAudio, new SoundManagerArgs(true, lockedAudio.name));
+        SoundManager.PlayOneShot(transform.position, lockedAudio, new SoundManagerArgs(true, lockedAudio.name));
     }
 
     public bool IsPlayerInRange()

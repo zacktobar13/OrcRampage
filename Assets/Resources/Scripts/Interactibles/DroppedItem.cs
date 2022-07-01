@@ -60,10 +60,10 @@ public class DroppedItem : MonoBehaviour
     {
         hasBeenConsumed = true;
 
-        if (!audioSource || !audioSource.isActiveAndEnabled || !consumeSound)
+        if (!consumeSound)
             return;
-        Debug.Log("About to play sound " + consumeSound.name);
-        SoundManager.PlayOneShot(audioSource, consumeSound, new SoundManagerArgs(true, consumeSound.name));
+
+        SoundManager.PlayOneShot(transform.position, consumeSound, new SoundManagerArgs(false, consumeSound.name));
         return;
     }
 }

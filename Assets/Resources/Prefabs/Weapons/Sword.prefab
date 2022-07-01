@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.85, y: 0.88, z: -6.6757045}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6694057511024031758}
   m_RootOrder: 3
@@ -223,35 +224,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3557005793705224148, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
 --- !u!1 &1554957424923658117 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5015345521042287544, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5768626958900145213}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6694057511024031758 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 930088366993790003, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5768626958900145213}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &7013021937776610281 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3557005793705224148, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5768626958900145213}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &8664724534342507417 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 5768626958900145213}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7204619432980867626 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
     type: 3}
   m_PrefabInstance: {fileID: 5768626958900145213}
   m_PrefabAsset: {fileID: 0}
@@ -270,14 +248,11 @@ MonoBehaviour:
   weaponID: 4
   isAutomatic: 1
   attackDamage: 0
-  critChance: 10
-  critPower: 2
   baseAttacksPerSecond: 0.5
   projectileSpreadAmount: 0
   maxAmmo: 1
   currentAmmo: 1
   projectile: {fileID: 0}
-  bulletCasing: {fileID: 0}
   notFiringSprite: {fileID: 712035800519618848, guid: b43917c2c9c1025459a278b2f99029e4,
     type: 3}
   firingSprite: {fileID: 21300000, guid: 423d62b1d517de341a022154b839d960, type: 3}
@@ -287,10 +262,27 @@ MonoBehaviour:
   visualEffectsSpawnPoint: {fileID: 5042557379365664924}
   visualsCooldown: 0.25
   shadow: {fileID: 1382512236060408915}
-  audioSource: {fileID: 7013021937776610281}
-  shootSound: {fileID: 8300000, guid: 3807006d81684bd448b8c330e3fa005b, type: 3}
+  shootSound: {fileID: 8300000, guid: 72951a47aa1d445b986938da9e9e66c5, type: 3}
   emptySound: {fileID: 0}
   attackRadius: 7
+--- !u!4 &6694057511024031758 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 930088366993790003, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5768626958900145213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7204619432980867626 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5768626958900145213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8664724534342507417 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2896112157557323684, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+    type: 3}
+  m_PrefabInstance: {fileID: 5768626958900145213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8145669193660975093
 PrefabInstance:
   m_ObjectHideFlags: 0

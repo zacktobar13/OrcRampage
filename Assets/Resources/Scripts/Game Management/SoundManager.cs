@@ -15,17 +15,20 @@ public class SoundManager : MonoBehaviour
         mixer = Resources.Load("Audio/MasterMixer") as AudioMixer;
     }
 
-    public static void PlayOneShot(AudioSource audioSource, AudioClip audioClip)
+    public static void PlayOneShot(Vector3 spawnLocation, AudioClip audioClip)
     {
-        PlayOneShot(audioSource, audioClip, new SoundManagerArgs(false));
+        PlayOneShot(spawnLocation, audioClip, new SoundManagerArgs(false));
     }
 
-    public static void PlayOneShot(AudioSource audioSource, AudioClip audioClip, SoundManagerArgs args)
+    public static void PlayOneShot(Vector3 spawnLocation, AudioClip audioClip, SoundManagerArgs args)
     {
         if (!args.alwaysPlay && Time.time < minimumTimeBetweenSounds + lastSoundTime)
         {
             return;
         }
+
+        GameObject soundEffect = Instantiate(StaticResources.soundEffect, spawnLocation, Quaternion.identity);
+        AudioSource audioSource = soundEffect.GetComponent<AudioSource>();
 
         audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups(args.mixerName)[0];   
         float oldPitch = audioSource.pitch;
@@ -42,10 +45,10 @@ public class SoundManager : MonoBehaviour
         globalAudioSource = audioSource;
     }
 
-    public static void PlayGlobalAudio(AudioClip audioClip, SoundManagerArgs args)
-    {
-        PlayOneShot(globalAudioSource, audioClip, args);
-    }
+    //public static void PlayGlobalAudio(AudioClip audioClip, SoundManagerArgs args)
+   // {
+   //     PlayOneShot(globalAudioSource, audioClip, args);
+   // }
 }
 
 public struct SoundManagerArgs

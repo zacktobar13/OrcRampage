@@ -38,7 +38,7 @@ public class ParticleBehavior : MonoBehaviour
                 Destroy(particle);
                 spriteRenderer.material = StaticResources.pixelSnap;
                 spriteRenderer.sprite = restingSprites[(int)Random.Range(0f, restingSprites.Length)];
-                SoundManager.PlayOneShot(audioSource, hitGroundSFX);
+                SoundManager.PlayOneShot(transform.position, hitGroundSFX);
                 return;
             }
 

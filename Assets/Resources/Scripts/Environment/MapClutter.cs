@@ -60,7 +60,7 @@ public class MapClutter : MonoBehaviour
     {
         if ( audioSource != null )
         {
-            SoundManager.PlayOneShot(audioSource, destroySound, new SoundManagerArgs(destroySound.name));
+            SoundManager.PlayOneShot(transform.position, destroySound, new SoundManagerArgs(destroySound.name));
         }
 
         Instantiate(hitEffect, transform.position, transform.rotation);

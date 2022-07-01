@@ -83,6 +83,7 @@ AudioMixerGroupController:
   - {fileID: 6423538441520079163}
   - {fileID: 579874481609824892}
   - {fileID: -5465701481232255904}
+  - {fileID: 4304004327424894609}
   m_Volume: d7ee15ca331fe4479941d1c3ab6a8205
   m_Pitch: 95f2de579d70244a48125a0163c3d328
   m_Send: 00000000000000000000000000000000
@@ -217,6 +218,7 @@ AudioMixerController:
     - 57dd43174f0dc48d6a3bf72b88da695e
     - 53a8b3c719a6b4e62a0aa3096a1811f6
     - f80f40f194c4d414e82408e85eb2c726
+    - 41f02c7f943978c47bca6ca067239575
     name: Everything
   - guids:
     - 8a9ccf218077e413898d880e367acfbc
@@ -276,9 +278,10 @@ AudioMixerSnapshotController:
     4387a0410b185443c8302ca600f81b09: 20
     dd215ed131fb64060a17d0578f31bfa0: -7.436929
     33fd00938356c497289b8e0dc7076db0: -15.421314
-    5f3971451960245ecb594f139bcb1374: 20
+    4141c01528775c743a273bcf6126e33d: -16.660433
+    5f3971451960245ecb594f139bcb1374: -6.664151
     ca54844535e5e4fa1bc5d9a0c24c4e6d: -21.302507
-    59d29ba8bd5c04da387adf9202af9075: 20
+    59d29ba8bd5c04da387adf9202af9075: -8.0101185
     30e62429a29c347b9b0fca1933d3524a: 0.44032478
     1b2f98baf7c824619a89e7f6826daae8: 1.7477665
     75e8d39f4eb8340069c752b663392294: -9.833286
@@ -408,6 +411,20 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &3750167563657233315
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 6cbcc9b2c8243484cbac23db1fed994d
+  m_EffectName: Attenuation
+  m_MixLevel: 6bf31e76dcb7ad449a90fa82b10b4a68
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!243 &3777688663576674531
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -423,6 +440,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -3212111408091950407}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &4304004327424894609
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Heavy Sword Swing
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 41f02c7f943978c47bca6ca067239575
+  m_Children: []
+  m_Volume: 4141c01528775c743a273bcf6126e33d
+  m_Pitch: c5385d181e74a0f409d6ab11a0dd6241
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 3750167563657233315}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

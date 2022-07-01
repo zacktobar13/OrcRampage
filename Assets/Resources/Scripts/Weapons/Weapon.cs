@@ -27,7 +27,6 @@ public class Weapon : MonoBehaviour
     public GameObject shadow;
 
     [Header("Audio Effects")]
-    public AudioSource audioSource;
     public AudioClip shootSound;
     public AudioClip emptySound;
 
@@ -95,7 +94,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void FireEmpty()
     {
-        SoundManager.PlayOneShot(audioSource, emptySound);
+        SoundManager.PlayOneShot(transform.position, emptySound);
     }
 
     public virtual Projectile SpawnProjectile(bool isCritical, float offset)
@@ -120,9 +119,7 @@ public class Weapon : MonoBehaviour
 
     public virtual void PlayAttackSound()
     {
-        if (!audioSource || !audioSource.isActiveAndEnabled || !shootSound)
-            return;
-        SoundManager.PlayOneShot(audioSource, shootSound, new SoundManagerArgs(true, shootSound.name));
+        SoundManager.PlayOneShot(transform.position, shootSound, new SoundManagerArgs(true, shootSound.name));
     }
 
     public virtual IEnumerator VisualEffects()

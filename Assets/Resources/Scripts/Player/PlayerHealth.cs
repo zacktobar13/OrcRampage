@@ -103,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void ApplyHeal(HealInfo healInfo)
     {
-        SoundManager.PlayOneShot(audioSource, healInfo.healSound, new SoundManagerArgs(true, "HealthGlobePickup"));
+        SoundManager.PlayOneShot(transform.position, healInfo.healSound, new SoundManagerArgs(true, "HealthGlobePickup"));
         if (IsAtMaxHealth())
             return;
 
