@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Pool;
 
 public class SoundManager : MonoBehaviour
 {
@@ -10,9 +9,18 @@ public class SoundManager : MonoBehaviour
     static AudioSource globalAudioSource;
     static AudioMixer mixer;
 
+    public GameObject soundEffectPrefab;
+
+    // Referenced in Start()
+    PoolManager poolManager;
+    static ObjectPool<GameObject> soundEffectPool;
+
+
     private void Start() 
     {
         mixer = Resources.Load("Audio/MasterMixer") as AudioMixer;
+        poolManager = GameObject.Find("Game Management").GetComponent<PoolManager>();
+        soundEffectPool = poolManager.GetObjectPool(soundEffectPrefab);
     }
 
     public static void PlayOneShot(Vector3 spawnLocation, AudioClip audioClip)
@@ -27,8 +35,11 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        GameObject soundEffect = Instantiate(StaticResources.soundEffect, spawnLocation, Quaternion.identity);
-        AudioSource audioSource = soundEffect.GetComponent<AudioSource>();
+        GameObject soundEffectGameObject = soundEffectPool.Get();
+        soundEffectGameObject.transform.parent = GameObject.Find("Game Management/Sound Effect Pool").transform;
+        SoundEffect soundEffectComponent = soundEffectGameObject.GetComponent<SoundEffect>();
+        soundEffectComponent.SetMyPool(soundEffectPool);
+        AudioSource audioSource = soundEffectGameObject.GetComponent<AudioSource>();
 
         audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups(args.mixerName)[0];   
         float oldPitch = audioSource.pitch;
