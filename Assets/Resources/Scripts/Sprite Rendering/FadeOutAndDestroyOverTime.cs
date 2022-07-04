@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class FadeOutAndDestroyOverTime : MonoBehaviour
 {
+    const float SHADOW_ALPHA_START = 89f/255f;
     public float timeUntilFadeOut;
     public float fadeOutDuration;
 
@@ -15,15 +17,24 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     float shadowAlpha = 1f;
     float shadowAlphaStart = 1f;
     float fadeTimer = 0;
+    ObjectPool<GameObject> myPool;
 
     void OnEnable()
     {
-
+        //string poolName = gameObject.name.Replace("(Clone)", "");
+        myPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(gameObject);
         StartCoroutine(StartFade());
+
+        spriteAlpha = 1f;
+        shadowAlpha = 1f;
+        shadowAlphaStart = 1f;
+        fadeTimer = 0;
+        startFade = false;
+
         if (shadowSprite)
         {
             shadowAlpha = shadowSprite.material.GetColor("_Color").a;
-            shadowAlphaStart = shadowAlpha;
+            shadowAlphaStart = SHADOW_ALPHA_START;
         }
     }
 
@@ -49,17 +60,18 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
 
             if (spriteAlpha <= .001f || shadowAlpha <= .001f)
             {
-                if (transform.parent)
-                {
-                    Destroy(transform.parent.gameObject);
-                }
-                else
-                {
-                    Destroy(gameObject);
-                }
+                myPool.Release(gameObject);
             }
         } 
     }
+
+    void OnDisable()
+    {
+        Color spriteColor = new Color(mainSprite.material.color.r, mainSprite.material.color.g, mainSprite.material.color.b, 1f);
+        mainSprite.material.color = spriteColor;
+        shadowSprite.material.SetColor("_Color", new Vector4(0f, 0f, 0f, SHADOW_ALPHA_START));
+    }
+
 
     IEnumerator StartFade()
     {

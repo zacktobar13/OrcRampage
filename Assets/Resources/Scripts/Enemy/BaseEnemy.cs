@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using PowerTools;
@@ -95,17 +94,16 @@ public class BaseEnemy : MonoBehaviour {
     {
         // Give enemies attack range and movement speed some randomness
         //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
-        damageTrigger = GetComponent<BoxCollider2D>();
-        spriteGameObject = transform.Find("Sprite").gameObject;
+        
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
 
-        worldCollider = transform.Find("World Collider").gameObject;
+        
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        healthUI = transform.Find("Enemy Health Bar").gameObject;
-        healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
+        
+        
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
         damageSpawnPoint = transform.Find("Damage Spawn Point");
 
@@ -115,6 +113,24 @@ public class BaseEnemy : MonoBehaviour {
         timeManager = gameManagement.GetComponent<TimeManager>();
         Debug.Assert(timeManager != null);
 
+        if (currentWeapon)
+        {
+            currentWeapon.attackDamage = attackDamage;
+            currentWeapon.PickupWeapon(gameObject);
+        }
+
+        RandomizeAccentColor();
+    }
+
+    private void OnEnable()
+    {
+        
+
+        healthUI = transform.Find("Enemy Health Bar").gameObject;
+        healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
+        damageTrigger = GetComponent<BoxCollider2D>();
+        worldCollider = transform.Find("World Collider").gameObject;
+        spriteGameObject = transform.Find("Sprite").gameObject;
         shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
         rarity = forceUseInspectorRarity ? rarity : RollRarity();
         ProcessRarity();
@@ -123,13 +139,19 @@ public class BaseEnemy : MonoBehaviour {
         attackDamage = CalculateAttackDamage();
         health = maxHealth;
 
-        if (currentWeapon)
+        isDisabled = false;
+        currentWeapon.gameObject.SetActive(true);
+        worldCollider.SetActive(true);
+        damageTrigger.enabled = true;
+
+        if (fadeComponent)
         {
-            currentWeapon.attackDamage = attackDamage;
-            currentWeapon.PickupWeapon(gameObject);
+            fadeComponent.enabled = false;
         }
 
-        RandomizeAccentColor();
+        // Reset health bar UI
+        healthbar.fillAmount = 1f;
+        healthUI.SetActive(false);
     }
 
     float timeUntilAttackAfterStop;

@@ -58,7 +58,7 @@ public class PoolManager : MonoBehaviour
         if (objectPools.ContainsKey(objectName))
         {
             ObjectPool<GameObject> pool = PoolManager.objectPools[objectName];
-            Debug.Log(pool + " found.");
+          //  Debug.Log(pool + " found.");
             return pool;
         }
         else

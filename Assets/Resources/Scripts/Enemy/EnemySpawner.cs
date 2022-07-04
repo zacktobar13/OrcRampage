@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -39,9 +40,12 @@ public class EnemySpawner : MonoBehaviour
     int waveSize;
     Coroutine waveCountdownCo;
     bool hasSpawnedBoss = false;
+    PoolManager poolManager;
+
 
     void Start()
     {
+        poolManager = GetComponent<PoolManager>();
         InvokeRepeating("SpawnEvent", eventRate, eventRate);
         waveCountdownCo = StartCoroutine(WaveCountdownCo());
         CheckEnemyDistribution();
@@ -149,7 +153,12 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject enemyToSpawn = forcedEnemyType == null ? GetRandomEnemyToSpawn() : forcedEnemyType;
-        Instantiate(enemyToSpawn, spawnPosition, transform.rotation);
+        ObjectPool<GameObject> enemyPool = poolManager.GetObjectPool(enemyToSpawn);
+        GameObject enemy = enemyPool.Get();
+        string poolName = "Game Management/" + enemy.name.Replace("(Clone)", "") + " Pool";
+        enemy.transform.parent = GameObject.Find(poolName).transform;
+        enemy.transform.position = spawnPosition;
+        //Instantiate(enemyToSpawn, spawnPosition, transform.rotation);
         enemiesAlive++;
         return enemyToSpawn;
     }
