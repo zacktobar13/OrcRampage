@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Weapon : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class Weapon : MonoBehaviour
     public float baseAttacksPerSecond;
 
     [Header("Ranged Weapon")]
-  //  public float projectileSpeed;
     public float projectileSpreadAmount;
     public int maxAmmo;
     public int currentAmmo;
@@ -38,17 +37,29 @@ public class Weapon : MonoBehaviour
     protected bool isOnPlayer;
     protected PlayerStats playerStats;
 
+    protected ObjectPool<GameObject> projectilePool;
+
     private Vector2 randomDropDir;
     private float droppedWeaponMovementSpeed = .01f;
 	private Coroutine moveCoroutine;
     private Animator anim;
 
     TimeManager timeManager;
+    PoolManager poolManager;
 
 	private void Awake()
 	{
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+    }
+
+    private void Start()
+    {
+        if (projectile)
+        {
+            poolManager = GameObject.Find("Game Management").GetComponent<PoolManager>();
+            projectilePool = poolManager.GetObjectPool(projectile);
+        }
     }
 
     public void SetTimeManager(TimeManager tm)
@@ -105,14 +116,19 @@ public class Weapon : MonoBehaviour
         if (!projectile)
             return null;
 
-        GameObject projectileSpawned = Instantiate(projectile, projectileSpawn.position, Quaternion.identity);
+        GameObject projectileSpawned = projectilePool.Get();
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
+        projectileSpawned.transform.right = Utility.Rotate((Vector2)transform.right, offset);
+        projectileInfo.movementDirection = projectileSpawned.transform.right;
+        projectileSpawned.transform.position = projectileSpawn.position;
+        projectileSpawned.transform.rotation = Quaternion.identity;
+        string hierarchyName = "Game Management/" + projectileSpawned.name.Replace("(Clone)", "") + " Pool";
+        projectileSpawned.transform.parent = GameObject.Find(hierarchyName).transform;
+
+        projectileInfo.SetMyPool(projectilePool);
         projectileInfo.projectileDamage = attackDamage;
         projectileInfo.isCriticalHit = isCritical;
-        //projectileInfo.movementSpeed = projectileSpeed;
         projectileInfo.shotByPlayer = isOnPlayer;
-        projectileInfo.rotationOffset = offset;
-
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
         return projectileInfo;
     }

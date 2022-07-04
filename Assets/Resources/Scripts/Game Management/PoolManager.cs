@@ -27,7 +27,7 @@ public class PoolManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }*/
 
-    public void Start()
+    public void Awake()
     {
         objectPools = new Dictionary<string, ObjectPool<GameObject>>();
     }

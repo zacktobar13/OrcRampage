@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.Pool;
+
 
 public class Projectile : MonoBehaviour
 {
@@ -17,29 +18,36 @@ public class Projectile : MonoBehaviour
 
     public float movementSpeed;
     public int numberOfPierces;
-    Vector2 movementDirection;
+    public Vector2 movementDirection;
+    TrailRenderer trail;
     SpriteRenderer spriteRenderer;
+    ObjectPool<GameObject> myPool;
+    GameObject newShadow;
+
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
+
 
     void Start()
     {
         spriteGameObject = transform.Find("Sprite").gameObject;
         spriteRenderer = spriteGameObject.GetComponent<SpriteRenderer>();
-
-        if (anim)
-        {
-            anim = GetComponent<Animator>();
-            anim.speed = Random.Range(.8f, 1.2f);
-        }
-
-        transform.right = Utility.Rotate((Vector2)transform.right, rotationOffset);
-        movementDirection = transform.right;
+        trail = transform.Find("Trail").GetComponent<TrailRenderer>();
+        anim.speed = Random.Range(.8f, 1.2f);
         movementSpeed *= Random.Range(.98f, 1.01f);
-        Destroy(gameObject, 5);
     }
 
-    public void SetProjectileRotation(float rotation)
+    public void SetMyPool(ObjectPool<GameObject> pool)
     {
-        GameObject newShadow = Instantiate(shadow, new Vector3(transform.position.x, transform.position.y - 2.5f, 0f), Quaternion.identity);
+        myPool = pool;
+    }
+
+    public void SetProjectileRotation(float rotation) // TODO Need to stop instantiating shadows
+    {
+        newShadow = Instantiate(shadow, new Vector3(transform.position.x, transform.position.y - 2.5f, 0f), Quaternion.identity);
+        
         transform.rotation = Quaternion.Euler(0, 0, rotation);
         newShadow.transform.parent = gameObject.transform;
         newShadow.transform.rotation = transform.rotation;
@@ -79,9 +87,29 @@ public class Projectile : MonoBehaviour
         collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
         
         bool hitMapClutter = collision.gameObject.layer == LayerMask.NameToLayer("Map Clutter");
-        if (numberOfPierces <= 0 && !hitMapClutter) 
-            Destroy(gameObject);
 
         numberOfPierces--;
+        
+        if (numberOfPierces <= 0 && !hitMapClutter)
+            myPool.Release(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        Reset();
+    }
+
+    public void Reset()
+    {
+        trail.Clear();
+        projectileDamage = 0;
+        isCriticalHit = false;
+        shotByPlayer = false;
+        Destroy(newShadow);
+    }
+
+    private void OnBecameInvisible()
+    {
+        myPool.Release(gameObject);
     }
 }
