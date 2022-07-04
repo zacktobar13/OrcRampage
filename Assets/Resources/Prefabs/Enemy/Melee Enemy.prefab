@@ -940,7 +940,7 @@ MonoBehaviour:
   maxHealth: 2
   droppables:
   - {fileID: 3362701662564536882, guid: 32e2aec3509aa304bb4b9ecfa93d6b17, type: 3}
-  droppableDropChance: 5
+  droppableDropChance: 10
   healthScalingStepSize: 10
   attackDamageScalingStepSize: 3
   rarityStatScalars:

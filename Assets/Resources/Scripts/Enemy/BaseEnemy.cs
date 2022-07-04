@@ -96,13 +96,11 @@ public class BaseEnemy : MonoBehaviour {
         //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
         
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
-
         
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        
         
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
         damageSpawnPoint = transform.Find("Damage Spawn Point");
@@ -112,20 +110,10 @@ public class BaseEnemy : MonoBehaviour {
         enemySpawner = gameManagement.GetComponent<EnemySpawner>();
         timeManager = gameManagement.GetComponent<TimeManager>();
         Debug.Assert(timeManager != null);
-
-        if (currentWeapon)
-        {
-            currentWeapon.attackDamage = attackDamage;
-            currentWeapon.PickupWeapon(gameObject);
-        }
-
-        RandomizeAccentColor();
     }
 
     private void OnEnable()
     {
-        
-
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         damageTrigger = GetComponent<BoxCollider2D>();
@@ -141,6 +129,12 @@ public class BaseEnemy : MonoBehaviour {
 
         isDisabled = false;
         currentWeapon.gameObject.SetActive(true);
+        if (currentWeapon)
+        {
+            currentWeapon.attackDamage = attackDamage;
+            Debug.Assert(attackDamage != 0);
+            currentWeapon.PickupWeapon(gameObject);
+        }
         worldCollider.SetActive(true);
         damageTrigger.enabled = true;
 
@@ -152,6 +146,8 @@ public class BaseEnemy : MonoBehaviour {
         // Reset health bar UI
         healthbar.fillAmount = 1f;
         healthUI.SetActive(false);
+
+        RandomizeAccentColor();
     }
 
     float timeUntilAttackAfterStop;

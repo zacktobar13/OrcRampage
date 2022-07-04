@@ -34,10 +34,11 @@ public class PoolManager : MonoBehaviour
 
     public void CreateNewPool(string poolName, GameObject pooledPrefab, int defaultCapacity, int maxPoolSize)
     {
+        Vector3 offMapPosition = new Vector3(-5000, -5000, -5000);
         if (!objectPools.ContainsKey(poolName))
         {
             ObjectPool<GameObject> pool = new ObjectPool<GameObject>(() => Instantiate(pooledPrefab), (obj) => obj.SetActive(true),
-                                                        (obj) => obj.SetActive(false), (obj) => Destroy(obj), false, defaultCapacity, maxPoolSize);
+                                                        (obj) => { obj.SetActive(false); obj.transform.position = offMapPosition; }, (obj) => Destroy(obj), false, defaultCapacity, maxPoolSize);
 
             objectPools.Add(poolName, pool);
             GameObject poolChild = new GameObject(poolName + " Pool");

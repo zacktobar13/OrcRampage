@@ -60,6 +60,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isActiveAndEnabled)
+            return;
+
         // No friendly fire
         if (shotByPlayer && collision.CompareTag("Player"))
         {
@@ -91,7 +94,9 @@ public class Projectile : MonoBehaviour
         numberOfPierces--;
         
         if (numberOfPierces <= 0 && !hitMapClutter)
+        {
             myPool.Release(gameObject);
+        }
     }
 
     private void OnDisable()

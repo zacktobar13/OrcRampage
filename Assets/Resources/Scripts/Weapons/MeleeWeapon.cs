@@ -54,6 +54,7 @@ public class MeleeWeapon : Weapon
     DamageInfo generateDamageInfo(Vector2 weaponPosition, Vector2 targetPosition)
     {
         Vector2 damageDirection = (targetPosition - weaponPosition).normalized;
+        Debug.Assert(attackDamage != 0);
         return new DamageInfo(attackDamage, false, damageDirection);
     }
 

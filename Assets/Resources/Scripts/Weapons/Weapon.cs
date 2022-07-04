@@ -47,10 +47,15 @@ public class Weapon : MonoBehaviour
     TimeManager timeManager;
     PoolManager poolManager;
 
-	private void Awake()
-	{
+    private void OnEnable()
+    {
         anim = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
+        sprite.sprite = notFiringSprite;
+        projectileSpawn = transform.Find("Projectile Spawn");
+        isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
+        if (isOnPlayer)
+            playerStats = GetComponentInParent<PlayerStats>();
     }
 
     private void Start()
@@ -67,14 +72,6 @@ public class Weapon : MonoBehaviour
         timeManager = tm;
     }
 
-    private void OnEnable()
-    {
-        sprite.sprite = notFiringSprite;
-        projectileSpawn = transform.Find("Projectile Spawn");
-        isOnPlayer = transform.parent != null && transform.parent.CompareTag("Player");
-        if (isOnPlayer)
-            playerStats = GetComponentInParent<PlayerStats>();
-    }
 
 	public virtual Projectile Attack(bool isCritical, float offset, bool playSound, bool ignoreCooldown=false)
     {
@@ -120,6 +117,7 @@ public class Weapon : MonoBehaviour
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
         projectileSpawned.transform.right = Utility.Rotate((Vector2)transform.right, offset);
         projectileInfo.movementDirection = projectileSpawned.transform.right;
+        projectileInfo.shotByPlayer = isOnPlayer;
         projectileSpawned.transform.position = projectileSpawn.position;
         projectileSpawned.transform.rotation = Quaternion.identity;
         string hierarchyName = "Game Management/" + projectileSpawned.name.Replace("(Clone)", "") + " Pool";
@@ -128,7 +126,6 @@ public class Weapon : MonoBehaviour
         projectileInfo.SetMyPool(projectilePool);
         projectileInfo.projectileDamage = attackDamage;
         projectileInfo.isCriticalHit = isCritical;
-        projectileInfo.shotByPlayer = isOnPlayer;
         projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
         return projectileInfo;
     }
@@ -173,7 +170,6 @@ public class Weapon : MonoBehaviour
         transform.localScale = Vector3.one;
         moveCoroutine = StartCoroutine(MoveOnDrop());
         transform.parent = null;
-        //GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<RotateWeapon>().enabled = false;
         transform.rotation = Quaternion.identity;
         isOnPlayer = false;
@@ -187,6 +183,8 @@ public class Weapon : MonoBehaviour
         }
 
         shadow.SetActive(false);
+        if (!anim)
+            anim = GetComponent<Animator>();
         anim.enabled = false;
        // transform.parent = newOwner.Gametransform;
         //GetComponent<BoxCollider2D>().enabled = false;
