@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using PowerTools;
 using System.Collections;
+using UnityEngine.Pool;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerAnimation : MonoBehaviour
     bool fadingTransparency = false;
     float spriteAlpha = 1f;
     TimeManager timeManager;
+    ObjectPool<GameObject> dustPool;
 
     enum anim
     {
@@ -56,6 +58,7 @@ public class PlayerAnimation : MonoBehaviour
 
     void Start()
     {
+        dustPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(footstepDust);
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
         playerAttack = GetComponentInChildren<PlayerAttack>();
@@ -179,12 +182,12 @@ public class PlayerAnimation : MonoBehaviour
 
     public void FootStep()
     {
-        Instantiate(footstepDust, transform.position, transform.rotation);
-    }
-
-    public void DustCloud()
-    {
-        Instantiate(footstepDust, transform.position, transform.rotation);
+        GameObject dust = dustPool.Get();
+        dust.transform.position = transform.position;
+        string hierarchyString = "Game Management/" + dust.name.Replace("(Clone)", "") + " Pool";
+        dust.transform.parent = GameObject.Find(hierarchyString).transform;
+        FootstepDustBehavior component = dust.GetComponent<FootstepDustBehavior>();
+        component.SetMyPool(dustPool);
     }
 
     public void PlayIdleAnimation()

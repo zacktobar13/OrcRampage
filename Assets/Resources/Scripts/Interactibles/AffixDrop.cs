@@ -12,9 +12,9 @@ public class AffixDrop : DroppedItem
     SpriteRenderer spriteRenderer;
     protected Material shaderMaterial; 
 
-    private new void Start()
+    private new void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         shaderMaterial = transform.Find("Sprite").GetComponent<SpriteRenderer>().material;
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = affix.icon;

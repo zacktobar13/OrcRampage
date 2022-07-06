@@ -6,10 +6,10 @@ public class XPGlobe : DroppedItem
 {
     public int xpValue;
     PlayerExperience playerExperience;
-    protected new void Start()
+    protected new void OnEnable()
     {
         playerExperience = PlayerManagement.player.GetComponent<PlayerExperience>();
-        base.Start();
+        base.OnEnable();
     }
 
     // Update is called once per frame

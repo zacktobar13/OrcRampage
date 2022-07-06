@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using PowerTools;
+using UnityEngine.Pool;
 
 public class BaseEnemy : MonoBehaviour {
 
@@ -89,6 +90,7 @@ public class BaseEnemy : MonoBehaviour {
     protected IEnumerator hurt;
 
     bool isDisabled = false;
+    protected ObjectPool<GameObject> coinPool;
 
     protected void Start ()
     {
@@ -114,6 +116,7 @@ public class BaseEnemy : MonoBehaviour {
 
     private void OnEnable()
     {
+        coinPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(StaticResources.copperCoin);
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         damageTrigger = GetComponent<BoxCollider2D>();
@@ -332,7 +335,12 @@ public class BaseEnemy : MonoBehaviour {
         /* Drop number of coins based on enemy's rarity index (1-6) */
         for (int i = 0; i < Random.Range(1, 3)*(rarityIndex + 1); i++)
         {
-            GameObject coinDropped = Instantiate(StaticResources.copperCoin, transform.position, Quaternion.identity);
+            GameObject coinObject = coinPool.Get();
+            coinObject.transform.position = transform.position;
+            DroppedItem droppedItemComponent = coinObject.GetComponent<DroppedItem>();
+            droppedItemComponent.SetMyPool(coinPool);
+            string hierarchyName = "Game Management/" + coinObject.name.Replace("(Clone)", "") + " Pool";
+            coinObject.transform.parent = GameObject.Find(hierarchyName).transform;
         }
         
         if (droppableDropChance >= Random.Range(0, 100))

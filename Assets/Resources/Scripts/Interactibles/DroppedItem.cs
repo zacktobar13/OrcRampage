@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class DroppedItem : MonoBehaviour
 {
@@ -9,18 +10,23 @@ public class DroppedItem : MonoBehaviour
     Vector2 randomDirection = Vector2.zero;
     protected Animator anim;
     protected ItemMagnetism magnetism;
-    AudioSource audioSource;
     bool hasBeenConsumed;
+    protected ObjectPool<GameObject> myPool;
+    float tempMovementSpeed;
 
-    protected virtual void Start()
+    protected virtual void OnEnable()
     {
-        audioSource = GetComponent<AudioSource>();
+        tempMovementSpeed = spawnMovementSpeed;
         anim = GetComponent<Animator>();
         randomDirection = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         anim.speed = Random.Range(.9f, 1.1f);
         magnetism = GetComponent<ItemMagnetism>();
     }
 
+    public void SetMyPool(ObjectPool<GameObject> pool)
+    {
+        myPool = pool;
+    }
     protected virtual void Update()
     {
         if (spawnMovementSpeed == 0)
@@ -47,7 +53,6 @@ public class DroppedItem : MonoBehaviour
         if (collision.gameObject.tag.Equals("Player"))
         {
             Consume();
-            Destroy(gameObject);
         }
     }
 
@@ -60,10 +65,22 @@ public class DroppedItem : MonoBehaviour
     {
         hasBeenConsumed = true;
 
+        if (myPool != null)
+            myPool.Release(gameObject);
+        else
+            Destroy(gameObject); // TODO This is for affix drops which currently aren't pooled.
+
         if (!consumeSound)
             return;
 
         SoundManager.PlayOneShot(transform.position, consumeSound, new SoundManagerArgs(false, consumeSound.name));
         return;
+    }
+
+    protected virtual void OnDisable()
+    {
+        spawnMovementSpeed = tempMovementSpeed;
+        magnetism.enabled = false;
+        hasBeenConsumed = false;
     }
 }

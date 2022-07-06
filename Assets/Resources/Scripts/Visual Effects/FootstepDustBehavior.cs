@@ -1,11 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Pool;
 
 public class FootstepDustBehavior : MonoBehaviour
 {
+    ObjectPool<GameObject> myPool;
+
+    public void SetMyPool(ObjectPool<GameObject> pool)
+    {
+        myPool = pool;
+    }
+
     void DestroySelf()
     {
-        Destroy(gameObject);
+        myPool.Release(gameObject);
     }
 }

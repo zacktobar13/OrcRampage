@@ -8,18 +8,22 @@ public class Coin : DroppedItem
     public float spinAnimSpeed = 0f;
     public int value;
     float secondsUntilDestroy = 15f;
-
     public Sprite[] sprites;
     int anim_index;
+    Coroutine timer;
 
-    protected new void Start()
+    private void Start()
     {
-        base.Start();
-        anim_index = Random.Range(0, sprites.Length);
         spinAnimSpeed *= Random.Range(.8f, 1.2f);
+    }
+
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        anim_index = Random.Range(0, sprites.Length);
         playerCurrency = PlayerManagement.player.GetComponent<PlayerCurrencyManager>();
         InvokeRepeating("SpinAnimation", 0f, spinAnimSpeed);
-        StartCoroutine(DestroyAfterTime());
+        timer = StartCoroutine(DestroyAfterTime());
     }
 
 	protected override void Consume()
@@ -36,6 +40,13 @@ public class Coin : DroppedItem
     IEnumerator DestroyAfterTime()
     {
         yield return new WaitForSeconds(secondsUntilDestroy);
-        Destroy(gameObject);
+        myPool.Release(gameObject);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        StopCoroutine(timer);
+        secondsUntilDestroy = 15f;
     }
 }
