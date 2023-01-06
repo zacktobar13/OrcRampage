@@ -757,8 +757,6 @@ MonoBehaviour:
   aimIdleAnimation: {fileID: 7400000, guid: aedefb96e973a2840bf9ba16bcfe0c4d, type: 2}
   aimRunAnimation: {fileID: 7400000, guid: 0ea58d8eb17470640900535292ede1c3, type: 2}
   fallAnimation: {fileID: 7400000, guid: bad2bb0cce9dc0e49bd2a4d1466eb62c, type: 2}
-  audioSource: {fileID: 0}
-  footstepAudioClip: {fileID: 8300000, guid: f983a71bd03a92748bd25d96393b3f12, type: 3}
   footstepDust: {fileID: 334236813432003104, guid: 1a3b7e6cbbd30da4f85fce58281b03ea,
     type: 3}
   sprite: {fileID: 7175836991557105939}
@@ -1162,6 +1160,11 @@ PrefabInstance:
       propertyPath: mixerName
       value: MageFire
       objectReference: {fileID: 0}
+    - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
+        type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a49acc02f7fec5147b27ccbfa021c13b, type: 3}
     - target: {fileID: 7127334348890778689, guid: 8ca2be2116eaae247963dfd7f5e3e532,
         type: 3}
       propertyPath: visualsCooldown
