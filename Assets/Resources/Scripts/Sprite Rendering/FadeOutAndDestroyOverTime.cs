@@ -17,12 +17,10 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     float shadowAlpha = 1f;
     float shadowAlphaStart = 1f;
     float fadeTimer = 0;
-    ObjectPool<GameObject> myPool;
+    public ObjectPool<GameObject> myPool;
 
     void OnEnable()
     {
-        //string poolName = gameObject.name.Replace("(Clone)", "");
-        myPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(gameObject);
         StartCoroutine(StartFade());
 
         spriteAlpha = 1f;
@@ -60,7 +58,10 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
 
             if (spriteAlpha <= .001f || shadowAlpha <= .001f)
             {
-                myPool.Release(gameObject);
+                if (myPool != null)
+                    myPool.Release(gameObject);
+                else
+                    Destroy(gameObject);
             }
         } 
     }

@@ -13,6 +13,8 @@ public class BaseEnemy : MonoBehaviour {
     public float attackRange;
     public float movementSpeed;
     public int attackDamage;
+    public float attackCooldown;
+    public float attackRadius;
     public float stopToAttackTime;
     public int maxHealth;
     public GameObject[] droppables;
@@ -25,12 +27,6 @@ public class BaseEnemy : MonoBehaviour {
     protected float[] rarityStatScalars = {1f, 2f, 3f, 4f, 5f, 6f};
     protected float rarityStatScalar = 1f;
     protected int rarityIndex;
-
-    [Header("Sound Effects")]
-    public AudioClip hitSound;
-    public AudioClip hurtSound;
-    public AudioClip deadSound;
-    public AudioClip idleSound;
 
     [Header("Animations")]
     public AnimationClip idleAnimation;
@@ -54,7 +50,7 @@ public class BaseEnemy : MonoBehaviour {
     GameObject healthUI;
     Image healthbar;
     protected float health;
-    public Weapon currentWeapon;
+    public GameObject currentWeapon;
     protected GameObject worldCollider;
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
@@ -77,6 +73,7 @@ public class BaseEnemy : MonoBehaviour {
 
     protected GameObject target = null;
     protected float distanceToTarget;
+    protected bool targetIsOnRight;
     protected bool canMove = true;
     protected bool canBeKnockedBack = true;
     protected bool inRangeToAttack = false;
@@ -90,26 +87,28 @@ public class BaseEnemy : MonoBehaviour {
     protected IEnumerator hurt;
 
     bool isDisabled = false;
+
+    protected ObjectPool<GameObject> myPool;
     protected ObjectPool<GameObject> coinPool;
+    Transform coinPoolParent;
 
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
         //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
-        
+
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
-        
+
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
 
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
-        
+
         spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
         damageSpawnPoint = transform.Find("Damage Spawn Point");
 
         GameObject gameManagement = GameObject.Find("Game Management");
         affixManager = gameManagement.GetComponent<AffixManager>();
-        enemySpawner = gameManagement.GetComponent<EnemySpawner>();
         timeManager = gameManagement.GetComponent<TimeManager>();
         Debug.Assert(timeManager != null);
     }
@@ -117,6 +116,8 @@ public class BaseEnemy : MonoBehaviour {
     private void OnEnable()
     {
         coinPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(StaticResources.copperCoin);
+        string copperCoinPoolName = "Game Management/" + StaticResources.copperCoin.name + " Pool";
+        coinPoolParent = GameObject.Find(copperCoinPoolName).transform;
         healthUI = transform.Find("Enemy Health Bar").gameObject;
         healthbar = transform.Find("Enemy Health Bar/Healthbar").GetComponent<Image>();
         damageTrigger = GetComponent<BoxCollider2D>();
@@ -131,12 +132,10 @@ public class BaseEnemy : MonoBehaviour {
         health = maxHealth;
 
         isDisabled = false;
-        currentWeapon.gameObject.SetActive(true);
         if (currentWeapon)
         {
-            currentWeapon.attackDamage = attackDamage;
+            currentWeapon.gameObject.SetActive(true);
             Debug.Assert(attackDamage != 0);
-            currentWeapon.PickupWeapon(gameObject);
         }
         worldCollider.SetActive(true);
         damageTrigger.enabled = true;
@@ -151,6 +150,11 @@ public class BaseEnemy : MonoBehaviour {
         healthUI.SetActive(false);
 
         RandomizeAccentColor();
+    }
+
+    public void SetEnemySpawner(EnemySpawner spawner, ObjectPool<GameObject> pool) {
+        enemySpawner = spawner;
+        myPool = pool;
     }
 
     float timeUntilAttackAfterStop;
@@ -279,11 +283,9 @@ public class BaseEnemy : MonoBehaviour {
 
     public void MoveTowards(Vector2 targetPosition, float speed)
     {
-        if (targetPosition.x < transform.position.x)
-            spriteRenderer.flipX = true;
-        else
-            spriteRenderer.flipX = false;
-        //spriteRenderer.flipX = targetPosition.x < transform.position.x;
+        bool targetIsOnLeft = targetPosition.x < transform.position.x;
+        spriteRenderer.flipX = targetIsOnLeft;
+        targetIsOnRight = !targetIsOnLeft;
         transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed);
     }
 
@@ -300,22 +302,78 @@ public class BaseEnemy : MonoBehaviour {
 
     public virtual void ChaseTarget()
     {
-
+        if (distanceToTarget >= attackRange)
+        {
+            // Chase Target
+            spriteAnim.Play(movingAnimation);
+            MoveTowards(target.transform.position, movementSpeed * Time.deltaTime);
+        }
+        else
+        {
+            // Idle
+            spriteAnim.Play(idleAnimation);
+        }
     }
 
     public virtual void Idle()
     {
-
+        spriteAnim.Play(idleAnimation);
     }
 
     public virtual bool ShouldAttack()
     {
-        return false;
+        return (inRangeToAttack && Time.time > lastAttackTime + attackCooldown);
     }
 
     public virtual void Attack()
     {
+        if (!ShouldAttack())
+            return;
 
+        Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
+        Collider2D[] objectsHit = Physics2D.OverlapCircleAll((Vector2)transform.position + directionToTarget, attackRadius);
+
+        StartCoroutine(VisualEffects());
+        PlayAttackSound();
+
+        foreach (Collider2D collider in objectsHit)
+        {
+            PlayerHealth playerHealth;
+            if (collider.TryGetComponent(out playerHealth))
+            {
+                DamageInfo damageInfo = new DamageInfo(CalculateAttackDamage(), false, directionToTarget);
+                playerHealth.ApplyDamage(damageInfo);
+                continue;
+            }
+            MapClutter mapClutter;
+            if (collider.TryGetComponent(out mapClutter))
+            {
+                DamageInfo damageInfo = new DamageInfo(CalculateAttackDamage(), false, directionToTarget);
+                mapClutter.ApplyDamage(damageInfo);
+                continue;
+            }
+        }
+        
+        lastAttackTime = Time.time;
+    }
+
+    public virtual IEnumerator VisualEffects()
+    {
+        yield return new WaitForEndOfFrame();
+        // if (visualEffect)
+        // {
+        //     GameObject visuals = Instantiate(visualEffect, visualEffectsSpawnPoint.position, visualEffectsSpawnPoint.rotation);
+        //     visuals.GetComponent<PowerTools.SpriteAnim>().SetSpeed(1/visualsCooldown);
+        // }
+
+        // sprite.sprite = firingSprite;
+        // yield return new WaitForSeconds(visualsCooldown);
+        // sprite.sprite = notFiringSprite;
+    }
+
+    public virtual void PlayAttackSound()
+    {
+        //SoundManager.PlayOneShot(transform.position, shootSound, new SoundManagerArgs(true, shootSound.name));
     }
 
     public void DeathInternal()
@@ -339,8 +397,7 @@ public class BaseEnemy : MonoBehaviour {
             coinObject.transform.position = transform.position;
             DroppedItem droppedItemComponent = coinObject.GetComponent<DroppedItem>();
             droppedItemComponent.SetMyPool(coinPool);
-            string hierarchyName = "Game Management/" + coinObject.name.Replace("(Clone)", "") + " Pool";
-            coinObject.transform.parent = GameObject.Find(hierarchyName).transform;
+            coinObject.transform.parent = coinPoolParent.transform;
         }
         
         if (droppableDropChance >= Random.Range(0, 100))
@@ -366,6 +423,14 @@ public class BaseEnemy : MonoBehaviour {
         if (fadeComponent)
         {
             fadeComponent.enabled = true;
+            fadeComponent.myPool = myPool;
+        }
+        else
+        {
+            if (myPool != null)
+                myPool.Release(gameObject);
+            else
+                Destroy(gameObject);
         }
 
         // Reset health bar UI

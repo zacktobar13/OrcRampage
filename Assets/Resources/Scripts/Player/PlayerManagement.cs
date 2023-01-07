@@ -15,19 +15,11 @@ public class PlayerManagement : MonoBehaviour
     {
         PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
         PlayerAttack playerShoot = player.GetComponentInChildren<PlayerAttack>();
-        RotateWeapon[] rotateWeapon = player.GetComponentsInChildren<RotateWeapon>(true);
 
         if (playerMovement != null)
             playerMovement.enabled = toggle;
         if (playerShoot != null)
             playerShoot.enabled = toggle;
-        if (rotateWeapon != null)
-        {
-            foreach (RotateWeapon weapon in rotateWeapon)
-            {
-                weapon.enabled = toggle;
-            }
-        }
     }
 
     public static void RestorePlayer()

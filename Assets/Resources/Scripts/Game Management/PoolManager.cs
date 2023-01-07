@@ -43,7 +43,7 @@ public class PoolManager : MonoBehaviour
             objectPools.Add(poolName, pool);
             GameObject poolChild = new GameObject(poolName + " Pool");
             poolChild.transform.SetParent(transform);
-          //  Debug.Log("New " + poolName + " pool of size " + defaultCapacity + " created!");
+            Debug.Log("New " + poolName + " pool of size " + defaultCapacity + " created!");
         }
         else
         {
@@ -54,7 +54,8 @@ public class PoolManager : MonoBehaviour
     // Retrieve our product's associated pool or create one if it doesn't exist.
     public ObjectPool<GameObject> GetObjectPool(GameObject poolType)
     {
-        string objectName = poolType.name.Replace("(Clone)", "");
+        Debug.Assert(!poolType.name.Contains("(Clone)"), "Dont use a clone, use the original object.");
+        string objectName = poolType.name;
 
         if (objectPools.ContainsKey(objectName))
         {

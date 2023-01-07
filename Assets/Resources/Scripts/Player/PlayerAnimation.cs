@@ -30,6 +30,7 @@ public class PlayerAnimation : MonoBehaviour
     float spriteAlpha = 1f;
     TimeManager timeManager;
     ObjectPool<GameObject> dustPool;
+    Transform dustPoolParent;
 
     enum anim
     {
@@ -59,6 +60,8 @@ public class PlayerAnimation : MonoBehaviour
     void Start()
     {
         dustPool = GameObject.Find("Game Management").GetComponent<PoolManager>().GetObjectPool(footstepDust);
+        string dustHierarchyName = string.Concat("Game Management/", footstepDust.name, " Pool");
+        dustPoolParent = GameObject.Find(dustHierarchyName).transform;
         playerMovement = GetComponent<PlayerMovement>();
         playerHealth = GetComponent<PlayerHealth>();
         playerAttack = GetComponentInChildren<PlayerAttack>();
@@ -184,8 +187,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         GameObject dust = dustPool.Get();
         dust.transform.position = transform.position;
-        string hierarchyString = "Game Management/" + dust.name.Replace("(Clone)", "") + " Pool";
-        dust.transform.parent = GameObject.Find(hierarchyString).transform;
+        dust.transform.parent = dustPoolParent;
         FootstepDustBehavior component = dust.GetComponent<FootstepDustBehavior>();
         component.SetMyPool(dustPool);
     }

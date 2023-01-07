@@ -606,12 +606,12 @@ PrefabInstance:
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2
+      value: -1.63
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1.41
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
@@ -621,22 +621,22 @@ PrefabInstance:
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
@@ -651,13 +651,20 @@ PrefabInstance:
     - target: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2283587401225033404, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282, type: 3}
 --- !u!4 &324071696739180787 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6694057511024031758, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
+    type: 3}
+  m_PrefabInstance: {fileID: 6384209449337936125}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5552117148539985784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1554957424923658117, guid: 9f1b7ae3e5d722a4e91ff4fdf9c1e282,
     type: 3}
   m_PrefabInstance: {fileID: 6384209449337936125}
   m_PrefabAsset: {fileID: 0}
@@ -936,6 +943,8 @@ MonoBehaviour:
   attackRange: 5.5
   movementSpeed: 8
   attackDamage: 10
+  attackCooldown: 2.5
+  attackRadius: 5
   stopToAttackTime: 0
   maxHealth: 2
   droppables:
@@ -950,10 +959,6 @@ MonoBehaviour:
   - 4
   - 5
   - 6
-  hitSound: {fileID: 8300000, guid: e8f48fb98e5cf3a48a25c92dd194486e, type: 3}
-  hurtSound: {fileID: 8300000, guid: 06f18c84e4255ce46a20d7edbf373389, type: 3}
-  deadSound: {fileID: 8300000, guid: 1238ec830efd44e4a8014fcb986b887d, type: 3}
-  idleSound: {fileID: 8300000, guid: e12df8ecba66b654bba1840436c3feae, type: 3}
   idleAnimation: {fileID: 7400000, guid: ed4eedfd680d1454db2ce15664713254, type: 2}
   movingAnimation: {fileID: 7400000, guid: dafc9b61d63e04749ba03d1bc1735641, type: 2}
   hurtAnimation: {fileID: 7400000, guid: c5464ec1cb1081743bccac03996fdb77, type: 2}
@@ -961,14 +966,10 @@ MonoBehaviour:
   spawnPortalOnDeath: 0
   portal: {fileID: 0}
   nextScene: 
-  currentWeapon: {fileID: 0}
+  currentWeapon: {fileID: 5552117148539985784}
   aliveShadow: {fileID: 7519290321174004400}
   deadShadow: {fileID: 6240988419750726965}
   baseAccentColorChoices: []
   accentColorDelta: 0
   baseAccentColor2Choices: []
   accentColor2Delta: 0
-  attackCooldown: 2.5
-  telegraphDuration: 0
-  wanderMovementSpeed: 1.5
-  damageColliderDistance: 3.5

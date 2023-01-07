@@ -155,10 +155,15 @@ public class EnemySpawner : MonoBehaviour
         GameObject enemyToSpawn = forcedEnemyType == null ? GetRandomEnemyToSpawn() : forcedEnemyType;
         ObjectPool<GameObject> enemyPool = poolManager.GetObjectPool(enemyToSpawn);
         GameObject enemy = enemyPool.Get();
-        string poolName = "Game Management/" + enemy.name.Replace("(Clone)", "") + " Pool";
-        enemy.transform.parent = GameObject.Find(poolName).transform;
+        BaseEnemy enemyInfo = enemy.GetComponent<BaseEnemy>();
+        enemyInfo.SetEnemySpawner(this, enemyPool);
+        // If we're not already pooled + parented, find our parent
+        if (enemy.transform.parent == null) 
+        {
+            string poolName = string.Concat(enemyToSpawn.name, " Pool"); 
+            enemy.transform.parent = GameObject.Find(poolName).transform;
+        }
         enemy.transform.position = spawnPosition;
-        //Instantiate(enemyToSpawn, spawnPosition, transform.rotation);
         enemiesAlive++;
         return enemyToSpawn;
     }
@@ -282,6 +287,8 @@ public class EnemySpawner : MonoBehaviour
 
         Debug.Log("Spawning Boss");
         GameObject boss = Instantiate(bossToSpawn, spawnPosition, Quaternion.identity);
+        BaseEnemy bossInfo = boss.GetComponent<BaseEnemy>();
+        bossInfo.SetEnemySpawner(this, null);
 
         hasSpawnedBoss = true;
 

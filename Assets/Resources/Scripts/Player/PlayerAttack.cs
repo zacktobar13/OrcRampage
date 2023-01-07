@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Pool;
 
 public class PlayerAttack : MonoBehaviour
 {
     PlayerStats playerStats;
-
+ 
     public delegate void OnShoot(PlayerAttack playerAttack);
     public event OnShoot onPlayerShoot;
 
@@ -15,23 +16,29 @@ public class PlayerAttack : MonoBehaviour
 
     GameplayUI gameplayUI;
 
-    Weapon[] weapons = new Weapon[2];
-    [SerializeField] Weapon currentWeapon;
-    int currentWeaponIndex = 0;
+    [SerializeField] GameObject weapon;
+    [SerializeField] GameObject projectile;
+    [SerializeField] float baseAttacksPerSecond;
+    float lastAttackTime;
 
     TimeManager timeManager;
     bool isAttacking;
+    bool isAutomatic = true;
+
+    protected ObjectPool<GameObject> projectilePool;
+    PoolManager poolManager;
+    Transform projectilePoolParent;
 
     void Start()
     {
         gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
         timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
+        poolManager = GameObject.Find("Game Management").GetComponent<PoolManager>();
+        projectilePool = poolManager.GetObjectPool(projectile);
         
         playerStats = GetComponent<PlayerStats>();
-
-        currentWeapon = GetComponentInChildren<Weapon>();
-        weapons[0] = currentWeapon;
-        currentWeapon.PickupWeapon(gameObject);
+        string hierarchyName = "Game Management/" + projectile.name + " Pool";
+        projectilePoolParent = GameObject.Find(hierarchyName).transform;
     }
 
     void Update()
@@ -39,28 +46,14 @@ public class PlayerAttack : MonoBehaviour
         if (timeManager.IsGamePaused())
             return;
 
-        if (PlayerInput.attack || (currentWeapon.isAutomatic && PlayerInput.holdingAttack))
+        if ((PlayerInput.attack || (isAutomatic && PlayerInput.holdingAttack)) && CanAttack())
         {
             Attack();
+            lastAttackTime = Time.time;
         }
         else
         {
             isAttacking = false;
-        }
-
-        if (PlayerInput.changeToFirstWeapon)
-        {
-            ChangeToWeapon(0);
-        }
-
-        if (PlayerInput.changeToSecondWeapon)
-        {
-            ChangeToWeapon(1);
-        }
-
-        if (PlayerInput.interact)
-        {
-            pressedInteractThisFrame = true;
         }
     }
 
@@ -79,7 +72,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isAttacking = true;
 
-        if (onPlayerShoot != null && CanWeaponAttack())
+        if (onPlayerShoot != null)
             onPlayerShoot(this);
 
         Attack(0, true);
@@ -88,150 +81,58 @@ public class PlayerAttack : MonoBehaviour
     private void Attack(float offset, bool playSound, bool ignoreCooldown=false)
     {
         bool isCritical = playerStats.RollCritical();
-        currentWeapon.attackDamage = playerStats.CalculateDamage(isCritical);
-        Projectile projectileSpawned = currentWeapon.Attack(isCritical, offset, playSound, ignoreCooldown);
+        int damage = playerStats.CalculateDamage(isCritical);
+        Projectile projectileSpawned = SpawnProjectile(damage, isCritical, offset);
 
         if (projectileSpawned && onProjectileSpawned != null)
             onProjectileSpawned(this, projectileSpawned);
     }
 
-    public void ChangeToWeapon(int index)
+    public virtual Projectile SpawnProjectile(int damage, bool isCritical, float offset)
     {
-        // Already on the requested index
-        if (currentWeaponIndex == index)
-            return;
+        if (timeManager.IsGamePaused())
+            return null;
 
-        // No weapon at the requested index
-        if (!weapons[index])
-            return;
+        if (!projectile)
+            return null;
 
-        // Disable current weapon, switch to other
-        currentWeapon.gameObject.SetActive(false);
-        weapons[index].gameObject.SetActive(true);
-        currentWeaponIndex = index;
-        currentWeapon = weapons[currentWeaponIndex];
+        Vector2 directionToMouse = (PlayerInput.mousePosition - (Vector2)transform.position).normalized;
+        Vector2 projectileSpawnOffset = directionToMouse * 2;
+        Vector2 projectileDirection = Utility.Rotate(directionToMouse, offset);
+
+        GameObject projectileSpawned = projectilePool.Get();
+        Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
+        projectileSpawned.transform.right = projectileDirection;
+        projectileInfo.movementDirection = projectileSpawned.transform.right;
+        projectileInfo.shotByPlayer = true;
+        projectileSpawned.transform.position = (Vector2)transform.position + projectileSpawnOffset;
+        projectileSpawned.transform.rotation = Quaternion.identity;
+        projectileSpawned.transform.parent = projectilePoolParent;
+
+        projectileInfo.SetMyPool(projectilePool);
+        projectileInfo.projectileDamage = damage;
+        projectileInfo.isCriticalHit = isCritical;
+        projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
+        return projectileInfo;
     }
 
-    public void PickupWeapon(GameObject weaponObject)
+    public bool CanAttack()
     {
-        Weapon weapon = weaponObject.GetComponent<Weapon>();
-        Debug.Assert(weapon);
+        if (!isActiveAndEnabled)
+            return false;
 
-        // If we already have the weapon we're picking up, just add ammo
-        if (weapons[0] && weapons[0] == weapon)
-        {
-            bool receivedAmmo = weapons[0].GiveAmmo(weapon.currentAmmo);
-            if (receivedAmmo)
-            {
-                Destroy(weapon.gameObject);
-            }
-            return;
-        }
-        else if (weapons[1] && weapons[1] == weapon)
-        {
-            bool receivedAmmo = weapons[1].GiveAmmo(weapon.currentAmmo);
-            if (receivedAmmo)
-            {
-                Destroy(weapon.gameObject);
-            }
-            return;
-        }
-
-        // We don't already have the weapon, so either add it to an empty slot or swap it with current
-        if (!weapons[0])
-        {
-            weapon.PickupWeapon(gameObject);
-            weapons[0] = weapon;
-            weapon.gameObject.SetActive(false);
-            return;
-        }
-        else if (!weapons[1])
-        {
-            weapon.PickupWeapon(gameObject);
-            weapons[1] = weapon;
-            weapon.gameObject.SetActive(false);
-            return;
-        }
-        else
-        {
-            int currentWeaponIndex = currentWeapon == weapons[0] ? 0 : 1;
-            weapons[currentWeaponIndex].DropWeapon();
-            weapon.PickupWeapon(gameObject);
-            weapons[currentWeaponIndex] = weapon;
-            currentWeapon = weapon;
-            return;
-        }
-    }
-
-    // OnTriggerStay is run on the physics update, this variable helps it feel more responsive
-    bool pressedInteractThisFrame = false;
-    bool interactedThisFrame = false;
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        pressedInteractThisFrame = false;
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        pressedInteractThisFrame = false;
-    }
-
-    bool attemptedInteracts = false;
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (interactedThisFrame)
-            return;
-
-        if (pressedInteractThisFrame)
-        {
-            if (collision.gameObject)
-            {
-                GameObject potentialWeapon = collision.gameObject;
-                Weapon weapon = potentialWeapon.GetComponent<Weapon>();
-                if (weapon)
-                {
-                    interactedThisFrame = true;
-                    PickupWeapon(collision.gameObject);
-                }
-            }
-            attemptedInteracts = true;
-        }
-    }
-
-    private void LateUpdate()
-    {
-        interactedThisFrame = false;
-        if (attemptedInteracts)
-        {
-            attemptedInteracts = false;
-            pressedInteractThisFrame = false;
-        }
-    }
-
-    public Weapon GetCurrentWeapon()
-    {
-        return currentWeapon;
-    }
-
-    public float GetWeaponRotation()
-    {
-        return currentWeapon.transform.rotation.eulerAngles.z;
-    }
-
-    public bool CanWeaponAttack()
-    {
-        return currentWeapon.CanAttack();
+        float attacksPerSecond = playerStats.CalculateAttackSpeed(baseAttacksPerSecond);
+        return Time.time > lastAttackTime + (1 / attacksPerSecond);
     }
 
     public void DisableWeapon()
     {
-        currentWeapon.gameObject.SetActive(false);
+        weapon.SetActive(false);
     }
 
     public void EnableWeapon()
     {
-        currentWeapon.gameObject.SetActive(true);
+        weapon.SetActive(true);
     }
 
     private void Awake()

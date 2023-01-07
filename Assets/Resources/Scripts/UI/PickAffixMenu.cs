@@ -30,7 +30,7 @@ public class PickAffixMenu : MonoBehaviour
     //public RectTransform menuBackground;
 
     int affixChoicesRemaining;
-    int choicesAvailable = 3;
+    //int choicesAvailable = 3;
     GameObject player;
     GameplayUI gameplayUI;
     PlayerExperience playerExperience;

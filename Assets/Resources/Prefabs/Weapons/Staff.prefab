@@ -142,7 +142,7 @@ PrefabInstance:
         type: 3}
       propertyPath: audioSource
       value: 
-      objectReference: {fileID: 4944539359795775678}
+      objectReference: {fileID: 0}
     - target: {fileID: -7671087872726977303, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
         type: 3}
       propertyPath: isAutomatic
@@ -389,22 +389,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7671087872726977303, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
+    - {fileID: 893806184240942100, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3, type: 3}
---- !u!1 &3483986864234071250 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5015345521042287544, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8485781935105175402}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &4944539359795775678 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3557005793705224148, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8485781935105175402}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &7081785284073293257 stripped
+--- !u!4 &5059294048801630589 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 1694483226134440611, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
+  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
     type: 3}
   m_PrefabInstance: {fileID: 8485781935105175402}
   m_PrefabAsset: {fileID: 0}
@@ -414,49 +403,3 @@ SpriteRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 8485781935105175402}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &5059294048801630589 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3744097213149562391, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8485781935105175402}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4067624973351149702 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5598140266092728300, guid: 03c6a4f0d1ca29b498ddf7ff5066d9a3,
-    type: 3}
-  m_PrefabInstance: {fileID: 8485781935105175402}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7127334348890778689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3483986864234071250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64512871dd544a848aa45ce3ee6954c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponID: 2
-  isAutomatic: 1
-  attackDamage: 0
-  critChance: 10
-  critPower: 2
-  baseAttacksPerSecond: 1.5
-  projectileSpreadAmount: 1
-  maxAmmo: 50
-  currentAmmo: 50
-  projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
-  bulletCasing: {fileID: 0}
-  notFiringSprite: {fileID: 21300000, guid: b6c027f7dc666424dbc6a89b148921ef, type: 3}
-  firingSprite: {fileID: 21300000, guid: b6c027f7dc666424dbc6a89b148921ef, type: 3}
-  sprite: {fileID: 6769617347913849038}
-  visualEffect: {fileID: 867793574762246758, guid: adc99836e6e143948aceafd0985a1a25,
-    type: 3}
-  visualEffectsSpawnPoint: {fileID: 7081785284073293257}
-  visualsCooldown: 0.08
-  shadow: {fileID: 4067624973351149702}
-  audioSource: {fileID: 4944539359795775678}
-  shootSound: {fileID: 8300000, guid: 0e0b567a43448c24688944f760b55af2, type: 3}
-  emptySound: {fileID: 0}

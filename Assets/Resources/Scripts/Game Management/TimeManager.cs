@@ -18,12 +18,8 @@ public class TimeManager : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerMovement movement = player.GetComponent<PlayerMovement>();
         GameObject weaponGameObject = player.transform.Find("Staff").gameObject;
-        Weapon weapon = weaponGameObject.GetComponent<Weapon>();
-        RotateWeapon rotate = weaponGameObject.GetComponent<RotateWeapon>();
         PlayerAnimation animation = player.GetComponent<PlayerAnimation>();
-        weapon.SetTimeManager(this);
         movement.SetTimeManager(this);
-        rotate.SetTimeManager(this);
         animation.SetTimeManager(this);
     }
 

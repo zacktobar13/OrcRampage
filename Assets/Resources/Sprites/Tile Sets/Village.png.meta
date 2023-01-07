@@ -222,7 +222,7 @@ TextureImporter:
       213: -2139339221396662319
     second: rock_barrier_9
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -282,6 +282,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -333,6 +334,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1913,6 +1938,7 @@ TextureImporter:
     nameFileIdTable:
       water_1: 2022807719561474530
       dirt_grass_16: 4556825025469176791
+      dirt_grass_6: 6351507947548048454
       dirt_grass_10: 6618955051440559458
       rock_barrier_2: -8466930177100791321
       water_grass_2: 7252992886784424323
@@ -1922,7 +1948,6 @@ TextureImporter:
       campfire_log: 2677570042197995760
       bush_2: 6979234091517765916
       water_grass_5: -8082023041111768439
-      water_grass_4: 5102241968828195920
       rock_barrier_4: -6852755800091667110
       fence_5: 7664133065143346876
       dirt_grass_12: -22096172995160973
@@ -1980,10 +2005,10 @@ TextureImporter:
       water_grass_9: -8574701311455289554
       rock_barrier_7: 8862496502146071939
       water_grass_10: 5822253518535410999
-      water_grass_12: 8681233517589966950
+      water_grass_4: 5102241968828195920
       water_grass_7: -2914755168009056471
+      water_grass_12: 8681233517589966950
       campfire_dead: -3792368441930353062
-      dirt_grass_6: 6351507947548048454
       campfire_lit: 3554787032305821545
   spritePackingTag: 
   pSDRemoveMatte: 0
