@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     bool firstKnockback = true;
     float knockbackTime;
     float attackMovementScalar;
+    float currentDodgeRollSpeedScalar;
 
     public TimeManager timeManager;
     PlayerAttack playerAttack;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerAttack = GetComponent<PlayerAttack>();
         SceneManager.sceneLoaded += ResetPositionOnNewLevel;
+        currentDodgeRollSpeedScalar = dodgeRollSpeedScalar;
     }
 
     public void SetTimeManager(TimeManager tm)
@@ -104,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         // Dodge roll movement.
         if (isDodgeRolling)
         {
-            rigidBody.position += (dodgeRollDir * Time.deltaTime * (movementSpeed * dodgeRollSpeedScalar * .8f));
+            rigidBody.position += (dodgeRollDir * Time.deltaTime * (movementSpeed * currentDodgeRollSpeedScalar));
             return;
         }
         else if (PlayerInput.movementVertical != 0 || PlayerInput.movementHorizontal != 0)
@@ -149,12 +151,12 @@ public class PlayerMovement : MonoBehaviour
         playerAttack.enabled = true;
         isDodgeRolling = false;
         isRunning = false;
-        dodgeRollSpeedScalar = 2;
+		currentDodgeRollSpeedScalar = dodgeRollSpeedScalar;
     }
 
     public void ReduceDodgeRollSpeed()
     {
-        dodgeRollSpeedScalar = 1;
+        currentDodgeRollSpeedScalar = 1;
     }
 
     public void ResetPositionOnNewLevel(Scene scene, LoadSceneMode sceneLoadMode)

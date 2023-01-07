@@ -721,7 +721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 20
-  dodgeRollSpeedScalar: 2
+  dodgeRollSpeedScalar: 2.5
   attackMovementPercentReduced: 0.5
   isRunning: 0
   movementEnabled: 1
