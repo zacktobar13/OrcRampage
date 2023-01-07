@@ -25,8 +25,9 @@ public class PlayerAttack : MonoBehaviour
     PoolManager poolManager;
     
     Transform projectilePoolParent;
+	Transform projectileSpawnPoint;
 
-    float lastAttackTime;
+	float lastAttackTime;
 
     bool isAttacking;
     bool isAutomatic = true;
@@ -39,7 +40,8 @@ public class PlayerAttack : MonoBehaviour
         timeManager = gameManagement.GetComponent<TimeManager>();
         poolManager = gameManagement.GetComponent<PoolManager>();
         projectilePool = poolManager.GetObjectPool(projectile);
-        
+        projectileSpawnPoint = transform.Find("Projectile Spawn Point");
+
         playerStats = GetComponent<PlayerStats>();
         string hierarchyName = "Game Management/" + projectile.name + " Pool";
         projectilePoolParent = GameObject.Find(hierarchyName).transform;
@@ -110,7 +112,7 @@ public class PlayerAttack : MonoBehaviour
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
         projectileInfo.movementDirection = projectileDirection;
         projectileInfo.shotByPlayer = true;
-        projectileSpawned.transform.position = (Vector2)transform.position + projectileSpawnOffset;
+        projectileSpawned.transform.position = (Vector2)projectileSpawnPoint.position + projectileSpawnOffset;
         projectileSpawned.transform.parent = projectilePoolParent;
 
         projectileInfo.SetMyPool(projectilePool);
