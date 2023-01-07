@@ -43,7 +43,6 @@ public class PoolManager : MonoBehaviour
             objectPools.Add(poolName, pool);
             GameObject poolChild = new GameObject(poolName + " Pool");
             poolChild.transform.SetParent(transform);
-            Debug.Log("New " + poolName + " pool of size " + defaultCapacity + " created!");
         }
         else
         {
