@@ -6,34 +6,38 @@ using UnityEngine.Pool;
 
 public class PlayerAttack : MonoBehaviour
 {
-    PlayerStats playerStats;
- 
+    [SerializeField] GameObject weapon;
+    [SerializeField] GameObject projectile;
+    [SerializeField] float baseAttacksPerSecond;
+    [SerializeField] AudioClip attackSound;
+
     public delegate void OnShoot(PlayerAttack playerAttack);
     public event OnShoot onPlayerShoot;
 
     public delegate void OnProjectileSpawned(PlayerAttack playerAttack, Projectile projectileSpawned);
     public event OnProjectileSpawned onProjectileSpawned;
 
+    protected ObjectPool<GameObject> projectilePool;
+ 
+    PlayerStats playerStats;
     GameplayUI gameplayUI;
+    TimeManager timeManager;
+    PoolManager poolManager;
+    
+    Transform projectilePoolParent;
 
-    [SerializeField] GameObject weapon;
-    [SerializeField] GameObject projectile;
-    [SerializeField] float baseAttacksPerSecond;
     float lastAttackTime;
 
-    TimeManager timeManager;
     bool isAttacking;
     bool isAutomatic = true;
 
-    protected ObjectPool<GameObject> projectilePool;
-    PoolManager poolManager;
-    Transform projectilePoolParent;
-
     void Start()
     {
-        gameplayUI = GameObject.Find("Gameplay UI").GetComponent<GameplayUI>();
-        timeManager = GameObject.Find("Game Management").GetComponent<TimeManager>();
-        poolManager = GameObject.Find("Game Management").GetComponent<PoolManager>();
+        GameObject gameManagement = GameObject.Find("Game Management");
+
+        gameplayUI = gameManagement.GetComponent<GameplayUI>();
+        timeManager = gameManagement.GetComponent<TimeManager>();
+        poolManager = gameManagement.GetComponent<PoolManager>();
         projectilePool = poolManager.GetObjectPool(projectile);
         
         playerStats = GetComponent<PlayerStats>();
@@ -86,6 +90,8 @@ public class PlayerAttack : MonoBehaviour
 
         if (projectileSpawned && onProjectileSpawned != null)
             onProjectileSpawned(this, projectileSpawned);
+
+        SoundManager.PlayOneShot(transform.position, attackSound, new SoundManagerArgs("MageShoot"));
     }
 
     public virtual Projectile SpawnProjectile(int damage, bool isCritical, float offset)

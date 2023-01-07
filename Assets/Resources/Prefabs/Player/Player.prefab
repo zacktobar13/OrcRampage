@@ -915,6 +915,7 @@ MonoBehaviour:
   weapon: {fileID: 4675744619713547045}
   projectile: {fileID: 1796847203892902, guid: 9587eae1c43a4804fa0d3955cef6e4c9, type: 3}
   baseAttacksPerSecond: 1
+  attackSound: {fileID: 8300000, guid: a49acc02f7fec5147b27ccbfa021c13b, type: 3}
 --- !u!114 &1102896693
 MonoBehaviour:
   m_ObjectHideFlags: 0
