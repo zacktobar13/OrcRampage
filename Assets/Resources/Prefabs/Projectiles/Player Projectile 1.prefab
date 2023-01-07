@@ -63,9 +63,9 @@ MonoBehaviour:
   frontOfProjectile: {fileID: 8382636359088157003}
   rigidBody: {fileID: 50285891162219776}
   shadow: {fileID: 7071937244730473382, guid: d6b8c6b977d52554db2258f1bce62c1b, type: 3}
-  trail: {fileID: 8237044509415262712}
   movementSpeed: 0.35
   numberOfPierces: 0
+  movementDirection: {x: 0, y: 0}
 --- !u!50 &50285891162219776
 Rigidbody2D:
   serializedVersion: 4

@@ -108,17 +108,15 @@ public class PlayerAttack : MonoBehaviour
 
         GameObject projectileSpawned = projectilePool.Get();
         Projectile projectileInfo = projectileSpawned.GetComponent<Projectile>();
-        projectileSpawned.transform.right = projectileDirection;
-        projectileInfo.movementDirection = projectileSpawned.transform.right;
+        projectileInfo.movementDirection = projectileDirection;
         projectileInfo.shotByPlayer = true;
         projectileSpawned.transform.position = (Vector2)transform.position + projectileSpawnOffset;
-        projectileSpawned.transform.rotation = Quaternion.identity;
         projectileSpawned.transform.parent = projectilePoolParent;
 
         projectileInfo.SetMyPool(projectilePool);
         projectileInfo.projectileDamage = damage;
         projectileInfo.isCriticalHit = isCritical;
-        projectileInfo.SetProjectileRotation(transform.eulerAngles.z);
+        projectileInfo.SetProjectileRotation(Mathf.Rad2Deg * Mathf.Atan2(projectileDirection.y, projectileDirection.x));
         return projectileInfo;
     }
 
