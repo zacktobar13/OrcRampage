@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldGained
   m_EditorClassIdentifier: 
   icon: {fileID: -2985551742865625149, guid: 671e951f95ee940198ff4ec960516a18, type: 3}
-  affixName: Tome of knowledge
-  affixDescription: Increases all experience gained
+  affixName: Gambler's Handbook
+  affixDescription: Increases all gold gained
   affixRarity: 0
   isUniqueAffix: 0
   affixPrefab: {fileID: 4800203761241068539, guid: 0178368c8b1442f4fb541c9ff7b81d1e,
