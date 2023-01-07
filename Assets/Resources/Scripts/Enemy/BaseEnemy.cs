@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using PowerTools;
 using UnityEngine.Pool;
 
 public class BaseEnemy : MonoBehaviour {
@@ -28,12 +27,6 @@ public class BaseEnemy : MonoBehaviour {
     protected float rarityStatScalar = 1f;
     protected int rarityIndex;
 
-    [Header("Animations")]
-    public AnimationClip idleAnimation;
-    public AnimationClip movingAnimation;
-    public AnimationClip hurtAnimation;
-    public AnimationClip deathAnimation;
-
     private TimeManager timeManager;
     protected GameObject damageCollider;
     protected Transform damageSpawnPoint;
@@ -45,7 +38,6 @@ public class BaseEnemy : MonoBehaviour {
 
     // Referenced in Start()
     protected AudioSource audioSource;
-    protected SpriteAnim spriteAnim;
     protected SpriteRenderer spriteRenderer;
     GameObject healthUI;
     Image healthbar;
@@ -92,11 +84,13 @@ public class BaseEnemy : MonoBehaviour {
     protected ObjectPool<GameObject> coinPool;
     Transform coinPoolParent;
 
+    StateMachine stateMachine;
+
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
         //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
-
+        stateMachine = new StateMachine();
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
 
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
@@ -104,7 +98,7 @@ public class BaseEnemy : MonoBehaviour {
         audioSource = gameObject.GetComponent<AudioSource>();
         spriteRenderer = transform.Find("Sprite").GetComponent<SpriteRenderer>();
 
-        spriteAnim = transform.Find("Sprite").GetComponent<SpriteAnim>();
+        
         damageSpawnPoint = transform.Find("Damage Spawn Point");
 
         GameObject gameManagement = GameObject.Find("Game Management");
@@ -157,6 +151,11 @@ public class BaseEnemy : MonoBehaviour {
         myPool = pool;
     }
 
+    public StateMachine GetStateMachine()
+    {
+        return stateMachine;
+    }
+
     float timeUntilAttackAfterStop;
     bool hasStoppedToAttack = false;
     protected void FixedUpdate () {
@@ -174,7 +173,7 @@ public class BaseEnemy : MonoBehaviour {
 
         if (!isTargetDetected)
         {
-            Idle();
+            stateMachine.ChangeState(EnemyState.IDLE);
         }
         else
         {
@@ -188,19 +187,21 @@ public class BaseEnemy : MonoBehaviour {
 
                 if (Time.time < timeUntilAttackAfterStop + stopToAttackTime)
                 {
-                    Idle();
+					stateMachine.ChangeState(EnemyState.IDLE);
                 }
                 else
                 {
+					stateMachine.ChangeState(EnemyState.ATTACK);
                     Attack();
-                    hasStoppedToAttack = false;
+					hasStoppedToAttack = false;
                 }
             }
             else
             {
                 hasStoppedToAttack = false;
+				stateMachine.ChangeState(EnemyState.MOVING);
                 ChaseTarget();
-            }
+			}
         }
     }
 
@@ -294,30 +295,13 @@ public class BaseEnemy : MonoBehaviour {
         return PlayerManagement.player;
     }
 
-    public virtual void Anim_EnableDeadShadow()
-    {
-        aliveShadow.SetActive(false);
-        deadShadow.SetActive(true);
-    }
-
     public virtual void ChaseTarget()
     {
         if (distanceToTarget >= attackRange)
         {
             // Chase Target
-            spriteAnim.Play(movingAnimation);
             MoveTowards(target.transform.position, movementSpeed * Time.deltaTime);
         }
-        else
-        {
-            // Idle
-            spriteAnim.Play(idleAnimation);
-        }
-    }
-
-    public virtual void Idle()
-    {
-        spriteAnim.Play(idleAnimation);
     }
 
     public virtual bool ShouldAttack()
@@ -379,6 +363,7 @@ public class BaseEnemy : MonoBehaviour {
     public void DeathInternal()
     {
         enemySpawner.EnemyDeath(this, null);
+        stateMachine.ChangeState(EnemyState.DEAD);
 
         if (spawnPortalOnDeath)
         {
@@ -387,7 +372,6 @@ public class BaseEnemy : MonoBehaviour {
             portalData.SetNextScene(nextScene);
         }
 
-        spriteAnim.Play(deathAnimation);
         DisableComponentsOnDeath();
 
         /* Drop number of coins based on enemy's rarity index (1-6) */
@@ -517,8 +501,7 @@ public class BaseEnemy : MonoBehaviour {
     public virtual IEnumerator Hurt(DamageInfo damageInfo)
     {
         isStunned = true;
-        float hurtAnimationSpeed = 1f;// hurtAnimation.length / damageInfo.knockbackDuration;
-        spriteAnim.Play(hurtAnimation, hurtAnimationSpeed);
+        stateMachine.ChangeState(EnemyState.HURT);
         yield return new WaitForSeconds(damageInfo.knockbackDuration);
         isStunned = false;
     }
@@ -534,4 +517,40 @@ public class BaseEnemy : MonoBehaviour {
     {
         return Vector2.Dot ( transform.right, target.transform.position ) > Vector2.Dot ( transform.right, transform.position );
     }
+}
+
+public class StateMachine
+{
+    private EnemyState previousState;
+    private EnemyState currentState;
+
+    public StateMachine()
+    {
+        previousState = currentState = EnemyState.IDLE;
+    }
+
+    public void ChangeState(EnemyState newState)
+    {
+        previousState = currentState;
+        currentState = newState;
+    }
+
+    public EnemyState GetCurrentState()
+    {
+        return currentState;
+    }
+
+    public EnemyState GetPreviousState()
+    {
+        return previousState;
+    }
+}
+
+public enum EnemyState
+{
+    IDLE,
+    MOVING,
+    ATTACK,
+    HURT,
+    DEAD
 }

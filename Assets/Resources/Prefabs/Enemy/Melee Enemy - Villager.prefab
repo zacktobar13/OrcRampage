@@ -396,6 +396,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 798901107330929745}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6929825264576763222 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 798901107330929745}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &788851109338093872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929825264576763222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86651a146c2d09246bf04b263b444ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleAnimation: {fileID: 7400000, guid: 2075c5d6cb78ded429628d8546fa4f17, type: 2}
+  movingAnimation: {fileID: 7400000, guid: d7da57d28069d754aa03ca10d9c0c620, type: 2}
+  hurtAnimation: {fileID: 7400000, guid: 888555a2ebc96ef4e991675bcef85388, type: 2}
+  deathAnimation: {fileID: 7400000, guid: 652959d418e59c14cb75afc9033d16b9, type: 2}
 --- !u!4 &7625758418901264232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7116363276101727033, guid: db2923e03d7a84047835ae022d9e67ff,
