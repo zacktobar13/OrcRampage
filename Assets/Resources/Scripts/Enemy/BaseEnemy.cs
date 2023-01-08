@@ -11,17 +11,13 @@ public class BaseEnemy : MonoBehaviour {
     public bool forceUseInspectorRarity;
     public float attackRange;
     public float movementSpeed;
-    public int attackDamage;
+    [SerializeField]int attackDamage;
     public float attackCooldown;
     public float attackRadius;
     public float stopToAttackTime;
     public int maxHealth;
-    public GameObject[] droppables;
     public float droppableDropChance;
 
-    [Header("Scaling")]
-    public int healthScalingStepSize = 10;
-    public int attackDamageScalingStepSize = 3;
     [SerializeField]
     protected float[] rarityStatScalars = {1f, 2f, 3f, 4f, 5f, 6f};
     protected float rarityStatScalar = 1f;
@@ -30,11 +26,6 @@ public class BaseEnemy : MonoBehaviour {
     private TimeManager timeManager;
     protected GameObject damageCollider;
     protected Transform damageSpawnPoint;
-
-    [Header("Portal")]
-    public bool spawnPortalOnDeath;
-    public GameObject portal;
-    public string nextScene;
 
     // Referenced in Start()
     protected AudioSource audioSource;
@@ -71,7 +62,7 @@ public class BaseEnemy : MonoBehaviour {
     protected bool inRangeToAttack = false;
     protected bool isTargetDetected = false;
     protected bool isStunned = false;
-    protected float lastAttackTime = Mathf.NegativeInfinity;
+    protected float lastAttackTime = -100f;
     private IEnumerator disableMovement;
     private IEnumerator knockBack;
 
@@ -86,11 +77,15 @@ public class BaseEnemy : MonoBehaviour {
 
     StateMachine stateMachine;
 
+    private void Awake() {
+        stateMachine = new StateMachine();
+    }
+
     protected void Start ()
     {
         // Give enemies attack range and movement speed some randomness
         //movementSpeed = Random.Range(movementSpeed * 0.8f, movementSpeed * 1.2f);
-        stateMachine = new StateMachine();
+        
         spriteGameObject.transform.localScale *= Random.Range(1f, 1.1f);
 
         fadeComponent = GetComponent<FadeOutAndDestroyOverTime>();
@@ -193,6 +188,7 @@ public class BaseEnemy : MonoBehaviour {
                 {
 					stateMachine.ChangeState(EnemyState.ATTACK);
                     Attack();
+                    lastAttackTime = Time.time;
 					hasStoppedToAttack = false;
                 }
             }
@@ -268,14 +264,14 @@ public class BaseEnemy : MonoBehaviour {
         rarityStatScalar = rarityStatScalars[rarityIndex];
 	}
 
-	int CalculateMaxHealth()
+	protected virtual int CalculateMaxHealth()
     {
         return (int)(maxHealth * rarityStatScalar);
         //int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
         //return (int)((maxHealth + healthScalingStepSize * numberOfScalingSteps) * rarityStatScalar);
     }
 
-    int CalculateAttackDamage()
+    protected virtual int CalculateAttackDamage()
     {
         return (int)(attackDamage * rarityStatScalar);
         //int numberOfScalingSteps = (int)timeManager.GetTimeInRound() / 30;
@@ -311,9 +307,6 @@ public class BaseEnemy : MonoBehaviour {
 
     public virtual void Attack()
     {
-        if (!ShouldAttack())
-            return;
-
         Vector2 directionToTarget = (target.transform.position - transform.position).normalized;
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll((Vector2)transform.position + directionToTarget, attackRadius);
 
@@ -337,8 +330,6 @@ public class BaseEnemy : MonoBehaviour {
                 continue;
             }
         }
-        
-        lastAttackTime = Time.time;
     }
 
     public virtual IEnumerator VisualEffects()
@@ -364,13 +355,6 @@ public class BaseEnemy : MonoBehaviour {
     {
         enemySpawner.EnemyDeath(this, null);
         stateMachine.ChangeState(EnemyState.DEAD);
-
-        if (spawnPortalOnDeath)
-        {
-            GameObject newPortal = Instantiate(portal, transform.position, Quaternion.identity);
-            Portal portalData = newPortal.GetComponent<Portal>();
-            portalData.SetNextScene(nextScene);
-        }
 
         DisableComponentsOnDeath();
 

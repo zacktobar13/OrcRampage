@@ -81,9 +81,9 @@ public class EnemySpawner : MonoBehaviour
         enemiesRemaining += waveSize;
         while (enemiesSpawned < waveSize)
         {
-            yield return new WaitForSeconds(1f / enemiesPerSecond);
             SpawnEnemy();
             enemiesSpawned++;
+            yield return new WaitForSeconds(1f / enemiesPerSecond);
         }
     }
 

@@ -40,7 +40,6 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
     {
         if (startFade)
         {
-           
             if (shadowSprite)
             {
                 shadowSprite.material.SetColor("_Color", new Vector4(0f, 0f, 0f, shadowAlpha));
@@ -63,11 +62,14 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
                 else
                     Destroy(gameObject);
             }
-        } 
+        }
     }
 
     void OnDisable()
     {
+        if (mainSprite == null)
+            return;
+            
         Color spriteColor = new Color(mainSprite.material.color.r, mainSprite.material.color.g, mainSprite.material.color.b, 1f);
         mainSprite.material.color = spriteColor;
         shadowSprite.material.SetColor("_Color", new Vector4(0f, 0f, 0f, SHADOW_ALPHA_START));
@@ -84,6 +86,11 @@ public class FadeOutAndDestroyOverTime : MonoBehaviour
         {
             mainSprite = sprite.GetComponent<SpriteRenderer>();
             spriteAlpha = mainSprite.material.color.a;
+        }
+        else 
+        {
+            // if we can't find the sprite, we can't fade
+            this.enabled = false;
         }
 
         startFade = true;

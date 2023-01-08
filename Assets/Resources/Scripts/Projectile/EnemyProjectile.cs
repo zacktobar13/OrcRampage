@@ -2,32 +2,49 @@
 
 public class EnemyProjectile : MonoBehaviour
 {
-
-    public int projectileDamage;
-    public GameObject hitEffect;
-    public Rigidbody2D rigidBody;
-
-    public float movementSpeed;
-    public Vector2 movementDirection;
-    Vector2 target;
-
-    float hitEffectOffset = 0.5f;
+    public Transform spriteTransform;
+    int projectileDamage;
+    float radius;
+    float warningDuration;
+    float lerpEndTime;
+    float lerpStartTime;
 
     void FixedUpdate()
     {
-        rigidBody.MovePosition(rigidBody.position + movementDirection * Time.deltaTime);
+        if (Time.time > lerpEndTime) {
+            DealDamage();
+            Destroy(gameObject);
+        }
+        float scaleInterpolation = Mathf.Lerp(1, radius, (Time.time - lerpStartTime) / (lerpEndTime - lerpStartTime));
+        spriteTransform.localScale = new Vector3(scaleInterpolation, scaleInterpolation, spriteTransform.localScale.z);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        string colliderTag = collision.gameObject.tag;
-        if (colliderTag != "Enemy" && colliderTag != "GatherableResource" && colliderTag != "Projectile")
-        {
-            DamageInfo damageInfo = new DamageInfo( 10, false, movementDirection );
-            collision.gameObject.SendMessage( "ApplyDamage", damageInfo );
-            Vector2 offset = (transform.position - collision.transform.position) * hitEffectOffset;
-            Destroy(Instantiate(hitEffect, ((Vector2)collision.transform.position) + offset, collision.transform.rotation), 2f);
-            Destroy(gameObject);
+    public void SetProjectileInfo(int damage, float endRadius, float warningDuration) {
+        projectileDamage = damage;
+        radius = endRadius;
+        this.warningDuration = warningDuration;
+        lerpEndTime = Time.time + warningDuration;
+        lerpStartTime = Time.time;
+        Debug.Assert(radius >= 1);
+    }
+
+    public void DealDamage() {
+        Collider2D[] objectsHit = Physics2D.OverlapCircleAll(transform.position, radius * (transform.localScale.x / 2));
+        foreach (Collider2D collider in objectsHit) {
+            PlayerHealth playerHealth;
+            if (collider.TryGetComponent(out playerHealth))
+            {
+                DamageInfo damageInfo = new DamageInfo(projectileDamage, false);
+                playerHealth.ApplyDamage(damageInfo);
+                continue;
+            }
+            MapClutter mapClutter;
+            if (collider.TryGetComponent(out mapClutter))
+            {
+                DamageInfo damageInfo = new DamageInfo(projectileDamage, false);
+                mapClutter.ApplyDamage(damageInfo);
+                continue;
+            }
         }
     }
 }

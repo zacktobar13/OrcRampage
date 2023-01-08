@@ -32,7 +32,7 @@ public class ChargerEnemyBehavior : MeleeEnemyBehavior
     {
         if (collision.tag == "Player" && Time.time > lastTimeDamageDealt + damageCooldown)
         {
-            DamageInfo damageInfo = new DamageInfo(attackDamage, false, directionToPlayer);
+            DamageInfo damageInfo = new DamageInfo(CalculateAttackDamage(), false, directionToPlayer);
             collision.gameObject.SendMessage("ApplyDamage", damageInfo, SendMessageOptions.DontRequireReceiver);
             lastTimeDamageDealt = Time.time;
         }
