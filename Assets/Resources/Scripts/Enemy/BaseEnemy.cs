@@ -33,7 +33,6 @@ public class BaseEnemy : MonoBehaviour {
     GameObject healthUI;
     Image healthbar;
     protected float health;
-    public GameObject currentWeapon;
     protected GameObject worldCollider;
     protected BoxCollider2D damageTrigger;
     protected FadeOutAndDestroyOverTime fadeComponent;
@@ -41,10 +40,8 @@ public class BaseEnemy : MonoBehaviour {
     protected AffixManager affixManager;
     protected EnemySpawner enemySpawner;
     protected Material shaderMaterial;
-
-    // Sometimes when enemies die, they need a different shadow for it to look natural (bigger, smaller etc)
-    public GameObject aliveShadow;
-    public GameObject deadShadow;
+    [SerializeField]
+    protected SpriteRenderer weaponSprite;
     
     public Color[] baseAccentColorChoices;
     protected Color baseAccentColor;
@@ -119,13 +116,10 @@ public class BaseEnemy : MonoBehaviour {
         maxHealth = CalculateMaxHealth();
         attackDamage = CalculateAttackDamage();
         health = maxHealth;
-
+        if (weaponSprite) { weaponSprite.enabled = true; }
         isDisabled = false;
-        if (currentWeapon)
-        {
-            currentWeapon.gameObject.SetActive(true);
-            Debug.Assert(attackDamage != 0);
-        }
+
+        Debug.Assert(attackDamage != 0);
         worldCollider.SetActive(true);
         damageTrigger.enabled = true;
 
@@ -384,9 +378,10 @@ public class BaseEnemy : MonoBehaviour {
     void DisableComponentsOnDeath()
     {
         isDisabled = true;
-        currentWeapon.gameObject.SetActive(false);
         worldCollider.SetActive(false);
         damageTrigger.enabled = false;
+
+        if (weaponSprite) { weaponSprite.enabled = false; }
 
         if (fadeComponent)
         {

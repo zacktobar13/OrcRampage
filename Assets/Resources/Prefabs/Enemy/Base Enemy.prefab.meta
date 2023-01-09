@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: db2923e03d7a84047835ae022d9e67ff
+guid: 245e542063fae8c4bb278578191cfab7
 labels:
-- Enemy
-- Zombie
+- Character
+- Parent
 PrefabImporter:
   externalObjects: {}
   userData: 
