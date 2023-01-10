@@ -194,19 +194,19 @@ public class EnemySpawner : MonoBehaviour
        // return Random.Range(0f, 100f) <= enemyDistribution[0] ? enemiesToSpawn[0] : enemiesToSpawn[1];
     }
 
-    Vector3 GetRandomSpawnPosition()
+    Vector2 GetRandomSpawnPosition()
     {
         float offScreenXOffset = Screen.width * .1f;
         float offScreenYOffset = Screen.height * .1f;
-        Vector3 leftScreenPos = new Vector3(-offScreenXOffset, Random.Range(0, Screen.height), 0);
-        Vector3 topScreenPos = new Vector3(Random.Range(0, Screen.width), Screen.height + offScreenYOffset, 0);
-        Vector3 rightScreenPos = new Vector3(Screen.width + offScreenXOffset, Random.Range(0, Screen.height), 0);
-        Vector3 bottomScreenPos = new Vector3(Random.Range(0, Screen.width), -offScreenYOffset, 0);
+        Vector2 leftScreenPos = new Vector2(-offScreenXOffset, Random.Range(0, Screen.height));
+        Vector2 topScreenPos = new Vector2(Random.Range(0, Screen.width), Screen.height + offScreenYOffset);
+        Vector2 rightScreenPos = new Vector2(Screen.width + offScreenXOffset, Random.Range(0, Screen.height));
+        Vector2 bottomScreenPos = new Vector2(Random.Range(0, Screen.width), -offScreenYOffset);
 
-        Vector3 leftMiddleWorldPos = Camera.main.ScreenToWorldPoint(leftScreenPos);
-        Vector3 topMiddleWorldPos = Camera.main.ScreenToWorldPoint(topScreenPos);
-        Vector3 rightMiddleWorldPos = Camera.main.ScreenToWorldPoint(rightScreenPos);
-        Vector3 bottomMiddleWorldPos = Camera.main.ScreenToWorldPoint(bottomScreenPos);
+        Vector2 leftMiddleWorldPos = Camera.main.ScreenToWorldPoint(leftScreenPos);
+        Vector2 topMiddleWorldPos = Camera.main.ScreenToWorldPoint(topScreenPos);
+        Vector2 rightMiddleWorldPos = Camera.main.ScreenToWorldPoint(rightScreenPos);
+        Vector2 bottomMiddleWorldPos = Camera.main.ScreenToWorldPoint(bottomScreenPos);
 
         if (SpaceAvailable(leftMiddleWorldPos))
         {
@@ -226,9 +226,9 @@ public class EnemySpawner : MonoBehaviour
         }
 
         if (spawnPointList.Count == 0)
-            return Vector3.zero;
+            return Vector2.zero;
 
-        Vector3 spawnPosition = spawnPointList[Random.Range(0, spawnPointList.Count)];
+        Vector2 spawnPosition = spawnPointList[Random.Range(0, spawnPointList.Count)];
         spawnPointList.Clear();
         return spawnPosition;
     }
@@ -286,6 +286,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.LogError("Failed to find spawn location for boss");
 
         Debug.Log("Spawning Boss");
+
         GameObject boss = Instantiate(bossToSpawn, spawnPosition, Quaternion.identity);
         BaseEnemy bossInfo = boss.GetComponent<BaseEnemy>();
         bossInfo.SetEnemySpawner(this, null);
