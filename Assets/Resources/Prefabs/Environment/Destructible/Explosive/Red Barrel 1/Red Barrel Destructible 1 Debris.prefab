@@ -5,12 +5,29 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1182200826062851035, guid: ff412775ab9f66149bce4232a28a8cb1,
         type: 3}
       propertyPath: m_Name
-      value: Red Barrel Debris
+      value: Red Barrel Destructible 1 Debris
+      objectReference: {fileID: 0}
+    - target: {fileID: 1416306721001882997, guid: ff412775ab9f66149bce4232a28a8cb1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6a35cea30372b0a4891c3aca731e97a8,
+        type: 3}
+    - target: {fileID: 1416306721001882997, guid: ff412775ab9f66149bce4232a28a8cb1,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fe0434303a7a4934294f4c4cb8dee255, type: 2}
+    - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
         type: 3}
@@ -29,6 +46,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -40,16 +62,6 @@ PrefabInstance:
     - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1877621098828122597, guid: ff412775ab9f66149bce4232a28a8cb1,
@@ -67,18 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1416306721001882997, guid: ff412775ab9f66149bce4232a28a8cb1,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 6a35cea30372b0a4891c3aca731e97a8,
-        type: 3}
-    - target: {fileID: 1416306721001882997, guid: ff412775ab9f66149bce4232a28a8cb1,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fe0434303a7a4934294f4c4cb8dee255, type: 2}
     m_RemovedComponents:
     - {fileID: 7417066151433409514, guid: ff412775ab9f66149bce4232a28a8cb1, type: 3}
     - {fileID: 4135113826934800774, guid: ff412775ab9f66149bce4232a28a8cb1, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ff412775ab9f66149bce4232a28a8cb1, type: 3}

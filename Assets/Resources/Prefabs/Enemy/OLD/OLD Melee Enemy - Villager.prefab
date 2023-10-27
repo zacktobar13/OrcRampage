@@ -89,6 +89,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 324071696739180787, guid: db2923e03d7a84047835ae022d9e67ff,
@@ -409,6 +410,17 @@ PrefabInstance:
       value: OLD Melee Enemy - Villager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7116363276101727033, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6958109903610319188}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7727590988708856071, guid: db2923e03d7a84047835ae022d9e67ff,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 788851109338093872}
   m_SourcePrefab: {fileID: 100100000, guid: db2923e03d7a84047835ae022d9e67ff, type: 3}
 --- !u!1 &5051720958691560233 stripped
 GameObject:
